@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Soy hipnotizable? | NeuroSync Método</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { scroll-behavior: smooth; }
+        
+        /* Paleta de colores profesional consistente con index.html */
+        :root {
+            --color-primary-dark: #0f172a;
+            --color-primary: #1e293b;
+            --color-primary-medium: #334155;
+            --color-primary-light: #475569;
+            --color-accent-green: #047857;
+            --color-accent-green-light: #059669;
+            --color-neutral-dark: #1f2937;
+            --color-neutral-medium: #6b7280;
+            --color-neutral-light: #f3f4f6;
+            --color-white: #ffffff;
+            --color-warning: #d97706;
+        }
+        
+        .gradient-hero { 
+            background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-primary-medium) 100%); 
+        }
+        
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%); 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+        }
+        .btn-primary:hover { 
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-medium) 100%); 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3); 
+        }
+        
+        .navbar-fixed { 
+            backdrop-filter: blur(16px); 
+            background-color: rgba(255, 255, 255, 0.98); 
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); 
+        }
+        
+        .badge { 
+            display: inline-block; 
+            padding: 0.5rem 1rem; 
+            background: var(--color-accent-green); 
+            color: white; 
+            border-radius: 6px; 
+            font-size: 0.875rem; 
+            font-weight: 600; 
+        }
+        
+        .privacy-badge { 
+            background: var(--color-primary-dark); 
+        }
+        
+        .stat-number { 
+            font-size: 3.5rem; 
+            font-weight: 900; 
+            background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-medium) 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text; 
+        }
+        
+        .hypnotizability-bar { 
+            height: 24px; 
+            background: linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #eab308 50%, #84cc16 75%, var(--color-accent-green) 100%); 
+            border-radius: 4px; 
+            position: relative; 
+            overflow: visible; 
+        }
+        
+        .hypnotizability-marker { 
+            position: absolute; 
+            top: -4px; 
+            width: 3px; 
+            height: 32px; 
+            background: var(--color-primary-dark); 
+            border-radius: 2px; 
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); 
+        }
+        
+        .test-option { 
+            transition: all 0.3s ease; 
+            cursor: pointer; 
+        }
+        .test-option:hover { 
+            background-color: rgba(15, 23, 42, 0.02); 
+        }
+        .test-option.selected { 
+            background-color: rgba(15, 23, 42, 0.05); 
+            border-color: var(--color-primary); 
+        }
+        
+        .bg-professional { 
+            background: linear-gradient(to bottom, #f9fafb, #f3f4f6); 
+        }
+        
+        .text-professional {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        
+        .shadow-professional {
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+        }
+        
+        .shadow-professional-lg {
+            box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            letter-spacing: -0.02em;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- Warning Banner -->
+    <div class="py-3 px-4 text-center border-b" style="background-color: var(--color-primary-dark); color: white; border-bottom-color: var(--color-primary);">
+        <div class="max-w-6xl mx-auto flex items-center justify-center flex-wrap gap-2">
+            <svg class="w-5 h-5" style="color: var(--color-warning);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+            <p class="text-sm font-medium"><strong>AVISO IMPORTANTE:</strong> No apto para personas con trastornos psiquiátricos, epilepsia o sospecha de padecerla.</p>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar-fixed fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <span class="text-2xl font-black text-professional">NeuroSync</span>
+                        <span class="ml-2 text-sm font-normal" style="color: var(--color-neutral-medium);">Método</span>
+                    </a>
+                    <span class="ml-4 badge privacy-badge text-xs">Confidencial</span>
+                </div>
+                <div class="hidden md:flex space-x-6 text-sm">
+                    <a href="index.html" class="font-medium transition" style="color: var(--color-neutral-dark);" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-neutral-dark)'">Inicio</a>
+                    <a href="index.html#metodo" class="font-medium transition" style="color: var(--color-neutral-dark);" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-neutral-dark)'">Metodología</a>
+                    <a href="index.html#ciencia" class="font-medium transition" style="color: var(--color-neutral-dark);" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-neutral-dark)'">Investigación</a>
+                    <a href="index.html#servicios" class="font-medium transition" style="color: var(--color-neutral-dark);" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-neutral-dark)'">Servicios</a>
+                    <a href="index.html#contacto" class="px-5 py-2 rounded-md text-white transition font-semibold shadow-sm" style="background-color: var(--color-primary-dark);" onmouseover="this.style.backgroundColor='var(--color-primary)'" onmouseout="this.style.backgroundColor='var(--color-primary-dark)'">Consultar</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden focus:outline-none" style="color: var(--color-neutral-dark);">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t shadow-lg" style="border-color: var(--color-neutral-light);">
+            <div class="px-4 py-3 space-y-3">
+                <a href="index.html" class="block font-medium transition" style="color: var(--color-neutral-dark);">Inicio</a>
+                <a href="index.html#metodo" class="block font-medium transition" style="color: var(--color-neutral-dark);">Metodología</a>
+                <a href="index.html#ciencia" class="block font-medium transition" style="color: var(--color-neutral-dark);">Investigación</a>
+                <a href="index.html#servicios" class="block font-medium transition" style="color: var(--color-neutral-dark);">Servicios</a>
+                <a href="index.html#contacto" class="block px-6 py-3 rounded-md text-white transition font-semibold text-center" style="background-color: var(--color-primary-dark);">Consultar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero del Test -->
+    <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 gradient-hero text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl sm:text-5xl font-black mb-6 leading-tight">¿Soy hipnotizable?</h1>
+            <p class="text-xl mb-4" style="color: rgba(255, 255, 255, 0.9);">Cuestionario estandarizado de autoevaluación - Duración: 2 minutos</p>
+            <div class="flex flex-wrap gap-4 justify-center text-sm" style="color: rgba(255, 255, 255, 0.85);">
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" style="color: var(--color-accent-green-light);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                    <span>Completamente anónimo</span>
+                </div>
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" style="color: var(--color-accent-green-light);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                    <span>Sin registro de datos</span>
+                </div>
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" style="color: var(--color-accent-green-light);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                    <span>Resultados inmediatos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test de Hipnotizabilidad -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-professional">
+        <div class="max-w-4xl mx-auto">
+            <div id="test-container" class="bg-white rounded-lg shadow-professional-lg p-8 md:p-12" style="border: 1px solid var(--color-neutral-light);">
+                
+                <!-- Pregunta 1 -->
+                <div class="test-question mb-8" data-question="1">
+                    <h3 class="text-lg font-bold mb-4 text-professional">1. Capacidad de absorción en actividades (películas, lectura)</h3>
+                    <div class="space-y-2">
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q1" value="1" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Baja - Distracciones frecuentes</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q1" value="2" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Media - Concentración variable</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q1" value="3" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Alta - Absorción significativa con pérdida temporal</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q1" value="4" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Muy alta - Inmersión completa con disociación del entorno</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="test-question mb-8" data-question="2">
+                    <h3 class="text-lg font-bold mb-4 text-professional">2. Capacidad de visualización mental</h3>
+                    <div class="space-y-2">
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q2" value="1" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Baja - Dificultad significativa para formar imágenes mentales</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q2" value="2" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Media - Visualización posible pero difusa</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q2" value="3" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Alta - Imágenes mentales claras y definidas</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q2" value="4" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Muy alta - Visualización vívida con detalles sensoriales</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="test-question mb-8" data-question="3">
+                    <h3 class="text-lg font-bold mb-4 text-professional">3. Experiencia de automatismo conductual (ej: conducción automática)</h3>
+                    <div class="space-y-2">
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q3" value="1" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Nunca - Consciencia plena continua</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q3" value="2" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Raramente - Ocurrencia infrecuente</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q3" value="3" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Ocasionalmente - Experiencia periódica</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q3" value="4" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Frecuentemente - Ocurrencia regular (o identificación conceptual)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Pregunta 4 -->
+                <div class="test-question mb-8" data-question="4">
+                    <h3 class="text-lg font-bold mb-4 text-professional">4. Facilidad para alcanzar relajación profunda</h3>
+                    <div class="space-y-2">
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q4" value="1" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Muy difícil - Tensión muscular persistente</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q4" value="2" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Difícil - Requiere esfuerzo considerable</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q4" value="3" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Moderada - Alcanzable con técnicas apropiadas</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q4" value="4" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Fácil - Acceso rápido a estados de relajación profunda</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Pregunta 5 -->
+                <div class="test-question mb-8" data-question="5">
+                    <h3 class="text-lg font-bold mb-4 text-professional">5. Respuesta a sugestiones imaginativas</h3>
+                    <div class="space-y-2">
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q5" value="1" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Baja - Dificultad para experimentar sugestiones</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q5" value="2" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Media - Respuesta parcial a sugestiones</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q5" value="3" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Alta - Respuesta clara a sugestiones imaginativas</span>
+                        </label>
+                        <label class="test-option flex items-center p-3 border rounded-md" style="border-color: var(--color-neutral-light);">
+                            <input type="radio" name="q5" value="4" class="mr-3 w-4 h-4">
+                            <span class="text-sm" style="color: var(--color-neutral-dark);">Muy alta - Experiencia vivencial de sugestiones</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button id="calculate-btn" class="btn-primary w-full px-8 py-4 rounded-md text-white text-lg font-semibold">Calcular Resultado</button>
+            </div>
+
+            <!-- Resultado -->
+            <div id="result-container" class="hidden mt-8 bg-white rounded-lg shadow-professional-lg p-8 md:p-12" style="border: 1px solid var(--color-neutral-light);">
+                <h2 class="text-3xl font-black mb-6 text-center text-professional">Resultado de Evaluación</h2>
+                
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-semibold text-professional">Nivel de Receptividad Hipnótica</span>
+                        <span id="score-text" class="text-sm font-bold" style="color: var(--color-accent-green);"></span>
+                    </div>
+                    <div class="hypnotizability-bar">
+                        <div id="score-marker" class="hypnotizability-marker" style="left: 0%;"></div>
+                    </div>
+                    <div class="flex justify-between text-xs mt-2" style="color: var(--color-neutral-medium);">
+                        <span>Baja</span>
+                        <span>Media</span>
+                        <span>Alta</span>
+                        <span>Muy Alta</span>
+                    </div>
+                </div>
+
+                <div id="interpretation" class="rounded-lg p-6 mb-6" style="background-color: rgba(15, 23, 42, 0.03); border-left: 4px solid var(--color-primary);">
+                    <h3 class="text-lg font-bold mb-3 text-professional">Interpretación</h3>
+                    <p id="interpretation-text" class="text-sm leading-relaxed" style="color: var(--color-neutral-dark);"></p>
+                </div>
+
+                <div class="rounded-lg p-6" style="background-color: rgba(4, 120, 87, 0.05); border-left: 4px solid var(--color-accent-green);">
+                    <h3 class="text-lg font-bold mb-3" style="color: var(--color-accent-green);">Próximos Pasos</h3>
+                    <p class="text-sm mb-4" style="color: var(--color-neutral-dark);">Tu perfil de receptividad indica que puedes beneficiarte de protocolos hipnóticos personalizados. Solicita una evaluación completa sin coste.</p>
+                    <a href="index.html#contacto" class="btn-primary inline-block px-8 py-3 rounded-md text-white font-semibold text-center">Solicitar Evaluación Gratuita</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-white py-12 px-4" style="background-color: var(--color-primary-dark);">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-lg font-bold mb-2">NeuroSync Método</p>
+            <p class="text-sm" style="color: rgba(255, 255, 255, 0.8);">© 2025 Todos los derechos reservados.</p>
+            <p class="text-sm mt-4" style="color: rgba(255, 255, 255, 0.7);">Este servicio no constituye atención médica ni psicológica profesional. No sustituye diagnóstico, tratamiento o seguimiento clínico.</p>
+        </div>
+    </footer>
+
+<script>
+// Mobile Menu
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+// Test Option Selection Visual Feedback
+document.querySelectorAll('.test-option').forEach(option => {
+    option.addEventListener('click', function() {
+        const radio = this.querySelector('input[type="radio"]');
+        const questionDiv = this.closest('.test-question');
+        questionDiv.querySelectorAll('.test-option').forEach(opt => opt.classList.remove('selected'));
+        if (radio.checked) {
+            this.classList.add('selected');
+        }
+    });
+});
+
+// Calculate Result
+document.getElementById('calculate-btn').addEventListener('click', function() {
+    let totalScore = 0;
+    let answeredQuestions = 0;
+    
+    for (let i = 1; i <= 5; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected) {
+            totalScore += parseInt(selected.value);
+            answeredQuestions++;
+        }
+    }
+    
+    if (answeredQuestions < 5) {
+        alert('Por favor, responde todas las preguntas antes de calcular el resultado.');
+        return;
+    }
+    
+    const averageScore = totalScore / 5;
+    const percentage = ((averageScore - 1) / 3) * 100;
+    
+    let level, interpretation;
+    
+    if (averageScore <= 1.5) {
+        level = 'Baja';
+        interpretation = 'Tu perfil indica receptividad hipnótica baja. Esto no significa que la hipnosis no pueda ser efectiva para ti, pero puede requerir técnicas especializadas y mayor número de sesiones para alcanzar resultados óptimos. Aproximadamente el 15% de la población presenta este perfil.';
+    } else if (averageScore <= 2.5) {
+        level = 'Media';
+        interpretation = 'Tu perfil indica receptividad hipnótica media. Puedes responder bien a protocolos hipnóticos estándar con adaptaciones personalizadas. La mayoría de los objetivos terapéuticos son alcanzables con aplicación consistente. Aproximadamente el 40% de la población presenta este perfil.';
+    } else if (averageScore <= 3.5) {
+        level = 'Alta';
+        interpretation = 'Tu perfil indica receptividad hipnótica alta. Tienes excelente capacidad para entrar en estados hipnóticos y responder a sugestiones terapéuticas. Los protocolos personalizados pueden generar resultados significativos en plazos relativamente breves. Aproximadamente el 35% de la población presenta este perfil.';
+    } else {
+        level = 'Muy Alta';
+        interpretation = 'Tu perfil indica receptividad hipnótica muy alta. Posees capacidad excepcional para estados hipnóticos profundos y respuesta a sugestiones complejas. Eres candidato ideal para protocolos avanzados con alta probabilidad de resultados rápidos y sostenidos. Aproximadamente el 10% de la población presenta este perfil.';
+    }
+    
+    document.getElementById('score-text').textContent = `${level} (${averageScore.toFixed(1)}/4.0)`;
+    document.getElementById('score-marker').style.left = `${percentage}%`;
+    document.getElementById('interpretation-text').textContent = interpretation;
+    
+    document.getElementById('result-container').classList.remove('hidden');
+    document.getElementById('result-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+</script>
+
+</body>
+</html>
