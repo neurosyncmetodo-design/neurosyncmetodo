@@ -788,11 +788,58 @@
                 <h2 class="text-3xl font-bold mb-4">Solicitud de Protocolo Personalizado</h2>
                 <p class="text-gray-600 dark:text-gray-300">Proceso confidencial. Entrega en 48 horas laborables</p>
             </div>
-            <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc1zI4MajOhTuz1ViG0d-GXHUujxnbnI5QaK3-7aLegsM3pZg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" class="w-full">
-                    Cargando…
-                </iframe>
+            
+            <!-- Formulario embebido con fallback -->
+            <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden mb-8">
+                <!-- Iframe con las dimensiones exactas de Google Forms -->
+                <div class="w-full flex justify-center">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc1zI4MajOhTuz1ViG0d-GXHUujxnbnI5QaK3-7aLegsM3pZg/viewform?embedded=true" width="640" height="1046" frameborder="0" marginheight="0" marginwidth="0" class="max-w-full" onload="this.style.display='block'" onerror="this.style.display='none'; document.getElementById('fallback-form').style.display='block'">
+                        Cargando…
+                    </iframe>
+                </div>
             </div>
+            
+            <!-- Fallback: Botón directo si el iframe no funciona -->
+            <div id="fallback-form" class="text-center">
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Completa tu Solicitud</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Haz clic en el botón para abrir el formulario de solicitud en una nueva pestaña. 
+                        Es rápido, seguro y recibirás respuesta en 48 horas.
+                    </p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1zI4MajOhTuz1ViG0d-GXHUujxnbnI5QaK3-7aLegsM3pZg/viewform" target="_blank" rel="noopener" class="inline-flex items-center bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary/90 transition-colors font-semibold text-lg">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                        Abrir Formulario de Solicitud
+                    </a>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">
+                        Se abrirá en una nueva pestaña • Completamente seguro • Proceso confidencial
+                    </p>
+                </div>
+            </div>
+            
+            <!-- JavaScript para detectar si el iframe carga -->
+            <script>
+                // Mostrar fallback si el iframe no carga en 5 segundos
+                setTimeout(function() {
+                    const iframe = document.querySelector('iframe[src*="docs.google.com"]');
+                    const fallback = document.getElementById('fallback-form');
+                    
+                    try {
+                        // Si no podemos acceder al iframe, mostrar fallback
+                        iframe.contentDocument;
+                    } catch (e) {
+                        iframe.style.display = 'none';
+                        fallback.style.display = 'block';
+                    }
+                }, 5000);
+            </script>
         </div>
     </section>
 
