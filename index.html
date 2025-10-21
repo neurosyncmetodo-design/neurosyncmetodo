@@ -106,6 +106,15 @@
                 const baseURL = currentURL.replace('/index.html', '').replace(/\/$/, '');
                 redirectField.value = baseURL + '/confirmacion.html';
             }
+            
+            // Set redirect URL for audio form too
+            const redirectFieldAudio = document.getElementById('redirect-field-audio');
+            if (redirectFieldAudio) {
+                const currentURL = window.location.origin + window.location.pathname;
+                const baseURL = currentURL.replace('/index.html', '').replace(/\/$/, '');
+                redirectFieldAudio.value = baseURL + '/confirmacion.html';
+            }
+            
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             let isMenuOpen = false;
@@ -537,11 +546,11 @@
                     <div class="grid md:grid-cols-3 gap-6 mb-8">
                         <div class="text-center">
                             <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">1</div>
-                            <p class="text-gray-600 dark:text-gray-300">Elige tu audio preferido de los tres disponibles</p>
+                            <p class="text-gray-600 dark:text-gray-300">Elige tu audio preferido en el formulario</p>
                         </div>
                         <div class="text-center">
                             <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">2</div>
-                            <p class="text-gray-600 dark:text-gray-300">Escríbenos a neurosyncmetodo@gmail.com indicando tu elección</p>
+                            <p class="text-gray-600 dark:text-gray-300">Completa tus datos de contacto y envía la solicitud</p>
                         </div>
                         <div class="text-center">
                             <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">3</div>
@@ -552,19 +561,122 @@
                     <div class="bg-green-50 dark:bg-green-900/30 rounded-lg p-6 mb-6">
                         <h4 class="text-lg font-semibold mb-3 text-green-800 dark:text-green-200">Colaboración Opcional</h4>
                         <p class="text-green-700 dark:text-green-300 mb-4">
-                            Aunque no es obligatorio, agradeceríamos enormemente si después de probar tu audio, nos envías una mención sincera y objetiva sobre tu experiencia a nuestro email. 
+                            Aunque no es obligatorio, agradeceríamos enormemente si después de probar tu audio, nos envías una mención sincera y objetiva sobre tu experiencia a nuestro email <strong>gestion@neurosync.vip</strong>. 
                         </p>
                         <p class="text-sm text-green-600 dark:text-green-400 italic">
                             Tu feedback nos ayuda a mejorar continuamente nuestro método y ayudar a más personas.
                         </p>
                     </div>
                     
-                    <a href="mailto:neurosyncmetodo@gmail.com?subject=Solicitud Audio Gratuito&amp;body=Hola, me interesa recibir uno de vuestros audios gratuitos. El audio que prefiero es: [Indica aquí: Caminar Erguido, Respirar Correctamente, o Relativizar]%0A%0AGracias." class="inline-flex items-center bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition-colors font-semibold text-lg">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                        Solicitar Mi Audio Gratuito
-                    </a>
+                    <!-- Formulario para Audio Gratuito -->
+                    <div class="max-w-2xl mx-auto">
+                        <form action="https://api.web3forms.com/submit" method="POST" class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
+                            <!-- Campos ocultos para Web3Forms -->
+                            <input type="hidden" name="access_key" value="5c32e9e8-e122-4257-ae18-859829889dc6">
+                            <input type="hidden" name="subject" value="Solicitud de Audio Gratuito - NeuroSync Método">
+                            <input type="hidden" name="from_name" value="NeuroSync Método">
+                            <input type="hidden" name="redirect" id="redirect-field-audio" value="">
+
+                            <!-- Header del formulario -->
+                            <div class="text-center mb-8">
+                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 0v1m-2 0V6a2 2 0 00-2 0v1m2 0V9.5m0 0V8"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-green-800 dark:text-green-200 mb-2">Solicitar Audio Gratuito</h3>
+                                <p class="text-green-600 dark:text-green-300">Completa el formulario y recibe tu audio en 24 horas</p>
+                            </div>
+
+                            <!-- Elige tu audio preferido -->
+                            <div class="mb-6">
+                                <label for="audio_preferido" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    Elige tu audio preferido *
+                                </label>
+                                <select id="audio_preferido" name="audio_preferido" required="" class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                                    <option value="">Selecciona tu audio gratuito</option>
+                                    <option value="caminar-erguido">🚶‍♂️ Caminar Erguido - Mejora postura y autoconfianza</option>
+                                    <option value="respirar-correctamente">🫁 Respirar Correctamente - Optimiza oxigenación y relajación</option>
+                                    <option value="relativizar">🧘‍♀️ Relativizar - Gestiona el estrés y los problemas</option>
+                                </select>
+                            </div>
+
+                            <!-- Nombre de pila -->
+                            <div class="mb-6">
+                                <label for="nombre_audio" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    Nombre de pila *
+                                </label>
+                                <input type="text" id="nombre_audio" name="nombre" required="" class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400" placeholder="Tu nombre de pila">
+                            </div>
+
+                            <!-- Forma de contacto preferida -->
+                            <div class="mb-6">
+                                <label for="contacto_preferido_audio" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    Forma de contacto preferida *
+                                </label>
+                                <select id="contacto_preferido_audio" name="contacto_preferido" required="" class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="email">📧 Email</option>
+                                    <option value="telefono-whatsapp">📱 Teléfono/WhatsApp</option>
+                                </select>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="mb-6">
+                                <label for="email_audio" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    Email *
+                                </label>
+                                <input type="email" id="email_audio" name="email" required="" class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400" placeholder="tu@email.com">
+                            </div>
+
+                            <!-- Teléfono -->
+                            <div class="mb-6">
+                                <label for="telefono_audio" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    Teléfono/WhatsApp
+                                </label>
+                                <input type="tel" id="telefono_audio" name="telefono" class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400" placeholder="+34 123 456 789">
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                    Incluye código de país (ej: +34 para España)
+                                </p>
+                            </div>
+
+                            <!-- Comentarios -->
+                            <div class="mb-6">
+                                <label for="comentarios_audio" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    Comentarios adicionales
+                                </label>
+                                <textarea id="comentarios_audio" name="comentarios" rows="3" class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 resize-none" placeholder="Cuéntanos sobre tu objetivo con este audio o cualquier pregunta que tengas..."></textarea>
+                            </div>
+
+                            <!-- Botón de envío -->
+                            <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 0v1m-2 0V6a2 2 0 00-2 0v1m2 0V9.5m0 0V8"></path>
+                                </svg>
+                                Solicitar Mi Audio Gratuito
+                            </button>
+
+                            <!-- Información adicional -->
+                            <div class="mt-6 p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+                                <div class="flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm text-green-600 dark:text-green-400 mb-2">
+                                            <strong>🎁 Completamente gratuito</strong>
+                                        </p>
+                                        <p class="text-xs text-green-500 dark:text-green-400">
+                                            • Entrega en menos de 24 horas<br>
+                                            • Sin compromiso ni costes ocultos<br>
+                                            • Audio profesional de alta calidad<br>
+                                            • Proceso 100% confidencial
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
