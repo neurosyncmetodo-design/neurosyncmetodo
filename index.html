@@ -99,6 +99,13 @@
 
         // Mobile menu functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Set redirect URL for Web3Forms
+            const redirectField = document.getElementById('redirect-field');
+            if (redirectField) {
+                const currentURL = window.location.origin + window.location.pathname;
+                const baseURL = currentURL.replace('/index.html', '').replace(/\/$/, '');
+                redirectField.value = baseURL + '/confirmacion.html';
+            }
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             let isMenuOpen = false;
@@ -1128,7 +1135,7 @@
                     <input type="hidden" name="access_key" value="5c32e9e8-e122-4257-ae18-859829889dc6">
                     <input type="hidden" name="subject" value="Nuevo contacto - NeuroSync Método">
                     <input type="hidden" name="from_name" value="NeuroSync Método">
-                    <input type="hidden" name="redirect" value="confirmacion.html">
+                    <input type="hidden" name="redirect" id="redirect-field" value="">
 
                     <!-- Header del formulario -->
                     <div class="text-center mb-8">
