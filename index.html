@@ -106,25 +106,20 @@
             mobileMenuBtn.addEventListener('click', function() {
                 if (isMenuOpen) {
                     // Close menu
-                    mobileMenu.classList.remove('mobile-menu-enter');
-                    mobileMenu.style.transform = 'translateY(-100%)';
-                    mobileMenu.style.opacity = '0';
+                    mobileMenu.classList.add('hidden');
+                    isMenuOpen = false;
                 } else {
                     // Open menu
-                    mobileMenu.classList.add('mobile-menu-enter');
-                    mobileMenu.style.transform = 'translateY(0)';
-                    mobileMenu.style.opacity = '1';
+                    mobileMenu.classList.remove('hidden');
+                    isMenuOpen = true;
                 }
-                isMenuOpen = !isMenuOpen;
             });
 
             // Close mobile menu when clicking on a link
             const mobileLinks = mobileMenu.querySelectorAll('a');
             mobileLinks.forEach(link => {
                 link.addEventListener('click', function() {
-                    mobileMenu.classList.remove('mobile-menu-enter');
-                    mobileMenu.style.transform = 'translateY(-100%)';
-                    mobileMenu.style.opacity = '0';
+                    mobileMenu.classList.add('hidden');
                     isMenuOpen = false;
                 });
             });
@@ -237,7 +232,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="xl:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 transform -translate-y-full opacity-0 transition-all duration-300">
+        <div id="mobile-menu" class="xl:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 hidden">
             <div class="px-4 py-6 space-y-3 max-h-96 overflow-y-auto">
                 <a href="#promocion" class="block bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg">
                     🎁 Primera Sesión GRATIS
