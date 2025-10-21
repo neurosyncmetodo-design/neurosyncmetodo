@@ -39,11 +39,53 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom Navigation Styles */
+        .nav-link {
+            @apply px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-primary/5 transition-all duration-200 relative overflow-hidden;
+        }
+        
+        .nav-link:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--tw-colors-primary), var(--tw-colors-purple-600));
+            transform: translateX(-50%);
+            animation: underlineExpand 0.3s ease-out forwards;
+        }
+        
+        .nav-link-cta {
+            @apply px-4 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+        }
+        
+        .mobile-nav-link {
+            @apply block px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-primary/5 hover:text-primary transition-all duration-200 font-medium;
+        }
+        
+        @keyframes underlineExpand {
+            to { width: 80%; }
+        }
+        
+        /* Mobile menu animations */
+        .mobile-menu-enter {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Scroll to top button animations */
+        .scroll-visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
     </style>
 <script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script></head>
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
-    <!-- Dark mode detection -->
+    <!-- Scripts -->
     <script>
+        // Dark mode detection
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
         }
@@ -54,6 +96,89 @@
                 document.documentElement.classList.remove('dark');
             }
         });
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            let isMenuOpen = false;
+
+            mobileMenuBtn.addEventListener('click', function() {
+                if (isMenuOpen) {
+                    // Close menu
+                    mobileMenu.classList.remove('mobile-menu-enter');
+                    mobileMenu.style.transform = 'translateY(-100%)';
+                    mobileMenu.style.opacity = '0';
+                } else {
+                    // Open menu
+                    mobileMenu.classList.add('mobile-menu-enter');
+                    mobileMenu.style.transform = 'translateY(0)';
+                    mobileMenu.style.opacity = '1';
+                }
+                isMenuOpen = !isMenuOpen;
+            });
+
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('mobile-menu-enter');
+                    mobileMenu.style.transform = 'translateY(-100%)';
+                    mobileMenu.style.opacity = '0';
+                    isMenuOpen = false;
+                });
+            });
+
+            // Scroll to top button functionality
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('scroll-visible');
+                } else {
+                    scrollToTopBtn.classList.remove('scroll-visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const offsetTop = target.offsetTop - 100; // Account for sticky nav
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add scroll effect to navigation
+            let lastScrollY = window.scrollY;
+            const nav = document.querySelector('nav');
+            
+            window.addEventListener('scroll', function() {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY > 100) {
+                    nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                    nav.classList.add('backdrop-blur-md');
+                } else {
+                    nav.style.background = '';
+                }
+                
+                lastScrollY = currentScrollY;
+            });
+        });
     </script>
 
     <!-- Header Warning -->
@@ -62,27 +187,47 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+    <nav class="sticky top-0 z-50 bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <span class="text-xl font-bold text-primary">NeuroSync</span>
-                    <span class="ml-2 text-gray-600 dark:text-gray-300">Método</span>
-                    <span class="ml-2 text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Confidencial</span>
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo Section -->
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-800"></div>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">NeuroSync</span>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-600 dark:text-gray-300 font-medium">Método</span>
+                            <span class="text-xs bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 rounded-full font-semibold">Confidencial</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="hidden md:flex space-x-6">
-                    <a href="#promocion" class="bg-green-500 text-white px-3 py-1 rounded-md text-sm font-semibold hover:bg-green-600 transition-colors">Promoción 1ª sesión 0€</a>
-                    <a href="#metodologia" class="text-gray-600 dark:text-gray-300 hover:text-primary">Metodología</a>
-                    <a href="#fundamentos" class="text-gray-600 dark:text-gray-300 hover:text-primary">Fundamentos</a>
-                    <a href="#evidencia" class="text-gray-600 dark:text-gray-300 hover:text-primary">Falsos Mitos</a>
-                    <a href="test.html" class="text-gray-600 dark:text-gray-300 hover:text-primary">¿Soy hipnotizable?</a>
-                    <a href="#investigacion" class="text-gray-600 dark:text-gray-300 hover:text-primary">Evidencia científica</a>
-                    <a href="#testimonios" class="text-gray-600 dark:text-gray-300 hover:text-primary">Testimonios</a>
-                    <a href="#servicios" class="text-gray-600 dark:text-gray-300 hover:text-primary">Servicios</a>
-                    <a href="#consultar" class="text-gray-600 dark:text-gray-300 hover:text-primary">Consultar</a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden xl:flex items-center space-x-1">
+                    <a href="#promocion" class="group relative bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        <span class="relative z-10">🎁 Sesión Gratis</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-green-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                    <a href="#metodologia" class="nav-link">Protocolo</a>
+                    <a href="#fundamentos" class="nav-link">Fundamentos</a>
+                    <a href="#evidencia" class="nav-link">Mitos vs Realidad</a>
+                    <a href="test.html" class="nav-link">Test Receptividad</a>
+                    <a href="#investigacion" class="nav-link">Evidencia</a>
+                    <a href="#testimonios" class="nav-link">Testimonios</a>
+                    <a href="#servicios" class="nav-link">Servicios</a>
+                    <a href="#consultar" class="nav-link-cta">Contactar</a>
                 </div>
-                <div class="md:hidden">
-                    <button class="text-gray-600 dark:text-gray-300">
+
+                <!-- Mobile menu button -->
+                <div class="xl:hidden">
+                    <button id="mobile-menu-btn" class="relative w-10 h-10 bg-gradient-to-br from-primary to-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -90,22 +235,33 @@
                 </div>
             </div>
         </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="xl:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 transform -translate-y-full opacity-0 transition-all duration-300">
+            <div class="px-4 py-6 space-y-3 max-h-96 overflow-y-auto">
+                <a href="#promocion" class="block bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg">
+                    🎁 Primera Sesión GRATIS
+                </a>
+                <a href="#metodologia" class="mobile-nav-link">📋 Protocolo de Intervención</a>
+                <a href="#fundamentos" class="mobile-nav-link">🧠 Fundamentos Neurocientíficos</a>
+                <a href="#evidencia" class="mobile-nav-link">❌ Mitos vs Realidad</a>
+                <a href="test.html" class="mobile-nav-link">🧪 Test de Receptividad</a>
+                <a href="#investigacion" class="mobile-nav-link">📊 Evidencia Científica</a>
+                <a href="#testimonios" class="mobile-nav-link">💬 Testimonios</a>
+                <a href="#servicios" class="mobile-nav-link">🎯 Áreas de Intervención</a>
+                <a href="#consultar" class="block bg-gradient-to-r from-primary to-purple-600 text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg mt-4">
+                    📧 Contactar Ahora
+                </a>
+            </div>
+        </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div class="md:hidden bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div class="px-4 py-2 space-y-2">
-            <a href="#promocion" class="block bg-green-500 text-white px-3 py-2 rounded font-semibold">Promoción 1ª sesión 0€</a>
-            <a href="#metodologia" class="block text-gray-600 dark:text-gray-300 hover:text-primary">Metodología</a>
-            <a href="#fundamentos" class="block text-gray-600 dark:text-gray-300 hover:text-primary">Fundamentos</a>
-            <a href="#evidencia" class="block text-gray-600 dark:text-gray-300 hover:text-primary">Falsos Mitos</a>
-            <a href="test.html" class="block text-gray-600 dark:text-gray-300 hover:text-primary">¿Soy hipnotizable?</a>
-            <a href="#investigacion" class="block text-gray-600 dark:text-gray-300 hover:text-primary">Evidencia científica</a>
-            <a href="#testimonios" class="block text-gray-600 dark:text-gray-300 hover:text-primary">Testimonios</a>
-            <a href="#servicios" class="block text-gray-600 dark:text-gray-300 hover:text-primary">Servicios</a>
-            <a href="#consultar" class="block text-gray-600 dark:text-gray-300 hover:text-primary">Consultar</a>
-        </div>
-    </div>
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-primary to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform translate-y-20 opacity-0 hover:scale-110 z-50">
+        <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
 
     <!-- Hero Section -->
     <section class="bg-gradient-to-br from-primary/10 to-purple-100 dark:from-primary/20 dark:to-purple-900/20 py-20">
