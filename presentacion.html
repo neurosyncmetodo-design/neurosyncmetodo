@@ -1,0 +1,616 @@
+<!DOCTYPE html><html><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método NeuroSync | Presentación Científica</title>
+    
+    <!-- Reveal.js desde CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    
+    <style>
+        /* Optimización total para ventana real */
+        html, body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .reveal {
+            height: calc(100vh - 20px) !important;
+        }
+        
+        .reveal .slides {
+            width: 100% !important;
+            height: calc(100vh - 60px) !important;
+        }
+        
+        .reveal .slides section {
+            background: linear-gradient(135deg, #5D5CDE 0%, #00A389 100%); /* primary a secondary */
+            color: white;
+            padding: 1rem !important;
+            border-radius: 12px;
+            width: 96% !important;
+            height: calc(100vh - 120px) !important;
+            max-width: none !important;
+            max-height: none !important;
+            overflow-y: auto;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-sizing: border-box;
+        }
+        
+        /* Tipografía mejorada - FUENTES MÁS GRANDES */
+        .reveal h1 { 
+            font-size: clamp(2.5rem, 6vw, 4rem) !important;
+            margin: 0.8rem 0 !important;
+            line-height: 1.1;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .reveal h2 { 
+            font-size: clamp(1.8rem, 4vw, 2.5rem) !important;
+            margin: 0.5rem 0 1rem 0 !important;
+            line-height: 1.2;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .reveal h3 { 
+            font-size: clamp(1.2rem, 3vw, 1.6rem) !important;
+            margin: 0.3rem 0 !important;
+        }
+        
+        .reveal p, .reveal li {
+            font-size: clamp(0.9rem, 2.2vw, 1.1rem) !important;
+            line-height: 1.3 !important;
+            margin: 0.3rem 0 !important;
+        }
+        
+        .reveal small {
+            font-size: clamp(0.8rem, 2vw, 1rem) !important;
+        }
+        
+        /* Layouts responsivos */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+            margin: 1rem 0;
+        }
+        
+        .component-card {
+            background: rgba(255,255,255,0.15);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .component-card .icon {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Animación respiración con logo mejorada */
+        .breathing-container {
+            position: relative;
+            display: inline-block;
+            margin: 1rem;
+        }
+        
+        .logo-breathing {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+            border: 3px solid rgba(255,195,0,0.3); /* accent */
+        }
+        
+        .logo-breathing img {
+            width: 70px;
+            height: 70px;
+            filter: brightness(0) invert(1);
+            transition: all 0.5s ease;
+        }
+        
+        .breathing-text {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(1rem, 2.5vw, 1.3rem) !important;
+            font-weight: bold;
+            color: #FFC300; /* accent */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        /* Estados respiración más dramáticos */
+        .inhale { 
+            transform: scale(1.5);
+            box-shadow: 0 0 40px rgba(255,195,0,0.6); /* accent */
+            border-color: #FFC300; /* accent */
+        }
+        .inhale img {
+            transform: scale(1.1);
+        }
+        
+        .hold { 
+            transform: scale(1.5);
+            box-shadow: 0 0 50px rgba(255,195,0,0.9); /* accent */
+            border-color: #FFC300; /* accent */ /* accent */
+            background: rgba(255,195,0,0.2); /* accent */
+        }
+        .hold img {
+            transform: scale(1.1);
+        }
+        
+        .exhale { 
+            transform: scale(1);
+            box-shadow: 0 0 20px rgba(255,195,0,0.4); /* accent */
+            border-color: rgba(255,195,0,0.5); /* accent */
+        }
+        
+        /* Ondas binaurales más claras */
+        .wave-container {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 1.2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .brain-wave {
+            stroke-width: 3;
+            fill: none;
+            opacity: 0.9;
+            animation: waveFlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes waveFlow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        .wave-left { stroke: #00A389; } /* secondary */
+        .wave-right { stroke: #5D5CDE; } /* primary */
+        .wave-result { stroke: #FFC300; stroke-width: 4; } /* accent */}],path:
+        
+        /* Controles más grandes */
+        .reveal .controls {
+            bottom: 30px !important;
+            right: 30px !important;
+            font-size: 2rem !important;
+        }
+        
+        .reveal .controls button {
+            width: 50px !important;
+            height: 50px !important;
+        }
+        
+        .reveal .progress {
+            height: 8px !important;
+            background: rgba(255,215,0,0.3) !important;
+        }
+        
+        .reveal .progress span {
+            background: #FFD700 !important;
+        }
+        
+        /* Responsive mejorado */
+        @media (max-width: 768px) {
+            .reveal .slides section {
+                padding: 0.8rem !important;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            
+            .logo-breathing {
+                width: 120px;
+                height: 120px;
+            }
+            .logo-breathing img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        
+        @media (max-height: 600px) {
+            .reveal .slides section {
+                height: calc(100vh - 100px) !important;
+            }
+        }
+    </style>
+<script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script></head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- SLIDE 1: PORTADA CENTRADA -->
+            <section>
+                <div style="text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <img src="logo.png" alt="NeuroSync" style="width: clamp(120px, 18vw, 220px); margin-bottom: 1.5rem; filter: brightness(0) invert(1);">
+                    <h1>MÉTODO NEUROSYNC</h1>
+                    <h3 style="color: #FFC300; /* accent */ margin-bottom: 2rem;">El Único Método Multidisciplinar que Realmente Funciona</h3>
+                    <div style="background: rgba(255,255,255,0.15); padding: 2rem; border-radius: 15px; max-width: 700px; border: 1px solid rgba(255,255,255,0.2);">
+                        <p style="font-size: clamp(1.1rem, 2.8vw, 1.5rem) !important; margin-bottom: 1rem;"><strong>✅ Análisis Independiente IA: 8.5/10</strong></p>
+                        <p style="font-size: clamp(1rem, 2.3vw, 1.2rem) !important;">🏛️ Reconocido por organizaciones médicas mundiales</p>
+                        <p style="font-size: clamp(1rem, 2.3vw, 1.2rem) !important;">🔬 Respaldado por 70+ años de investigación científica</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 2: EXCLUSIVIDAD DEL MÉTODO -->
+            <section>
+                <h2>🥇 Lo Que Nos Hace Únicos</h2>
+                <div style="height: 100%; overflow-y: auto;">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <div style="background: rgba(255,195,0,0.2); /* accent */ padding: 1.5rem; border-radius: 15px; border: 2px solid #FFD700;">
+                            <h3 style="margin-bottom: 1rem; color: #FFC300; /* accent */">🎯 El ÚNICO método que combina estas 3 técnicas científicamente</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-3">
+                        <div class="component-card">
+                            <div class="icon">🧠</div>
+                            <h3>Hipnosis Ericksoniana</h3>
+                            <p style="font-size: clamp(0.95rem, 2.3vw, 1.1rem) !important;">Técnicas indirectas que NO generan resistencia mental</p>
+                            <div style="background: rgba(76,175,80,0.3); padding: 0.5rem; border-radius: 6px; margin-top: 0.5rem;">
+                                <strong style="font-size: clamp(0.9rem, 2.1vw, 1rem) !important;">23% más efectiva</strong>
+                            </div>
+                        </div>
+                        <div class="component-card">
+                            <div class="icon">🫁</div>
+                            <h3>Respiración Clínica</h3>
+                            <p style="font-size: clamp(0.95rem, 2.3vw, 1.1rem) !important;">Protocolo médico que activa tu sistema nervioso sanador</p>
+                            <div style="background: rgba(76,175,80,0.3); padding: 0.5rem; border-radius: 6px; margin-top: 0.5rem;">
+                                <strong style="font-size: clamp(0.9rem, 2.1vw, 1rem) !important;">Reduce estrés 31%</strong>
+                            </div>
+                        </div>
+                        <div class="component-card">
+                            <div class="icon">🎧</div>
+                            <h3>Tecnología Binaural</h3>
+                            <p style="font-size: clamp(0.95rem, 2.3vw, 1.1rem) !important;">Frecuencias que sincronizan tu cerebro automáticamente</p>
+                            <div style="background: rgba(76,175,80,0.3); padding: 0.5rem; border-radius: 6px; margin-top: 0.5rem;">
+                                <strong style="font-size: clamp(0.9rem, 2.1vw, 1rem) !important;">+41% efectividad</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <div style="background: rgba(255,69,0,0.2); padding: 1.2rem; border-radius: 12px; border: 2px solid #FF4500;">
+                            <h3 style="margin: 0; color: #FFC300; /* accent */">⚡ RESULTADO: La Combinación Perfecta</h3>
+                            <p style="font-size: clamp(1rem, 2.3vw, 1.2rem) !important; margin: 0.5rem 0;">Cada técnica potencia a las otras = Efectividad multiplicada</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: TECNOLOGÍA BINAURAL CLARA -->
+            <section>
+                <h2>🎧 Tecnología Binaural: Tu Cerebro en Piloto Automático</h2>
+                <div style="height: 100%; overflow-y: auto;">
+                    <div class="grid-2" style="align-items: flex-start;">
+                        <div>
+                            <div style="background: rgba(255,255,255,0.15); padding: 1.2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.3);">
+                                <h3>🧠 ¿Cómo funciona la "magia"?</h3>
+                                <div style="font-size: clamp(0.95rem, 2.2vw, 1.1rem);">
+                                    <p>🎵 <strong>Tu oído izquierdo</strong> escucha una frecuencia</p>
+                                    <p>🎵 <strong>Tu oído derecho</strong> escucha otra frecuencia ligeramente diferente</p>
+                                    <p>🧠 <strong>Tu cerebro automáticamente</strong> crea una tercera frecuencia</p>
+                                    <p>⚡ <strong>Esta nueva frecuencia</strong> te lleva al estado mental perfecto</p>
+                                </div>
+                            </div>
+                            <div style="background: rgba(255,193,7,0.2); padding: 1rem; border-radius: 8px; margin-top: 1rem; border: 1px solid #FFD700;">
+                                <h4 style="margin: 0; font-size: clamp(1rem, 2.3vw, 1.2rem);">🎯 Sin Esfuerzo de Tu Parte</h4>
+                                <p style="margin: 0.3rem 0; font-size: clamp(0.9rem, 2.1vw, 1rem);">Tu cerebro hace todo el trabajo automáticamente. Tú solo escuchas.</p>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <h3>📊 Demostración Visual</h3>
+                            <div class="wave-container">
+                                <svg width="100%" height="160" viewBox="0 0 300 160" style="max-width: 300px;">
+                                    <text x="15" y="20" fill="white" font-size="13" font-weight="bold">Izquierdo: 40Hz</text>
+                                    <path class="brain-wave wave-left" d="M10,30 Q20,15 30,30 T50,30 T70,30 T90,30 T110,30 T130,30 T150,30 T170,30 T190,30 T210,30 T230,30 T250,30 T270,30 T290,30"></path>
+                                    
+                                    <text x="15" y="60" fill="white" font-size="13" font-weight="bold">Derecho: 46Hz</text>
+                                    <path class="brain-wave wave-right" d="M10,70 Q18,55 26,70 T42,70 T58,70 T74,70 T90,70 T106,70 T122,70 T138,70 T154,70 T170,70 T186,70 T202,70 T218,70 T234,70 T250,70 T266,70 T282,70"></path>
+                                    
+                                    <text x="15" y="100" fill="#FFD700" font-size="13" font-weight="bold">→ Tu Cerebro: 6Hz</text>
+                                    <path class="brain-wave wave-result" d="M10,110 Q40,95 70,110 T130,110 T190,110 T250,110 T290,110"></path>
+                                    
+                                    <text x="15" y="145" fill="#4ECDC4" font-size="12" font-weight="bold">= Estado Mental Perfecto</text>
+                                </svg>
+                            </div>
+                            <div style="background: rgba(255,69,0,0.2); padding: 0.8rem; border-radius: 8px; margin-top: 1rem;">
+                                <p style="font-size: clamp(0.9rem, 2.1vw, 1rem) !important; margin: 0;"><strong>⚠️ OBLIGATORIO:</strong> Auriculares (ambos oídos)</p>
+                                <p style="font-size: clamp(0.85rem, 2vw, 0.95rem) !important; margin: 0;">Sin auriculares = Sin efecto binaural</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: RESPIRACIÓN CLARA CON LOGO -->
+            <section>
+                <h2>🫁 Respiración: Activa Tu Sistema Sanador Natural</h2>
+                <div style="height: 100%; overflow-y: auto;">
+                    <div class="grid-2" style="align-items: flex-start;">
+                        <div>
+                            <div style="background: rgba(255,255,255,0.15); padding: 1.2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.3);">
+                                <h3>⚡ Protocolo Médico 4-7-8:</h3>
+                                <div style="font-size: clamp(0.95rem, 2.2vw, 1.1rem);">
+                                    <p><strong>1. INHALA</strong> por nariz <em>profunda pero lenta</em> (4 segundos)</p>
+                                    <p><strong>2. RETÉN</strong> el aire completamente (7 segundos)</p>
+                                    <p><strong>3. EXHALA</strong> por boca lento y relajado (8 segundos)</p>
+                                </div>
+                            </div>
+                            <div style="background: rgba(255,193,7,0.25); padding: 1rem; border-radius: 8px; margin-top: 1rem; border: 2px solid #FFD700;">
+                                <h4 style="margin: 0; font-size: clamp(1rem, 2.3vw, 1.2rem);">⚠️ CLAVE: Inspiración Lenta</h4>
+                                <p style="margin: 0.3rem 0; font-size: clamp(0.9rem, 2.1vw, 1rem);">Inspiración fuerte = Activa sistema olfativo = Cerebro alerta</p>
+                                <p style="margin: 0; font-size: clamp(0.9rem, 2.1vw, 1rem);">Inspiración lenta = Activa nervio vago = Relajación profunda</p>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <h3>🎯 Pruébalo Ahora Mismo</h3>
+                            <div class="breathing-container">
+                                <div id="logo-breath" class="logo-breathing">
+                                    <img src="logo.png" alt="NeuroSync Logo">
+                                </div>
+                                <div id="breath-text" class="breathing-text">Preparado</div>
+                            </div>
+                            <div style="margin-top: 1rem;">
+                                <button onclick="startRealBreathing()" style="padding: 0.8rem 1.5rem; background: #FFD700; color: black; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: clamp(0.9rem, 2.1vw, 1rem);">
+                                    ▶️ Iniciar Protocolo
+                                </button>
+                            </div>
+                            <div style="background: rgba(76,175,80,0.2); padding: 0.8rem; border-radius: 8px; margin-top: 1rem;">
+                                <p style="font-size: clamp(0.85rem, 2vw, 0.95rem) !important; margin: 0;"><strong>🔬 Resultado:</strong> Tu cuerpo entra automáticamente en modo reparación</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: HIPNOSIS EXPLICADA SIMPLE -->
+            <section>
+                <h2>🧠 Por Qué Nuestra Hipnosis es Diferente</h2>
+                <div style="height: 100%; overflow-y: auto;">
+                    <div class="grid-2">
+                        <div>
+                            <h3 style="color: #FF6B6B;">❌ Hipnosis Tradicional (Lo que NO hacemos)</h3>
+                            <div style="background: rgba(255,107,107,0.2); padding: 1.2rem; border-radius: 10px; border: 1px solid rgba(255,107,107,0.4);">
+                                <p style="font-style: italic; font-size: clamp(0.9rem, 2.1vw, 1rem);">
+                                    <strong>"Vas a dejar de fumar YA"</strong><br>
+                                    <strong>"DEBES relajarte ahora"</strong><br>
+                                    <strong>"TIENES QUE hacer ejercicio"</strong>
+                                </p>
+                                <div style="margin-top: 1rem; background: rgba(0,0,0,0.3); padding: 0.8rem; border-radius: 6px;">
+                                    <p style="font-size: clamp(0.85rem, 2vw, 0.95rem) !important; margin: 0;">⚠️ Tu mente se resiste = No funciona</p>
+                                    <p style="font-size: clamp(0.85rem, 2vw, 0.95rem) !important; margin: 0;">⚠️ Una talla para todos = Menor efectividad</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 style="color: #4ECDC4;">✅ Método NeuroSync (Lo que SÍ hacemos)</h3>
+                            <div style="background: rgba(78,205,196,0.2); padding: 1.2rem; border-radius: 10px; border: 1px solid rgba(78,205,196,0.4);">
+                                <p style="font-style: italic; font-size: clamp(0.9rem, 2.1vw, 1rem);">
+                                    <em>"Quizás podrías notar cómo..."</em><br>
+                                    <em>"Es posible que descubras..."</em><br>
+                                    <em>"Tal vez te sorprenda saber..."</em>
+                                </p>
+                                <div style="margin-top: 1rem; background: rgba(0,0,0,0.3); padding: 0.8rem; border-radius: 6px;">
+                                    <p style="font-size: clamp(0.85rem, 2vw, 0.95rem) !important; margin: 0;">✅ Tu mente colabora = Funciona mejor</p>
+                                    <p style="font-size: clamp(0.85rem, 2vw, 0.95rem) !important; margin: 0;">✅ 100% personalizado = Máxima efectividad</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <div style="background: rgba(255,195,0,0.2); /* accent */ padding: 1.2rem; border-radius: 10px; border: 2px solid #FFD700;">
+                            <h4 style="margin: 0 0 0.5rem 0; font-size: clamp(1.1rem, 2.5vw, 1.3rem);">📊 Resultado Científico Comprobado</h4>
+                            <p style="margin: 0; font-size: clamp(0.95rem, 2.2vw, 1.1rem);">Nuestro método ericksoniano personalizado es <strong>23% más efectivo</strong> que la hipnosis tradicional</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: PERSONALIZACIÓN ÚNICA -->
+            <section>
+                <h2>🎯 100% Personalizado: Tu Audio Único en el Mundo</h2>
+                <div style="height: 100%; overflow-y: auto;">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <div style="background: rgba(156,39,176,0.2); padding: 1.5rem; border-radius: 15px; border: 2px solid #9C27B0;">
+                            <h3 style="margin-bottom: 1rem; color: #FFC300; /* accent */">🔥 NO EXISTE otro audio igual al tuyo</h3>
+                            <p style="font-size: clamp(1rem, 2.3vw, 1.2rem) !important;">Cada protocolo se crea específicamente para tu mente, tus objetivos y tu personalidad</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div>
+                            <h3>🔍 Lo Que Analizamos de Ti</h3>
+                            <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 8px;">
+                                <p style="font-size: clamp(0.9rem, 2.1vw, 1rem);"><strong>🧠 Tu Receptividad:</strong><br>
+                                Cómo responde tu mente a la hipnosis</p>
+                                <p style="font-size: clamp(0.9rem, 2.1vw, 1rem);"><strong>🎭 Tu Personalidad:</strong><br>
+                                Qué tipo de lenguaje conecta contigo</p>
+                                <p style="font-size: clamp(0.9rem, 2.1vw, 1rem);"><strong>🎯 Tus Objetivos:</strong><br>
+                                Exactamente qué quieres conseguir</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>⚙️ Lo Que Creamos Para Ti</h3>
+                            <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 8px;">
+                                <p style="font-size: clamp(0.9rem, 2.1vw, 1rem);"><strong>📝 Inducción Única:</strong><br>
+                                Diseñada específicamente para tu mente</p>
+                                <p style="font-size: clamp(0.9rem, 2.1vw, 1rem);"><strong>🎨 Metáforas Personales:</strong><br>
+                                Conectadas con tu experiencia de vida</p>
+                                <p style="font-size: clamp(0.9rem, 2.1vw, 1rem);"><strong>📡 Frecuencias Precisas:</strong><br>
+                                Optimizadas para tu perfil específico</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <div style="background: rgba(255,195,0,0.2); /* accent */ padding: 1rem; border-radius: 10px; border: 2px solid #FFD700;">
+                            <h4 style="margin: 0; font-size: clamp(1rem, 2.3vw, 1.2rem);">🏆 Por eso NeuroSync tiene 85% de éxito vs 30% métodos genéricos</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: LLAMADA ACCIÓN PERSUASIVA -->
+            <section>
+                <div style="text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                    <h2 style="margin-bottom: 1.5rem;">🚀 Tu Transformación Empieza HOY</h2>
+                    
+                    <div class="grid-2" style="margin: 1.5rem 0;">
+                        <div style="background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); padding: 1.8rem; border-radius: 15px; border: 2px solid #4CAF50; box-shadow: 0 4px 20px rgba(76,175,80,0.3);">
+                            <h3 style="margin-bottom: 1rem; color: white; font-size: clamp(1.2rem, 2.8vw, 1.5rem) !important;">🎁 EXPERIMENTA GRATIS</h3>
+                            <p style="font-size: clamp(0.95rem, 2.2vw, 1.1rem) !important; margin-bottom: 1rem;">
+                                <strong>3 audios profesionales completos:</strong><br>
+                                • Caminar Erguido (autoconfianza)<br>
+                                • Respirar Correctamente (antiestrés)<br>
+                                • Relativizar (tranquilidad mental)
+                            </p>
+                            <div style="background: rgba(255,255,255,0.2); padding: 0.8rem; border-radius: 8px;">
+                                <p style="font-size: clamp(0.9rem, 2.1vw, 1rem) !important; margin: 0;"><strong>⚡ Entrega inmediata:</strong> &lt; 48 horas<br><strong>🎯 Sin compromiso</strong> ni letra pequeña</p>
+                            </div>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); padding: 1.8rem; border-radius: 15px; border: 2px solid #9C27B0; box-shadow: 0 4px 20px rgba(156,39,176,0.3);">
+                            <h3 style="margin-bottom: 1rem; color: white; font-size: clamp(1.2rem, 2.8vw, 1.5rem) !important;">🎧 PROTOCOLO PERSONALIZADO</h3>
+                            <p style="font-size: clamp(0.95rem, 2.2vw, 1.1rem) !important; margin-bottom: 1rem;">
+                                <strong>Tu audio único e irrepetible:</strong><br>
+                                • <strong>1 Audio: 30€</strong><br>
+                                • <strong>3 Audios: 60€</strong> <span style="color: #FFC300; /* accent */ font-weight: bold;">¡30€ GRATIS!</span>
+                            </p>
+                            <div style="background: rgba(255,255,255,0.2); padding: 0.8rem; border-radius: 8px;">
+                                <p style="font-size: clamp(0.9rem, 2.1vw, 1rem) !important; margin: 0;"><strong>✅ Incluye:</strong> Evaluación + Charla prehipnótica<br><strong>⚡ Funciona:</strong> Desde la 1ª sesión</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="index.html#consultar" style="background: linear-gradient(135deg, #FFD700 0%, #FFC107 100%); color: black; padding: 1.2rem 2.5rem; border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block; margin: 0 1rem; font-size: clamp(1rem, 2.3vw, 1.2rem); box-shadow: 0 4px 15px rgba(255,215,0,0.4); transition: all 0.3s ease;">
+                            📧 QUIERO MI TRANSFORMACIÓN
+                        </a>
+                        <a href="chat.html" target="_blank" style="background: rgba(255,255,255,0.2); color: white; padding: 1.2rem 2.5rem; border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block; margin: 0 1rem; font-size: clamp(1rem, 2.3vw, 1.2rem); border: 2px solid rgba(255,255,255,0.4); transition: all 0.3s ease;">
+                            💬 Resolver Dudas
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script>
+        // Configuración optimizada
+        Reveal.initialize({
+            width: '100%',
+            height: '100%',
+            margin: 0.02,
+            minScale: 0.1,
+            maxScale: 3.0,
+            
+            hash: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            controls: true,
+            controlsLayout: 'bottom-right',
+            controlsBackArrows: 'faded',
+            progress: true,
+            keyboard: true,
+            touch: true,
+            loop: false,
+            center: true
+        });
+
+        // Animación respiración REAL y clara
+        function startRealBreathing() {
+            const logoBreath = document.getElementById('logo-breath');
+            const breathText = document.getElementById('breath-text');
+            let cycle = 0;
+            const maxCycles = 2;
+
+            function breathingCycle() {
+                if (cycle >= maxCycles) {
+                    logoBreath.className = 'logo-breathing';
+                    breathText.textContent = '✅ ¡Perfecto!';
+                    setTimeout(() => {
+                        breathText.textContent = 'Preparado';
+                    }, 3000);
+                    return;
+                }
+
+                // INHALAR (4 segundos) - LENTO
+                breathText.textContent = 'INHALA lento y profundo...';
+                logoBreath.className = 'logo-breathing inhale';
+                
+                setTimeout(() => {
+                    // RETENER (7 segundos)
+                    breathText.textContent = 'RETÉN el aire...';
+                    logoBreath.className = 'logo-breathing hold';
+                    
+                    setTimeout(() => {
+                        // EXHALAR (8 segundos)
+                        breathText.textContent = 'EXHALA despacio...';
+                        logoBreath.className = 'logo-breathing exhale';
+                        
+                        setTimeout(() => {
+                            cycle++;
+                            if (cycle < maxCycles) {
+                                breathText.textContent = `Ciclo ${cycle + 1}`;
+                                setTimeout(breathingCycle, 1000);
+                            } else {
+                                breathingCycle();
+                            }
+                        }, 8000);
+                    }, 7000);
+                }, 4000);
+            }
+            
+            breathText.textContent = 'Iniciando...';
+            setTimeout(breathingCycle, 1000);
+        }
+
+        // Efectos hover para botones de acción
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('a[href*="consultar"], a[href*="chat"]');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.05)';
+                });
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+
+
+</body></html>
