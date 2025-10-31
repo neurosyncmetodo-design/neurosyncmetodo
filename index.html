@@ -1921,11 +1921,11 @@
 <script>
 (function() {
     // ⚠️ IMPORTANTE: Reemplaza esta URL con la URL de tu Google Apps Script Web App
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxffsiykBBGSSpoJMuj2yZmyCHfqjNdmgniKhbrPyIJbxSee_k_aDWtbA-nDI3pp4e8Vg/exec';
+    const GOOGLE_SCRIPT_URL = 'TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI';
 
     // Función para registrar eventos en Google Sheets (IGUAL que en chatbot.html)
     function registrarEvento(evento, seccion, detalles) {
-        if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxffsiykBBGSSpoJMuj2yZmyCHfqjNdmgniKhbrPyIJbxSee_k_aDWtbA-nDI3pp4e8Vg/exec') {
+        if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI') {
             console.log('⚠️ Google Sheets URL no configurada');
             return;
         }
@@ -2021,6 +2021,136 @@
     });
 
     console.log('✅ Sistema de tracking Google Sheets activado (mismo que chatbot)');
+
+    // ==================== PANEL DE DEBUG ====================
+    // Crear panel de debug visible
+    const debugPanel = document.createElement('div');
+    debugPanel.id = 'debug-panel';
+    debugPanel.style.cssText = `
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width: 400px;
+        max-height: 500px;
+        background: rgba(0, 0, 0, 0.95);
+        color: #00ff00;
+        font-family: monospace;
+        font-size: 11px;
+        padding: 15px;
+        border-radius: 8px;
+        overflow-y: auto;
+        z-index: 999999;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        border: 2px solid #00ff00;
+    `;
+
+    let eventLog = [];
+    let eventCounter = 0;
+
+    function updateDebugPanel() {
+        const urlConfigured = GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI';
+
+        let html = `
+            <div style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #00ff00;">
+                <strong style="color: #ffff00;">🔍 DEBUG GOOGLE SHEETS TRACKING</strong>
+                <button onclick="document.getElementById('debug-panel').remove()" style="float: right; background: #ff0000; color: white; border: none; padding: 2px 8px; cursor: pointer; border-radius: 3px; font-size: 10px;">✕ Cerrar</button>
+            </div>
+
+            <div style="margin-bottom: 10px;">
+                <strong>📡 Estado URL:</strong><br>
+                ${urlConfigured
+                    ? '<span style="color: #00ff00;">✅ CONFIGURADA</span>'
+                    : '<span style="color: #ff0000;">❌ NO CONFIGURADA</span>'}
+                <br>
+                <span style="color: #888; font-size: 9px;">${GOOGLE_SCRIPT_URL.substring(0, 50)}...</span>
+            </div>
+
+            <div style="margin-bottom: 10px;">
+                <strong>📊 Eventos Capturados:</strong> <span style="color: #ffff00;">${eventCounter}</span>
+            </div>
+
+            <div style="margin-bottom: 10px;">
+                <strong>📝 Últimos Eventos (máx 10):</strong>
+                <div style="max-height: 300px; overflow-y: auto; margin-top: 5px; padding: 5px; background: rgba(0,255,0,0.05); border-radius: 4px;">
+        `;
+
+        if (eventLog.length === 0) {
+            html += '<div style="color: #888; font-style: italic;">No hay eventos aún. Navega por la web...</div>';
+        } else {
+            eventLog.slice().reverse().forEach((event, index) => {
+                const timeAgo = Math.floor((Date.now() - event.timestamp) / 1000);
+                html += `
+                    <div style="margin-bottom: 8px; padding: 5px; background: rgba(255,255,255,0.05); border-left: 2px solid ${event.sent ? '#00ff00' : '#ff0000'}; border-radius: 3px;">
+                        <div style="color: #ffff00; font-weight: bold;">${event.tipo}</div>
+                        <div style="font-size: 10px;">
+                            📍 ${event.seccion}<br>
+                            💬 ${event.detalles}<br>
+                            ⏱️ Hace ${timeAgo}s
+                            ${event.sent
+                                ? '<span style="color: #00ff00;"> ✅ Enviado</span>'
+                                : '<span style="color: #ff0000;"> ❌ Error/No enviado</span>'}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        html += `
+                </div>
+            </div>
+
+            <div style="font-size: 9px; color: #888; margin-top: 10px; padding-top: 10px; border-top: 1px solid #444;">
+                💡 Tip: Abre la consola (F12) para más detalles
+            </div>
+        `;
+
+        debugPanel.innerHTML = html;
+    }
+
+    // Interceptar la función registrarEvento para debug
+    const registrarEventoOriginal = registrarEvento;
+    window.registrarEvento = function(evento, seccion, detalles) {
+        eventCounter++;
+
+        const eventData = {
+            timestamp: Date.now(),
+            tipo: evento,
+            seccion: seccion,
+            detalles: detalles,
+            sent: false
+        };
+
+        // Añadir al log (mantener solo últimos 10)
+        eventLog.push(eventData);
+        if (eventLog.length > 10) {
+            eventLog.shift();
+        }
+
+        console.log('📊 TRACKING EVENT:', eventData);
+
+        // Intentar enviar
+        try {
+            registrarEventoOriginal(evento, seccion, detalles);
+            eventData.sent = true;
+            console.log('✅ Evento enviado a Google Sheets');
+        } catch (error) {
+            console.error('❌ Error al enviar evento:', error);
+        }
+
+        updateDebugPanel();
+    };
+
+    // Sobrescribir registrarEvento en el scope
+    registrarEvento = window.registrarEvento;
+
+    // Añadir panel al body
+    document.body.appendChild(debugPanel);
+    updateDebugPanel();
+
+    // Actualizar panel cada 2 segundos
+    setInterval(updateDebugPanel, 2000);
+
+    console.log('🔍 Panel de debug activado - Mira la esquina inferior derecha');
 })();
 </script>
 
