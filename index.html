@@ -1917,4 +1917,111 @@
 </script>
 <script data-goatcounter="https://neurosync.goatcounter.com/count" async="" src="./count.js"></script>
 
+<!-- Google Sheets Analytics Tracking - MISMO SISTEMA QUE CHATBOT -->
+<script>
+(function() {
+    // ⚠️ IMPORTANTE: Reemplaza esta URL con la URL de tu Google Apps Script Web App
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxffsiykBBGSSpoJMuj2yZmyCHfqjNdmgniKhbrPyIJbxSee_k_aDWtbA-nDI3pp4e8Vg/exec';
+
+    // Función para registrar eventos en Google Sheets (IGUAL que en chatbot.html)
+    function registrarEvento(evento, seccion, detalles) {
+        if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxffsiykBBGSSpoJMuj2yZmyCHfqjNdmgniKhbrPyIJbxSee_k_aDWtbA-nDI3pp4e8Vg/exec') {
+            console.log('⚠️ Google Sheets URL no configurada');
+            return;
+        }
+
+        // No bloquear la interfaz, enviar en segundo plano
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                evento: evento,
+                seccion: seccion,
+                detalles: detalles,
+                userAgent: navigator.userAgent,
+                fecha: new Date().toLocaleDateString('es-ES'),
+                hora: new Date().toLocaleTimeString('es-ES'),
+                url: window.location.href,
+                referrer: document.referrer || 'Directo'
+            })
+        }).catch(error => {
+            // Silenciar errores para no molestar al usuario
+            console.log('Registro enviado (no-cors mode)');
+        });
+    }
+
+    // Trackear clics en todos los enlaces
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a');
+        if (link) {
+            const href = link.getAttribute('href') || '';
+            const text = link.textContent.trim() || link.getAttribute('aria-label') || 'Sin texto';
+
+            if (href.startsWith('#')) {
+                // Es un enlace interno (navegación)
+                registrarEvento('Click Navegación', href, text);
+            } else if (href.startsWith('mailto:')) {
+                // Click en email
+                registrarEvento('Click Email', href, 'Contacto');
+            } else if (href) {
+                // Click en enlace externo
+                registrarEvento('Click Enlace Externo', href, text);
+            }
+        }
+
+        // Trackear clicks en botones importantes (CTA)
+        const button = e.target.closest('button');
+        if (button && button.textContent.includes('Contactar')) {
+            registrarEvento('Click CTA', 'Botón Contactar', button.textContent.trim());
+        }
+    });
+
+    // Trackear scroll a secciones visibles
+    let seccionesVistas = new Set();
+
+    function trackearSeccionesVisibles() {
+        const secciones = document.querySelectorAll('section[id]');
+        const alturaVentana = window.innerHeight;
+
+        secciones.forEach(seccion => {
+            const rect = seccion.getBoundingClientRect();
+            const seccionId = seccion.id;
+
+            // Considerar visible si el 30% de la sección está en pantalla
+            const esVisible = rect.top < alturaVentana * 0.7 && rect.bottom > alturaVentana * 0.3;
+
+            if (esVisible && !seccionesVistas.has(seccionId)) {
+                seccionesVistas.add(seccionId);
+                const titulo = seccion.querySelector('h2, h3')?.textContent || seccionId;
+                registrarEvento('Scroll a Sección', '#' + seccionId, titulo);
+            }
+        });
+    }
+
+    // Throttle para evitar demasiados eventos de scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(trackearSeccionesVisibles, 500);
+    });
+
+    // Trackear carga inicial de página
+    window.addEventListener('load', function() {
+        registrarEvento('Carga de Página', window.location.pathname, 'Usuario entra a la web');
+        // Trackear secciones visibles al cargar
+        setTimeout(trackearSeccionesVisibles, 1000);
+    });
+
+    // Trackear salida de página (funciona en algunos navegadores)
+    window.addEventListener('beforeunload', function() {
+        registrarEvento('Salida de Página', window.location.pathname, 'Usuario sale');
+    });
+
+    console.log('✅ Sistema de tracking Google Sheets activado (mismo que chatbot)');
+})();
+</script>
+
 </body></html>
