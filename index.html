@@ -1925,7 +1925,7 @@
 
     // Función para registrar eventos en Google Sheets (IGUAL que en chatbot.html)
     function registrarEvento(evento, seccion, detalles) {
-        if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxffsiykBBGSSpoJMuj2yZmyCHfqjNdmgniKhbrPyIJbxSee_k_aDWtbA-nDI3pp4e8Vg/exec') {
+        if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI') {
             console.log('⚠️ Google Sheets URL no configurada');
             return;
         }
@@ -2066,6 +2066,13 @@
             </div>
 
             <div style="margin-bottom: 10px;">
+                <button onclick="window.testGoogleSheets()" style="width: 100%; padding: 8px; background: #0066ff; color: white; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; font-size: 12px; margin-bottom: 10px;">
+                    🧪 TEST DE CONEXIÓN (Click aquí)
+                </button>
+                <div id="test-result" style="padding: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; font-size: 10px; display: none;"></div>
+            </div>
+
+            <div style="margin-bottom: 10px;">
                 <strong>📊 Eventos Capturados:</strong> <span style="color: #ffff00;">${eventCounter}</span>
             </div>
 
@@ -2142,6 +2149,68 @@
 
     // Sobrescribir registrarEvento en el scope
     registrarEvento = window.registrarEvento;
+
+    // Función de test de conexión
+    window.testGoogleSheets = function() {
+        const testResult = document.getElementById('test-result');
+        testResult.style.display = 'block';
+        testResult.innerHTML = '<div style="color: #ffff00;">🔄 Probando conexión con Google Sheets...</div>';
+
+        const testData = {
+            evento: 'TEST_CONEXION',
+            seccion: 'Debug Panel',
+            detalles: 'Prueba de conexión manual - ' + new Date().toISOString(),
+            userAgent: navigator.userAgent,
+            fecha: new Date().toLocaleDateString('es-ES'),
+            hora: new Date().toLocaleTimeString('es-ES'),
+            url: window.location.href,
+            referrer: document.referrer || 'Directo'
+        };
+
+        console.log('🧪 Enviando test:', testData);
+
+        // Intentar con no-cors (no sabremos el resultado)
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(testData)
+        })
+        .then(() => {
+            testResult.innerHTML = `
+                <div style="color: #ffff00;">⚠️ PETICIÓN ENVIADA (modo no-cors)</div>
+                <div style="margin-top: 5px; font-size: 9px; color: #888;">
+                    Con modo no-cors NO podemos saber si funcionó.<br><br>
+                    <strong style="color: white;">PASOS PARA VERIFICAR:</strong><br>
+                    1. Ve a tu Google Sheet<br>
+                    2. Busca una fila con evento "TEST_CONEXION"<br>
+                    3. Debería aparecer con fecha de AHORA<br><br>
+                    <strong style="color: #00ff00;">✅ Si aparece → Todo funciona</strong><br>
+                    <strong style="color: #ff0000;">❌ Si NO aparece → Problema en Apps Script</strong><br><br>
+                    Si NO aparece, el problema es:<br>
+                    • Apps Script no desplegado correctamente<br>
+                    • Permisos incorrectos (debe ser "Cualquier persona")<br>
+                    • Código del Apps Script con errores
+                </div>
+            `;
+            console.log('🧪 Test enviado. Revisa tu Google Sheet.');
+        })
+        .catch(error => {
+            testResult.innerHTML = `
+                <div style="color: #ff0000;">❌ ERROR AL ENVIAR</div>
+                <div style="margin-top: 5px; font-size: 9px; color: #ff6666;">
+                    ${error.message}<br><br>
+                    Posibles causas:<br>
+                    • URL incorrecta<br>
+                    • Apps Script no desplegado<br>
+                    • Problemas de red
+                </div>
+            `;
+            console.error('❌ Error en test:', error);
+        });
+    };
 
     // Añadir panel al body
     document.body.appendChild(debugPanel);
