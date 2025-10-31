@@ -293,7 +293,7 @@
                     </div>
                 </div>
                 <p class="text-xs text-gray-500 mt-2 text-center">
-                    Chatbot completo NeuroSync • <a href="ia.html" class="text-primary underline">Chat IA Entrenada</a> • Para casos específicos: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2d5d7c1c6dbdddcf2dcd7c7c0ddc1cbdcd19cc4dbc2">[email&#160;protected]</a>
+                    Chatbot completo NeuroSync • <a href="ia.html" class="text-primary underline">Chat IA Entrenada</a> • Para casos específicos: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff989a8c8b969091bf919a8a8d908c86919cd189968f">[email&#160;protected]</a>
                 </p>
             </div>
         </div>
@@ -328,59 +328,38 @@
 
             const testData = {
                 pregunta: 'PRUEBA MANUAL DEBUG',
-                respuesta: 'Test de conexión',
-                tipo: 'test_debug',
+                respuesta: 'Test de conexión desde botón',
+                tipo: 'test_debug_manual',
                 userAgent: navigator.userAgent
             };
 
             debugLog(`📦 Datos: ${JSON.stringify(testData).substring(0,100)}...`, 'info');
+            debugLog('🔄 Enviando con modo NO-CORS...', 'warning');
 
             try {
-                debugLog('🔄 Enviando con modo CORS...', 'warning');
-
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'cors',
+                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(testData)
                 });
 
-                debugLog(`✅ Respuesta recibida! Status: ${response.status}`, 'success');
-
-                const responseText = await response.text();
-                debugLog(`📄 Respuesta: ${responseText.substring(0,100)}`, 'success');
-
-                try {
-                    const jsonData = JSON.parse(responseText);
-                    if (jsonData.result === 'success') {
-                        debugLog('🎉 ¡ÉXITO! Verifica tu Google Sheet', 'success');
-                    } else {
-                        debugLog(`⚠️ Script retornó: ${JSON.stringify(jsonData)}`, 'warning');
-                    }
-                } catch (e) {
-                    debugLog(`⚠️ Respuesta no es JSON: ${e.message}`, 'warning');
-                }
+                registrosEnviados++;
+                debugLog(`✅ Prueba enviada (#${registrosEnviados})`, 'success');
+                debugLog('📊 Ve a Google Sheet y refresca (F5)', 'success');
+                debugLog('⏰ Espera 5-10 segundos y refresca la hoja', 'info');
 
             } catch (error) {
                 debugLog(`❌ ERROR: ${error.message}`, 'error');
-                debugLog(`📋 Tipo: ${error.name}`, 'error');
-
-                if (error.message.includes('CORS')) {
-                    debugLog('⚠️ ERROR DE CORS - Verifica:', 'error');
-                    debugLog('   1. Script desplegado como Web App', 'error');
-                    debugLog('   2. Acceso: "Cualquier persona"', 'error');
-                    debugLog('   3. URL correcta', 'error');
-                } else if (error.message.includes('Failed to fetch')) {
-                    debugLog('⚠️ ERROR DE CONEXIÓN - Verifica:', 'error');
-                    debugLog('   1. Conexión a Internet', 'error');
-                    debugLog('   2. URL del script', 'error');
-                }
             }
         }
 
-        // Función para registrar consultas en Google Sheets (CON DEBUG)
+        // Contador de registros enviados
+        let registrosEnviados = 0;
+
+        // Función para registrar consultas en Google Sheets (MODO NO-CORS)
         function registrarConsulta(pregunta, respuesta, tipo) {
             debugLog(`📝 Registro: ${tipo} - ${pregunta.substring(0,30)}...`, 'info');
 
@@ -391,26 +370,19 @@
                 userAgent: navigator.userAgent
             };
 
-            debugLog(`📤 Enviando a Google Sheets...`, 'warning');
+            debugLog(`📤 Enviando a Google Sheets (modo no-cors)...`, 'warning');
 
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
-                mode: 'cors',
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(datos)
             })
-            .then(response => {
-                debugLog(`✅ Status: ${response.status}`, 'success');
-                return response.json();
-            })
-            .then(data => {
-                if (data.result === 'success') {
-                    debugLog('🎉 Registrado en Google Sheets', 'success');
-                } else {
-                    debugLog(`⚠️ Respuesta: ${JSON.stringify(data)}`, 'warning');
-                }
+            .then(() => {
+                registrosEnviados++;
+                debugLog(`✅ Enviado (#${registrosEnviados}) - Verifica Google Sheet`, 'success');
             })
             .catch(error => {
                 debugLog(`❌ Error: ${error.message}`, 'error');
