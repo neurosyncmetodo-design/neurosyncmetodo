@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;"><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+<!DOCTYPE html><html lang="es"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com https://script.google.com https://script.googleusercontent.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatBot NeuroSync | Asistente Completo</title>
@@ -151,9 +151,44 @@
             position: relative;
             z-index: 1;
         }
+        /* DEBUG PANEL */
+        #debugPanel {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 400px;
+            max-height: 300px;
+            overflow-y: auto;
+            background: #000;
+            color: #00ff00;
+            padding: 10px;
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            z-index: 10000;
+            box-shadow: 0 4px 20px rgba(0,255,0,0.5);
+        }
+
+        .debug-success { color: #00ff00; }
+        .debug-error { color: #ff0000; }
+        .debug-warning { color: #ffaa00; }
+        .debug-info { color: #00aaff; }
     </style>
-<script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script></head>
+</head>
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen">
+
+    <!-- DEBUG PANEL -->
+    <div id="debugPanel">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid #00ff00; padding-bottom:5px;">
+            <strong style="color:#ffff00;">🔍 DEBUG MODE</strong>
+            <div>
+                <button onclick="clearDebug()" style="background:#333;color:#0f0;border:1px solid #0f0;padding:2px 8px;margin-right:5px;cursor:pointer;border-radius:3px;">Limpiar</button>
+                <button onclick="testConnection()" style="background:#333;color:#ff0;border:1px solid #ff0;padding:2px 8px;cursor:pointer;border-radius:3px;">🧪 Probar</button>
+            </div>
+        </div>
+        <div id="debugLog"></div>
+    </div>
 
     <header class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -258,14 +293,138 @@
                     </div>
                 </div>
                 <p class="text-xs text-gray-500 mt-2 text-center">
-                    Chatbot completo NeuroSync • <a href="ia.html" class="text-primary underline">Chat IA Entrenada</a> • Para casos específicos: gestion@neurosync.vip
+                    Chatbot completo NeuroSync • <a href="ia.html" class="text-primary underline">Chat IA Entrenada</a> • Para casos específicos: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2d5d7c1c6dbdddcf2dcd7c7c0ddc1cbdcd19cc4dbc2">[email&#160;protected]</a>
                 </p>
             </div>
         </div>
     </main>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         let isWaitingForResponse = false;
+
+        // ==================== CONFIGURACIÓN GOOGLE SHEETS ====================
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxW2BVOLTkkVfVeSbfygdDl6bemiOqlroNIL4BVY02QMjiBNt0gGqATzPxVSZzILmme/exec';
+
+        // DEBUG FUNCTIONS
+        function debugLog(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logDiv = document.getElementById('debugLog');
+            const entry = document.createElement('div');
+            entry.className = `debug-${type}`;
+            entry.innerHTML = `<strong>[${timestamp}]</strong> ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(`[${timestamp}] ${message}`);
+        }
+
+        function clearDebug() {
+            document.getElementById('debugLog').innerHTML = '';
+            debugLog('Log limpiado', 'info');
+        }
+
+        async function testConnection() {
+            debugLog('🧪 INICIANDO PRUEBA MANUAL...', 'warning');
+            debugLog(`📍 URL: ${GOOGLE_SCRIPT_URL}`, 'info');
+
+            const testData = {
+                pregunta: 'PRUEBA MANUAL DEBUG',
+                respuesta: 'Test de conexión',
+                tipo: 'test_debug',
+                userAgent: navigator.userAgent
+            };
+
+            debugLog(`📦 Datos: ${JSON.stringify(testData).substring(0,100)}...`, 'info');
+
+            try {
+                debugLog('🔄 Enviando con modo CORS...', 'warning');
+
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+
+                debugLog(`✅ Respuesta recibida! Status: ${response.status}`, 'success');
+
+                const responseText = await response.text();
+                debugLog(`📄 Respuesta: ${responseText.substring(0,100)}`, 'success');
+
+                try {
+                    const jsonData = JSON.parse(responseText);
+                    if (jsonData.result === 'success') {
+                        debugLog('🎉 ¡ÉXITO! Verifica tu Google Sheet', 'success');
+                    } else {
+                        debugLog(`⚠️ Script retornó: ${JSON.stringify(jsonData)}`, 'warning');
+                    }
+                } catch (e) {
+                    debugLog(`⚠️ Respuesta no es JSON: ${e.message}`, 'warning');
+                }
+
+            } catch (error) {
+                debugLog(`❌ ERROR: ${error.message}`, 'error');
+                debugLog(`📋 Tipo: ${error.name}`, 'error');
+
+                if (error.message.includes('CORS')) {
+                    debugLog('⚠️ ERROR DE CORS - Verifica:', 'error');
+                    debugLog('   1. Script desplegado como Web App', 'error');
+                    debugLog('   2. Acceso: "Cualquier persona"', 'error');
+                    debugLog('   3. URL correcta', 'error');
+                } else if (error.message.includes('Failed to fetch')) {
+                    debugLog('⚠️ ERROR DE CONEXIÓN - Verifica:', 'error');
+                    debugLog('   1. Conexión a Internet', 'error');
+                    debugLog('   2. URL del script', 'error');
+                }
+            }
+        }
+
+        // Función para registrar consultas en Google Sheets (CON DEBUG)
+        function registrarConsulta(pregunta, respuesta, tipo) {
+            debugLog(`📝 Registro: ${tipo} - ${pregunta.substring(0,30)}...`, 'info');
+
+            const datos = {
+                pregunta: pregunta,
+                respuesta: respuesta,
+                tipo: tipo,
+                userAgent: navigator.userAgent
+            };
+
+            debugLog(`📤 Enviando a Google Sheets...`, 'warning');
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(datos)
+            })
+            .then(response => {
+                debugLog(`✅ Status: ${response.status}`, 'success');
+                return response.json();
+            })
+            .then(data => {
+                if (data.result === 'success') {
+                    debugLog('🎉 Registrado en Google Sheets', 'success');
+                } else {
+                    debugLog(`⚠️ Respuesta: ${JSON.stringify(data)}`, 'warning');
+                }
+            })
+            .catch(error => {
+                debugLog(`❌ Error: ${error.message}`, 'error');
+            });
+        }
+
+        // Inicialización
+        setTimeout(() => {
+            debugLog('🚀 Chat iniciado en DEBUG MODE', 'success');
+            debugLog(`📍 URL configurada: ${GOOGLE_SCRIPT_URL.substring(0,50)}...`, 'info');
+            debugLog('💡 Haz clic en "🧪 Probar" para verificar conexión', 'info');
+        }, 500);
+
+        // ==================== FIN CONFIGURACIÓN GOOGLE SHEETS ====================
 
         // SISTEMA DE MENÚS COMPLETO
         const menuSystem = {
@@ -536,7 +695,7 @@ Garantizar que obtienes el máximo beneficio de tu inversión y alcanzas tus obj
             },
 
             como_funciona: {
-                title: '⚙️ C  mo Funciona la Hipnosis',
+                title: '⚙️ Cómo Funciona la Hipnosis',
                 content: `**MECANISMO NEUROCIENTÍFICO:**
 
 **🧠 ESTADO DE CONSCIENCIA MODIFICADO:**
@@ -1764,10 +1923,12 @@ Proceso 100% confidencial`
         }
 
         function showResponse(param) {
+            let responseData;
             if (knowledgeBase[param]) {
-                addBotMessage(knowledgeBase[param]);
+                responseData = knowledgeBase[param];
+                addBotMessage(responseData);
             } else {
-                addBotMessage({
+                responseData = {
                     title: '🔧 Información en Desarrollo',
                     content: `Esta sección específica está en desarrollo.
 
@@ -1775,8 +1936,13 @@ Proceso 100% confidencial`
 gestion@neurosync.vip
 
 Nuestro equipo puede proporcionarte toda la información que necesitas.`
-                });
+                };
+                addBotMessage(responseData);
             }
+
+            // Registrar en Google Sheets
+            registrarConsulta('[Botón: ' + param + ']', responseData.title + ' - ' + responseData.content.substring(0, 200), 'menu_boton');
+
             showMainMenu();
         }
 
@@ -1797,6 +1963,10 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
             setTimeout(() => {
                 const response = getResponse(message);
                 addBotMessage(response);
+
+                // Registrar en Google Sheets
+                registrarConsulta(message, response.title + ' - ' + response.content.substring(0, 200), 'chat_texto');
+
                 isWaitingForResponse = false;
                 document.getElementById('sendButton').disabled = false;
             }, 800);
@@ -1946,7 +2116,5 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
             document.getElementById('messageInput').focus();
         });
     </script>
-
-
 
 </body></html>
