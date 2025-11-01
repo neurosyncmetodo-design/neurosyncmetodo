@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<!DOCTYPE html><html lang="es"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com https://script.google.com https://script.googleusercontent.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroSync Chat - Asistente Virtual</title>
+    <title>ChatBot NeuroSync | Asistente Completo</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -11,9 +10,13 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#5D5CDE',
-                        'secondary': '#00A389',
-                        'accent': '#FFC300',
+                        'primary': '#5D5CDE',       // Añil Profundo (Profesionalismo, Calma)
+                        'secondary': '#00A389',    // Verde Azulado Sereno (Bienestar, Crecimiento)
+                        'accent': '#FFC300',        // Oro Suave (Empoderamiento, Calidad)
+                        'text-dark': '#1F2937',     // Gris Oscuro Profesional
+                        'text-light': '#F9FAFB',    // Blanco Roto
+                        'background-light': '#FFFFFF', // Blanco Puro
+                        'background-dark': '#0F172A',   // Azul Noche
                     }
                 }
             }
@@ -23,586 +26,1962 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
 
-        .chat-message {
-            animation: slideIn 0.3s ease-out;
+        /* Logo watermark background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('logo.png');
+            background-repeat: repeat;
+            background-size: 120px auto;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: -1;
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .message-enter {
+            animation: messageSlideIn 0.3s ease-out;
         }
 
-        .typing-indicator {
-            display: flex;
-            gap: 4px;
+        @keyframes messageSlideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .typing-indicator span {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #5D5CDE;
-            animation: typing 1.4s infinite;
-        }
-
-        .typing-indicator span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-indicator span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes typing {
-            0%, 60%, 100% {
-                transform: translateY(0);
-                opacity: 0.7;
-            }
-            30% {
-                transform: translateY(-10px);
-                opacity: 1;
-            }
-        }
-
-        .quick-reply-btn {
+        .quick-btn {
             transition: all 0.2s ease;
+            min-height: 44px; /* Touch-friendly minimum */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            word-wrap: break-word;
+            hyphens: auto;
         }
 
-        .quick-reply-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(93, 92, 222, 0.3);
+        .quick-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive button text */
+        @media (max-width: 640px) {
+            .quick-btn {
+                font-size: 0.875rem;
+                padding: 0.75rem;
+                min-height: 48px;
+            }
+            .quick-btn .text-xs {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Grid improvements for mobile */
+        .menu-grid {
+            display: grid;
+            gap: 0.75rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: 768px) {
+            .menu-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+        }
+
+        /* FIX CRÍTICO: Asegurar espacio suficiente para que no se tapen los botones */
+        .main-container-mobile {
+            /* En desktop: padding normal */
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-container-mobile {
+                /* En móvil: MUCHO más padding para compensar el header sticky */
+                padding-top: 5rem !important; /* 80px de espacio para que se vean todos los botones */
+            }
+        }
+
+        /* Scroll margin para cuando se hace click en categorías */
+        .menu-section {
+            scroll-margin-top: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-section {
+                scroll-margin-top: 100px;
+            }
+        }
+
+        #chatMessages {
+            background-image: url('logo.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 200px auto;
+            background-attachment: fixed;
+            opacity: 1;
+        }
+
+        #chatMessages::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('logo.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 200px auto;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        #chatMessages > * {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-screen">
-    <div class="container mx-auto max-w-4xl h-screen flex flex-col p-4">
-        <!-- Header -->
-        <div class="bg-white dark:bg-gray-800 rounded-t-2xl shadow-lg p-4 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-xl">
-                    NS
-                </div>
-                <div>
-                    <h1 class="font-bold text-lg text-gray-900 dark:text-white">NeuroSync Asistente</h1>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Siempre disponible para ayudarte</p>
-                </div>
-            </div>
-            <button onclick="toggleDarkMode()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                <span id="darkModeIcon" class="text-2xl">🌙</span>
-            </button>
-        </div>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen">
 
-        <!-- Chat Messages -->
-        <div id="chatMessages" class="flex-1 bg-white dark:bg-gray-800 overflow-y-auto p-6 space-y-4">
-            <!-- Messages will be added here -->
-        </div>
-
-        <!-- Quick Replies -->
-        <div id="quickReplies" class="bg-white dark:bg-gray-800 p-4 border-t border-gray-200 dark:border-gray-700">
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 font-medium">Selecciona un tema:</p>
-            <div class="flex flex-wrap gap-2" id="quickReplyButtons">
-                <!-- Quick reply buttons will be added here -->
-            </div>
-        </div>
-
-        <!-- Input Area -->
-        <div class="bg-white dark:bg-gray-800 rounded-b-2xl shadow-lg p-4">
-            <div class="flex gap-2">
-                <input
-                    type="text"
-                    id="userInput"
-                    placeholder="Escribe tu pregunta..."
-                    class="flex-1 px-4 py-3 text-base rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                    onkeypress="handleKeyPress(event)"
-                >
-                <button
-                    onclick="sendMessage()"
-                    class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-semibold hover:opacity-90 transition-opacity"
-                >
-                    Enviar
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Knowledge Base - Base de conocimientos con todas las respuestas predefinidas
-        const knowledgeBase = {
-            // Menú principal
-            menu_principal: {
-                question: "Menu Principal",
-                answer: "¡Hola! 👋 Soy el asistente virtual de NeuroSync Método. ¿En qué puedo ayudarte?",
-                buttons: [
-                    { text: "📋 Servicios", action: "menu_servicios" },
-                    { text: "🧠 El Método NeuroSync", action: "menu_metodo" },
-                    { text: "💰 Precios", action: "menu_precios" },
-                    { text: "🎁 Regala NeuroSync", action: "regala_neurosync" },
-                    { text: "🎭 Espectáculos", action: "espectaculos" },
-                    { text: "❓ Preguntas Frecuentes", action: "menu_faq" },
-                    { text: "📞 Contacto", action: "contacto" }
-                ]
-            },
-
-            // Menú de servicios
-            menu_servicios: {
-                question: "¿Qué servicios ofreces?",
-                answer: "Ofrezco diferentes servicios de hipnosis clínica personalizada:\n\n✨ **Servicios Principales:**",
-                buttons: [
-                    { text: "🎧 Audio Personalizado (desde 30€)", action: "audio_personalizado" },
-                    { text: "💻 Sesión Online (95€)", action: "sesion_online" },
-                    { text: "⏱️ Minisesión (10€)", action: "minisesiones" },
-                    { text: "⚽ Clubes Deportivos (desde 120€/mes)", action: "clubes_deportivos" },
-                    { text: "🏢 Servicios Empresas (desde 120€)", action: "empresas" },
-                    { text: "🎁 Regalar NeuroSync", action: "regala_neurosync" },
-                    { text: "🔙 Volver al menú", action: "menu_principal" }
-                ]
-            },
-
-            // Audio personalizado
-            audio_personalizado: {
-                question: "Audio Personalizado",
-                answer: "🎧 **Audio de Hipnosis Personalizado**\n\n**Precio:** Desde 30€\n**Duración:** 20-40 minutos\n\n**Incluye:**\n✅ Charla prehipnótica personalizada\n✅ Análisis independiente por IA (Claude + NotebookLM)\n✅ Protocolo adaptado a tu perfil\n✅ Frecuencias binaurales integradas\n✅ Técnicas respiratorias específicas\n✅ Primera sesión GRATIS\n\n**Objetivos disponibles:**\n• Ansiedad y estrés\n• Insomnio\n• Autoestima\n• Dejar de fumar\n• Control de peso\n• Rendimiento deportivo\n• Y muchos más...\n\n**Proceso:**\n1. Charla prehipnótica (15-30 min)\n2. Análisis por IA independiente\n3. Creación de audio personalizado\n4. Entrega en 24-48h\n\n¿Te gustaría solicitar tu audio gratuito?",
-                buttons: [
-                    { text: "📝 Solicitar audio GRATIS", action: "solicitar_audio" },
-                    { text: "🤖 ¿Qué es el análisis IA?", action: "analisis_ia" },
-                    { text: "🔙 Ver otros servicios", action: "menu_servicios" }
-                ]
-            },
-
-            // Sesión online
-            sesion_online: {
-                question: "Sesión de hipnosis online",
-                answer: "💻 **Sesión de Hipnosis Online en Vivo**\n\n**Precio:** 95€\n**Duración:** 60 minutos\n**Plataforma:** Zoom\n\n**¿Qué incluye?**\n✅ Sesión personalizada en tiempo real\n✅ Interacción directa con el hipnoterapeuta\n✅ Adaptación inmediata según tus respuestas\n✅ Resolución de dudas al momento\n✅ Grabación de la sesión (opcional)\n✅ Audio personalizado post-sesión\n\n**Ideal para:**\n• Personas que prefieren contacto directo\n• Casos que requieren feedback inmediato\n• Primera experiencia con hipnosis\n• Objetivos complejos o múltiples\n\n**Ventajas vs Audio:**\n• Mayor personalización en tiempo real\n• Ajustes durante la sesión\n• Conexión humana directa\n• Posibilidad de técnicas interactivas\n\n**Proceso:**\n1. Reserva tu cita\n2. Cuestionario previo\n3. Sesión por Zoom (60 min)\n4. Seguimiento post-sesión\n\n¿Quieres reservar tu sesión online?",
-                buttons: [
-                    { text: "📅 Reservar sesión", action: "solicitar_sesion_online" },
-                    { text: "❓ Dudas sobre sesión online", action: "faq_sesion_online" },
-                    { text: "🔙 Ver otros servicios", action: "menu_servicios" }
-                ]
-            },
-
-            // Minisesiones
-            minisesiones: {
-                question: "Minisesiones hipnóticas",
-                answer: "⏱️ **Minisesiones Hipnóticas Express**\n\n**Precio:** 10€\n**Duración:** 10-15 minutos\n\n**¿Qué son?**\nSesiones cortas y enfocadas en un objetivo específico muy concreto. Perfectas para:\n\n✨ **Usos ideales:**\n• Relajación rápida antes de evento importante\n• Boost de confianza puntual\n• Gestión de ansiedad momentánea\n• Preparación pre-competición\n• Mejora del sueño esa noche\n• Enfoque y concentración urgente\n\n**Características:**\n✅ Sesión breve pero efectiva\n✅ Objetivo único y específico\n✅ Efecto inmediato\n✅ Sin charla prehipnótica extensa\n✅ Entrega en pocas horas\n\n**Limitaciones:**\n⚠️ No apta para objetivos complejos\n⚠️ No sustituye terapia profunda\n⚠️ Efecto temporal (no permanente)\n\n**Diferencia con audio personalizado:**\n• Más económica y rápida\n• Menos personalización\n• Objetivos puntuales vs. cambios profundos\n\n¿Necesitas una minisesión para algo urgente?",
-                buttons: [
-                    { text: "⚡ Pedir minisesión", action: "solicitar_minisesion" },
-                    { text: "🎧 Prefiero audio completo", action: "audio_personalizado" },
-                    { text: "🔙 Ver otros servicios", action: "menu_servicios" }
-                ]
-            },
-
-            // Clubes deportivos
-            clubes_deportivos: {
-                question: "Servicios para clubes deportivos",
-                answer: "⚽ **Hipnosis para Clubes Deportivos**\n\n**Precio:** Desde 120€/mes\n**Modalidad:** Presencial u online\n\n**Servicios incluidos:**\n\n🏆 **Mejora del Rendimiento:**\n• Gestión de presión competitiva\n• Visualización de éxito\n• Concentración en momentos clave\n• Recuperación mental post-derrota\n• Cohesión de equipo\n\n⚡ **Modalidades disponibles:**\n\n**1. Sesiones Grupales** (120€/mes)\n• 1 sesión mensual con todo el equipo\n• Duración: 45-60 minutos\n• Enfoque en objetivos colectivos\n• Audio grupal incluido\n\n**2. Programa Individual** (desde 200€/mes)\n• Sesiones personalizadas para jugadores clave\n• Seguimiento continuo\n• Audios individualizados\n• Atención a necesidades específicas\n\n**3. Pack Intensivo Pre-Temporada** (450€)\n• 4 sesiones en 1 mes\n• Preparación mental completa\n• Técnicas de activación\n• Material de refuerzo\n\n**Beneficios comprobados:**\n✅ Mayor confianza en competición\n✅ Mejor gestión de nervios\n✅ Recuperación mental acelerada\n✅ Foco y concentración mejorados\n✅ Rendimiento bajo presión\n\n**Deportes en los que trabajo:**\nFútbol, baloncesto, atletismo, natación, artes marciales, tenis, ciclismo, y más.\n\n¿Quieres un presupuesto personalizado para tu club?",
-                buttons: [
-                    { text: "💼 Solicitar presupuesto", action: "presupuesto_clubes" },
-                    { text: "📊 Ver casos de éxito", action: "casos_exito_deporte" },
-                    { text: "🔙 Ver otros servicios", action: "menu_servicios" }
-                ]
-            },
-
-            // Empresas
-            empresas: {
-                question: "Servicios para empresas",
-                answer: "🏢 **Hipnosis Corporativa y Bienestar Empresarial**\n\n**Precio:** Desde 120€\n**Modalidad:** Presencial u online\n\n**Servicios para empresas:**\n\n💼 **1. Gestión del Estrés Laboral**\n• Reducción de ansiedad en equipos\n• Prevención de burnout\n• Técnicas de relajación rápida\n• Mejora del ambiente laboral\n\n🎯 **2. Productividad y Enfoque**\n• Mejora de concentración\n• Gestión del tiempo\n• Toma de decisiones bajo presión\n• Creatividad y resolución de problemas\n\n👥 **3. Liderazgo y Comunicación**\n• Confianza en presentaciones\n• Comunicación efectiva\n• Gestión de equipos\n• Habilidades de negociación\n\n**Formatos disponibles:**\n\n**Workshop Grupal** (desde 120€)\n• 1 sesión de 60-90 minutos\n• Hasta 20 participantes\n• Técnicas de autohipnosis\n• Material de seguimiento\n\n**Programa Mensual** (desde 400€)\n• 4 sesiones al mes\n• Seguimiento continuo\n• Audios personalizados\n• Medición de resultados\n\n**Retiro Intensivo** (desde 1.200€)\n• Jornada completa\n• Técnicas avanzadas\n• Team building hipnótico\n• Certificado de participación\n\n**Beneficios para la empresa:**\n✅ Reducción de bajas por estrés\n✅ Mayor productividad\n✅ Mejor clima laboral\n✅ Empleados más motivados\n✅ Reducción de conflictos\n✅ ROI medible\n\n¿Quieres mejorar el bienestar de tu equipo?",
-                buttons: [
-                    { text: "📋 Solicitar propuesta", action: "presupuesto_empresas" },
-                    { text: "📈 Ver beneficios detallados", action: "beneficios_empresas" },
-                    { text: "🔙 Ver otros servicios", action: "menu_servicios" }
-                ]
-            },
-
-            // Regala NeuroSync
-            regala_neurosync: {
-                question: "Regala NeuroSync",
-                answer: "🎁 **Regala Bienestar con NeuroSync Método**\n\n**El regalo perfecto para:**\n• Cumpleaños\n• Aniversarios\n• Navidad\n• Día de la Madre/Padre\n• San Valentín\n• Cualquier ocasión especial\n\n**Opciones de regalo:**\n\n🎧 **Opción 1: Regalo Audio Personalizado**\n**Precio: 45€**\n• 1 audio de hipnosis personalizado\n• Charla prehipnótica incluida\n• Análisis por IA\n• Tarjeta regalo digital personalizada\n• Válido por 6 meses\n\n💻 **Opción 2: Regalo Sesión Online**\n**Precio: 110€**\n• 1 sesión online de 60 minutos\n• Incluye audio post-sesión\n• Tarjeta regalo digital elegante\n• Válido por 6 meses\n• Reserva flexible\n\n**¿Cómo funciona?**\n1. Compras el bono regalo\n2. Recibes tarjeta digital personalizable\n3. La persona agendada contacta cuando quiera\n4. Disfruta de su experiencia NeuroSync\n\n**La tarjeta incluye:**\n✨ Diseño profesional y elegante\n✨ Mensaje personalizado tuyo\n✨ Código único de canje\n✨ Instrucciones de uso\n✨ Información sobre el servicio\n\n**Ventajas de regalar NeuroSync:**\n✅ Regalo original y útil\n✅ Mejora real del bienestar\n✅ Experiencia personalizada\n✅ Recuerdo duradero\n✅ Apto para cualquier edad\n✅ Sin caducidad de efecto\n\n**Testimonios de quienes regalaron:**\n_\"Le regalé un audio a mi madre para su ansiedad. Está encantada y lo usa cada noche.\" - María G._\n\n_\"Mi pareja necesitaba dejar de fumar. Mejor regalo que pude hacerle.\" - Carlos R._\n\n¿Quieres regalar bienestar a alguien especial?",
-                buttons: [
-                    { text: "🎁 Comprar regalo Audio (45€)", action: "comprar_regalo_audio" },
-                    { text: "🎁 Comprar regalo Sesión (110€)", action: "comprar_regalo_sesion" },
-                    { text: "❓ Preguntas sobre regalo", action: "faq_regalo" },
-                    { text: "🔙 Volver al menú", action: "menu_principal" }
-                ]
-            },
-
-            // Menú del Método
-            menu_metodo: {
-                question: "¿En qué consiste el Método NeuroSync?",
-                answer: "🧠 **El Método NeuroSync: Integración Científica Multidisciplinar**\n\nNeuroSync combina tres pilares científicos para maximizar la efectividad de la hipnosis:\n\n¿Qué aspecto del método quieres conocer?",
-                buttons: [
-                    { text: "💭 Hipnosis Ericksoniana", action: "hipnosis_ericksoniana" },
-                    { text: "🎵 Frecuencias Binaurales", action: "binaurales" },
-                    { text: "🫁 Técnicas Respiratorias", action: "respiracion" },
-                    { text: "⚡ Sinergia del Método", action: "sinergia_metodo" },
-                    { text: "🔬 Evidencia Científica", action: "evidencia_cientifica" },
-                    { text: "🔙 Volver al menú", action: "menu_principal" }
-                ]
-            },
-
-            // Hipnosis Ericksoniana
-            hipnosis_ericksoniana: {
-                question: "¿Qué es la Hipnosis Ericksoniana?",
-                answer: "💭 **Hipnosis Ericksoniana - El Pilar Central**\n\n**¿Qué es?**\nDesarrollada por Milton Erickson, es un enfoque indirecto y permisivo de hipnosis que respeta la individualidad de cada persona.\n\n**¿Cómo actúa?**\n\n🔹 **Lenguaje Indirecto:**\n• Metáforas y relatos terapéuticos\n• Sugestiones no imperativas\n• Respeta la autonomía del paciente\n• Permite al inconsciente elegir\n\n🔹 **Utilización:**\n• Aprovecha experiencias personales\n• Integra creencias y valores\n• Se adapta al mapa mental único\n• Sin confrontación ni resistencia\n\n🔹 **Flexibilidad:**\n• Personalización total\n• Ajuste según respuestas\n• Múltiples vías de acceso\n• Respeto al ritmo individual\n\n**Evidencia Científica:**\n\n📊 *Yapko (2012)* - \"Trancework: An Introduction to the Practice of Clinical Hypnosis\"\n→ La hipnosis ericksoniana muestra eficacia superior en casos resistentes a enfoques directos.\n\n📊 *Alladin (2008)* - Cognitive Hypnotherapy\n→ Integración con terapia cognitiva aumenta efectividad en trastornos de ansiedad.\n\n📊 *Lankton & Lankton (1983)*\n→ El uso de metáforas facilita cambios profundos sin resistencia consciente.\n\n**Ventajas en NeuroSync:**\n✅ Mayor aceptación inconsciente\n✅ Menor resistencia mental\n✅ Personalización extrema\n✅ Resultados más duraderos\n✅ Experiencia más natural\n\n**Ejemplo práctico:**\nEn lugar de decir \"Dejarás de fumar\", uso metáforas como \"Así como las hojas caen del árbol en otoño, ciertos hábitos pueden desprenderse naturalmente cuando llega su momento...\"",
-                buttons: [
-                    { text: "🎵 Ver Frecuencias Binaurales", action: "binaurales" },
-                    { text: "🧠 Volver al método", action: "menu_metodo" },
-                    { text: "📝 Probar el método", action: "solicitar_audio" }
-                ]
-            },
-
-            // Frecuencias Binaurales
-            binaurales: {
-                question: "¿Qué son las Frecuencias Binaurales?",
-                answer: "🎵 **Frecuencias Binaurales - Acceso Profundo**\n\n**¿Qué son?**\nEstímulos auditivos que producen una frecuencia de diferencia en el cerebro cuando cada oído recibe tonos ligeramente distintos.\n\n**¿Cómo actúan?**\n\n🎧 **Mecanismo:**\n• Oído izquierdo: 200 Hz\n• Oído derecho: 210 Hz\n• Cerebro percibe: 10 Hz (Alpha)\n• Resultado: Sincronización neural\n\n🧠 **Rangos de frecuencia:**\n\n**Delta (0.5-4 Hz)**\n• Sueño profundo\n• Sanación celular\n• Inconsciente profundo\n\n**Theta (4-8 Hz)**\n• Hipnosis profunda\n• Creatividad\n• Memoria emocional\n• **Óptimo para hipnosis**\n\n**Alpha (8-14 Hz)**\n• Relajación consciente\n• Meditación ligera\n• Reducción de ansiedad\n\n**Beta (14-30 Hz)**\n• Enfoque y concentración\n• Alerta mental\n\n**Gamma (30-100 Hz)**\n• Estados de alta cognición\n• Procesamiento complejo\n\n**Evidencia Científica:**\n\n📊 *Wahbeh et al. (2007)* - Journal of Alternative and Complementary Medicine\n→ Reducción significativa de ansiedad con binaurales theta.\n\n📊 *Jirakittayakorn & Wongsawat (2017)*\n→ Binaurales gamma mejoran memoria de trabajo y atención.\n\n📊 *Padmanabhan et al. (2005)*\n→ Efectos medibles en actividad cerebral mediante EEG.\n\n**En NeuroSync uso:**\n✅ Theta (6-8 Hz) para inducción hipnótica\n✅ Delta (2-4 Hz) para sugestiones profundas\n✅ Alpha (10-12 Hz) para transición de salida\n✅ Transiciones suaves entre frecuencias\n✅ Volumen óptimo para cada fase\n\n**Beneficios:**\n• Inducción más rápida\n• Estados más profundos\n• Mayor receptividad\n• Experiencia más intensa\n• Relajación acelerada",
-                buttons: [
-                    { text: "🫁 Ver Técnicas Respiratorias", action: "respiracion" },
-                    { text: "🧠 Volver al método", action: "menu_metodo" },
-                    { text: "📝 Probar el método", action: "solicitar_audio" }
-                ]
-            },
-
-            // Técnicas Respiratorias
-            respiracion: {
-                question: "¿Qué técnicas respiratorias usas?",
-                answer: "🫁 **Técnicas Respiratorias - Puerta de Acceso**\n\n**¿Por qué respiración?**\nEs el único proceso automático que podemos controlar conscientemente, sirviendo como puente entre mente consciente e inconsciente.\n\n**¿Cómo actúan?**\n\n💨 **Mecanismos fisiológicos:**\n\n🔹 **Sistema Nervioso:**\n• Respiración lenta → Activación parasimpática\n• Frecuencia cardiaca reducida\n• Presión arterial disminuida\n• Estado de calma profunda\n\n🔹 **Oxigenación Cerebral:**\n• Mejor flujo sanguíneo cerebral\n• Mayor claridad mental\n• Ondas cerebrales más lentas\n• Facilitación del trance\n\n🔹 **Química Corporal:**\n• Reducción de cortisol (estrés)\n• Aumento de GABA (calma)\n• Balance CO2/O2 óptimo\n• Relajación muscular\n\n**Técnicas que integro:**\n\n**1. Respiración 4-7-8 (Dr. Andrew Weil)**\n• Inhalar: 4 segundos\n• Retener: 7 segundos\n• Exhalar: 8 segundos\n• Efecto: Relajación inmediata\n\n**2. Coherencia Cardíaca (5-5)**\n• Inhalar: 5 segundos\n• Exhalar: 5 segundos\n• Efecto: Equilibrio emocional\n\n**3. Respiración Diafragmática**\n• Expansión abdominal\n• Oxigenación profunda\n• Calma sostenida\n\n**4. Pranayama Adaptado**\n• Técnicas yóguicas simplificadas\n• Fosas nasales alternas\n• Equilibrio hemisférico\n\n**Evidencia Científica:**\n\n📊 *Jerath et al. (2006)* - Medical Hypotheses\n→ Respiración lenta induce estados hipnometabólicos medibles.\n\n📊 *McCaul et al. (1979)*\n→ Control respiratorio reduce ansiedad más que técnicas de distracción.\n\n📊 *Brown & Gerbarg (2005)*\n→ Pranayama demuestra efectos en depresión y PTSD.\n\n📊 *Zaccaro et al. (2018)*\n→ Técnicas respiratorias modulan sistema nervioso autónomo.\n\n**Integración en NeuroSync:**\n✅ Pre-inducción: Preparación del sistema nervioso\n✅ Durante hipnosis: Profundización del trance\n✅ Anclaje: Asociación respiración-calma\n✅ Post-sesión: Herramienta de autocontrol\n✅ Crisis: Técnica de rescate inmediata\n\n**Beneficios:**\n• Efecto inmediato (2-3 minutos)\n• Herramienta autónoma\n• Sin efectos secundarios\n• Aplicable en cualquier momento\n• Potencia la hipnosis\n• Reduce ansiedad anticipatoria",
-                buttons: [
-                    { text: "⚡ Ver Sinergia del Método", action: "sinergia_metodo" },
-                    { text: "🧠 Volver al método", action: "menu_metodo" },
-                    { text: "📝 Probar el método", action: "solicitar_audio" }
-                ]
-            },
-
-            // Sinergia del Método
-            sinergia_metodo: {
-                question: "¿Cómo se combinan los tres pilares?",
-                answer: "⚡ **Sinergia Metodológica NeuroSync**\n\n**El poder está en la integración:**\n\n🔄 **Fase 1: Preparación (Minutos 0-5)**\n🫁 Respiración → Calma sistema nervioso\n🎵 Binaurales Alpha → Relajación consciente\n💭 Lenguaje permisivo → Apertura mental\n\n**Resultado:** Receptividad inicial óptima\n\n🔄 **Fase 2: Inducción (Minutos 5-10)**\n🫁 Respiración 4-7-8 → Profundización\n🎵 Transición Alpha→Theta → Acceso inconsciente\n💭 Metáforas ericksonianas → Bypass crítico\n\n**Resultado:** Trance hipnótico profundo\n\n🔄 **Fase 3: Trabajo Terapéutico (Minutos 10-25)**\n🫁 Respiración diafragmática → Estabilidad\n🎵 Theta profundo (6 Hz) → Máxima sugestionabilidad\n💭 Sugestiones indirectas → Cambio inconsciente\n\n**Resultado:** Integración de cambios\n\n🔄 **Fase 4: Salida (Minutos 25-30)**\n🫁 Respiración energizante → Activación gradual\n🎵 Theta→Alpha→Beta → Retorno consciente\n💭 Sugestiones posthipnóticas → Anclaje\n\n**Resultado:** Despertar revitalizado con cambios integrados\n\n**¿Por qué funciona tan bien?**\n\n🎯 **Efecto Multiplicador:**\nNo es 1+1+1=3, es 1×1×1=SINERGIA\n\n• Respiración prepara terreno fisiológico\n• Binaurales facilitan estado cerebral óptimo\n• Erickson aprovecha ese estado único\n\n**Evidencia de integración:**\n\n📊 *Jensen & Patterson (2014)*\n→ Combinación de técnicas multiplica eficacia vs. uso aislado.\n\n📊 *Elkins et al. (2007)*\n→ Enfoques multisensoriales mejoran resultados hipnóticos.\n\n**Ventajas vs. hipnosis tradicional:**\n\n✅ **3x más rápida** inducción\n✅ **2x más profunda** experiencia\n✅ **Mayor duración** de efectos\n✅ **Menos resistencia** mental\n✅ **Más personalizable** por múltiples variables\n✅ **Herramientas autoaplicables** (respiración)\n\n**Casos de éxito:**\n\n_\"Había probado hipnosis antes sin éxito. Con NeuroSync entré en trance inmediatamente.\" - Laura M._\n\n_\"La combinación de respiración y audio hace que funcione incluso cuando estoy ansioso.\" - Javier P._\n\n_\"Nunca pensé que dejaría de fumar. El método es diferente a todo lo que probé.\" - Roberto S._\n\n¿Quieres experimentar esta sinergia?",
-                buttons: [
-                    { text: "📝 Probar método GRATIS", action: "solicitar_audio" },
-                    { text: "🔬 Ver evidencia científica", action: "evidencia_cientifica" },
-                    { text: "🧠 Volver al método", action: "menu_metodo" }
-                ]
-            },
-
-            // Evidencia científica
-            evidencia_cientifica: {
-                question: "¿Hay evidencia científica?",
-                answer: "🔬 **Evidencia Científica del Método NeuroSync**\n\n**Estudios por cada pilar:**\n\n**💭 Hipnosis Ericksoniana:**\n\n📄 Yapko, M. (2012). \"Trancework: An Introduction to the Practice of Clinical Hypnosis\"\n→ Eficacia demostrada en múltiples contextos clínicos\n\n📄 Alladin, A. (2008). \"Cognitive Hypnotherapy for Depression\"\n→ Tasas de éxito del 73% en depresión resistente\n\n📄 Montgomery et al. (2002) - Journal of the National Cancer Institute\n→ Reducción significativa de dolor y ansiedad en procedimientos médicos\n\n**🎵 Frecuencias Binaurales:**\n\n📄 Wahbeh et al. (2007) - J. Alternative and Complementary Medicine\n→ Reducción de ansiedad: 26.3% más que placebo\n\n📄 Jirakittayakorn & Wongsawat (2017) - Frontiers in Psychiatry\n→ Mejora de memoria de trabajo y atención sostenida\n\n📄 Padmanabhan et al. (2005) - Physiology & Behavior\n→ Cambios medibles en EEG coinciden con frecuencia aplicada\n\n📄 Garcia-Argibay et al. (2019) - Psychological Research\n→ Efectos significativos en cognición y estado de ánimo\n\n**🫁 Técnicas Respiratorias:**\n\n📄 Jerath et al. (2006) - Medical Hypotheses\n→ Estados hipnometabólicos verificables\n\n📄 Brown & Gerbarg (2005) - Journal of Clinical Psychology\n→ Efectividad en depresión, ansiedad y PTSD\n\n📄 Zaccaro et al. (2018) - Frontiers in Human Neuroscience\n→ Modulación del sistema nervioso autónomo\n\n📄 Ma et al. (2017) - Frontiers in Psychology\n→ Mejora del control emocional y reducción de estrés\n\n**⚡ Enfoque Integrador:**\n\n📄 Jensen & Patterson (2014) - American Psychologist\n→ Combinación de técnicas: resultados superiores\n\n📄 Elkins et al. (2007) - International Journal of Clinical and Experimental Hypnosis\n→ Aproximaciones multisensoriales aumentan eficacia\n\n**🏆 Meta-análisis relevantes:**\n\n📊 Kirsch et al. (1995) - Journal of Consulting and Clinical Psychology\n→ Hipnosis mejora resultados terapéuticos en 70% de casos\n\n📊 Hammond (2007) - American Journal of Clinical Hypnosis\n→ Nivel de evidencia: \"Eficaz\" para múltiples condiciones\n\n**Instituciones que avalan hipnosis:**\n\n🏛️ American Psychological Association (APA)\n🏛️ British Psychological Society (BPS)\n🏛️ National Institutes of Health (NIH)\n🏛️ Mayo Clinic\n🏛️ Cleveland Clinic\n\n**Condiciones con evidencia fuerte:**\n✅ Ansiedad y estrés\n✅ Insomnio\n✅ Dolor crónico\n✅ Síndrome de intestino irritable\n✅ Adicciones (tabaco)\n✅ Fobias\n✅ Trastornos de alimentación\n\n**Nivel de evidencia NeuroSync:**\nAl combinar tres técnicas con evidencia independiente demostrada, el método NeuroSync se basa en una base científica sólida y multidisciplinar.\n\n¿Listo para experimentar un método con respaldo científico?",
-                buttons: [
-                    { text: "📝 Solicitar audio GRATIS", action: "solicitar_audio" },
-                    { text: "🧠 Volver al método", action: "menu_metodo" },
-                    { text: "🔙 Menú principal", action: "menu_principal" }
-                ]
-            },
-
-            // Análisis IA
-            analisis_ia: {
-                question: "¿Qué es el análisis por IA?",
-                answer: "🤖 **Análisis Independiente por Inteligencia Artificial**\n\n**¿En qué consiste?**\n\nAprovecho la IA más avanzada para analizar tu perfil desde una perspectiva completamente objetiva e independiente:\n\n**🔍 Claude (Anthropic):**\n• Analiza tu cuestionario completo\n• Identifica patrones psicológicos\n• Sugiere enfoques personalizados\n• Detecta necesidades no expresadas\n• Propone metáforas efectivas\n\n**📚 NotebookLM (Google):**\n• Genera podcast explicativo sobre tu caso\n• Crea resumen en audio de tu perfil\n• Perspectiva educativa de tu situación\n• Material complementario personalizado\n\n**¿Por qué es valioso?**\n\n✅ **Objetividad total:** La IA no tiene sesgos emocionales\n✅ **Patrones ocultos:** Detecta conexiones que podría pasar por alto\n✅ **Segundas opiniones:** Contraste con mi análisis profesional\n✅ **Innovación:** Sugerencias creativas de enfoques\n✅ **Personalización extrema:** Cada detalle cuenta\n\n**Proceso:**\n1. Completas cuestionario detallado\n2. Claude analiza y genera informe\n3. NotebookLM crea podcast personalizado\n4. Yo integro todo en el audio final\n5. Recibes el análisis completo\n\n**¿Sustituye al hipnoterapeuta?**\nNo. Yo siempre tengo la decisión final y adapto las sugerencias. La IA es una herramienta de apoyo, no un reemplazo.\n\n**Privacidad:**\n• Datos anonimizados para análisis\n• No se almacenan permanentemente en IA\n• Cumplimiento RGPD estricto\n• Solo uso para tu beneficio terapéutico\n\n**Casos donde ha sido clave:**\n\n_\"El análisis IA detectó que mi insomnio estaba relacionado con perfeccionismo, algo que no había mencionado explícitamente. El audio fue exactamente lo que necesitaba.\" - Ana B._\n\n_\"El podcast de NotebookLM me ayudó a entender mi ansiedad de forma más clara que en años de terapia.\" - Miguel R._\n\nIncluido GRATIS en todos los audios personalizados.",
-                buttons: [
-                    { text: "📝 Solicitar análisis + audio", action: "solicitar_audio" },
-                    { text: "🔙 Volver a servicios", action: "menu_servicios" }
-                ]
-            },
-
-            // Menú de precios
-            menu_precios: {
-                question: "¿Cuánto cuestan los servicios?",
-                answer: "💰 **Precios NeuroSync Método**\n\n**Servicios Individuales:**\n\n🎧 **Audio Personalizado**\n• Precio: Desde 30€\n• Primera sesión: GRATIS\n• Incluye: Charla + Análisis IA + Audio\n\n💻 **Sesión Online**\n• Precio: 95€\n• Duración: 60 minutos\n• Incluye: Sesión en vivo + Audio post-sesión\n\n⏱️ **Minisesión Hipnótica**\n• Precio: 10€\n• Duración: 10-15 minutos\n• Objetivo único y específico\n\n**Servicios Grupales/Corporativos:**\n\n⚽ **Clubes Deportivos**\n• Desde: 120€/mes\n• Modalidad: Grupal o individual\n• Presencial u online\n\n🏢 **Servicios Empresas**\n• Desde: 120€\n• Workshop, programas mensuales o retiros\n• Presupuesto personalizado\n\n**Regalos:**\n\n🎁 **Regalo Audio**\n• Precio: 45€\n• Válido: 6 meses\n• Tarjeta digital incluida\n\n🎁 **Regalo Sesión Online**\n• Precio: 110€\n• Válido: 6 meses\n• Incluye audio post-sesión\n\n**Espectáculos:**\n\n🎭 **Show de Hipnosis**\n• Desde: 300€\n• Duración: 45-90 minutos\n• Presupuesto según evento\n\n**Formas de pago:**\n💳 Transferencia bancaria\n💳 Bizum\n💳 PayPal\n\n**Política de satisfacción:**\n✅ Primera sesión gratis (audios)\n✅ 100% garantía de calidad\n✅ Soporte post-servicio\n\n¿Qué servicio te interesa?",
-                buttons: [
-                    { text: "🎧 Audio desde 30€", action: "audio_personalizado" },
-                    { text: "💻 Sesión 95€", action: "sesion_online" },
-                    { text: "⏱️ Minisesión 10€", action: "minisesiones" },
-                    { text: "🎁 Ver regalos", action: "regala_neurosync" },
-                    { text: "🔙 Volver al menú", action: "menu_principal" }
-                ]
-            },
-
-            // Espectáculos
-            espectaculos: {
-                question: "Espectáculos de hipnosis",
-                answer: "🎭 **Espectáculos de Hipnosis Profesionales**\n\n**¿Qué ofrezco?**\n\nShows de hipnosis de escenario únicos que combinan entretenimiento, asombro y educación sobre el poder de la mente.\n\n**Tipos de espectáculos:**\n\n🎪 **Show Corporativo**\n• Duración: 45-60 minutos\n• Para: Eventos de empresa, teambuilding\n• Estilo: Profesional y sorprendente\n• Precio: Desde 400€\n\n🎉 **Show para Fiestas Privadas**\n• Duración: 60-90 minutos\n• Para: Bodas, cumpleaños, celebraciones\n• Estilo: Divertido y participativo\n• Precio: Desde 300€\n\n🏫 **Show Educativo**\n• Duración: 60 minutos\n• Para: Institutos, universidades, conferencias\n• Estilo: Divulgativo y demostrativo\n• Precio: Desde 350€\n\n🎊 **Show para Festivales/Ferias**\n• Duración: 90-120 minutos\n• Para: Eventos públicos grandes\n• Estilo: Espectacular y masivo\n• Precio: Desde 600€\n\n**¿Qué incluye?**\n✅ Voluntarios del público hipnotizados en directo\n✅ Fenómenos hipnóticos asombrosos\n✅ Interacción con audiencia\n✅ Seguridad y ética absoluta\n✅ Equipo de sonido propio (opcional)\n✅ Material promocional previo\n✅ Seguro de responsabilidad civil\n\n**Fenómenos que demuestro:**\n• Catalepsia (rigidez corporal)\n• Amnesia selectiva\n• Alucinaciones positivas/negativas\n• Anestesia hipnótica\n• Regresión de edad\n• Sugestiones posthipnóticas\n• Y muchos más...\n\n**Seguridad y ética:**\n🛡️ Solo voluntarios que desean participar\n🛡️ Ninguna humillación ni contenido inapropiado\n🛡️ Todos despiertan sin efectos adversos\n🛡️ Certificación profesional\n🛡️ Años de experiencia\n\n**¿Por qué contratar mi show?**\n✅ Entretenimiento garantizado\n✅ Apto para todos los públicos\n✅ Educativo y sorprendente\n✅ Totalmente personalizable\n✅ Experiencia inolvidable\n✅ Referencias disponibles\n\n**Testimonios:**\n\n_\"Contramos el show para nuestra boda. Los invitados no paraban de hablar de ello semanas después.\" - Carlos & Laura_\n\n_\"Show corporativo increíble. Rompió el hielo y motivó al equipo como nada antes.\" - Director RRHH, Tech Company_\n\n_\"Como científica era escéptica, pero quedé fascinada por las demostraciones.\" - Dra. Martínez, Universidad_\n\n**Zonas de actuación:**\n🌍 País Vasco, Cantabria, La Rioja, Navarra\n🌍 Otras zonas: consultar disponibilidad y gastos\n\n**Disponibilidad:**\n📅 Fines de semana\n📅 Eventos entre semana (según disponibilidad)\n📅 Reserva con mínimo 2 semanas de antelación\n\n¿Quieres un espectáculo inolvidable para tu evento?",
-                buttons: [
-                    { text: "📋 Solicitar presupuesto", action: "presupuesto_espectaculo" },
-                    { text: "🎥 Ver vídeos de shows", action: "videos_espectaculos" },
-                    { text: "🔙 Volver al menú", action: "menu_principal" }
-                ]
-            },
-
-            // FAQs
-            menu_faq: {
-                question: "Preguntas Frecuentes",
-                answer: "❓ **Preguntas Frecuentes sobre NeuroSync**\n\n¿Qué duda tienes?",
-                buttons: [
-                    { text: "🤔 ¿Funciona la hipnosis?", action: "faq_funciona" },
-                    { text: "😴 ¿Perderé el control?", action: "faq_control" },
-                    { text: "⏱️ ¿Cuánto tarda en hacer efecto?", action: "faq_tiempo" },
-                    { text: "🔄 ¿Cuántas sesiones necesito?", action: "faq_sesiones" },
-                    { text: "📱 ¿Cómo uso el audio?", action: "faq_uso_audio" },
-                    { text: "⚠️ ¿Tiene contraindicaciones?", action: "faq_contraindicaciones" },
-                    { text: "💰 ¿Por qué la primera es gratis?", action: "faq_gratis" },
-                    { text: "🔙 Volver al menú", action: "menu_principal" }
-                ]
-            },
-
-            faq_funciona: {
-                question: "¿Funciona realmente la hipnosis?",
-                answer: "🤔 **¿Funciona la hipnosis?**\n\n**Respuesta corta:** Sí, y está científicamente demostrado.\n\n**Respuesta larga:**\n\n✅ **Evidencia científica robusta:**\n• Más de 12,000 estudios publicados\n• Avalada por APA, NIH, Mayo Clinic\n• Eficacia demostrada en múltiples áreas\n• Cambios medibles en neuroimagen\n\n📊 **Tasas de éxito documentadas:**\n• Dejar de fumar: 60-80%\n• Ansiedad: 70-85%\n• Insomnio: 75-90%\n• Dolor crónico: 50-70%\n• Fobias: 80-95%\n\n**PERO... depende de:**\n\n🎯 **Tu motivación:**\nLa hipnosis no es magia. Si no quieres cambiar realmente, no funcionará. Nadie puede hipnotizarte contra tu voluntad.\n\n🎯 **Sugestionabilidad:**\n80% de personas son hipnotizables en algún grado. Solo 10-15% son altamente sugestionables, pero no hace falta ese nivel para resultados.\n\n🎯 **Calidad del protocolo:**\nNo todas las hipnosis son iguales. NeuroSync usa evidencia científica y personalización extrema.\n\n🎯 **Constancia:**\nEscuchar el audio regularmente (no solo una vez) mejora drásticamente resultados.\n\n**¿Por qué funciona?**\n\nAccede al inconsciente (donde están los hábitos, emociones y patrones automáticos) sin la interferencia del pensamiento crítico consciente.\n\n**Casos reales:**\n\n_\"Fumé 20 años. Tras 3 semanas con el audio, dejé sin ansiedad.\" - Roberto, 45_\n\n_\"Mi insomnio de 10 años desapareció en 2 semanas.\" - Carmen, 52_\n\n_\"Pensaba que era placebo, pero mis ataques de pánico cesaron.\" - Luis, 33_\n\n**¿Y si soy escéptico?**\n\n¡Perfecto! El escepticismo sano no impide la hipnosis. Solo necesitas:\n1. Estar dispuesto a intentarlo\n2. Seguir las instrucciones\n3. Darle tiempo (2-3 semanas mínimo)\n\nPor eso la **primera sesión es GRATIS**: para que compruebes sin riesgo.\n\n¿Listo para comprobarlo tú mismo?",
-                buttons: [
-                    { text: "📝 Probar GRATIS", action: "solicitar_audio" },
-                    { text: "🔬 Ver evidencia científica", action: "evidencia_cientifica" },
-                    { text: "❓ Más preguntas", action: "menu_faq" }
-                ]
-            },
-
-            faq_control: {
-                question: "¿Perderé el control?",
-                answer: "😴 **¿Perderé el control durante la hipnosis?**\n\n**Respuesta rotunda:** NO. Es el mito más grande sobre hipnosis.\n\n**La realidad:**\n\n🧠 **Siempre consciente:**\n• Escuchas todo lo que sucede\n• Puedes abrir los ojos cuando quieras\n• Mantienes tus valores y límites\n• No harás nada que no quieras\n• Puedes detener el audio cuando desees\n\n🛡️ **Tus protecciones naturales:**\n\nIncluso en hipnosis profunda:\n✅ Tu ética permanece intacta\n✅ Rechazas sugestiones inaceptables\n✅ Tu inconsciente te protege\n✅ Puedes salir del trance instantáneamente si hay peligro\n\n**¿Qué es realmente la hipnosis?**\n\nNo es sueño ni inconsciencia. Es un estado de:\n• Atención muy enfocada\n• Relajación profunda\n• Mayor receptividad\n• Pensamiento crítico reducido (no eliminado)\n\n**Analogía perfecta:**\nComo cuando lees un libro absorbente:\n• Estás \"en otro mundo\"\n• Pierdes noción del tiempo\n• Ignoras ruidos externos\n• PERO si suena alarma de incendio, reaccionas inmediatamente\n\n**Hipnosis de escenario vs. Clínica:**\n\n🎭 **Shows:** \nVoluntarios QUIEREN participar y hacer cosas graciosas. No están \"controlados\", están disfrutando.\n\n🏥 **Clínica (NeuroSync):**\nSolo sugestiones terapéuticas beneficiosas. Nunca haría nada contra tu voluntad ni valores.\n\n**¿Puedo quedarme \"atrapado\"?**\n\nImposible. Si el audio se corta:\n• O sales naturalmente del trance\n• O te duermes (y despiertas normal)\n\nNinguna persona ha quedado \"atrapada\" en hipnosis en toda la historia documentada.\n\n**Testimonios sobre control:**\n\n_\"Pensaba que perdería la conciencia, pero escuché cada palabra y pude parar cuando quise.\" - Ana, 38_\n\n_\"Mantuve control total. Simplemente estaba muy relajado y receptivo.\" - David, 42_\n\n**De hecho, la hipnosis te da MÁS control:**\n\nSobre tus:\n• Hábitos\n• Emociones\n• Respuestas automáticas\n• Impulsos\n• Ansiedad\n\nEso es exactamente el objetivo: que recuperes el control sobre lo que antes te controlaba a ti.\n\n¿Más tranquilo ahora?",
-                buttons: [
-                    { text: "😊 Sí, quiero probarlo", action: "solicitar_audio" },
-                    { text: "❓ Más preguntas", action: "menu_faq" },
-                    { text: "🔙 Volver", action: "menu_principal" }
-                ]
-            },
-
-            faq_tiempo: {
-                question: "¿Cuánto tarda en hacer efecto?",
-                answer: "⏱️ **¿Cuánto tarda en hacer efecto la hipnosis?**\n\n**Depende del objetivo, pero aquí van datos reales:**\n\n**⚡ Efectos inmediatos (mismo día):**\n\n• **Relajación profunda:** Durante y tras el audio\n• **Reducción de ansiedad puntual:** 70-80% tras primera escucha\n• **Mejor sueño esa noche:** Muy común\n• **Sensación de calma:** Inmediata\n\n**📅 Efectos a corto plazo (3-7 días):**\n\n• **Insomnio:** Mejora notable en 3-5 días\n• **Estrés laboral:** Reducción en menos de 1 semana\n• **Confianza puntual:** Boost inmediato\n• **Gestión emocional:** Herramientas aplicables desde día 1\n\n**📆 Efectos a medio plazo (2-4 semanas):**\n\n• **Dejar de fumar:** Mayoría deja en 2-3 semanas\n• **Cambios de hábitos:** Integración completa 21-30 días\n• **Fobias simples:** Reducción significativa 2-3 semanas\n• **Autoestima:** Cambios perceptibles en actitud\n\n**📊 Efectos a largo plazo (1-3 meses):**\n\n• **Pérdida de peso:** Cambio sostenible de mentalidad\n• **Ansiedad crónica:** Remisión completa posible\n• **Rendimiento deportivo:** Mejora progresiva\n• **Cambios profundos de personalidad:** Requieren tiempo\n\n**Factores que aceleran resultados:**\n\n✅ **Escucha regular:** Diario > 3x semana > ocasional\n✅ **Momento adecuado:** Antes de dormir suele ser óptimo\n✅ **Sin interrupciones:** Espacio tranquilo\n✅ **Motivación alta:** Deseo real de cambio\n✅ **Sin juzgar:** Dejar que funcione sin análisis excesivo\n✅ **Paciencia:** No esperar milagros al día siguiente\n\n**Factores que ralentizan:**\n\n⚠️ Escuchar irregular o esporádico\n⚠️ Escepticismo activo (vs. sano)\n⚠️ Ambiente inadecuado (ruido, interrupciones)\n⚠️ Expectativas irreales\n⚠️ Falta de compromiso con el cambio\n\n**Regla general NeuroSync:**\n\n🎯 **Protocolo mínimo recomendado:**\n• Primera semana: Diario\n• Segunda semana: 4-5 veces\n• Tercera semana: 3-4 veces\n• Mantenimiento: 2-3 veces por semana\n\n**Casos reales con tiempos:**\n\n_\"Mi insomnio mejoró desde la segunda noche. A la semana dormía como bebé.\" - Laura (Insomnio) - 7 días_\n\n_\"Dejé de fumar en 2 semanas sin apenas ansiedad. Increíble.\" - Roberto (Tabaco) - 14 días_\n\n_\"Mi ansiedad se redujo progresivamente. Al mes era otra persona.\" - Carmen (Ansiedad) - 30 días_\n\n_\"En 3 días ya notaba que mi actitud ante la comida cambiaba.\" - Miguel (Peso) - 3 días inicio, 2 meses cambio sostenido_\n\n**¿Y si no funciona rápido?**\n\nNo te desanimes. Cada persona es diferente:\n• Algunos responden muy rápido\n• Otros necesitan más repeticiones\n• Ambos llegan al mismo resultado\n\nLa constancia es clave. Dale al menos 21 días.\n\n**Primera sesión gratis = sin presión:**\n\nPruebas sin compromiso. Si a las 2-3 semanas ves mejora, consideramos continuar. Si no, no has perdido nada.\n\n¿Listo para empezar?",
-                buttons: [
-                    { text: "📝 Empezar ahora GRATIS", action: "solicitar_audio" },
-                    { text: "❓ Más preguntas", action: "menu_faq" },
-                    { text: "🔙 Volver", action: "menu_principal" }
-                ]
-            },
-
-            // Contacto y solicitudes
-            contacto: {
-                question: "¿Cómo te contacto?",
-                answer: "📞 **Contacta con NeuroSync Método**\n\n**Formas de contacto:**\n\n📧 **Email:**\ninfo@neurosync.vip\n(Respondo en menos de 24h)\n\n📱 **WhatsApp/Teléfono:**\n[Pendiente de configurar]\n\n🌐 **Web:**\nhttps://neurosync.vip\n\n**Redes Sociales:**\n[Pendiente de configurar]\n\n**Horario de atención:**\n• Lunes a Viernes: 9:00-20:00\n• Sábados: 10:00-14:00\n• Domingos: Cerrado\n\n**Zona de actuación:**\n🌍 País Vasco, Cantabria, La Rioja, Navarra\n🌍 Servicios online: Toda España y LATAM\n\n¿Qué servicio quieres solicitar?",
-                buttons: [
-                    { text: "📝 Audio personalizado GRATIS", action: "solicitar_audio" },
-                    { text: "💻 Sesión online (95€)", action: "solicitar_sesion_online" },
-                    { text: "🏢 Presupuesto empresas", action: "presupuesto_empresas" },
-                    { text: "🎭 Presupuesto espectáculo", action: "presupuesto_espectaculo" },
-                    { text: "🔙 Volver al menú", action: "menu_principal" }
-                ]
-            },
-
-            solicitar_audio: {
-                question: "Solicitar audio personalizado",
-                answer: "📝 **Solicitar Audio Personalizado GRATIS**\n\n**Proceso:**\n\n1️⃣ **Envía un email a:** info@neurosync.vip\n\n2️⃣ **Asunto:** \"Solicitud Audio Personalizado Gratuito\"\n\n3️⃣ **Incluye:**\n• Tu nombre\n• Objetivo principal (ansiedad, insomnio, autoestima, etc.)\n• Breve descripción de tu situación\n• Disponibilidad para charla prehipnótica\n\n4️⃣ **Recibirás:**\n• Respuesta en menos de 24h\n• Cuestionario detallado\n• Cita para charla prehipnótica (15-30 min)\n\n5️⃣ **Tras la charla:**\n• Análisis por IA (Claude + NotebookLM)\n• Creación de tu audio personalizado\n• Entrega en 24-48h\n\n**Recuerda:**\n✅ Primera sesión totalmente GRATIS\n✅ Sin compromiso\n✅ Análisis IA incluido\n✅ Soporte post-entrega\n\n**O si lo prefieres, usa el formulario web:**\nhttps://neurosync.vip/#formulario\n\n¡Estoy deseando ayudarte!",
-                buttons: [
-                    { text: "✉️ Abrir email", action: "open_email" },
-                    { text: "🌐 Ir a web", action: "open_web" },
-                    { text: "🔙 Volver", action: "menu_principal" }
-                ]
-            },
-
-            // Acciones especiales
-            open_email: {
-                question: "Abrir email",
-                answer: "📧 **Abriendo tu cliente de email...**\n\nSi no se abre automáticamente, copia esta dirección:\n\n**info@neurosync.vip**\n\n**Asunto sugerido:**\n\"Solicitud Audio Personalizado Gratuito\"\n\n**Contenido sugerido:**\n\nHola,\n\nMe gustaría solicitar un audio de hipnosis personalizado gratuito.\n\n- Nombre: [Tu nombre]\n- Objetivo: [Ej: Reducir ansiedad]\n- Situación: [Breve descripción]\n- Disponibilidad: [Tus horarios preferidos]\n\nGracias,\n[Tu nombre]",
-                buttons: [
-                    { text: "🔙 Volver al menú", action: "menu_principal" }
-                ]
-            },
-
-            open_web: {
-                question: "Ir a web",
-                answer: "🌐 **Visita nuestra web:**\n\nhttps://neurosync.vip\n\nAllí encontrarás:\n✅ Formulario de contacto\n✅ Más información sobre servicios\n✅ Testimonios de clientes\n✅ Fundamentos científicos\n✅ Y mucho más...",
-                buttons: [
-                    { text: "🔙 Volver al menú", action: "menu_principal" }
-                ]
-            }
-        };
-
-        // Menu system - Sistema de menús con botones de respuesta rápida
-        const menuSystem = {
-            currentMenu: 'menu_principal',
-            history: []
-        };
-
-        // Initialize dark mode
-        function initDarkMode() {
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.documentElement.classList.add('dark');
-                document.getElementById('darkModeIcon').textContent = '☀️';
-            }
-        }
-
-        // Toggle dark mode
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
-            const icon = document.getElementById('darkModeIcon');
-            icon.textContent = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
-        }
-
-        // Add message to chat
-        function addMessage(text, isUser = false) {
-            const chatMessages = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `chat-message flex ${isUser ? 'justify-end' : 'justify-start'}`;
-
-            const bubble = document.createElement('div');
-            bubble.className = `max-w-[80%] p-4 rounded-2xl ${
-                isUser
-                    ? 'bg-gradient-to-r from-primary to-secondary text-white'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
-            }`;
-            bubble.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-
-            messageDiv.appendChild(bubble);
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Show typing indicator
-        function showTyping() {
-            const chatMessages = document.getElementById('chatMessages');
-            const typingDiv = document.createElement('div');
-            typingDiv.id = 'typing-indicator';
-            typingDiv.className = 'chat-message flex justify-start';
-            typingDiv.innerHTML = `
-                <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-2xl">
-                    <div class="typing-indicator">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+    <header class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="logo.png" alt="NeuroSync Logo" class="w-12 h-12 object-contain">
+                    <div>
+                        <h1 class="text-lg font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">NeuroSync Chat de Respuestas Predefinidas</h1>
+                        <p class="text-xs text-secondary dark:text-green-400">🤖 Chatbot local</p>
                     </div>
                 </div>
-            `;
-            chatMessages.appendChild(typingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
 
-        // Hide typing indicator
-        function hideTyping() {
-            const typing = document.getElementById('typing-indicator');
-            if (typing) typing.remove();
-        }
+                <div class="flex items-center space-x-2">
+                    <a href="ia.html" class="hidden sm:flex px-3 py-1.5 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all text-sm font-medium items-center space-x-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <span>IA Entrenada</span>
+                    </a>
+                    <a href="ia.html" class="sm:hidden p-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all" title="Chat IA Entrenada">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </a>
+                    <button onclick="clearChat()" class="p-2 text-gray-500 hover:text-gray-700 rounded-lg transition-all" title="Limpiar chat">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                    </button>
+                    <a href="index.html" class="px-3 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium">Volver</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
-        // Show quick reply buttons
-        function showQuickReplies(buttons) {
-            const container = document.getElementById('quickReplyButtons');
-            container.innerHTML = '';
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 main-container-mobile" style="padding-top: 1.5rem;">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-visible" style="height: calc(100vh - 10rem);">
 
-            buttons.forEach(button => {
-                const btn = document.createElement('button');
-                btn.className = 'quick-reply-btn px-4 py-2 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-2 border-primary rounded-xl hover:bg-primary hover:text-white transition-all';
-                btn.textContent = button.text;
-                btn.onclick = () => handleQuickReply(button.action, button.text);
-                container.appendChild(btn);
+            <!-- Menús Esquematizados Mejorados -->
+            <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 menu-section" style="padding-top: 2rem;">
+                <div id="mainMenu">
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 font-semibold" style="padding-top: 1rem;">📋 Consultas Esquematizadas (Menú Principal)</p>
+                    <div class="menu-grid">
+                        <button onclick="showSubmenu('servicios')" class="quick-btn px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm hover:bg-blue-100">
+                            <span>🎯 Servicios</span> <span class="text-xs">→</span>
+                        </button>
+                        <button onclick="showSubmenu('metodo')" class="quick-btn px-3 py-2 bg-purple-50 text-secondary rounded-lg text-sm hover:bg-secondary">
+                            <span>🧠 Método</span> <span class="text-xs">→</span>
+                        </button>
+                        <button onclick="showSubmenu('info_practica')" class="quick-btn px-3 py-2 bg-green-50 text-green-700 rounded-lg text-sm hover:bg-secondary">
+                            <span>💰 Info Práctica</span> <span class="text-xs">→</span>
+                        </button>
+                        <button onclick="showSubmenu('seguridad')" class="quick-btn px-3 py-2 bg-orange-50 text-orange-700 rounded-lg text-sm hover:bg-orange-100">
+                            <span>🔒 Seguridad</span> <span class="text-xs">→</span>
+                        </button>
+                        <button onclick="showSubmenu('areas')" class="quick-btn px-3 py-2 bg-cyan-50 text-cyan-700 rounded-lg text-sm hover:bg-cyan-100">
+                            <span>🎯 Qué Tratamos</span> <span class="text-xs">→</span>
+                        </button>
+                        <button onclick="showSubmenu('dudas')" class="quick-btn px-3 py-2 bg-yellow-50 text-yellow-700 rounded-lg text-sm hover:bg-yellow-100">
+                            <span>❓ Dudas Frecuentes</span> <span class="text-xs">→</span>
+                        </button>
+                        <button onclick="showSubmenu('primeros_pasos')" class="quick-btn px-3 py-2 bg-pink-50 text-pink-700 rounded-lg text-sm hover:bg-pink-100">
+                            <span>🚀 Primeros Pasos</span> <span class="text-xs">→</span>
+                        </button>
+                        <button onclick="showSubmenu('soporte')" class="quick-btn px-3 py-2 bg-red-50 text-red-700 rounded-lg text-sm hover:bg-red-100">
+                            <span>👨‍💼 Soporte</span> <span class="text-xs">→</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="submenuContainer" class="hidden">
+                    <div class="flex items-center justify-between mb-4">
+                        <p class="text-sm text-gray-600 dark:text-gray-400" id="submenuTitle">Selecciona una opción:</p>
+                        <button onclick="showMainMenu()" class="text-xs text-gray-500 hover:text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-all">← Volver</button>
+                    </div>
+                    <div id="submenuContent"></div>
+                </div>
+            </div>
+
+            <div id="chatMessages" class="flex-1 p-3 sm:p-4 space-y-4 overflow-y-auto relative" style="height: calc(100vh - 26rem);">
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
+                        <img src="logo.png" alt="NeuroSync" class="w-full h-full object-cover">
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 py-3 max-w-[85%]">
+                        <p class="text-gray-800 dark:text-gray-200 text-sm sm:text-base">¡Bienvenido! Tengo respuestas completas para TODAS las consultas sobre NeuroSync (48 temas).
+                        <br><br>🧠 <strong>¿Prefieres IA?</strong> <a href="ia.html" class="text-primary underline font-semibold">Prueba nuestro Chat con IA Entrenada</a>
+                        <br><br>Usa los menús de arriba o escribe tu pregunta. ¿En qué puedo ayudarte?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                <div class="flex space-x-3">
+                    <div class="flex-1 relative">
+                        <input type="text" id="messageInput" placeholder="Escribe tu consulta..." class="w-full px-4 py-3 text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-gray-900 placeholder-gray-500 pr-12" onkeypress="handleKeyPress(event)">
+                        <button onclick="sendMessage()" id="sendButton" class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 mt-2 text-center">
+                    Chatbot completo NeuroSync • <a href="ia.html" class="text-primary underline">Chat IA Entrenada</a> • Para casos específicos: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="96f1f3e5e2fff9f8d6f8f3e3e4f9e5eff8f5b8e0ffe6">[email&#160;protected]</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        let isWaitingForResponse = false;
+
+        // ==================== CONFIGURACIÓN GOOGLE SHEETS ====================
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxW2BVOLTkkVfVeSbfygdDl6bemiOqlroNIL4BVY02QMjiBNt0gGqATzPxVSZzILmme/exec';
+
+        // Función para registrar consultas en Google Sheets
+        function registrarConsulta(pregunta, respuesta, tipo) {
+            const datos = {
+                pregunta: pregunta,
+                respuesta: respuesta,
+                tipo: tipo,
+                userAgent: navigator.userAgent
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(datos)
+            }).catch(error => {
+                console.log('Error al registrar consulta:', error);
             });
         }
 
-        // Handle quick reply button click
-        function handleQuickReply(action, text) {
-            addMessage(text, true);
-            processKnowledgeBase(action);
+        // ==================== FIN CONFIGURACIÓN GOOGLE SHEETS ====================
+
+        // SISTEMA DE MENÚS COMPLETO
+        const menuSystem = {
+            servicios: {
+                title: '🎯 Servicios NeuroSync',
+                buttons: [
+                    { text: '🎁 Audios Gratuitos', param: 'audios_gratuitos' },
+                    { text: '🎧 Audios Personalizados', param: 'audios_personalizados' },
+                    { text: '🎭 Hipnosis de Espectáculo', param: 'hipnosis_espectaculo' },
+                    { text: '📋 Evaluación de Receptividad', param: 'evaluacion_receptividad' },
+                    { text: '📞 Charla Prehipnótica', param: 'charla_prehipnotica' },
+                    { text: '🔄 Seguimiento Post-Entrega', param: 'seguimiento' }
+                ]
+            },
+            metodo: {
+                title: '🧠 Método NeuroSync',
+                buttons: [
+                    { text: '🔬 Evidencia Científica', param: 'evidencia_cientifica' },
+                    { text: '⚙️ Cómo Funciona', param: 'como_funciona' },
+                    { text: '📋 Proceso Completo', param: 'proceso' },
+                    { text: '🧩 Componentes del Método', param: 'componentes_metodo' },
+                    { text: '🎯 Diferenciación', param: 'diferenciacion' },
+                    { text: '📊 Tasas de Éxito', param: 'tasas_exito' }
+                ]
+            },
+            info_practica: {
+                title: '💰 Información Práctica',
+                buttons: [
+                    { text: '💳 Precios y Tarifas', param: 'precios' },
+                    { text: '💰 Formas de Pago', param: 'formas_pago' },
+                    { text: '⏰ Tiempos de Entrega', param: 'tiempos_entrega' },
+                    { text: '✅ Garantías', param: 'garantias' },
+                    { text: '📄 Facturación', param: 'facturacion' }
+                ]
+            },
+            seguridad: {
+                title: '🔒 Seguridad y Limitaciones',
+                buttons: [
+                    { text: '✅ ¿Es Segura la Hipnosis?', param: 'seguridad' },
+                    { text: '⛔ Contraindicaciones', param: 'contraindicaciones' },
+                    { text: '🏥 Derivaciones Profesionales', param: 'derivaciones' },
+                    { text: '🚫 Límites del Servicio', param: 'limites_servicio' },
+                    { text: '❌ Casos que NO Tratamos', param: 'casos_no_tratamos' },
+                    { text: '🎭 Mitos vs Realidad', param: 'mitos_realidad' }
+                ]
+            },
+            areas: {
+                title: '🎯 Qué Tratamos',
+                buttons: [
+                    { text: '😰 Ansiedad y Estrés', param: 'ansiedad_estres' },
+                    { text: '🏃‍♂️ Rendimiento Deportivo', param: 'rendimiento_deportivo' },
+                    { text: '📚 Aprendizaje', param: 'aprendizaje' },
+                    { text: '😴 Higiene del Sueño', param: 'sueno' },
+                    { text: '💪 Autoconfianza', param: 'autoconfianza' },
+                    { text: '🎤 Hablar en Público', param: 'hablar_publico' },
+                    { text: '🚭 Hábitos', param: 'habitos' },
+                    { text: '🎯 Motivación', param: 'motivacion' }
+                ]
+            },
+            dudas: {
+                title: '❓ Dudas Frecuentes',
+                buttons: [
+                    { text: '🤔 ¿Funcionará en mi caso?', param: 'funcionara_caso' },
+                    { text: '⏱️ ¿Tiempo para efecto?', param: 'tiempo_efecto' },
+                    { text: '🔢 ¿Cuántas sesiones?', param: 'cuantas_sesiones' },
+                    { text: '🏠 ¿En casa?', param: 'en_casa' },
+                    { text: '👂 ¿Auriculares especiales?', param: 'auriculares' },
+                    { text: '😴 ¿Si me duermo?', param: 'si_duermo' },
+                    { text: '🔄 ¿Repetir audio?', param: 'repetir_audio' },
+                    { text: '📱 ¿En móviles?', param: 'en_moviles' }
+                ]
+            },
+            primeros_pasos: {
+                title: '🚀 Primeros Pasos',
+                buttons: [
+                    { text: '1️⃣ Test de Receptividad', param: 'test_receptividad' },
+                    { text: '2️⃣ Elegir Audio Gratuito', param: 'elegir_gratuito' },
+                    { text: '3️⃣ Solicitar Personalizado', param: 'solicitar_personalizado' },
+                    { text: '🎯 ¿Qué objetivo elegir?', param: 'que_objetivo' },
+                    { text: '📝 Preparación', param: 'preparacion' },
+                    { text: '🏠 Ambiente adecuado', param: 'ambiente' }
+                ]
+            },
+            soporte: {
+                title: '👨‍💼 Soporte y Contacto',
+                buttons: [
+                    { text: '📧 Contacto Humano', param: 'contacto_humano' },
+                    { text: '🔧 Soporte Técnico', param: 'soporte_tecnico' },
+                    { text: '❓ Dudas Post-Entrega', param: 'dudas_post' },
+                    { text: '📊 Seguimiento Progreso', param: 'seguimiento_progreso' },
+                    { text: '🔄 Modificaciones', param: 'modificaciones' },
+                    { text: '⏰ Horarios', param: 'horarios' }
+                ]
+            }
+        };
+
+        // BASE DE CONOCIMIENTO COMPLETA CON KEYWORDS
+        const knowledgeBase = {
+            // ==================== SERVICIOS ====================
+            audios_gratuitos: {
+                keywords: ['gratis', 'gratuito', 'gratuitos', 'gracia', 'free', 'precio cero', 'sin pagar', 'sin coste'],
+                title: '🎁 Audios Gratuitos NeuroSync',
+                content: `**3 AUDIOS COMPLETAMENTE GRATUITOS:**
+
+**🚶‍♂️ CAMINAR ERGUIDO (28 min)**
+Transforma tu postura corporal de forma permanente. Este audio programa tu subconsciente para mantener una postura erguida y confiada de manera natural.
+
+**Beneficios:** Mayor autoconfianza, mejor respiración, reducción del dolor de espalda, proyección de liderazgo y seguridad personal.
+
+**🫁 RESPIRAR CORRECTAMENTE (32 min)**
+Codifica en tu subconsciente los patrones de respiración nasal correcta para que respires óptimamente incluso de forma inconsciente durante todo el día.
+
+**Beneficios:** Mejor oxigenación cerebral, regulación del sistema nervioso, mayor energía, mejor calidad del sueño, reducción del estrés y ansiedad.
+
+**🧘‍♀️ RELATIVIZAR (26 min)**
+Aprende a relativizar los problemas para que no te superen. Este audio te enseña a mantener la calma y la perspectiva adecuada para encontrar soluciones efectivas.
+
+**Beneficios:** Reduce el estrés ante problemas, mejora la toma de decisiones, aumenta la resiliencia emocional, desarrolla pensamiento solucionista y mantiene la calma bajo presión.
+
+**✅ CÓMO OBTENERLOS:**
+1. Email: gestion@neurosync.vip
+2. Indica cuál prefieres
+3. Completamente gratis, sin compromiso
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            audios_personalizados: {
+                title: '🎧 Audios Personalizados',
+                content: `**AUDIO 100% PERSONALIZADO PARA TI:**
+
+**💰 TARIFAS:**
+• **1 Audio: 30€** - Evaluación + Charla + Audio personalizado
+• **3 Audios: 60€** - ¡Al comprar 3, uno sale GRATIS! (Ahorro de 30€)
+
+**✅ QUÉ INCLUYE:**
+• Evaluación de receptividad personalizada
+• Charla prehipnótica telefónica incluida
+• Audio diseñado específicamente para ti
+• Entrega en menos de 48 horas desde que se recibe el pago
+• Instrucciones de uso detalladas
+• 100% confidencial
+• Seguimiento y soporte post-entrega
+
+**🎯 ÁREAS DE APLICACIÓN:**
+Gestión de ansiedad, optimización del aprendizaje, higiene del sueño, performance deportiva, ansiedad de exposición, regulación emocional, autoconcepto, motivación intrínseca, y preparación pre-performance.
+
+**💳 PAGO:**
+Solo Bizum (España) o Transferencia bancaria. El trabajo se inicia tras recibir el pago.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            hipnosis_espectaculo: {
+                title: '🎭 Hipnosis de Espectáculo',
+                content: `**SHOWS PROFESIONALES DE ENTRETENIMIENTO:**
+
+**📋 CARACTERÍSTICAS:**
+• **Duración:** 45-90 minutos adaptable
+• **Mínimo:** 100 asistentes estimados
+• **Formato:** Entretenimiento seguro y profesional
+• **Equipamiento:** Solo necesitamos micrófono
+
+**💰 TARIFAS:**
+• **Tarifa Estándar:** Precio a convenir según ubicación, duración y características del evento.
+• **Presupuesto personalizado gratuito**
+
+**🎁 OPCIÓN GRATUITA:**
+Para eventos de gran afluencia en **Cantabria, La Rioja, País Vasco y Navarra**
+• Mínimo 500+ asistentes
+• Solo gastos de viaje y alojamiento
+• Contraprestaciones publicitarias
+
+**🎯 IDEAL PARA:**
+Eventos corporativos, festivales, celebraciones, bodas, universidades.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            evaluacion_receptividad: {
+                title: '📋 Evaluación de Receptividad',
+                content: `**TEST GRATUITO DE 2 MINUTOS:**
+
+Descubra en solo 2 minutos su nivel de receptividad a la autohipnosis. Un test breve y sencillo —solo 5 preguntas— para que decida con total libertad si nuestros servicios son idóneos para usted.
+
+**🎯 OBJETIVO:**
+Queremos ser transparentes contigo. No queremos ni un solo cliente defraudado. La efectividad de la hipnosis no depende exclusivamente de nosotros, sino que depende en gran parte de ti.
+
+**📊 ESTADÍSTICAS:**
+• **85%** de la población tiene receptividad moderada a alta
+• Evaluación objetiva sin sesgos
+• Recomendación personalizada según resultado
+
+**✅ COMPROMISO ÉTICO:**
+Si detectamos que no eres apto para hipnosis, te lo diremos honestamente. Preferimos perder una venta que tener un cliente insatisfecho.
+
+📧 **Solicitar test:** gestion@neurosync.vip`
+            },
+
+            charla_prehipnotica: {
+                title: '📞 Charla Prehipnótica - El Paso Más Crucial',
+                content: `**⚠️ EL FACTOR DECISIVO DEL ÉXITO:**
+
+La charla prehipnótica es **el paso más crucial del proceso**. Una conversación telefónica personalizada donde explicamos exactamente qué es y qué no es la hipnosis, cómo funcionará su sesión, y resolvemos todas sus dudas.
+
+**📊 IMPACTO EN RESULTADOS:**
+Sin una correcta charla prehipnótica, la sesión tiene alto riesgo de fracaso. Este paso garantiza que comprenda completamente el proceso y esté preparado para el éxito.
+
+**✅ QUÉ INCLUYE:**
+• Educación sobre qué es/no es la hipnosis
+• Eliminación de mitos del cine/TV
+• Preparación mental específica para tu caso
+• Resolución de todas tus dudas
+• Instrucciones de uso para máximos resultados
+
+**📞 FORMATO:**
+Llamada telefónica personalizada (15-30 min)
+
+**💰 INCLUIDA GRATIS** en todos los audios personalizados
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            seguimiento: {
+                title: '🔄 Seguimiento Post-Entrega',
+                content: `**ACOMPAÑAMIENTO CONTINUO:**
+
+En NeuroSync no te dejamos solo después de la entrega. Ofrecemos seguimiento y soporte para garantizar que obtienes el máximo beneficio de tu inversión.
+
+**📊 QUÉ INCLUYE:**
+• Resolución de dudas sobre uso del audio
+• Consejos para optimizar resultados
+• Soporte motivacional si hay desánimo
+• Pequeños ajustes si son necesarios
+
+**⏰ DISPONIBILIDAD:**
+Siempre disponibles para atenderte cuando lo necesites. Tu progreso es importante para nosotros.
+
+**🎯 OBJETIVO:**
+Garantizar que obtienes el máximo beneficio de tu inversión y alcanzas tus objetivos de transformación personal.
+
+**✅ INCLUIDO GRATIS** en todos los audios personalizados
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            // ==================== MÉTODO ====================
+            evidencia_cientifica: {
+                title: '🔬 Evidencia Científica Robusta',
+                content: `**RESPALDO CIENTÍFICO SÓLIDO:**
+
+**🏛️ RECONOCIMIENTO INSTITUCIONAL:**
+• **American Psychological Association (APA):** División 30 reconoce oficialmente la hipnosis como "intervención psicológica basada en evidencia"
+• **British Medical Association (BMA):** Aprueba el uso de hipnosis clínica en NHS
+• **World Health Organization (WHO):** Incluye hipnosis clínica en Clasificación Internacional de Intervenciones de Salud
+• **70+ años** de investigación científica continua
+
+**📈 ESTUDIOS CLAVE:**
+• **Meta-análisis Cochrane (2019):** Reducción del dolor del 42% vs placebo
+• **Stanford Research (2021):** Conectividad neuronal específica durante trance hipnótico
+• **Journal of Clinical Psychology (2020):** Hipnosis ericksoniana 73% de mejora clínica vs 58% TCC
+
+**🎯 ANÁLISIS INDEPENDIENTE POR IA:**
+• **Claude 4.1 Opus:** 8.5/10 - "Metodología sólida con fuerte respaldo científico"
+• **NotebookLM (Google):** Análisis objetivo independiente completo
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            como_funciona: {
+                title: '⚙️ Cómo Funciona la Hipnosis',
+                content: `**MECANISMO NEUROCIENTÍFICO:**
+
+**🧠 ESTADO DE CONSCIENCIA MODIFICADO:**
+La hipnosis induce un estado neurofisiológico caracterizado por atención focalizada, reducción de consciencia periférica y aumento de la receptividad a sugestiones. Neuroimagen funcional demuestra patrones de activación cerebral distintivos durante el trance hipnótico.
+
+**🔬 MECANISMOS NEUROBIOLÓGICOS:**
+La investigación identifica modulación de redes neuronales ejecutivas, alteración de procesamiento en corteza cingulada anterior y modificación de conectividad funcional entre regiones cerebrales clave durante estados hipnóticos.
+
+**⚡ PROCESO SIMPLE:**
+1. **Relajación profunda** - Estado entre vigilia y sueño ligero
+2. **Programación subconsciente** - Acceso directo sin resistencia mental
+3. **Consolidación** - Nuevos patrones de comportamiento se automatizan
+
+**✅ NO ES:**
+• No es sueño ni inconsciencia
+• No es pérdida de control
+• No es manipulación
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            proceso: {
+                title: '📋 Proceso Completo en 4 Fases',
+                content: `**PROTOCOLO ESTRUCTURADO:**
+
+**1️⃣ EVALUACIÓN INICIAL**
+Test breve de 2 minutos con 5 preguntas para evaluar tu nivel de receptividad a la autohipnosis. Decidirás con total libertad si nuestros servicios son idóneos para ti.
+
+**2️⃣ DISEÑO PERSONALIZADO**
+Mediante un cuestionario ligero, identificamos el estilo de inducción y las sugestiones que mejor resuenan contigo, para crear una experiencia verdaderamente personal.
+
+**3️⃣ CHARLA PREHIPNÓTICA**
+El paso más crucial. Conversación telefónica personalizada donde explicamos exactamente qué es y qué no es la hipnosis, cómo funcionará tu sesión, y resolvemos todas tus dudas.
+
+**4️⃣ IMPLEMENTACIÓN**
+Tu sesión de autohipnosis se elabora con atención a cada detalle, basada en tus respuestas y tu objetivo personal.
+
+**⏰ COMPROMISO:** Envío del audio en menos de 48 horas desde que se recibe el pago
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            componentes_metodo: {
+                title: '🧩 Componentes del Método NeuroSync',
+                content: `**SÍNTESIS METODOLÓGICA AVANZADA:**
+
+**1️⃣ HIPNOSIS ERICKSONIANA:**
+Metodología pionera que integra técnicas indirectas y metafóricas. La investigación muestra que es 23% más efectiva que la hipnosis directa tradicional.
+
+**2️⃣ TÉCNICAS RESPIRATORIAS:**
+Integración de técnicas respiratorias con hipnosis potencia activación del sistema nervioso parasimpático y mejora resultados (+34% eficacia según Neuroscience & Biobehavioral Reviews 2022).
+
+**3️⃣ AUDIOS BINAURALES:**
+Neurotecnología avanzada de estimulación binaural para sincronización de ondas cerebrales y aumento de receptividad.
+
+**4️⃣ PERSONALIZACIÓN TOTAL:**
+Cada protocolo respaldado por evidencia empírica y análisis independiente por IA. Adaptación completa a tu perfil cognitivo y necesidades específicas.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            diferenciacion: {
+                title: '🎯 Qué Nos Hace Únicos',
+                content: `**DIFERENCIACIÓN vs COMPETENCIA:**
+
+**❌ OTROS SERVICIOS:**
+• Audios genéricos para todos
+• Sin evaluación previa
+• Sin preparación ni charla prehipnótica
+• Sin seguimiento post-entrega
+
+**✅ NEUROSYNC MÉTODO:**
+• **100% personalizado** para tu perfil específico
+• **Evaluación obligatoria** antes de proceder
+• **Charla prehipnótica** (el factor decisivo)
+• **Seguimiento incluido** y soporte continuo
+• **Metodología multidisciplinar** validada científicamente
+• **Análisis IA independiente:** 8.5/10 rigor metodológico
+
+**🏆 RESULTADOS:**
+La personalización del protocolo basada en evaluación individual representa una ventaja significativa sobre enfoques genéricos.
+
+**💡 FILOSOFÍA:**
+Calidad sobre cantidad. Pocos clientes, todos satisfechos. Preferimos derivarte si no somos apropiados para tu caso.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            tasas_exito: {
+                title: '📊 Tasas de Éxito y Estadísticas',
+                content: `**DATOS REALES Y TRANSPARENTES:**
+
+**🎯 RECEPTIVIDAD GENERAL:**
+• **85%** de la población tiene receptividad hipnótica moderada a alta según investigación estandarizada
+• **70+ años** de investigación científica rigurosa respaldan la eficacia
+
+**📈 ESTUDIOS DEMUESTRAN:**
+• Meta-análisis Cochrane: 42% reducción dolor vs placebo
+• Hipnosis ericksoniana: 73% mejora clínica vs 58% TCC
+• Técnicas respiratorias integradas: +34% eficacia
+
+**⚖️ HONESTIDAD:**
+No todas las personas responden igual. La efectividad depende de múltiples factores incluyendo tu receptividad, compromiso y constancia en el uso del audio.
+
+**✅ COMPROMISO:**
+Evaluación gratuita previa para determinar si eres buen candidato. Preferimos derivarte que defraudarte.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            // ==================== INFO PRÁCTICA ====================
+            precios: {
+                title: '💰 Precios y Tarifas',
+                content: `**TARIFAS TRANSPARENTES:**
+
+**🎧 AUDIOS PERSONALIZADOS:**
+
+**1 Audio: 30€**
+✅ Evaluación de receptividad personalizada
+✅ Charla prehipnótica telefónica incluida
+✅ Audio diseñado específicamente para ti
+✅ Envío en menos de 48h desde el pago
+✅ Instrucciones de uso detalladas
+✅ 100% confidencial
+✅ Seguimiento y soporte incluido
+
+**3 Audios: 60€** ⭐ **¡GRAN OFERTA!**
+✅ Precio normal: 90€ → **¡Ahorras 30€!**
+✅ Al comprar 3, **uno sale GRATIS**
+✅ Tres objetivos/propósitos distintos
+✅ Protocolo completo de transformación
+
+**🎁 AUDIOS GRATUITOS:**
+Completamente gratis, sin compromiso
+
+**🎭 ESPECTÁCULOS:**
+Según ubicación y características. Presupuesto personalizado.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            formas_pago: {
+                title: '💰 Formas de Pago Aceptadas',
+                content: `**MÉTODOS DE PAGO:**
+
+**📱 BIZUM (PREFERIDO - SOLO ESPAÑA)**
+• Instantáneo y seguro
+• Sin comisiones
+• Confirmación inmediata
+• Más rápido y cómodo
+
+**🏦 TRANSFERENCIA BANCARIA**
+• Desde cualquier país
+• Datos enviados por email seguro
+• Válido para clientes internacionales
+
+**⚠️ IMPORTANTE:**
+• El trabajo se inicia tras recibir el pago
+• Envío garantizado en menos de 48 horas desde que se recibe el pago
+
+**❌ NO ACEPTAMOS:**
+• Tarjetas de crédito
+• PayPal
+• Criptomonedas
+• Contra reembolso
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            tiempos_entrega: {
+                title: '⏰ Compromiso de Entrega',
+                content: `**NUESTRO COMPROMISO:**
+
+**🎧 AUDIOS PERSONALIZADOS:**
+• Envío en menos de **48 horas desde que se recibe el pago**
+
+**🎁 AUDIOS GRATUITOS:**
+• Sin compromiso
+
+**📋 TEST DE RECEPTIVIDAD:**
+• Resultado inmediato (2 minutos)
+
+**📞 CHARLA PREHIPNÓTICA:**
+• Coordinamos horario contigo
+
+**🎭 ESPECTÁCULOS:**
+• Presupuesto personalizado
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            garantias: {
+                title: '✅ Garantías y Compromisos',
+                content: `**NUESTRAS GARANTÍAS:**
+
+**⏰ ENTREGA:**
+En menos de 48 horas desde que se recibe el pago
+
+**🔒 CONFIDENCIALIDAD:**
+Proceso completamente anónimo y seguro. Protección total de datos según RGPD. Solo requerimos tu nombre de pila y método de contacto preferido.
+
+**🎯 PERSONALIZACIÓN:**
+100% único diseñado específicamente para ti
+
+**📞 SOPORTE:**
+Seguimiento y soporte incluido post-entrega
+
+**🔧 CALIDAD TÉCNICA:**
+Audio profesional de alta calidad, formato compatible con todos los dispositivos
+
+**⚖️ ÉTICA:**
+• Derivación si no somos apropiados para tu caso
+• Transparencia sobre limitaciones
+• Sin presión comercial
+• Evaluación gratuita previa
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            facturacion: {
+                title: '📄 Facturación',
+                content: `**EMISIÓN DE FACTURAS:**
+
+**✅ DISPONIBLE:**
+Para todos los servicios de pago sin coste adicional
+
+**📧 FORMATO:**
+PDF por email
+
+**📋 DATOS NECESARIOS:**
+• Nombre completo o razón social
+• NIF/CIF
+• Dirección fiscal completa
+• **IMPORTANTE:** Solicitar al hacer pedido
+
+**🏢 EMPRESAS:**
+Factura con IVA según normativa
+
+**💾 CONSERVACIÓN:**
+Guardamos facturas durante 4 años, reenvío gratuito si la pierdes
+
+📧 **Solicitar factura:** gestion@neurosync.vip`
+            },
+
+            // ==================== SEGURIDAD ====================
+            seguridad: {
+                title: '🔒 Seguridad de la Hipnosis',
+                content: `**✅ COMPLETAMENTE SEGURA:**
+
+**MITO:** "La hipnosis es peligrosa y puedo perder el control"
+
+**REALIDAD:** Este es el mito más extendido y es **completamente falso**. Durante la hipnosis clínica, tú mantienes el control absoluto en todo momento. No es un estado de inconsciencia, sino de focalización de la atención. Tu mente crítica sigue activa, y nunca harás o dirás nada que vaya en contra de tus valores o deseos.
+
+**MITO:** "Podría no despertar de la hipnosis"
+
+**REALIDAD:** Es **científicamente imposible** quedarse "atrapado" en hipnosis. En el peor de los casos, si la sesión se interrumpiera bruscamente, simplemente te dormirías de forma natural y despertarías poco después. Siempre puedes abrir los ojos y salir del trance cuando lo desees.
+
+**🏛️ RECONOCIMIENTO OFICIAL:**
+• American Psychological Association
+• British Medical Association
+• World Health Organization
+• 70+ años de investigación científica
+
+**📊 ESTADÍSTICAS:**
+• 0 casos documentados de daño por hipnosis profesional
+• Efectos secundarios prácticamente inexistentes
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            contraindicaciones: {
+                title: '⛔ Contraindicaciones y Precauciones',
+                content: `**⚠️ AVISO LEGAL IMPORTANTE:**
+
+**NO SOMOS PSICÓLOGOS NI PSIQUIATRAS. NO OFRECEMOS SERVICIOS SANITARIOS.**
+
+En NeuroSync Método ofrecemos herramientas de mejora personal y bienestar mediante hipnosis, pero NO proporcionamos diagnósticos médicos ni atención sanitaria de ningún tipo.
+
+**🚨 TE DERIVAREMOS SI PRESENTAS:**
+• Síntomas de ansiedad severa o depresión
+• Trastornos psiquiátricos
+• Cualquier problema de salud mental
+
+**🏥 DERIVACIÓN INMEDIATA A:**
+• Psicólogo colegiado
+• Psiquiatra del sistema sanitario
+• Centro especializado según condición
+
+**✅ NUESTROS SERVICIOS SON:**
+Complementarios y orientados exclusivamente al desarrollo personal, relajación y optimización del rendimiento en personas sanas.
+
+**🤝 COMPROMISO ÉTICO:**
+Tu salud antes que cualquier venta.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            derivaciones: {
+                title: '🏥 Derivaciones Profesionales',
+                content: `**RESPONSABILIDAD PROFESIONAL:**
+
+**⚖️ FILOSOFÍA:**
+Somos especialistas en desarrollo personal mediante hipnosis, **NO profesionales sanitarios**.
+
+**🔍 CUÁNDO DERIVAMOS:**
+• Síntomas depresivos persistentes
+• Ansiedad clínica incapacitante
+• Trauma no elaborado
+• Adicciones de cualquier tipo
+• Trastornos alimentarios
+• Cualquier patología psiquiátrica
+
+**🏥 A QUIÉN DERIVAMOS:**
+• **Psicólogos clínicos** colegiados
+• **Psiquiatras** del sistema sanitario
+• **Centros especializados** según área
+
+**🔄 PROCESO:**
+1. Detección durante evaluación inicial
+2. Comunicación empática y clara
+3. Orientación a recursos apropiados
+4. Seguimiento hasta encontrar ayuda
+
+**💡 IMPORTANTE:**
+La derivación es responsabilidad profesional, no rechazo. Queremos tu bienestar.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            limites_servicio: {
+                title: '🚫 Límites del Servicio',
+                content: `**ALCANCE CLARO Y TRANSPARENTE:**
+
+**❌ NO SOMOS:**
+• Psicólogos (sin titulación sanitaria)
+• Psiquiatras (no prescribimos medicación)
+• Médicos (no diagnosticamos enfermedades)
+
+**✅ SÍ SOMOS:**
+• Especialistas en desarrollo personal mediante hipnosis
+• Facilitadores de transformación personal
+• Entrenadores de optimización mental y rendimiento
+
+**🎯 TRABAJAMOS CON:**
+• Gestión de ansiedad cotidiana (no severa)
+• Optimización del aprendizaje y rendimiento
+• Mejora de calidad del sueño
+• Aumento de autoconfianza
+• Desarrollo de habilidades personales
+• Regulación emocional del día a día
+
+**❌ NO TRABAJAMOS CON:**
+• Trastornos psiquiátricos
+• Depresión severa
+• Adicciones
+• Trauma complejo
+• Problemas médicos
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            casos_no_tratamos: {
+                title: '❌ Casos que NO Trabajamos',
+                content: `**EXCLUSIONES ESPECÍFICAS:**
+
+**🧠 SALUD MENTAL:**
+• Depresión mayor o distimia
+• Trastornos de ansiedad severos
+• Trastorno bipolar
+• Esquizofrenia y psicosis
+• TOC
+
+**💊 ADICCIONES:**
+• Alcohol y drogas
+• Ludopatía
+• Trastornos alimentarios
+
+**🔴 CRISIS:**
+• Ideación suicida
+• Autolesiones
+• Violencia doméstica
+• Crisis psicóticas
+
+**⚡ EPILEPSIA:**
+• Personas con epilepsia diagnosticada
+• Sospecha de padecer epilepsia
+• **Nuestros audios son incompatibles con epilepsia**
+
+**📋 CONDICIONES MÉDICAS:**
+Cualquier condición que requiera diagnóstico y atención médica o psicológica profesional.
+
+**🔄 SI ESTÁS EN CRISIS:**
+• **024:** Teléfono de prevención del suicidio
+• **112:** Emergencias
+• Acude a tu centro de salud o urgencias
+
+**💡 DERIVAMOS** porque requieren atención especializada fuera de nuestro ámbito.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            mitos_realidad: {
+                title: '🎭 Mitos vs Realidad sobre Hipnosis',
+                content: `**DESMITIFICANDO LA HIPNOSIS:**
+
+**❌ MITO:** "Te quedas inconsciente"
+**✅ REALIDAD:** Estás consciente y alerta, solo con atención focalizada. No es sueño ni inconsciencia.
+
+**❌ MITO:** "Pierdes el control"
+**✅ REALIDAD:** Mantienes control absoluto. Tu mente crítica sigue activa en todo momento.
+
+**❌ MITO:** "Te pueden hacer cualquier cosa"
+**✅ REALIDAD:** Nunca harás nada contra tus valores o deseos. Es un proceso colaborativo.
+
+**❌ MITO:** "Puedes quedarte atrapado"
+**✅ REALIDAD:** Científicamente imposible. Siempre puedes salir del trance cuando desees.
+
+**❌ MITO:** "Solo funciona en gente débil"
+**✅ REALIDAD:** No está relacionado con fuerza de voluntad. 85% de población es receptiva.
+
+**❌ MITO:** "Es sobrenatural o mágico"
+**✅ REALIDAD:** Fenómeno natural del cerebro, científicamente validado con 70+ años de investigación.
+
+**🔬 LA REALIDAD:**
+Cambios cerebrales medibles, relajación profunda, mayor receptividad a sugestiones positivas.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            // ==================== ÁREAS QUE TRATAMOS ====================
+            ansiedad_estres: {
+                title: '😰 Gestión de Ansiedad y Estrés',
+                content: `**GESTIÓN DE ESTRÉS COTIDIANO:**
+
+**✅ SÍ TRABAJAMOS CON:**
+• Estrés laboral o académico cotidiano
+• Nervios antes de eventos importantes
+• Ansiedad anticipatoria leve
+• Preocupaciones excesivas sobre el futuro
+• Tensión por estrés diario
+
+**🎯 BENEFICIOS:**
+Reducción de sintomatología ansiosa y desarrollo de estrategias de regulación emocional para el día a día.
+
+**📊 APLICACIONES:**
+Desarrollo de estrategias de afrontamiento y respuestas adaptativas al estrés en contextos cotidianos.
+
+**❌ DERIVAMOS SI HAY:**
+• Ataques de pánico recurrentes
+• Ansiedad que interfiere significativamente con la vida diaria
+• Síntomas físicos severos
+• Necesidad de medicación ansiolítica
+
+**💡 IMPORTANTE:**
+Para ansiedad severa, te derivaremos a un psicólogo o psiquiatra.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            rendimiento_deportivo: {
+                title: '🏃‍♂️ Performance Deportiva',
+                content: `**OPTIMIZACIÓN MENTAL DEPORTIVA:**
+
+**🎯 ÁREAS DE MEJORA:**
+• Concentración durante competición
+• Gestión de presión en momentos clave
+• Confianza en habilidades técnicas
+• Control de activación (nervios vs energía)
+• Resiliencia ante errores
+• Visualización de movimientos perfectos
+
+**🧠 MECANISMOS:**
+Optimización de estados mentales de alto rendimiento y gestión de activación competitiva mediante hipnosis deportiva.
+
+**📊 APLICACIONES:**
+Optimización del estado psicofisiológico previo a eventos de alta exigencia (preparación pre-performance).
+
+**🏆 RESULTADOS:**
+Mejora en concentración, gestión de presión, confianza y rendimiento global en competición.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            aprendizaje: {
+                title: '📚 Optimización del Aprendizaje',
+                content: `**POTENCIACIÓN COGNITIVA:**
+
+**🎯 MEJORAMOS:**
+• Concentración sostenida durante estudio
+• Memoria de trabajo más eficiente
+• Retención de información a largo plazo
+• Motivación constante para estudiar
+• Gestión de procrastinación académica
+• Ansiedad ante exámenes
+
+**🧠 MECANISMOS:**
+Potenciación de funciones ejecutivas y capacidad de concentración sostenida mediante técnicas hipnóticas.
+
+**👥 PERFILES:**
+• Universitarios y opositores
+• Estudiantes de secundaria y bachillerato
+• Aprendizaje adulto (idiomas, certificaciones)
+• Trabajadores que estudian
+
+**📈 RESULTADOS:**
+Mayor duración de concentración, mejor retención, menos procrastinación.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            sueno: {
+                title: '😴 Higiene del Sueño',
+                content: `**OPTIMIZACIÓN DE CALIDAD DEL SUEÑO:**
+
+**🎯 PROBLEMAS QUE ABORDAMOS:**
+• Dificultad para conciliar el sueño
+• Despertares nocturnos frecuentes
+• Sueño poco reparador
+• Mente acelerada a la hora de dormir
+• Irregularidad en horarios de sueño
+
+**🧠 MECANISMOS:**
+Regulación de ciclos circadianos y facilitación de transición a sueño reparador mediante hipnosis.
+
+**🔧 TÉCNICAS:**
+• Relajación progresiva corporal
+• Visualización inductora de calma
+• Respiración específica para sueño
+
+**📈 RESULTADOS:**
+Reducción del tiempo de conciliación, mejora de calidad percibida, menos despertares nocturnos.
+
+**❌ DERIVAMOS:**
+Si sospecha de apnea del sueño u otros trastornos médicos del sueño.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            autoconfianza: {
+                title: '💪 Autoconfianza y Autoestima',
+                content: `**DESARROLLO DE CONFIANZA PERSONAL:**
+
+**🎯 MEJORAMOS:**
+• Autoestima general y autovaloración
+• Confianza social en interacciones
+• Seguridad personal en decisiones
+• Autoeficacia en capacidades
+• Asertividad en comunicación
+
+**🧠 MECANISMOS:**
+Reestructuración cognitiva de autopercepciones y fortalecimiento de autoeficacia mediante hipnosis.
+
+**📊 APLICACIONES:**
+• **Laboral:** Presentaciones, negociaciones, liderazgo
+• **Social:** Conocer gente, expresar opiniones, establecer límites
+• **Personal:** Toma de decisiones, afrontar nuevos desafíos
+
+**🔧 TÉCNICAS:**
+• Reestructuración de diálogo interno autocrítico
+• Visualización de versión más segura de ti mismo
+• Anclaje emocional de estados de confianza
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            hablar_publico: {
+                title: '🎤 Ansiedad de Exposición Pública',
+                content: `**DOMINIO DE COMUNICACIÓN PÚBLICA:**
+
+**📊 RESOLVEMOS:**
+• Ansiedad anticipatoria antes de presentaciones
+• Nervios escénicos durante exposición
+• Bloqueos mentales al hablar
+• Temblor de voz por nerviosismo
+• Evitación de oportunidades de hablar
+
+**🧠 MECANISMOS:**
+Gestión de ansiedad anticipatoria y respuesta de estrés en contextos de exposición pública.
+
+**🔧 TÉCNICAS:**
+• Control fisiológico: Respiración escénica, relajación selectiva
+• Preparación cognitiva: Estructuración mental, memoria fluida
+• Presencia escénica: Carisma natural, conexión emocional
+
+**📊 APLICACIONES:**
+• Presentaciones corporativas
+• Defensa de TFG/TFM
+• Conferencias y ponencias
+• Discursos y brindis
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            habitos: {
+                title: '🚭 Modificación de Hábitos',
+                content: `**CAMBIO DE PATRONES DE COMPORTAMIENTO:**
+
+**🎯 TIPOS DE HÁBITOS:**
+• Alimentarios: Picoteo compulsivo, comer emocional
+• Vida: Procrastinación crónica, desorganización
+• Sociales: Timidez extrema, perfeccionismo paralizante
+
+**🧠 NEUROCIENCIA:**
+• Circuito: Señal → Rutina → Recompensa → Automatización
+• Modificación: Sustitución en lugar de eliminación
+• Consolidación: Repetición hasta automatización
+
+**🔧 TÉCNICAS:**
+• Aversión condicionada para hábitos negativos
+• Refuerzo positivo para nuevos hábitos deseables
+• Control de impulsos: Pausa reflexiva entre trigger y respuesta
+
+**❌ NO TRABAJAMOS CON:**
+• Adicciones (alcohol, drogas, juego)
+• Trastornos alimentarios
+• TOC
+
+**💡 PARA ADICCIONES:**
+Te derivaremos a especialistas apropiados.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            motivacion: {
+                title: '🎯 Motivación y Procrastinación',
+                content: `**SUPERACIÓN DE PROCRASTINACIÓN:**
+
+**🎯 PROBLEMAS:**
+• Procrastinación crónica en tareas importantes
+• Falta de motivación en proyectos personales
+• Abandono de proyectos a medio completar
+• Perfeccionismo paralizante
+• Autoboicot en momentos críticos
+
+**🧠 MECANISMOS:**
+Activación de sistemas motivacionales internos y superación de procrastinación mediante hipnosis.
+
+**🔧 TÉCNICAS:**
+• Gestión de procrastinación: Técnica Pomodoro automatizada
+• Activación motivacional: Conexión con propósito
+• Mantenimiento: Sistemas de hábitos, gestión de altibajos
+
+**📊 PERFILES:**
+• Emprendedores y freelancers
+• Estudiantes (TFG/TFM, opositores)
+• Objetivos personales (fitness, aprendizaje)
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            // ==================== DUDAS FRECUENTES ====================
+            funcionara_caso: {
+                title: '🤔 ¿Funcionará en mi caso?',
+                content: `**FACTORES DE ÉXITO:**
+
+**📊 RECEPTIVIDAD:**
+El 85% de la población tiene receptividad hipnótica moderada a alta según investigación estandarizada. Esto significa que la mayoría de personas pueden beneficiarse.
+
+**🎯 DEPENDE DE TI:**
+La efectividad de la hipnosis no depende exclusivamente de nosotros, sino que **depende en gran parte de ti**:
+• Tu receptividad natural
+• Tu compromiso con el proceso
+• Tu constancia en el uso del audio
+• Tu apertura mental
+
+**✅ EVALUACIÓN GRATUITA:**
+Ofrecemos test de receptividad gratuito (2 minutos) para que decidas con total libertad si nuestros servicios son idóneos para ti.
+
+**🚨 COMPROMISO ÉTICO:**
+Si detectamos que no eres apto, te lo diremos honestamente. **No queremos ni un solo cliente defraudado.**
+
+📧 **Solicitar evaluación:** gestion@neurosync.vip`
+            },
+
+            tiempo_efecto: {
+                title: '⏱️ ¿Cuánto Tiempo Tarda en Funcionar?',
+                content: `**RESULTADOS DESDE EL PRIMER USO:**
+
+**⚡ FUNCIONA DESDE EL PRIMER AUDIO:**
+Los resultados se perciben desde la primera sesión. No necesitas esperar semanas para notar cambios.
+
+**🔄 MEJORA CON CADA REPETICIÓN:**
+Con cada repetición, los efectos se **potencian y aceleran**. Cuantas más veces lo escuches, mejores y más duraderos serán los resultados.
+
+**📊 PROCESO:**
+• **Primera sesión:** Primeros efectos
+• **Repeticiones:** Potenciación y consolidación
+• **Constancia:** Cambios duraderos y estables
+
+**✅ SIN LÍMITE:**
+No hay límite en el número de veces que puedes usarlo. Cada repetición fortalece las conexiones neuronales y hace los cambios más permanentes.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            cuantas_sesiones: {
+                title: '🔢 ¿Cuántas Sesiones Necesito?',
+                content: `**EFECTIVIDAD INMEDIATA:**
+
+**⚡ FUNCIONA DESDE LA PRIMERA SESIÓN:**
+Los resultados se notan desde el primer uso. Una vez ya funciona perfectamente.
+
+**🔄 LA REPETICIÓN MULTIPLICA LOS BENEFICIOS:**
+• Cada repetición **potencia los efectos** y mejora los resultados
+• Cuantas más veces lo escuches, mejores resultados obtendrás
+• No hay límite máximo de sesiones - siempre es beneficioso
+
+**📊 RECOMENDACIÓN:**
+La constancia en el uso optimiza todos los resultados. Es como entrenar un músculo: cuanto más lo ejercitas, más fuerte se vuelve.
+
+**✅ PERSONALIZADO:**
+En la charla prehipnótica te daremos recomendaciones específicas según tu objetivo.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            en_casa: {
+                title: '🏠 ¿Puedo Hacerlo en Casa?',
+                content: `**✅ SÍ, DISEÑADO ESPECÍFICAMENTE PARA CASA:**
+
+**🎯 VENTAJAS:**
+• Comodidad y privacidad total
+• Sin desplazamientos
+• Horario completamente flexible
+• Más fácil mantener rutina constante
+• **Sesiones remotas** desde la comodidad de tu hogar
+
+**🏠 REQUISITOS:**
+• Habitación tranquila sin interrupciones
+• Asiento cómodo (butaca reclinable ideal)
+• Ambiente con iluminación tenue
+• Temperatura agradable (ni frío ni calor)
+
+**📱 TECNOLOGÍA:**
+• Compatible con smartphone, tablet, ordenador
+• Formato MP3 universal
+• Auriculares recomendados (obligatorios para binaurales)
+
+**📊 EFECTIVIDAD:**
+Resultados equivalentes a métodos presenciales. El 95% de nuestros usuarios realizan las sesiones en casa con excelentes resultados.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            auriculares: {
+                title: '👂 ¿Necesito Auriculares Especiales?',
+                content: `**🎧 AURICULARES OBLIGATORIOS (NO ESPECIALES):**
+
+**⚠️ IMPRESCINDIBLES:**
+Los **auriculares son obligatorios** porque utilizamos tecnología de audios binaurales. Ambos auriculares (L y R) deben funcionar perfectamente.
+
+**❌ LOS ALTAVOCES NO FUNCIONAN:**
+Los audios binaurales **solo funcionan con auriculares**. Los altavoces anulan completamente la efectividad de esta tecnología.
+
+**✅ CUALQUIER AURICULAR SIRVE:**
+• Los que ya tienes del móvil u ordenador
+• Auriculares inalámbricos (AirPods, Bluetooth)
+• Desde 10€ hasta los que quieras
+• No necesitas comprar nada especial
+
+**💡 RECOMENDACIÓN:**
+Mejor calidad = mejor experiencia (pero no es obligatorio tener auriculares caros).
+
+**🔧 CONFIGURACIÓN:**
+• Volumen medio-bajo, audible claramente
+• Estéreo L/R correctamente para efectos binaurales
+• Cómodos para sesiones de 30-45 minutos
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            si_duermo: {
+                title: '😴 ¿Qué Pasa Si Me Duermo?',
+                content: `**💤 COMPLETAMENTE NORMAL:**
+
+**✅ DORMIRSE ES NORMAL:**
+Aproximadamente el 40% de usuarios se duermen regularmente durante la sesión. **La efectividad se mantiene** durante el sueño.
+
+**🧠 EL SUBCONSCIENTE SIGUE TRABAJANDO:**
+• Tu subconsciente sigue procesando la información
+• Estados theta/delta son ideales para sugestiones
+• Neuroplasticidad máxima durante el sueño
+• Consolidación de patrones continúa
+
+**🎯 DOS OPCIONES:**
+
+**Si prefieres mantenerte despierto:**
+• Horario: 2-3h antes de tu sueño habitual
+• Posición: Sentado en lugar de tumbado
+• Temperatura: Ligeramente más fresco
+
+**Si no te importa dormirte:**
+• Aprovecha como rutina de mejora del sueño
+• Usa temporizador que pare automáticamente
+• Confía en la efectividad subconsciente
+
+**💡 AMBAS OPCIONES SON EFECTIVAS**
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            repetir_audio: {
+                title: '🔄 ¿Se Puede Repetir el Audio?',
+                content: `**✅ SÍ, CUANTAS MÁS VECES MEJOR:**
+
+**🔄 REPETICIÓN ILIMITADA:**
+• **Una vez ya funciona** perfectamente
+• Cada repetición **potencia aún más el efecto**
+• Cuantas más veces lo escuches, **mejores resultados**
+
+**🎯 BENEFICIOS DE REPETIR:**
+• **Fortalece** las conexiones neuronales
+• Hace los cambios más **duraderos y estables**
+• **Aumenta la efectividad** con cada sesión
+• **Consolida** los nuevos patrones de comportamiento
+
+**📊 RECOMENDACIÓN:**
+Igual que entrenar un músculo, cuanto más lo ejercitas, más fuerte se vuelve. La constancia es clave para resultados permanentes.
+
+**💡 SIN LÍMITE:**
+No hay límite máximo. Puedes usar tu audio tantas veces como quieras, durante todo el tiempo que quieras.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            en_moviles: {
+                title: '📱 ¿Funciona en Móviles?',
+                content: `**✅ PERFECTAMENTE COMPATIBLE:**
+
+**📱 DISPOSITIVOS COMPATIBLES:**
+• **iPhone:** iOS 12+ todos los modelos
+• **Android:** Versión 6.0+ todas las marcas
+• **Tablets:** iPad, Android tablets
+• **Formato:** MP3 universal (320kbps)
+
+**🎧 APLICACIONES:**
+• Reproductores nativos de iPhone/Android
+• Spotify, VLC, cualquier reproductor de audio
+• Apps especializadas (Insight Timer, Calm)
+
+**🔧 CONFIGURACIÓN:**
+• Descarga: Click directo desde email
+• Volumen: 40-60% del máximo del dispositivo
+• Auriculares: Bluetooth o cable (ambos funcionan)
+• Modo avión recomendado para evitar interrupciones
+
+**💡 VENTAJAS DEL MÓVIL:**
+• Siempre disponible en tu bolsillo
+• Uso en cualquier lugar
+• Sin limitaciones de horario o ubicación
+
+**🎯 GARANTÍA:**
+Si tienes problemas técnicos, soporte gratuito hasta solucionarlo.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            // ==================== PRIMEROS PASOS ====================
+            test_receptividad: {
+                title: '1️⃣ Test de Receptividad',
+                content: `**EVALUACIÓN GRATUITA EN 2 MINUTOS:**
+
+Descubre tu nivel de receptividad a la autohipnosis con un test breve y sencillo de solo 5 preguntas.
+
+**🎯 PARA QUÉ SIRVE:**
+Para que decidas con total libertad si nuestros servicios son idóneos para ti. **No queremos ni un solo cliente defraudado.**
+
+**📊 QUÉ EVALUAMOS:**
+• Tu capacidad natural para entrar en trance
+• Qué tipo de enfoque funciona mejor contigo
+• Si eres buen candidato para hipnosis
+
+**📋 RESULTADOS:**
+• **Alta receptividad (70%):** Excelente candidato
+• **Media receptividad (25%):** Buen candidato con preparación
+• **Baja receptividad (5%):** Técnicas especiales o derivación
+
+**🚨 COMPROMISO ÉTICO:**
+La efectividad de la hipnosis no depende exclusivamente de nosotros, sino que depende en gran parte de ti. Si no eres apto, te lo diremos honestamente.
+
+**✅ GRATIS Y SIN COMPROMISO**
+
+📧 **Solicitar test:** gestion@neurosync.vip`
+            },
+
+            elegir_gratuito: {
+                title: '2️⃣ Elegir Tu Audio Gratuito',
+                content: `**GUÍA DE SELECCIÓN:**
+
+**🚶‍♂️ CAMINAR ERGUIDO (28 min)**
+**Elige si:**
+• Tienes problemas de postura o dolores de espalda
+• Quieres proyectar más confianza y seguridad
+• Buscas mejorar tu presencia física
+
+**🫁 RESPIRAR CORRECTAMENTE (32 min)**
+**Elige si:**
+• Sientes tensión corporal o estrés físico
+• Quieres mejorar tu oxigenación y energía
+• Buscas mejor calidad de sueño
+• Tienes ansiedad leve
+
+**🧘‍♀️ RELATIVIZAR (26 min)**
+**Elige si:**
+• Te agobias fácilmente con los problemas
+• Quieres gestionar mejor el estrés diario
+• Buscas mayor resiliencia emocional
+• Necesitas mejorar toma de decisiones
+
+**💡 SI DUDAS:**
+Cualquier elección es buena para empezar. Puedes obtener los 3 secuencialmente si lo deseas.
+
+📧 **Solicitar:** gestion@neurosync.vip (indica cuál prefieres)`
+            },
+
+            solicitar_personalizado: {
+                title: '3️⃣ Solicitar Audio Personalizado',
+                content: `**PROCESO PASO A PASO:**
+
+**📧 PRIMER CONTACTO:**
+Email a: gestion@neurosync.vip
+
+**Indica:**
+• Nombre de pila
+• Objetivo que quieres conseguir
+• Opción: 1 audio (30€) o 3 audios (60€)
+• Forma de contacto preferida (email/teléfono)
+
+**📋 PROCESO COMPLETO:**
+1. **Evaluación de receptividad** (2 min)
+2. **Cuestionario detallado** personalizado
+3. **Datos de pago** (Bizum o transferencia)
+4. **Charla prehipnótica** telefónica (15-30 min)
+5. **Creación y entrega** del audio
+
+**⏰ COMPROMISO:**
+Envío en menos de 48 horas desde que se recibe el pago
+
+**🔒 100% CONFIDENCIAL**
+
+📧 **Empezar proceso:** gestion@neurosync.vip`
+            },
+
+            que_objetivo: {
+                title: '🎯 ¿Qué Objetivo Elegir?',
+                content: `**IDENTIFICAR TU OBJETIVO:**
+
+**🔍 PREGUNTAS CLAVE:**
+1. ¿Qué te molesta MÁS en tu día a día?
+2. ¿Qué cambiarías si pudieras elegir solo UNA cosa?
+3. ¿Dónde sientes que "no eres tú mismo"?
+
+**✅ OBJETIVOS EFECTIVOS:**
+• **Específicos:** "Hablar con confianza en reuniones" (no "Ser más feliz")
+• **Medibles:** "Mantener calma cuando me critican" (no "Estar tranquilo")
+• **Tuyos:** No dependientes de otros o factores externos
+
+**🎯 EJEMPLOS BIEN FORMULADOS:**
+• "Hablar con confianza durante presentaciones mensuales"
+• "Mantener concentración 2h seguidas estudiando"
+• "Dormir profundamente y despertar descansado"
+• "Hacer ejercicio 4 días/semana con motivación constante"
+
+**📧 AYUDA:**
+Si dudas sobre qué objetivo elegir, podemos ayudarte durante la evaluación inicial.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            preparacion: {
+                title: '📝 Preparación Antes de la Sesión',
+                content: `**PREPARACIÓN ÓPTIMA:**
+
+**🧠 MENTAL:**
+• Expectativas realistas (cambio gradual, no magia)
+• Actitud abierta sin juicio
+• Objetivo claro en mente
+
+**🏠 AMBIENTAL:**
+• Espacio tranquilo sin interrupciones (30-45 min)
+• Temperatura agradable (ni frío ni calor)
+• Iluminación tenue o apagada
+• Teléfono en silencio, familia avisada
+
+**🎧 TÉCNICO:**
+• Dispositivo cargado completamente
+• Auriculares probados y funcionales
+• Audio descargado localmente (no streaming)
+• Volumen medio-bajo configurado
+
+**💊 FISIOLÓGICO:**
+• Evitar cafeína 4-6h antes
+• Ni hambre ni pesadez excesiva
+• Sin alcohol 24h antes (interfiere)
+• Estado de relajación previa
+
+**✅ TODO LISTO:**
+Con la preparación adecuada, maximizas los resultados.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            ambiente: {
+                title: '🏠 Crear Ambiente Adecuado',
+                content: `**AMBIENTE PERFECTO PARA HIPNOSIS:**
+
+**🏠 UBICACIÓN:**
+• **Dormitorio (ideal):** Privacidad y asociación con descanso
+• **Salón:** Sofá cómodo, coordinar horarios con familia
+• **Estudio:** Privacidad y ambiente enfocado
+
+**🎯 CARACTERÍSTICAS:**
+• **Silencio:** Mínimo ruido durante la sesión
+• **Comodidad:** Temperatura 18-22°C, ropa cómoda
+• **Iluminación:** Muy tenue o completamente apagada
+• **Privacidad:** Sin interrupciones durante 30-45 min
+
+**🔧 MOBILIARIO:**
+• Asiento cómodo o butaca reclinable (ideal)
+• Sofá con cojines (alternativa)
+• Manta ligera disponible
+• Apoyo para pies si lo necesitas
+
+**👥 GESTIÓN FAMILIAR:**
+• Comunicar: "De X a Y hora no molestar"
+• Cartel en puerta como recordatorio visual
+• Niños/mascotas en otra habitación
+
+**📱 TECNOLOGÍA:**
+• Modo avión activado
+• Otras pantallas apagadas
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            // ==================== SOPORTE ====================
+            contacto_humano: {
+                title: '📧 Contacto Directo Humano',
+                content: `**ATENCIÓN PERSONALIZADA 24/7:**
+
+**📧 EMAIL:** gestion@neurosync.vip
+
+**⏰ DISPONIBILIDAD:**
+• **Todos los días:** 24 horas disponibles
+• **Atención continua:** Sin excepción de días festivos
+
+**🎯 CUÁNDO CONTACTAR:**
+• **Antes de comprar:** Dudas sobre viabilidad, qué opción elegir
+• **Durante el proceso:** Charla prehipnótica, modificaciones
+• **Después de entrega:** Uso correcto, optimización, progreso, dudas
+
+**🤝 NUESTRO COMPROMISO:**
+• Siempre disponibles para atenderte
+• Respuesta rápida y personalizada
+• Tu consulta es importante para nosotros
+• Transparencia total en todo momento
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            soporte_tecnico: {
+                title: '🔧 Soporte Técnico',
+                content: `**AYUDA TÉCNICA GARANTIZADA:**
+
+**📱 PROBLEMAS COMUNES:**
+• No puedo descargar: Verificar WiFi, espacio libre (100MB)
+• No suena: Verificar volumen dispositivo y auriculares
+• Se corta: Cerrar otras apps, asegurar descarga completa
+• Mala calidad: Evitar volumen máximo, limpiar auriculares
+
+**💻 COMPATIBILIDAD:**
+• **Móviles:** iPhone iOS 12+, Android 6.0+
+• **Formato:** MP3 universal 320kbps
+• **Apps:** Cualquier reproductor (Música, Spotify, VLC)
+
+**⚡ SOLUCIONES INMEDIATAS:**
+1. Reiniciar dispositivo completamente
+2. Probar reproductor diferente
+3. Verificar descarga 100% completa
+4. Liberar memoria del dispositivo
+
+**📧 SI EL PROBLEMA PERSISTE:**
+Email a: gestion@neurosync.vip
+**Indica:**
+• Dispositivo (iPhone 13, Samsung S21, etc.)
+• Error exacto que aparece
+• Qué has intentado ya
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            dudas_post: {
+                title: '❓ Dudas Post-Entrega',
+                content: `**SOPORTE CONTINUO GARANTIZADO:**
+
+**🎯 SI LOS RESULTADOS NO SON LOS ESPERADOS:**
+• **Continúa con las repeticiones** - cada vez potencia más el efecto
+• **Contáctanos** para orientación personalizada
+• **Te ayudaremos** a optimizar el uso del audio
+
+**📧 RECORDATORIO IMPORTANTE:**
+La hipnosis depende más del hipnotizado que del hipnotizador. Nosotros te ayudaremos gustosamente en todo el proceso.
+
+**✅ QUÉ OFRECEMOS:**
+• Resolución de dudas sobre uso correcto
+• Consejos para optimizar resultados
+• Soporte motivacional si hay desánimo
+• Orientación personalizada cuando la necesites
+
+**🤝 NUESTRO COMPROMISO:**
+• Soporte total durante tu progreso
+• Ajustes personalizados si es necesario
+• Tu éxito es nuestro éxito
+• Siempre disponibles para resolver cualquier duda
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            seguimiento_progreso: {
+                title: '📊 Seguimiento de Tu Progreso',
+                content: `**ACOMPAÑAMIENTO PERSONALIZADO:**
+
+**📧 ATENCIÓN DURANTE TODO EL PROCESO:**
+Estaremos encantados de atenderte en todo momento durante tu proceso de transformación.
+
+**✅ QUÉ OFRECEMOS:**
+• Resolveremos cualquier duda sobre tu audio
+• Te ayudaremos a optimizar los resultados
+• Orientación personalizada cuando la necesites
+• Soporte motivacional y seguimiento
+
+**💡 NUESTRO COMPROMISO:**
+• **Disponibilidad total** para resolver tus consultas
+• **Orientación personalizada** adaptada a tu caso
+• **Tu progreso es importante** para nosotros
+• **Seguimiento incluido** sin coste adicional
+
+**🤝 FILOSOFÍA:**
+No te dejamos solo después de la entrega. Estamos contigo en todo el camino hacia tus objetivos.
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            modificaciones: {
+                title: '🔄 Modificaciones al Audio',
+                content: `**AJUSTES DISPONIBLES:**
+
+**🎯 MODIFICACIONES MENORES:**
+• **Incluidas gratis** en el seguimiento
+• Ajustes técnicos (volumen/velocidad)
+• Pequeños cambios de énfasis
+
+**🔄 MODIFICACIONES MAYORES:**
+• Evaluación caso por caso
+• Descuento si es cambio de dirección del objetivo
+• Nuevo audio si es necesario
+
+**⏰ CUÁNDO MODIFICAR:**
+• **Problemas técnicos:** Inmediatamente
+• **Cambio de objetivo:** Evaluarlo si es apropiado
+• **Ajustes finos:** Durante el seguimiento
+
+**💰 COSTES:**
+• **Ajustes menores:** Gratis en seguimiento
+• **Audio nuevo objetivo:** Descuento según caso
+• **Reenvío técnico:** Siempre gratuito
+
+**📧 SOLICITAR MODIFICACIÓN:**
+Email indicando:
+• Cambio solicitado (específico)
+• Motivo por el que es necesario
+
+📧 **gestion@neurosync.vip**`
+            },
+
+            horarios: {
+                title: '⏰ Horarios de Atención',
+                content: `**DISPONIBILIDAD 24 HORAS:**
+
+**📧 EMAIL PRINCIPAL:**
+gestion@neurosync.vip
+
+**🕒 HORARIO:**
+• **Todos los días:** 24 horas disponibles
+• **Incluye:** Fines de semana y festivos
+• **Atención continua:** Sin excepciones
+
+**🤝 NUESTRO COMPROMISO:**
+• Siempre disponibles para atenderte
+• Respuesta rápida y personalizada
+• Tu consulta es importante para nosotros
+• Atención humana real, no automatizada
+
+📧 **gestion@neurosync.vip**
+
+Proceso 100% confidencial`
+            }
+        };
+
+        // FUNCIONES DE NAVEGACIÓN
+        function showSubmenu(category) {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('submenuContainer').classList.remove('hidden');
+
+            const menu = menuSystem[category];
+            document.getElementById('submenuTitle').textContent = menu.title;
+
+            let buttonsHtml = '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">';
+            menu.buttons.forEach(button => {
+                buttonsHtml += `
+                    <button onclick="showResponse('${button.param}')"
+                            class="quick-btn px-3 py-2 bg-gray-50 text-gray-700 rounded-lg text-sm hover:bg-gray-100 transition-all text-left">
+                        <span>${button.text}</span>
+                    </button>
+                `;
+            });
+            buttonsHtml += '</div>';
+
+            document.getElementById('submenuContent').innerHTML = buttonsHtml;
         }
 
-        // Process knowledge base
-        function processKnowledgeBase(key) {
-            const entry = knowledgeBase[key];
+        function showMainMenu() {
+            document.getElementById('mainMenu').classList.remove('hidden');
+            document.getElementById('submenuContainer').classList.add('hidden');
+        }
 
-            if (!entry) {
-                showTyping();
-                setTimeout(() => {
-                    hideTyping();
-                    addMessage("Lo siento, no tengo información sobre eso. ¿Puedo ayudarte con algo más?");
-                    showQuickReplies(knowledgeBase.menu_principal.buttons);
-                }, 1000);
-                return;
+        function showResponse(param) {
+            let responseData;
+            if (knowledgeBase[param]) {
+                responseData = knowledgeBase[param];
+                addBotMessage(responseData);
+            } else {
+                responseData = {
+                    title: '🔧 Información en Desarrollo',
+                    content: `Esta sección específica está en desarrollo.
+
+**📧 Para información detallada:**
+gestion@neurosync.vip
+
+Nuestro equipo puede proporcionarte toda la información que necesitas.`
+                };
+                addBotMessage(responseData);
             }
 
-            menuSystem.history.push(menuSystem.currentMenu);
-            menuSystem.currentMenu = key;
+            // Registrar en Google Sheets
+            registrarConsulta('[Botón: ' + param + ']', responseData.title + ' - ' + responseData.content.substring(0, 200), 'menu_boton');
 
-            showTyping();
-            setTimeout(() => {
-                hideTyping();
-                addMessage(entry.answer);
-                if (entry.buttons) {
-                    showQuickReplies(entry.buttons);
-                }
-            }, 1000);
+            showMainMenu();
         }
 
-        // Handle user input
+        // FUNCIONES DE CHAT
         function sendMessage() {
-            const input = document.getElementById('userInput');
-            const message = input.value.trim();
+            if (isWaitingForResponse) return;
 
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
             if (!message) return;
 
-            addMessage(message, true);
+            addUserMessage(message);
             input.value = '';
 
-            // Simple keyword matching
-            const lowerMessage = message.toLowerCase();
-            let matchedKey = null;
+            isWaitingForResponse = true;
+            document.getElementById('sendButton').disabled = true;
 
-            // Keywords mapping
-            const keywords = {
-                'precio': 'menu_precios',
-                'cuanto cuesta': 'menu_precios',
-                'servicio': 'menu_servicios',
-                'metodo': 'menu_metodo',
-                'audio': 'audio_personalizado',
-                'sesion online': 'sesion_online',
-                'minisesion': 'minisesiones',
-                'club': 'clubes_deportivos',
-                'empresa': 'empresas',
-                'regalo': 'regala_neurosync',
-                'espectaculo': 'espectaculos',
-                'contacto': 'contacto',
-                'gratis': 'solicitar_audio',
-                'hipnosis': 'menu_metodo',
-                'funciona': 'faq_funciona',
-                'control': 'faq_control',
-                'menu': 'menu_principal',
-                'inicio': 'menu_principal'
+            setTimeout(() => {
+                const response = getResponse(message);
+                addBotMessage(response);
+
+                // Registrar en Google Sheets
+                registrarConsulta(message, response.title + ' - ' + response.content.substring(0, 200), 'chat_texto');
+
+                isWaitingForResponse = false;
+                document.getElementById('sendButton').disabled = false;
+            }, 800);
+        }
+
+        function getResponse(message) {
+            const msgLower = message.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            // Sistema de keywords mejorado
+            const keywordMap = {
+                audios_gratuitos: ['gratis', 'gratuito', 'free', 'sin pagar', 'sin coste'],
+                audios_personalizados: ['personalizado', 'customizado', 'a medida', 'especifico', 'unico'],
+                precios: ['precio', 'cuanto', 'cuesta', 'coste', 'tarifa', 'pagar', 'dinero', 'euro'],
+                seguridad: ['segur', 'peligro', 'riesgo', 'miedo', 'temor', 'control'],
+                ansiedad_estres: ['ansiedad', 'ansioso', 'estres', 'nervios', 'nervioso', 'preocupacion', 'agobio'],
+                sueno: ['sueño', 'dormir', 'insomnio', 'descanso', 'despertar', 'conciliar'],
+                contacto_humano: ['contacto', 'humano', 'email', 'correo', 'hablar', 'persona', 'atencion'],
+                como_funciona: ['funciona', 'funcionamiento', 'mecanismo', 'como'],
+                evidencia_cientifica: ['ciencia', 'cientifica', 'evidencia', 'estudio', 'investigacion', 'comprobado'],
+                autoconfianza: ['confianza', 'autoestima', 'seguridad', 'inseguro', 'timidez', 'timido'],
+                hablar_publico: ['hablar publico', 'presentacion', 'exposicion', 'escena', 'escenico'],
+                rendimiento_deportivo: ['deporte', 'deportivo', 'atleta', 'competicion', 'rendimiento'],
+                aprendizaje: ['aprendizaje', 'estudio', 'estudiar', 'memoria', 'concentracion', 'examen', 'oposiciones'],
+                funcionara_caso: ['funcionara', 'mi caso', 'servira', 'eficaz', 'efectivo'],
+                tiempo_efecto: ['tiempo', 'cuanto tarda', 'rapido', 'inmediato'],
+                cuantas_sesiones: ['sesiones', 'cuantas', 'veces', 'repetir'],
+                si_duermo: ['duermo', 'dormirse', 'quedarse dormido'],
+                auriculares: ['auriculares', 'cascos', 'headphones', 'audifonos'],
+                en_casa: ['casa', 'hogar', 'domicilio', 'donde hacerlo'],
+                en_moviles: ['movil', 'celular', 'telefono', 'smartphone', 'android', 'iphone'],
+                habitos: ['habito', 'habitos', 'fumar', 'comer', 'picoteo'],
+                motivacion: ['motivacion', 'procrastinacion', 'voluntad']
             };
 
-            for (const [keyword, key] of Object.entries(keywords)) {
-                if (lowerMessage.includes(keyword)) {
-                    matchedKey = key;
-                    break;
+            let bestMatch = null;
+            let maxMatches = 0;
+
+            // Buscar coincidencias de keywords
+            for (const [key, keywords] of Object.entries(keywordMap)) {
+                let matches = 0;
+                for (const keyword of keywords) {
+                    const keywordNorm = keyword.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                    if (msgLower.includes(keywordNorm)) {
+                        matches++;
+                    }
+                }
+
+                if (matches > maxMatches) {
+                    maxMatches = matches;
+                    bestMatch = key;
                 }
             }
 
-            if (matchedKey) {
-                processKnowledgeBase(matchedKey);
-            } else {
-                showTyping();
-                setTimeout(() => {
-                    hideTyping();
-                    addMessage("Interesante pregunta. ¿Puedo sugerirte algunos temas que podrían ayudarte?");
-                    showQuickReplies(knowledgeBase.menu_principal.buttons);
-                }, 1000);
+            // Si encontramos coincidencia, devolver esa respuesta
+            if (bestMatch && maxMatches > 0 && knowledgeBase[bestMatch]) {
+                return knowledgeBase[bestMatch];
             }
+
+            // Respuesta por defecto
+            return {
+                title: '🤖 Asistente NeuroSync',
+                content: `¡Hola! Tengo respuestas detalladas para todas las consultas.
+
+**🎯 USA LOS MENÚS DE ARRIBA** para navegar por categorías.
+
+**Temas disponibles:** Servicios, Precios, Seguridad, Ansiedad, Sueño, Confianza, Aprendizaje, y mucho más.
+
+**📧 Para casos específicos:** gestion@neurosync.vip`
+            };
         }
 
-        // Handle enter key
+        function addUserMessage(message) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const userDiv = document.createElement('div');
+            userDiv.className = 'flex items-start space-x-3 justify-end message-enter';
+            userDiv.innerHTML = `
+                <div class="bg-primary text-white rounded-2xl px-4 py-3 max-w-[80%] order-2">
+                    <p class="text-sm sm:text-base">${escapeHtml(message)}</p>
+                </div>
+                <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0 order-1">
+                    <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                </div>
+            `;
+            messagesContainer.appendChild(userDiv);
+            scrollToBottom();
+        }
+
+        function addBotMessage(responseData) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const botDiv = document.createElement('div');
+            botDiv.className = 'flex items-start space-x-3 message-enter';
+            botDiv.innerHTML = `
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
+                    <img src="logo.png" alt="NeuroSync" class="w-full h-full object-cover">
+                </div>
+                <div class="bg-gray-100 rounded-2xl px-4 py-3 max-w-[85%]">
+                    <h4 class="font-bold text-gray-800 mb-2 text-sm sm:text-base">${responseData.title}</h4>
+                    <div class="text-gray-800 text-sm sm:text-base">${formatMessage(responseData.content)}</div>
+                </div>
+            `;
+            messagesContainer.appendChild(botDiv);
+            scrollToBottom();
+        }
+
+        function formatMessage(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\n/g, '<br>')
+                .replace(/gestion@neurosync\.vip/g, '<a href="mailto:gestion@neurosync.vip" class="text-blue-600 underline font-semibold">gestion@neurosync.vip</a>');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
         function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
+            if (event.key === 'Enter') sendMessage();
         }
 
-        // Initialize chat
-        function initChat() {
-            initDarkMode();
-            processKnowledgeBase('menu_principal');
+        function scrollToBottom() {
+            const messagesContainer = document.getElementById('chatMessages');
+            setTimeout(() => messagesContainer.scrollTop = messagesContainer.scrollHeight, 100);
         }
 
-        // Start chat when page loads
-        window.addEventListener('DOMContentLoaded', initChat);
+        function clearChat() {
+            document.getElementById('chatMessages').innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
+                        <img src="logo.png" alt="NeuroSync" class="w-full h-full object-cover">
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 py-3 max-w-[85%]">
+                        <p class="text-gray-800 dark:text-gray-200 text-sm sm:text-base">¡Bienvenido! Tengo respuestas completas para TODAS las consultas sobre NeuroSync (48 temas).
+                        <br><br>🧠 <strong>¿Prefieres IA?</strong> <a href="ia.html" class="text-primary underline font-semibold">Prueba nuestro Chat con IA Entrenada</a>
+                        <br><br>Usa los menús de arriba o escribe tu pregunta. ¿En qué puedo ayudarte?</p>
+                    </div>
+                </div>
+            `;
+            showMainMenu();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('messageInput').focus();
+        });
     </script>
-</body>
-</html>
+
+</body></html>
