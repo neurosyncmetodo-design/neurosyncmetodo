@@ -4,7 +4,7 @@
     <meta name="x-poe-datastore-behavior" content="local_only">
     <meta charset="UTF-8">
     <!-- Meta Viewport Optimizado para Móviles -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -295,15 +295,17 @@
         .mobile-menu-enter {
             transform: translateY(0);
             opacity: 1;
-            max-height: 100vh;
             transition: all 0.3s ease-out;
         }
        
         .mobile-menu-exit {
             transform: translateY(-100%);
             opacity: 0;
-            max-height: 0;
             transition: all 0.3s ease-in;
+        }
+       
+        #mobile-menu {
+            -webkit-overflow-scrolling: touch;
         }
        
         /* BOTÓN SCROLL TO TOP MEJORADO */
@@ -437,6 +439,7 @@
            
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
+            const nav = document.querySelector('nav');
             let isMenuOpen = false;
             function toggleMobileMenu(e) {
                 if (e.type === 'touchend') {
@@ -446,12 +449,25 @@
                     // Cerrar menú
                     mobileMenu.classList.add('hidden', 'mobile-menu-exit');
                     mobileMenu.classList.remove('mobile-menu-enter');
+                    mobileMenu.style.position = '';
+                    mobileMenu.style.top = '';
+                    mobileMenu.style.left = '';
+                    mobileMenu.style.width = '';
+                    mobileMenu.style.height = '';
+                    mobileMenu.style.overflowY = '';
                     isMenuOpen = false;
                     document.body.style.overflow = '';
                 } else {
                     // Abrir menú
                     mobileMenu.classList.remove('hidden', 'mobile-menu-exit');
                     mobileMenu.classList.add('mobile-menu-enter');
+                    const navHeight = nav.offsetHeight;
+                    mobileMenu.style.position = 'fixed';
+                    mobileMenu.style.top = navHeight + 'px';
+                    mobileMenu.style.left = '0';
+                    mobileMenu.style.width = '100%';
+                    mobileMenu.style.height = `calc(100vh - ${navHeight}px)`;
+                    mobileMenu.style.overflowY = 'auto';
                     isMenuOpen = true;
                     document.body.style.overflow = 'hidden';
                 }
@@ -469,6 +485,12 @@
                 link.addEventListener('click', function() {
                     mobileMenu.classList.add('hidden', 'mobile-menu-exit');
                     mobileMenu.classList.remove('mobile-menu-enter');
+                    mobileMenu.style.position = '';
+                    mobileMenu.style.top = '';
+                    mobileMenu.style.left = '';
+                    mobileMenu.style.width = '';
+                    mobileMenu.style.height = '';
+                    mobileMenu.style.overflowY = '';
                     isMenuOpen = false;
                     document.body.style.overflow = '';
                 });
@@ -482,6 +504,12 @@
                         }
                         mobileMenu.classList.add('hidden', 'mobile-menu-exit');
                         mobileMenu.classList.remove('mobile-menu-enter');
+                        mobileMenu.style.position = '';
+                        mobileMenu.style.top = '';
+                        mobileMenu.style.left = '';
+                        mobileMenu.style.width = '';
+                        mobileMenu.style.height = '';
+                        mobileMenu.style.overflowY = '';
                         isMenuOpen = false;
                         document.body.style.overflow = '';
                     }
@@ -635,7 +663,7 @@
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="xl:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 hidden overflow-hidden">
-            <div class="px-4 py-4 sm:py-6 space-y-2 sm:space-y-3 overflow-y-auto max-h-screen">
+            <div class="px-4 py-4 sm:py-6 space-y-2 sm:space-y-3 overflow-y-auto">
                 <a href="#promocion" class="block bg-gradient-to-r from-secondary to-secondary text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg touch-target">
                     🎁 Primera Sesión GRATIS
                 </a>
@@ -2022,7 +2050,7 @@
                                     <svg class="w-5 h-5 text-accent mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                     </svg>
-                                    <span>Experiencia práctica interactiva</span>
+                                    <span>Experiencia práctica e interactiva</span>
                                 </li>
                             </ul>
                             <a href="#consultar" class="block w-full bg-gradient-to-r from-accent to-accent hover:shadow-lg text-gray-900 text-center py-3 rounded-lg font-semibold transition-all duration-300">
@@ -2760,8 +2788,7 @@
             </div>
             <div class="mb-4">
                 <a href="/cdn-cgi/l/email-protection#fed9dbcdcad7d1d0bed0dbcbccd1cdc7d0dd90c8d7ce" class="text-primary hover:text-primary/80 transition-colors">
-                    <span class="__cf_email__" data-cfemail="3b5c5e484f5254557b555e4e49544841565b154d524b">[email&#160;protected]</span>
-                </a>
+                    <span class="__cf_email__" data-cfemail="3b5c5e484f5254557b555e4e49544841565b154d524b">[email&#160;protected]</span></a>
             </div>
             <p class="text-gray-400 mb-4">© 2025 Todos los derechos reservados.</p>
             <p class="text-gray-500 text-sm">
