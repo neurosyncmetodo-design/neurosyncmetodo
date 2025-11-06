@@ -191,7 +191,7 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-       
+      
         /* ESTILOS BASE MEJORADOS PARA MÓVILES */
         body {
             font-family: 'Inter', sans-serif;
@@ -201,7 +201,7 @@
             -webkit-overflow-scrolling: touch;
             overscroll-behavior: none;
         }
-       
+      
         /* Custom Navigation Styles */
         /* NAVEGACIÓN MEJORADA */
         .nav-link {
@@ -244,11 +244,11 @@
             justify-content: center;
             touch-action: manipulation;
         }
-       
+      
         @keyframes underlineExpand {
             to { width: 80%; }
         }
-       
+      
         /* OPTIMIZACIONES CRÍTICAS PARA MÓVILES */
         @media (max-width: 768px) {
             /* Evitar zoom en inputs en iOS */
@@ -259,7 +259,7 @@
             textarea {
                 font-size: 16px !important;
             }
-           
+          
             /* Formularios optimizados para móviles */
             .mobile-form input,
             .mobile-form select,
@@ -268,59 +268,59 @@
                 font-size: 16px !important;
                 padding: 12px 16px !important;
             }
-           
+          
             /* Espaciado optimizado para móviles */
             .mobile-spacing {
                 padding: 1rem !important;
             }
-           
+          
             /* Tamaños de texto adaptativos */
             .mobile-text-sm { font-size: 0.875rem !important; }
             .mobile-text-base { font-size: 1rem !important; }
             .mobile-text-lg { font-size: 1.125rem !important; }
             .mobile-text-xl { font-size: 1.25rem !important; }
-           
+          
             /* Grid responsivo mejorado */
             .mobile-grid-1 { grid-template-columns: 1fr !important; }
             .mobile-grid-2 { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem !important; }
-           
+          
             /* Altura mínima para elementos táctiles */
             .touch-target {
                 min-height: 44px !important;
                 min-width: 44px !important;
             }
         }
-       
+      
         /* MENÚ MÓVIL MEJORADO */
         .mobile-menu-enter {
             transform: translateY(0);
             opacity: 1;
             transition: all 0.3s ease-out;
         }
-       
+      
         .mobile-menu-exit {
             transform: translateY(-100%);
             opacity: 0;
             transition: all 0.3s ease-in;
         }
-       
+      
         #mobile-menu {
             -webkit-overflow-scrolling: touch;
         }
-       
+      
         /* BOTÓN SCROLL TO TOP MEJORADO */
         .scroll-visible {
             transform: translateY(0);
             opacity: 1;
             transition: all 0.3s ease-out;
         }
-       
+      
         .scroll-hidden {
             transform: translateY(100px);
             opacity: 0;
             transition: all 0.3s ease-in;
         }
-       
+      
         /* FORMULARIOS OPTIMIZADOS */
         .form-input {
             min-height: 48px;
@@ -328,36 +328,36 @@
             padding: 12px 16px;
             touch-action: manipulation;
         }
-       
+      
         /* PREVENIR OVERSCROLL BOUNCE EN iOS */
         .no-bounce {
             overscroll-behavior: none;
         }
-       
+      
         /* SCROLL SUAVE OPTIMIZADO */
         .smooth-scroll {
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
         }
-       
+      
         /* BOTONES FLOTANTES RESPONSIVOS */
         @media (max-width: 768px) {
             .floating-button {
                 bottom: 80px !important;
                 right: 16px !important;
             }
-           
+          
             .floating-button-left {
                 bottom: 140px !important;
                 left: 16px !important;
             }
-           
+          
             .floating-button-small {
                 bottom: 80px !important;
                 right: 80px !important;
             }
         }
-       
+      
         /* SAFE AREA PARA DISPOSITIVOS CON NOTCH */
         @supports (padding: max(0px)) {
             .safe-area-inset {
@@ -365,38 +365,38 @@
                 padding-right: max(1rem, env(safe-area-inset-right));
             }
         }
-       
+      
         /* GRID RESPONSIVE MEJORADO */
         .responsive-grid {
             display: grid;
             gap: 1.5rem;
         }
-       
+      
         @media (min-width: 640px) {
             .responsive-grid { grid-template-columns: repeat(2, 1fr); }
         }
-       
+      
         @media (min-width: 768px) {
             .responsive-grid { grid-template-columns: repeat(3, 1fr); }
         }
-       
+      
         @media (min-width: 1024px) {
             .responsive-grid { grid-template-columns: repeat(4, 1fr); }
         }
-       
+      
         /* TEXTO RESPONSIVE */
         .responsive-text {
             font-size: clamp(1rem, 4vw, 1.5rem);
             line-height: 1.6;
         }
-       
+      
         /* OPTIMIZACIONES DE TOQUE */
         .touch-optimized {
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
             user-select: none;
         }
-       
+      
         /* MEJORAS DE ACCESIBILIDAD */
         .focus-visible {
             outline: 2px solid #5D5CDE;
@@ -407,7 +407,7 @@
         // Detección de dispositivo móvil mejorada
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-       
+      
         // Dark mode detection mejorado
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
@@ -418,184 +418,6 @@
             } else {
                 document.documentElement.classList.remove('dark');
             }
-        });
-        // Funcionalidad mejorada del menú móvil
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set redirect URL for Web3Forms
-            const redirectField = document.getElementById('redirect-field');
-            if (redirectField) {
-                const currentURL = window.location.origin + window.location.pathname;
-                const baseURL = currentURL.replace('/index.html', '').replace(/\/$/, '');
-                redirectField.value = baseURL + '/confirmacion.html';
-            }
-           
-            // Set redirect URL for audio form too
-            const redirectFieldAudio = document.getElementById('redirect-field-audio');
-            if (redirectFieldAudio) {
-                const currentURL = window.location.origin + window.location.pathname;
-                const baseURL = currentURL.replace('/index.html', '').replace(/\/$/, '');
-                redirectFieldAudio.value = baseURL + '/confirmacion.html';
-            }
-           
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const nav = document.querySelector('nav');
-            let isMenuOpen = false;
-            function toggleMobileMenu(e) {
-                if (e.type === 'touchend') {
-                    e.preventDefault();
-                }
-                if (isMenuOpen) {
-                    // Cerrar menú
-                    mobileMenu.classList.add('hidden', 'mobile-menu-exit');
-                    mobileMenu.classList.remove('mobile-menu-enter');
-                    mobileMenu.style.position = '';
-                    mobileMenu.style.top = '';
-                    mobileMenu.style.left = '';
-                    mobileMenu.style.width = '';
-                    mobileMenu.style.height = '';
-                    mobileMenu.style.overflowY = '';
-                    isMenuOpen = false;
-                    document.body.style.overflow = '';
-                } else {
-                    // Abrir menú
-                    mobileMenu.classList.remove('hidden', 'mobile-menu-exit');
-                    mobileMenu.classList.add('mobile-menu-enter');
-                    const navHeight = nav.offsetHeight;
-                    mobileMenu.style.position = 'fixed';
-                    mobileMenu.style.top = navHeight + 'px';
-                    mobileMenu.style.left = '0';
-                    mobileMenu.style.width = '100%';
-                    mobileMenu.style.height = `calc(100vh - ${navHeight}px)`;
-                    mobileMenu.style.overflowY = 'auto';
-                    isMenuOpen = true;
-                    document.body.style.overflow = 'hidden';
-                }
-            }
-            // Event listeners mejorados
-            if (mobileMenuBtn && mobileMenu) {
-                // Click y touch events
-                ['click', 'touchend'].forEach(eventType => {
-                    mobileMenuBtn.addEventListener(eventType, toggleMobileMenu);
-                });
-            }
-            // Close mobile menu when clicking on a link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden', 'mobile-menu-exit');
-                    mobileMenu.classList.remove('mobile-menu-enter');
-                    mobileMenu.style.position = '';
-                    mobileMenu.style.top = '';
-                    mobileMenu.style.left = '';
-                    mobileMenu.style.width = '';
-                    mobileMenu.style.height = '';
-                    mobileMenu.style.overflowY = '';
-                    isMenuOpen = false;
-                    document.body.style.overflow = '';
-                });
-            });
-            // Close menu when clicking outside
-            ['click', 'touchend'].forEach(eventType => {
-                document.addEventListener(eventType, function(e) {
-                    if (isMenuOpen && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                        if (eventType === 'touchend') {
-                            e.preventDefault();
-                        }
-                        mobileMenu.classList.add('hidden', 'mobile-menu-exit');
-                        mobileMenu.classList.remove('mobile-menu-enter');
-                        mobileMenu.style.position = '';
-                        mobileMenu.style.top = '';
-                        mobileMenu.style.left = '';
-                        mobileMenu.style.width = '';
-                        mobileMenu.style.height = '';
-                        mobileMenu.style.overflowY = '';
-                        isMenuOpen = false;
-                        document.body.style.overflow = '';
-                    }
-                });
-            });
-            // Scroll to top button mejorado
-            const scrollToTopBtn = document.getElementById('scroll-to-top');
-           
-            if (scrollToTopBtn) {
-                window.addEventListener('scroll', function() {
-                    if (window.pageYOffset > 300) {
-                        scrollToTopBtn.classList.add('scroll-visible');
-                        scrollToTopBtn.classList.remove('scroll-hidden');
-                    } else {
-                        scrollToTopBtn.classList.add('scroll-hidden');
-                        scrollToTopBtn.classList.remove('scroll-visible');
-                    }
-                });
-                ['click', 'touchend'].forEach(eventType => {
-                    scrollToTopBtn.addEventListener(eventType, function(e) {
-                        if (eventType === 'touchend') {
-                            e.preventDefault();
-                        }
-                        e.stopPropagation();
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        });
-                    });
-                });
-            }
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const offsetTop = target.offsetTop - 100; // Account for sticky nav
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            // Optimizaciones específicas para móviles
-            if (isMobile) {
-                // Prevenir zoom en double tap
-                let lastTouchEnd = 0;
-                document.addEventListener('touchend', function(event) {
-                    const now = (new Date()).getTime();
-                    if (now - lastTouchEnd <= 300) {
-                        event.preventDefault();
-                    }
-                    lastTouchEnd = now;
-                }, false);
-                // Optimizar formularios para móviles
-                const formInputs = document.querySelectorAll('input, select, textarea');
-                formInputs.forEach(input => {
-                    input.addEventListener('focus', function() {
-                        setTimeout(() => {
-                            this.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }, 300);
-                    });
-                });
-                // Mejorar la experiencia táctil
-                const touchElements = document.querySelectorAll('.touch-target, button, a');
-                touchElements.forEach(element => {
-                    element.style.webkitTapHighlightColor = 'transparent';
-                });
-            }
-           
-            // Efecto de scroll en la navegación
-            const nav = document.querySelector('nav');
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 100) {
-                    if (nav) {
-                        nav.style.background = 'rgba(255, 255, 255, 0.95)';
-                        nav.classList.add('backdrop-blur-md');
-                    }
-                } else {
-                    if (nav) {
-                        nav.style.background = '';
-                    }
-                }
-            });
         });
     </script>
 </head>
@@ -708,20 +530,20 @@
                         <span class="text-sm sm:text-base text-gray-600 dark:text-gray-300">100% Confidencial</span>
                     </div>
                 </div>
-               
+              
                 <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-4">
                     Toma el Control de Tu Mente,<br>
                     <span class="text-primary">Alcanza Tu Máximo Potencial</span>
                 </h1>
-               
+              
                 <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto px-4 responsive-text">
                     Hipnosis clínica personalizada basada en evidencia científica. Sesiones online completamente confidenciales.
                 </p>
-               
+              
                 <p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-6 sm:mb-8 px-4">
                     Proceso simplificado: solo requerimos tu nombre de pila y método de contacto preferido. Audio hipnótico personalizado entregado en 48 horas.
                 </p>
-               
+              
                 <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
                     <a href="#consultar" class="bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-primary/90 transition-colors touch-target flex items-center justify-center mobile-text-base font-semibold">
                         Solicitar Evaluación Gratuita
@@ -818,17 +640,17 @@
                             <p class="text-gray-600 dark:text-gray-300">Recibe tu audio profesional en menos de 24 horas</p>
                         </div>
                     </div>
-                   
+                  
                     <div class="bg-secondary/5 dark:bg-secondary/30 rounded-lg p-6 mb-6">
                         <h4 class="text-lg font-semibold mb-3 text-secondary dark:text-secondary/20">Colaboración Opcional</h4>
                         <p class="text-secondary dark:text-secondary/30 mb-4">
-                            Aunque no es obligatorio, agradeceríamos enormemente si después de probar tu audio, nos envías una mención sincera y objetiva sobre tu experiencia a nuestro email <strong><a href="/cdn-cgi/l/email-protection#3e595b4d4a5751507e505b4b4c514d47505d1048574e"><span class="__cf_email__" data-cfemail="dbbcbea8afb2b4b59bb5beaea9b4a8a2b5b8f5adb2ab">[email&#160;protected]</span></a></strong>.
+                            Aunque no es obligatorio, agradeceríamos enormemente si después de probar tu audio, nos envías una mención sincera y objetiva sobre tu experiencia a nuestro email <strong><a href="mailto:gestion@neurosync.vip">gestion@neurosync.vip</a></strong>.
                         </p>
                         <p class="text-sm text-secondary dark:text-secondary/40 italic">
                             Tu feedback nos ayuda a mejorar continuamente nuestro método y ayudar a más personas.
                         </p>
                     </div>
-                   
+                  
                     <!-- Formulario para Audio Gratuito -->
                     <div class="max-w-2xl mx-auto">
                         <form action="https://api.web3forms.com/submit" method="POST" class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
@@ -962,7 +784,7 @@
         <!-- Background Effects -->
         <div class="absolute inset-0 bg-gradient-to-r from-secondary/20 via-transparent to-blue-900/20"></div>
         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
-       
+      
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center">
                 <!-- Logo grande con efecto -->
@@ -981,7 +803,7 @@
                         <span class="bg-gradient-to-r from-accent to-accent bg-clip-text text-transparent">Estándares</span>
                         de la Transformación Personal
                     </h2>
-                   
+                  
                     <div class="text-xl md:text-2xl text-gray-200 leading-relaxed mb-8 space-y-4">
                         <p>
                             Nuestro método multidisciplinar, <strong class="text-primary">respaldado por la comunidad científica internacional</strong>, te permite alcanzar cualquier objetivo desde la comodidad de tu hogar.
@@ -1001,7 +823,7 @@
                             <h3 class="text-xl font-bold text-white mb-3">Innovación Científica</h3>
                             <p class="text-gray-300 text-sm">Metodología pionera que integra hipnosis ericksoniana con neurotecnología avanzada</p>
                         </div>
-                       
+                      
                         <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                             <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1011,7 +833,7 @@
                             <h3 class="text-xl font-bold text-white mb-3">Validación Rigurosa</h3>
                             <p class="text-gray-300 text-sm">Cada protocolo respaldado por evidencia empírica y análisis independiente por IA</p>
                         </div>
-                       
+                      
                         <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                             <div class="w-16 h-16 bg-gradient-to-br from-secondary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1174,7 +996,7 @@
                         <source src="bienvenida.mp3" type="audio/mpeg">
                         Tu navegador no soporta el elemento de audio.
                     </audio>
-                   
+                  
                     <div class="text-left max-w-4xl mx-auto space-y-4">
                         <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
                             <h4 class="font-bold text-blue-800 dark:text-blue-200 mb-3">Evaluación por NotebookLM:</h4>
@@ -1314,7 +1136,7 @@
             <!-- Conclusiones Detalladas -->
             <div class="bg-gradient-to-br from-blue-50/80 to-indigo-100/80 backdrop-blur-sm rounded-xl p-8 border border-white/30">
                 <h3 class="text-2xl font-bold mb-6 text-center text-blue-800">Conclusiones del Análisis por Claude 4.1 Opus</h3>
-               
+              
                 <div class="grid md:grid-cols-3 gap-6 mb-8">
                     <div class="bg-white/90 backdrop-blur-sm rounded-lg p-6">
                         <h4 class="font-bold text-blue-800 mb-3">Rigor Científico</h4>
@@ -1322,14 +1144,14 @@
                             "El método NeuroSync demuestra una sólida fundamentación en literatura científica revisada por pares, integrando técnicas con evidencia empírica robusta."
                         </p>
                     </div>
-                   
+                  
                     <div class="bg-white/90 backdrop-blur-sm rounded-lg p-6">
                         <h4 class="font-bold text-blue-800 mb-3">Innovación Metodológica</h4>
                         <p class="text-sm text-gray-600">
                             "La combinación sinérgica de hipnosis ericksoniana, técnicas respiratorias y estimulación binaural representa un enfoque innovador y teóricamente coherente."
                         </p>
                     </div>
-                   
+                  
                     <div class="bg-white/90 backdrop-blur-sm rounded-lg p-6">
                         <h4 class="font-bold text-blue-800 mb-3">Aplicabilidad Clínica</h4>
                         <p class="text-sm text-gray-600">
@@ -1594,7 +1416,7 @@
                 <h2 class="text-3xl font-bold mb-4">Evidencia Científica</h2>
                 <p class="text-gray-600 dark:text-gray-300">Desmitificando concepciones erróneas sobre la hipnosis clínica</p>
             </div>
-           
+          
             <div class="space-y-8">
                 <!-- Myth 1 -->
                 <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-400 p-6 rounded-r-lg">
@@ -1650,7 +1472,7 @@
                 <h2 class="text-3xl font-bold mb-4">Fundamentos en Investigación</h2>
                 <p class="text-gray-600 dark:text-gray-300">Evidencia científica que respalda la eficacia de la hipnosis clínica y métodos multidisciplinares</p>
             </div>
-           
+          
             <!-- Main Studies Section -->
             <div class="mb-16">
                 <h3 class="text-2xl font-bold text-center mb-8 text-primary">Estudios Clave sobre Eficacia de la Hipnosis</h3>
@@ -1663,7 +1485,7 @@
                             <p class="text-sm text-secondary dark:text-secondary/30"><strong>Resultado:</strong> Reducción del dolor del 42% vs placebo (p&lt;0.001)</p>
                         </div>
                     </div>
-                   
+                  
                     <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
                         <h4 class="text-lg font-semibold mb-3 text-primary">Stanford Hypnosis Research (2021)</h4>
                         <p class="text-gray-600 dark:text-gray-300 mb-3">Neuroimagen funcional demuestra cambios específicos en corteza cingulada anterior y ínsula durante hipnosis clínica. Validación de biomarcadores de receptividad.</p>
@@ -1672,7 +1494,7 @@
                             <p class="text-sm text-blue-700 dark:text-blue-300"><strong>Hallazgo:</strong> Conectividad neuronal específica durante trance hipnótico</p>
                         </div>
                     </div>
-                   
+                  
                     <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
                         <h4 class="text-lg font-semibold mb-3 text-primary">Journal of Clinical Psychology (2020)</h4>
                         <p class="text-gray-600 dark:text-gray-300 mb-3">Estudio longitudinal de 246 pacientes. Hipnosis ericksoniana muestra eficacia superior en trastornos de ansiedad comparada con terapia cognitivo-conductual estándar.</p>
@@ -1681,7 +1503,7 @@
                             <p class="text-sm text-secondary dark:text-purple-300"><strong>Eficacia:</strong> 73% de mejora clínica vs 58% TCC (6 meses seguimiento)</p>
                         </div>
                     </div>
-                   
+                  
                     <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
                         <h4 class="text-lg font-semibold mb-3 text-primary">Neuroscience &amp; Biobehavioral Reviews (2022)</h4>
                         <p class="text-gray-600 dark:text-gray-300 mb-3">Integración de técnicas respiratorias con hipnosis potencia activación del sistema nervioso parasimpático y mejora outcomes terapéuticos.</p>
@@ -1701,19 +1523,19 @@
                         <p class="text-gray-600 dark:text-gray-300 mb-3">División 30 reconoce oficialmente la hipnosis como "intervención psicológica basada en evidencia" para múltiples condiciones clínicas.</p>
                         <p class="text-sm text-gray-500 dark:text-gray-400">APA Policy Statement on Hypnosis (2020)</p>
                     </div>
-                   
+                  
                     <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border-l-4 border-primary">
                         <h4 class="text-lg font-semibold mb-3 text-primary">British Medical Association</h4>
                         <p class="text-gray-600 dark:text-gray-300 mb-3">Aproba el uso de hipnosis clínica en NHS para manejo del dolor, ansiedad y preparación quirúrgica basado en evidencia robusta.</p>
                         <p class="text-sm text-gray-500 dark:text-gray-400">BMA Medical Ethics Committee Guidelines</p>
                     </div>
-                   
+                  
                     <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border-l-4 border-primary">
                         <h4 class="text-lg font-semibold mb-3 text-primary">World Health Organization</h4>
                         <p class="text-gray-600 dark:text-gray-300 mb-3">Incluye hipnosis clínica en Clasificación Internacional de Intervenciones de Salud como tratamiento complementario validado.</p>
                         <p class="text-sm text-gray-500 dark:text-gray-400">WHO International Classification (ICD-11)</p>
                     </div>
-                   
+                  
                     <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border-l-4 border-primary">
                         <h4 class="text-lg font-semibold mb-3 text-primary">European Society of Hypnosis</h4>
                         <p class="text-gray-600 dark:text-gray-300 mb-3">Establece estándares de práctica clínica y formación basados en evidencia científica contemporánea y protocolos validados.</p>
@@ -1755,7 +1577,7 @@
                 <h2 class="text-3xl font-bold mb-4">Nuestros Servicios</h2>
                 <p class="text-gray-600 dark:text-gray-300">Tarifas transparentes para audios personalizados y espectáculos de hipnosis</p>
             </div>
-           
+          
             <!-- Audios Personalizados -->
             <div class="mb-16">
                 <h3 class="text-2xl font-bold text-center mb-8 text-primary">Audios Hipnóticos Personalizados</h3>
@@ -1821,7 +1643,7 @@
                                 ¡GRAN OFERTA!
                             </div>
                         </div>
-                       
+                      
                         <div class="text-center mb-6">
                             <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg class="w-8 h-8 text-secondary dark:text-secondary/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1922,7 +1744,7 @@
                                         Contacta con nosotros para recibir un presupuesto personalizado.
                                     </p>
                                 </div>
-                               
+                              
                                 <div class="bg-secondary/5 dark:bg-secondary/30 border border-secondary/20 dark:border-secondary rounded-lg p-4">
                                     <h6 class="font-semibold text-secondary dark:text-secondary/20 mb-2">
                                         🎁 Opción Gratuita
@@ -2612,7 +2434,7 @@
                 <h2 class="text-3xl font-bold mb-4">Contacta con Nosotros</h2>
                 <p class="text-gray-600 dark:text-gray-300">Solicita tu audio gratuito o protocolo personalizado</p>
             </div>
-           
+          
             <!-- Formulario Principal con Web3Forms -->
             <div class="max-w-2xl mx-auto">
                 <form action="https://api.web3forms.com/submit" method="POST" class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
@@ -2772,7 +2594,7 @@
                     Si prefieres contactarnos directamente:
                 </p>
                 <div class="text-primary font-semibold text-lg">
-                    <a href="/cdn-cgi/l/email-protection#d8fffdebecf1f7f6d8f6fdedeaf7ebe1f6fbb6eef1e8" class="hover:underline"><span class="__cf_email__" data-cfemail="94b3b1a7a0bdbbba94bab1a1a6bba7adbab7faa2bda4">[email&#160;protected]</span></a>
+                    <a href="mailto:gestion@neurosync.vip" class="hover:underline">gestion@neurosync.vip</a>
                 </div>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">
                     Respuesta garantizada en 24 horas • Proceso completamente confidencial
@@ -2787,8 +2609,8 @@
                 <span class="text-xl font-bold text-primary">NeuroSync Método</span>
             </div>
             <div class="mb-4">
-                <a href="/cdn-cgi/l/email-protection#fed9dbcdcad7d1d0bed0dbcbccd1cdc7d0dd90c8d7ce" class="text-primary hover:text-primary/80 transition-colors">
-                    <span class="__cf_email__" data-cfemail="3b5c5e484f5254557b555e4e49544841565b154d524b">[email&#160;protected]</span></a>
+                <a href="mailto:gestion@neurosync.vip" class="text-primary hover:text-primary/80 transition-colors">
+                    gestion@neurosync.vip</a>
             </div>
             <p class="text-gray-400 mb-4">© 2025 Todos los derechos reservados.</p>
             <p class="text-gray-500 text-sm">
@@ -2801,12 +2623,12 @@
         <a href="chat.html" target="_blank" class="group bg-gradient-to-r from-primary to-secondary text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center relative overflow-hidden">
             <!-- Notification dot -->
             <div class="absolute -top-1 -right-1 w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
-           
+          
             <!-- Chat icon -->
             <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
             </svg>
-           
+          
             <!-- Tooltip -->
             <div class="absolute left-full ml-3 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                 💬 Chatea con nuestro asistente IA
@@ -2814,6 +2636,188 @@
             </div>
         </a>
     </div>
+
+    <!-- JavaScript mejorado para el menú móvil -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set redirect URL for Web3Forms
+            const redirectField = document.getElementById('redirect-field');
+            if (redirectField) {
+                const currentURL = window.location.origin + window.location.pathname;
+                const baseURL = currentURL.replace('/index.html', '').replace(/\/$/, '');
+                redirectField.value = baseURL + '/confirmacion.html';
+            }
+          
+            // Set redirect URL for audio form too
+            const redirectFieldAudio = document.getElementById('redirect-field-audio');
+            if (redirectFieldAudio) {
+                const currentURL = window.location.origin + window.location.pathname;
+                const baseURL = currentURL.replace('/index.html', '').replace(/\/$/, '');
+                redirectFieldAudio.value = baseURL + '/confirmacion.html';
+            }
+          
+            // Funcionalidad mejorada del menú móvil
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const nav = document.querySelector('nav');
+            let isMenuOpen = false;
+            
+            // Función para abrir/cerrar el menú móvil
+            function toggleMobileMenu(e) {
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                
+                if (isMenuOpen) {
+                    // Cerrar menú
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('mobile-menu-enter');
+                    mobileMenu.classList.add('mobile-menu-exit');
+                    isMenuOpen = false;
+                    document.body.style.overflow = '';
+                } else {
+                    // Abrir menú
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.remove('mobile-menu-exit');
+                    mobileMenu.classList.add('mobile-menu-enter');
+                    
+                    // Ajustar posición del menú
+                    const navHeight = nav.offsetHeight;
+                    mobileMenu.style.position = 'fixed';
+                    mobileMenu.style.top = navHeight + 'px';
+                    mobileMenu.style.left = '0';
+                    mobileMenu.style.width = '100%';
+                    mobileMenu.style.height = `calc(100vh - ${navHeight}px)`;
+                    mobileMenu.style.overflowY = 'auto';
+                    mobileMenu.style.zIndex = '40';
+                    
+                    isMenuOpen = true;
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            
+            // Event listeners para el botón del menú
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+                mobileMenuBtn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    toggleMobileMenu(e);
+                });
+            }
+            
+            // Cerrar menú al hacer clic en un enlace
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    toggleMobileMenu();
+                });
+            });
+            
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                if (isMenuOpen && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    toggleMobileMenu();
+                }
+            });
+            
+            // Cerrar menú al hacer scroll
+            window.addEventListener('scroll', function() {
+                if (isMenuOpen) {
+                    toggleMobileMenu();
+                }
+            });
+            
+            // Scroll to top button mejorado
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+          
+            if (scrollToTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        scrollToTopBtn.classList.add('scroll-visible');
+                        scrollToTopBtn.classList.remove('scroll-hidden');
+                    } else {
+                        scrollToTopBtn.classList.add('scroll-hidden');
+                        scrollToTopBtn.classList.remove('scroll-visible');
+                    }
+                });
+                
+                scrollToTopBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                scrollToTopBtn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const offsetTop = target.offsetTop - 100; // Account for sticky nav
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Efecto de scroll en la navegación
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 100) {
+                    if (nav) {
+                        nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                        nav.classList.add('backdrop-blur-md');
+                    }
+                } else {
+                    if (nav) {
+                        nav.style.background = '';
+                    }
+                }
+            });
+            
+            // Optimizaciones específicas para móviles
+            if (isMobile) {
+                // Prevenir zoom en double tap
+                let lastTouchEnd = 0;
+                document.addEventListener('touchend', function(event) {
+                    const now = (new Date()).getTime();
+                    if (now - lastTouchEnd <= 300) {
+                        event.preventDefault();
+                    }
+                    lastTouchEnd = now;
+                }, false);
+                
+                // Optimizar formularios para móviles
+                const formInputs = document.querySelectorAll('input, select, textarea');
+                formInputs.forEach(input => {
+                    input.addEventListener('focus', function() {
+                        setTimeout(() => {
+                            this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 300);
+                    });
+                });
+                
+                // Mejorar la experiencia táctil
+                const touchElements = document.querySelectorAll('.touch-target, button, a');
+                touchElements.forEach(element => {
+                    element.style.webkitTapHighlightColor = 'transparent';
+                });
+            }
+        });
+    </script>
 <!-- GoatCounter Analytics - Privacidad respetada, sin cookies -->
 <script>
     window.goatcounter = {allow_frame: true}
