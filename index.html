@@ -1,6 +1,11 @@
 <!DOCTYPE html><html lang="es"><head><meta name="x-poe-datastore-behavior" content="local_only">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Viewport Optimizado para Móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
 
     <!-- SEO Meta Tags Optimizados - PÁGINA PRINCIPAL -->
     <title>NeuroSync Método | Audios de Hipnosis Clínica Personalizada | España</title>
@@ -177,6 +182,16 @@
                         'text-light': '#F9FAFB',    // Blanco Roto
                         'background-light': '#FFFFFF', // Blanco Puro
                         'background-dark': '#0F172A',   // Azul Noche
+                    },
+                    screens: {
+                        'xs': '475px',
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                        '88': '22rem',
+                    },
+                    minHeight: {
+                        'touch': '44px',
                     }
                 }
             }
@@ -184,13 +199,26 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        
+        /* ESTILOS BASE MEJORADOS PARA MÓVILES */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            touch-action: manipulation;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: none;
+        }
         
         /* Custom Navigation Styles */
+        /* NAVEGACIÓN MEJORADA */
         .nav-link {
             @apply px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 transition-all duration-300 relative;
             display: inline-block;
             text-align: center;
+            min-height: 44px;
+            line-height: 1.5;
+            touch-action: manipulation;
         }
 
         .nav-link:hover {
@@ -213,33 +241,187 @@
 
         .nav-link-cta {
             @apply px-4 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:scale-110 text-center;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
         }
 
         .mobile-nav-link {
             @apply block px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white hover:shadow-lg transition-all duration-300 font-medium text-center transform hover:scale-105;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
         }
         
         @keyframes underlineExpand {
             to { width: 80%; }
         }
         
-        /* Mobile menu animations */
+        /* OPTIMIZACIONES CRÍTICAS PARA MÓVILES */
+        @media (max-width: 768px) {
+            /* Evitar zoom en inputs en iOS */
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            select,
+            textarea {
+                font-size: 16px !important;
+            }
+            
+            /* Formularios optimizados para móviles */
+            .mobile-form input,
+            .mobile-form select,
+            .mobile-form textarea {
+                min-height: 48px !important;
+                font-size: 16px !important;
+                padding: 12px 16px !important;
+            }
+            
+            /* Espaciado optimizado para móviles */
+            .mobile-spacing {
+                padding: 1rem !important;
+            }
+            
+            /* Tamaños de texto adaptativos */
+            .mobile-text-sm { font-size: 0.875rem !important; }
+            .mobile-text-base { font-size: 1rem !important; }
+            .mobile-text-lg { font-size: 1.125rem !important; }
+            .mobile-text-xl { font-size: 1.25rem !important; }
+            
+            /* Grid responsivo mejorado */
+            .mobile-grid-1 { grid-template-columns: 1fr !important; }
+            .mobile-grid-2 { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem !important; }
+            
+            /* Altura mínima para elementos táctiles */
+            .touch-target {
+                min-height: 44px !important;
+                min-width: 44px !important;
+            }
+        }
+        
+        /* MENÚ MÓVIL MEJORADO */
         .mobile-menu-enter {
             transform: translateY(0);
             opacity: 1;
+            max-height: 500px;
+            transition: all 0.3s ease-out;
         }
         
-        /* Scroll to top button animations */
+        .mobile-menu-exit {
+            transform: translateY(-100%);
+            opacity: 0;
+            max-height: 0;
+            transition: all 0.3s ease-in;
+        }
+        
+        /* BOTÓN SCROLL TO TOP MEJORADO */
         .scroll-visible {
             transform: translateY(0);
             opacity: 1;
+            transition: all 0.3s ease-out;
+        }
+        
+        .scroll-hidden {
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease-in;
+        }
+        
+        /* FORMULARIOS OPTIMIZADOS */
+        .form-input {
+            min-height: 48px;
+            font-size: 16px;
+            padding: 12px 16px;
+            touch-action: manipulation;
+        }
+        
+        /* PREVENIR OVERSCROLL BOUNCE EN iOS */
+        .no-bounce {
+            overscroll-behavior: none;
+        }
+        
+        /* SCROLL SUAVE OPTIMIZADO */
+        .smooth-scroll {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* BOTONES FLOTANTES RESPONSIVOS */
+        @media (max-width: 768px) {
+            .floating-button {
+                bottom: 80px !important;
+                right: 16px !important;
+            }
+            
+            .floating-button-left {
+                bottom: 140px !important;
+                left: 16px !important;
+            }
+            
+            .floating-button-small {
+                bottom: 80px !important;
+                right: 80px !important;
+            }
+        }
+        
+        /* SAFE AREA PARA DISPOSITIVOS CON NOTCH */
+        @supports (padding: max(0px)) {
+            .safe-area-inset {
+                padding-left: max(1rem, env(safe-area-inset-left));
+                padding-right: max(1rem, env(safe-area-inset-right));
+            }
+        }
+        
+        /* GRID RESPONSIVE MEJORADO */
+        .responsive-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .responsive-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (min-width: 768px) {
+            .responsive-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        
+        @media (min-width: 1024px) {
+            .responsive-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        
+        /* TEXTO RESPONSIVE */
+        .responsive-text {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            line-height: 1.6;
+        }
+        
+        /* OPTIMIZACIONES DE TOQUE */
+        .touch-optimized {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+        }
+        
+        /* MEJORAS DE ACCESIBILIDAD */
+        .focus-visible {
+            outline: 2px solid #5D5CDE;
+            outline-offset: 2px;
         }
     </style>
 <script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script><script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script></head>
-<body id="top" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
-    <!-- Scripts -->
+<body id="top" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors smooth-scroll no-bounce">
+    <!-- Scripts JavaScript MEJORADO -->
     <script>
-        // Dark mode detection
+        // Detección de dispositivo móvil mejorada
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        
+        // Dark mode detection mejorado
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
         }
@@ -251,7 +433,7 @@
             }
         });
 
-        // Mobile menu functionality
+        // Funcionalidad mejorada del menú móvil
         document.addEventListener('DOMContentLoaded', function() {
             // Set redirect URL for Web3Forms
             const redirectField = document.getElementById('redirect-field');
@@ -273,44 +455,84 @@
             const mobileMenu = document.getElementById('mobile-menu');
             let isMenuOpen = false;
 
-            mobileMenuBtn.addEventListener('click', function() {
+            function toggleMobileMenu() {
                 if (isMenuOpen) {
-                    // Close menu
-                    mobileMenu.classList.add('hidden');
+                    // Cerrar menú
+                    mobileMenu.classList.add('hidden', 'mobile-menu-exit');
+                    mobileMenu.classList.remove('mobile-menu-enter');
                     isMenuOpen = false;
+                    document.body.style.overflow = '';
                 } else {
-                    // Open menu
-                    mobileMenu.classList.remove('hidden');
+                    // Abrir menú
+                    mobileMenu.classList.remove('hidden', 'mobile-menu-exit');
+                    mobileMenu.classList.add('mobile-menu-enter');
                     isMenuOpen = true;
+                    document.body.style.overflow = 'hidden';
                 }
-            });
+            }
+
+            // Event listeners mejorados
+            if (mobileMenuBtn && mobileMenu) {
+                // Click y touch events
+                ['click', 'touchend'].forEach(eventType => {
+                    mobileMenuBtn.addEventListener(eventType, function(e) {
+                        if (eventType === 'touchend') {
+                            e.preventDefault();
+                        }
+                        e.stopPropagation();
+                        toggleMobileMenu();
+                    });
+                });
+            }
 
             // Close mobile menu when clicking on a link
             const mobileLinks = mobileMenu.querySelectorAll('a');
             mobileLinks.forEach(link => {
                 link.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.add('hidden', 'mobile-menu-exit');
+                    mobileMenu.classList.remove('mobile-menu-enter');
                     isMenuOpen = false;
+                    document.body.style.overflow = '';
                 });
             });
 
-            // Scroll to top button functionality
-            const scrollToTopBtn = document.getElementById('scroll-to-top');
-            
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    scrollToTopBtn.classList.add('scroll-visible');
-                } else {
-                    scrollToTopBtn.classList.remove('scroll-visible');
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (isMenuOpen && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenu.classList.add('hidden', 'mobile-menu-exit');
+                    mobileMenu.classList.remove('mobile-menu-enter');
+                    isMenuOpen = false;
+                    document.body.style.overflow = '';
                 }
             });
 
-            scrollToTopBtn.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+            // Scroll to top button mejorado
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            
+            if (scrollToTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        scrollToTopBtn.classList.add('scroll-visible');
+                        scrollToTopBtn.classList.remove('scroll-hidden');
+                    } else {
+                        scrollToTopBtn.classList.add('scroll-hidden');
+                        scrollToTopBtn.classList.remove('scroll-visible');
+                    }
                 });
-            });
+
+                ['click', 'touchend'].forEach(eventType => {
+                    scrollToTopBtn.addEventListener(eventType, function(e) {
+                        if (eventType === 'touchend') {
+                            e.preventDefault();
+                        }
+                        e.stopPropagation();
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    });
+                });
+            }
 
             // Smooth scrolling for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -327,47 +549,74 @@
                 });
             });
 
-            // Add scroll effect to navigation
-            let lastScrollY = window.scrollY;
-            const nav = document.querySelector('nav');
+            // Optimizaciones específicas para móviles
+            if (isMobile) {
+                // Prevenir zoom en double tap
+                let lastTouchEnd = 0;
+                document.addEventListener('touchend', function(event) {
+                    const now = (new Date()).getTime();
+                    if (now - lastTouchEnd <= 300) {
+                        event.preventDefault();
+                    }
+                    lastTouchEnd = now;
+                }, false);
+
+                // Optimizar formularios para móviles
+                const formInputs = document.querySelectorAll('input, select, textarea');
+                formInputs.forEach(input => {
+                    input.addEventListener('focus', function() {
+                        setTimeout(() => {
+                            this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 300);
+                    });
+                });
+
+                // Mejorar la experiencia táctil
+                const touchElements = document.querySelectorAll('.touch-target, button, a');
+                touchElements.forEach(element => {
+                    element.style.webkitTapHighlightColor = 'transparent';
+                });
+            }
             
+            // Efecto de scroll en la navegación
+            const nav = document.querySelector('nav');
             window.addEventListener('scroll', function() {
-                const currentScrollY = window.scrollY;
-                
-                if (currentScrollY > 100) {
-                    nav.style.background = 'rgba(255, 255, 255, 0.95)';
-                    nav.classList.add('backdrop-blur-md');
+                if (window.pageYOffset > 100) {
+                    if (nav) {
+                        nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                        nav.classList.add('backdrop-blur-md');
+                    }
                 } else {
-                    nav.style.background = '';
+                    if (nav) {
+                        nav.style.background = '';
+                    }
                 }
-                
-                lastScrollY = currentScrollY;
             });
         });
     </script>
 
     <!-- Header Warning -->
-    <div class="bg-red-600 text-white py-2 px-4 text-center text-sm">
+    <div class="bg-red-600 text-white py-2 px-4 text-center text-sm safe-area-inset">
         <strong>AVISO IMPORTANTE:</strong> No apto para personas con trastornos psiquiátricos, epilepsia o sospecha de padecerla.
     </div>
 
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-16 sm:h-20">
                 <!-- Logo Section -->
-                <a href="#top" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                <a href="#top" class="flex items-center space-x-2 sm:space-x-3 hover:opacity-80 transition-opacity">
                     <div class="relative">
-                        <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg p-1 animate-pulse">
-                            <img src="logo.png" alt="NeuroSync Logo" class="w-10 h-10 object-contain filter brightness-0 invert">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg p-1 animate-pulse">
+                            <img src="logo.png" alt="NeuroSync Logo" class="w-8 h-8 sm:w-10 sm:h-10 object-contain filter brightness-0 invert">
                         </div>
-                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full border-2 border-white dark:border-gray-800"></div>
+                        <div class="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-secondary rounded-full border-2 border-white dark:border-gray-800"></div>
                     </div>
-                    <div>
-                        <span class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">NeuroSync</span>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-sm text-gray-600 dark:text-gray-300 font-medium">Método</span>
-                            <span class="text-xs bg-gradient-to-r from-secondary to-secondary text-white px-2 py-1 rounded-full font-semibold">Confidencial</span>
+                    <div class="hidden xs:block">
+                        <span class="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">NeuroSync</span>
+                        <div class="flex items-center space-x-1 sm:space-x-2">
+                            <span class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-medium">Método</span>
+                            <span class="text-xs bg-gradient-to-r from-secondary to-secondary text-white px-1 sm:px-2 py-0.5 sm:py-1 rounded-full font-semibold">Confidencial</span>
                         </div>
                     </div>
                 </a>
@@ -402,7 +651,7 @@
 
                 <!-- Mobile menu button -->
                 <div class="xl:hidden">
-                    <button id="mobile-menu-btn" class="relative w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <button id="mobile-menu-btn" class="relative w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 touch-target">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -412,15 +661,15 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="xl:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 hidden">
-            <div class="px-4 py-6 space-y-3 max-h-96 overflow-y-auto">
-                <a href="#promocion" class="block bg-gradient-to-r from-secondary to-secondary text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg">
+        <div id="mobile-menu" class="xl:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 hidden overflow-hidden">
+            <div class="px-4 py-4 sm:py-6 space-y-2 sm:space-y-3 max-h-96 overflow-y-auto">
+                <a href="#promocion" class="block bg-gradient-to-r from-secondary to-secondary text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg touch-target">
                     🎁 Primera Sesión GRATIS
                 </a>
-                <a href="presentacion.html" class="block bg-gradient-to-r from-accent to-red-600 text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg">
+                <a href="presentacion.html" class="block bg-gradient-to-r from-accent to-red-600 text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg touch-target">
                     ✨ Presentación Interactiva
                 </a>
-                <a href="ia.html" class="block bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg">
+                <a href="ia.html" class="block bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg touch-target">
                     🤖 Chatear con nuestra IA
                 </a>
                 <a href="#metodologia" class="mobile-nav-link">📋 Protocolo de Intervención</a>
@@ -432,7 +681,7 @@
                 <a href="#testimonios" class="mobile-nav-link">💬 Testimonios</a>
                 <a href="#nuestros-servicios" class="mobile-nav-link">💰 Nuestros Servicios</a>
                 <a href="#servicios" class="mobile-nav-link">🎯 Áreas de Intervención</a>
-                <a href="#consultar" class="block bg-gradient-to-r from-primary to-secondary text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg mt-4">
+                <a href="#consultar" class="block bg-gradient-to-r from-primary to-secondary text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg mt-4 touch-target">
                     📧 Contactar Ahora
                 </a>
             </div>
@@ -440,41 +689,45 @@
     </nav>
 
     <!-- Scroll to Top Button -->
-    <button id="scroll-to-top" class="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-primary to-secondary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform translate-y-20 opacity-0 hover:scale-110 z-50">
-        <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <button id="scroll-to-top" class="fixed bottom-6 right-6 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-primary to-secondary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform translate-y-20 opacity-0 hover:scale-110 z-50 floating-button touch-target">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
         </svg>
     </button>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 py-20">
+    <!-- Hero Section OPTIMIZADA PARA MÓVILES -->
+    <section class="bg-gradient-to-br from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 py-12 sm:py-16 lg:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <div class="flex justify-center space-x-6 mb-8">
-                    <div class="flex items-center space-x-2">
+                <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-6 mb-6 sm:mb-8">
+                    <div class="flex items-center justify-center space-x-2">
                         <div class="w-2 h-2 bg-secondary rounded-full"></div>
-                        <span class="text-sm text-gray-600 dark:text-gray-300">Entrega: 48 horas</span>
+                        <span class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Entrega: 48 horas</span>
                     </div>
-                    <div class="flex items-center space-x-2">
+                    <div class="flex items-center justify-center space-x-2">
                         <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span class="text-sm text-gray-600 dark:text-gray-300">100% Confidencial</span>
+                        <span class="text-sm sm:text-base text-gray-600 dark:text-gray-300">100% Confidencial</span>
                     </div>
                 </div>
-                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                
+                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-4">
                     Toma el Control de Tu Mente,<br>
                     <span class="text-primary">Alcanza Tu Máximo Potencial</span>
                 </h1>
-                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+                
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto px-4 responsive-text">
                     Hipnosis clínica personalizada basada en evidencia científica. Sesiones online completamente confidenciales.
                 </p>
-                <p class="text-gray-500 dark:text-gray-400 mb-8">
+                
+                <p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-6 sm:mb-8 px-4">
                     Proceso simplificado: solo requerimos tu nombre de pila y método de contacto preferido. Audio hipnótico personalizado entregado en 48 horas.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#consultar" class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors">
+                
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+                    <a href="#consultar" class="bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-primary/90 transition-colors touch-target flex items-center justify-center mobile-text-base font-semibold">
                         Solicitar Evaluación Gratuita
                     </a>
-                    <a href="test.html" class="border border-primary text-primary px-8 py-3 rounded-lg hover:bg-primary/10 transition-colors">
+                    <a href="test.html" class="border-2 border-primary text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-primary/10 transition-colors touch-target flex items-center justify-center mobile-text-base font-semibold">
                         Test de Receptividad
                     </a>
                 </div>
@@ -577,7 +830,7 @@
                     <div class="bg-secondary/5 dark:bg-secondary/30 rounded-lg p-6 mb-6">
                         <h4 class="text-lg font-semibold mb-3 text-secondary dark:text-secondary/20">Colaboración Opcional</h4>
                         <p class="text-secondary dark:text-secondary/30 mb-4">
-                            Aunque no es obligatorio, agradeceríamos enormemente si después de probar tu audio, nos envías una mención sincera y objetiva sobre tu experiencia a nuestro email <strong><a href="mailto:gestion@neurosync.vip">gestion@neurosync.vip</a></strong>. 
+                            Aunque no es obligatorio, agradeceríamos enormemente si después de probar tu audio, nos envías una mención sincera y objetiva sobre tu experiencia a nuestro email <strong><a href="/cdn-cgi/l/email-protection#3e595b4d4a5751507e505b4b4c514d47505d1048574e"><span class="__cf_email__" data-cfemail="dbbcbea8afb2b4b59bb5beaea9b4a8a2b5b8f5adb2ab">[email&#160;protected]</span></a></strong>. 
                         </p>
                         <p class="text-sm text-secondary dark:text-secondary/40 italic">
                             Tu feedback nos ayuda a mejorar continuamente nuestro método y ayudar a más personas.
@@ -2615,7 +2868,7 @@
                     Si prefieres contactarnos directamente:
                 </p>
                 <div class="text-primary font-semibold text-lg">
-                    <a href="mailto:gestion@neurosync.vip" class="hover:underline">gestion@neurosync.vip</a>
+                    <a href="/cdn-cgi/l/email-protection#bed9dbcdcad7d1d0fed0dbcbccd1cdc7d0dd90c8d7ce" class="hover:underline"><span class="__cf_email__" data-cfemail="90f7f5e3e4f9fffed0fef5e5e2ffe3e9fef3bee6f9e0">[email&#160;protected]</span></a>
                 </div>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">
                     Respuesta garantizada en 24 horas • Proceso completamente confidencial
@@ -2633,8 +2886,8 @@
                 <span class="text-xl font-bold text-primary">NeuroSync Método</span>
             </div>
             <div class="mb-4">
-                <a href="mailto:gestion@neurosync.vip" class="text-primary hover:text-primary/80 transition-colors">
-                    gestion@neurosync.vip
+                <a href="/cdn-cgi/l/email-protection#98fffdebecf1f7f6d8f6fdedeaf7ebe1f6fbb6eef1e8" class="text-primary hover:text-primary/80 transition-colors">
+                    <span class="__cf_email__" data-cfemail="d4b3b1a7a0bdbbba94bab1a1a6bba7adbab7faa2bda4">[email&#160;protected]</span>
                 </a>
             </div>
             <p class="text-gray-400 mb-4">© 2025 Todos los derechos reservados.</p>
@@ -2666,7 +2919,7 @@
 
 
 <!-- GoatCounter Analytics - Privacidad respetada, sin cookies -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     window.goatcounter = {allow_frame: true}
 </script>
 <script data-goatcounter="https://neurosync.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
