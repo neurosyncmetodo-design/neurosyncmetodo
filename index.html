@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="es"><head><meta name="x-poe-datastore-behavior" content="local_only">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="x-poe-datastore-behavior" content="local_only">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -79,7 +82,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "��Qué incluye una sesión de hipnosis personalizada?",
+          "name": "¿Qué incluye una sesión de hipnosis personalizada?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Incluye evaluación de receptividad, charla prehipnótica telefónica, audio hipnótico personalizado y entrega en 48 horas."
@@ -234,9 +237,101 @@
             transform: translateY(0);
             opacity: 1;
         }
+        
+        /* CORRECCIONES CRÍTICAS PARA RESPONSIVE */
+        @media (min-width: 1280px) {
+            .xl\:flex {
+                display: flex !important;
+            }
+            .xl\:hidden {
+                display: none !important;
+            }
+        }
+
+        /* Forzar visibilidad en desktop */
+        .hidden.xl\:flex {
+            display: flex !important;
+        }
+
+        /* Asegurar que el menú móvil se oculte en desktop */
+        .xl\:hidden {
+            display: none;
+        }
+
+        @media (max-width: 1279px) {
+            .xl\:flex {
+                display: none !important;
+            }
+        }
+        
+        /* Correcciones específicas para Chrome/Brave */
+        @media (min-width: 1024px) {
+            .lg\:flex {
+                display: flex !important;
+            }
+            .lg\:hidden {
+                display: none !important;
+            }
+        }
+        
+        /* Asegurar que los elementos responsive funcionen correctamente */
+        .responsive-fix {
+            box-sizing: border-box;
+        }
+        
+        /* Prevenir problemas de overflow en móviles */
+        .container-fix {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Banner glow effects */
+        @keyframes glow {
+            0%, 100% {
+                text-shadow:
+                    0 0 10px rgba(255, 195, 0, 0.8),
+                    0 0 20px rgba(255, 195, 0, 0.6),
+                    0 0 30px rgba(255, 195, 0, 0.4),
+                    0 0 40px rgba(93, 92, 222, 0.3);
+            }
+            50% {
+                text-shadow:
+                    0 0 20px rgba(255, 195, 0, 1),
+                    0 0 30px rgba(255, 195, 0, 0.8),
+                    0 0 40px rgba(255, 195, 0, 0.6),
+                    0 0 50px rgba(93, 92, 222, 0.5),
+                    0 0 60px rgba(93, 92, 222, 0.3);
+            }
+        }
+
+        .glowing-text {
+            animation: glow 2s ease-in-out infinite;
+            background: linear-gradient(45deg, #FFC300, #fff, #5D5CDE, #FFC300);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite, gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .glowing-text:hover {
+            animation: glow 0.5s ease-in-out infinite, gradientShift 1s ease-in-out infinite;
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
     </style>
 <script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script><script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script></head>
-<body id="top" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
+<body id="top" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors container-fix">
     <!-- Scripts -->
     <script>
         // Dark mode detection
@@ -251,8 +346,43 @@
             }
         });
 
+        // Detectar Chrome/Brave y aplicar correcciones
+        function applyChromeFixes() {
+            const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+            const isBrave = navigator.brave !== undefined;
+            
+            if (isChrome || isBrave) {
+                console.log('Aplicando correcciones para Chrome/Brave');
+                
+                // Aplicar correcciones CSS específicas
+                const style = document.createElement('style');
+                style.textContent = `
+                    @media (min-width: 1024px) {
+                        .lg\\\\:flex {
+                            display: flex !important;
+                        }
+                        .lg\\\\:hidden {
+                            display: none !important;
+                        }
+                    }
+                    @media (min-width: 1280px) {
+                        .xl\\\\:flex {
+                            display: flex !important;
+                        }
+                        .xl\\\\:hidden {
+                            display: none !important;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
         // Mobile menu functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Aplicar correcciones para Chrome/Brave
+            applyChromeFixes();
+            
             // Set redirect URL for Web3Forms
             const redirectField = document.getElementById('redirect-field');
             if (redirectField) {
@@ -351,7 +481,7 @@
         <strong>AVISO IMPORTANTE:</strong> No apto para personas con trastornos psiquiátricos, epilepsia o sospecha de padecerla.
     </div>
 
-    <!-- Navigation -->
+    <!-- Navigation CORREGIDA -->
     <nav class="sticky top-0 z-50 bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
@@ -372,7 +502,7 @@
                     </div>
                 </a>
 
-                <!-- Desktop Navigation -->
+                <!-- Desktop Navigation CORREGIDO -->
                 <div class="hidden xl:flex items-center space-x-2">
                     <a href="#promocion" class="group relative bg-gradient-to-r from-secondary to-secondary text-white px-4 py-2 rounded-xl text-sm font-semibold hover:from-secondary hover:to-secondary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                         <span class="relative z-10">🎁 Sesión Gratis</span>
@@ -400,7 +530,7 @@
                     <a href="#consultar" class="nav-link-cta">Contactar</a>
                 </div>
 
-                <!-- Mobile menu button -->
+                <!-- Mobile menu button CORREGIDO -->
                 <div class="xl:hidden">
                     <button id="mobile-menu-btn" class="relative w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -411,7 +541,7 @@
             </div>
         </div>
 
-        <!-- Mobile Menu -->
+        <!-- Mobile Menu CORREGIDO -->
         <div id="mobile-menu" class="xl:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 hidden">
             <div class="px-4 py-6 space-y-3 max-h-96 overflow-y-auto">
                 <a href="#promocion" class="block bg-gradient-to-r from-secondary to-secondary text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg">
@@ -447,51 +577,6 @@
             </h2>
         </a>
     </div>
-
-    <style>
-        @keyframes glow {
-            0%, 100% {
-                text-shadow:
-                    0 0 10px rgba(255, 195, 0, 0.8),
-                    0 0 20px rgba(255, 195, 0, 0.6),
-                    0 0 30px rgba(255, 195, 0, 0.4),
-                    0 0 40px rgba(93, 92, 222, 0.3);
-            }
-            50% {
-                text-shadow:
-                    0 0 20px rgba(255, 195, 0, 1),
-                    0 0 30px rgba(255, 195, 0, 0.8),
-                    0 0 40px rgba(255, 195, 0, 0.6),
-                    0 0 50px rgba(93, 92, 222, 0.5),
-                    0 0 60px rgba(93, 92, 222, 0.3);
-            }
-        }
-
-        .glowing-text {
-            animation: glow 2s ease-in-out infinite;
-            background: linear-gradient(45deg, #FFC300, #fff, #5D5CDE, #FFC300);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: glow 2s ease-in-out infinite, gradientShift 3s ease-in-out infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .glowing-text:hover {
-            animation: glow 0.5s ease-in-out infinite, gradientShift 1s ease-in-out infinite;
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
-        }
-    </style>
 
     <!-- Scroll to Top Button -->
     <button id="scroll-to-top" class="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-primary to-secondary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform translate-y-20 opacity-0 hover:scale-110 z-50">
@@ -535,8 +620,6 @@
             </div>
         </div>
     </section>
-
-
 
     <!-- Promoción Section -->
     <section id="promocion" class="py-16 bg-gradient-to-br from-secondary/5 to-secondary/10 dark:from-secondary/20 dark:to-secondary/20">
@@ -2678,8 +2761,6 @@
         </div>
     </section>
 
-
-
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -2717,8 +2798,6 @@
         </a>
     </div>
 
-
-
 <!-- GoatCounter Analytics - Privacidad respetada, sin cookies -->
 <script>
     window.goatcounter = {allow_frame: true}
@@ -2744,4 +2823,5 @@
     });
 </script>
 
-</body></html>
+</body>
+</html>
