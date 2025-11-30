@@ -1,14 +1,23 @@
-<!DOCTYPE html><html lang="es"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="x-poe-datastore-behavior" content="local_only">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Soy hipnotizable? | NeuroSync Método</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Test de receptividad hipnótica gratuito y anónimo. Descubre tu nivel de hipnotizabilidad en 2 minutos con nuestro cuestionario estandarizado.">
-    <meta name="keywords" content="test hipnosis, receptividad hipnótica, hipnotizable, autoevaluación, hipnosis clínica, neurosync">
+    <meta name="description"
+        content="Test de receptividad hipnótica gratuito y anónimo. Descubre tu nivel de hipnotizabilidad en 2 minutos con nuestro cuestionario estandarizado.">
+    <meta name="keywords"
+        content="test hipnosis, receptividad hipnótica, hipnotizable, autoevaluación, hipnosis clínica, neurosync">
     <meta name="author" content="NeuroSync Método">
     <meta name="robots" content="index, follow">
-    
+    <link rel="canonical" href="https://www.neurosync.vip/test.html">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -30,71 +39,77 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
         /* Custom Navigation Styles */
         .nav-link {
             @apply px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-primary/5 transition-all duration-200 relative overflow-hidden;
         }
-        
+
         .nav-link-cta {
             @apply px-4 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
         }
-        
+
         .mobile-nav-link {
             @apply block px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-primary/5 hover:text-primary transition-all duration-200 font-medium;
         }
-        
+
         /* Radio button styles */
         .radio-option {
             @apply flex items-center p-4 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer transition-all duration-200 hover:border-primary hover:bg-primary/5;
         }
-        
+
         .radio-option.selected {
             @apply border-primary bg-primary/10 text-primary;
         }
-        
+
         .radio-option input[type="radio"] {
             @apply sr-only;
         }
-        
+
         .radio-option .radio-circle {
             @apply w-5 h-5 border-2 border-gray-300 dark:border-gray-600 rounded-full mr-3 flex items-center justify-center transition-all duration-200;
         }
-        
+
         .radio-option.selected .radio-circle {
             @apply border-primary;
         }
-        
+
         .radio-option.selected .radio-circle::after {
             content: '';
             @apply w-3 h-3 bg-primary rounded-full;
         }
-        
+
         /* Progress bar animation */
         .progress-bar {
             transition: width 0.3s ease-in-out;
         }
-        
+
         /* Result animation */
         @keyframes slideIn {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .result-card {
             animation: slideIn 0.5s ease-out;
         }
     </style>
-<script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script></head>
+    <script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script>
+</head>
+
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
-    
+
     <!-- Dark mode detection script -->
     <script>
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -109,13 +124,13 @@
         });
 
         // Mobile menu functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             let isMenuOpen = false;
 
             if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function() {
+                mobileMenuBtn.addEventListener('click', function () {
                     if (isMenuOpen) {
                         mobileMenu.classList.add('hidden');
                         isMenuOpen = false;
@@ -130,7 +145,7 @@
             if (mobileMenu) {
                 const mobileLinks = mobileMenu.querySelectorAll('a');
                 mobileLinks.forEach(link => {
-                    link.addEventListener('click', function() {
+                    link.addEventListener('click', function () {
                         mobileMenu.classList.add('hidden');
                         isMenuOpen = false;
                     });
@@ -141,28 +156,37 @@
 
     <!-- Header Warning -->
     <div class="bg-red-600 text-white py-2 px-4 text-center text-sm">
-        <strong>AVISO IMPORTANTE:</strong> No apto para personas con trastornos psiquiátricos, epilepsia o sospecha de padecerla.
+        <strong>AVISO IMPORTANTE:</strong> No apto para personas con trastornos psiquiátricos, epilepsia o sospecha de
+        padecerla.
     </div>
 
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50">
+    <nav
+        class="sticky top-0 z-50 bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo Section -->
                 <div class="flex items-center space-x-3">
                     <div class="relative">
-                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                                </path>
                             </svg>
                         </div>
-                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full border-2 border-white dark:border-gray-800"></div>
+                        <div
+                            class="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full border-2 border-white dark:border-gray-800">
+                        </div>
                     </div>
                     <div>
-                        <span class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">NeuroSync</span>
+                        <span
+                            class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">NeuroSync</span>
                         <div class="flex items-center space-x-2">
                             <span class="text-sm text-gray-600 dark:text-gray-300 font-medium">Método</span>
-                            <span class="text-xs bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 rounded-full font-semibold">Confidencial</span>
+                            <span
+                                class="text-xs bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 rounded-full font-semibold">Confidencial</span>
                         </div>
                     </div>
                 </div>
@@ -178,9 +202,11 @@
 
                 <!-- Mobile menu button -->
                 <div class="lg:hidden">
-                    <button id="mobile-menu-btn" class="relative w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <button id="mobile-menu-btn"
+                        class="relative w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
@@ -188,13 +214,15 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="lg:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 hidden">
+        <div id="mobile-menu"
+            class="lg:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 hidden">
             <div class="px-4 py-6 space-y-3">
                 <a href="index.html" class="mobile-nav-link">🏠 Inicio</a>
                 <a href="index.html#metodologia" class="mobile-nav-link">📋 Metodología</a>
                 <a href="index.html#investigacion" class="mobile-nav-link">📊 Investigación</a>
                 <a href="index.html#servicios" class="mobile-nav-link">🎯 Servicios</a>
-                <a href="index.html#consultar" class="block bg-gradient-to-r from-primary to-secondary text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg">
+                <a href="index.html#consultar"
+                    class="block bg-gradient-to-r from-primary to-secondary text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg">
                     📧 Consultar
                 </a>
             </div>
@@ -204,34 +232,45 @@
     <!-- Main Content -->
     <main class="min-h-screen py-12">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+
             <!-- Header -->
             <div class="text-center mb-12">
-                <div class="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                <div
+                    class="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                        </path>
                     </svg>
                 </div>
                 <h1 class="text-4xl font-bold mb-4">¿Soy hipnotizable?</h1>
-                <p class="text-xl text-gray-600 dark:text-gray-300 mb-6">Cuestionario estandarizado de autoevaluación - Duración: 2 minutos</p>
-                
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-6">Cuestionario estandarizado de autoevaluación -
+                    Duración: 2 minutos</p>
+
                 <!-- Features -->
                 <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
-                    <div class="flex items-center bg-green-50 dark:bg-green-900/20 text-secondary dark:text-green-300 px-4 py-2 rounded-full">
+                    <div
+                        class="flex items-center bg-green-50 dark:bg-green-900/20 text-secondary dark:text-green-300 px-4 py-2 rounded-full">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         <span class="text-sm font-semibold">Completamente anónimo</span>
                     </div>
-                    <div class="flex items-center bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full">
+                    <div
+                        class="flex items-center bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                            </path>
                         </svg>
                         <span class="text-sm font-semibold">Sin registro de datos</span>
                     </div>
-                    <div class="flex items-center bg-purple-50 dark:bg-purple-900/20 text-secondary dark:text-purple-300 px-4 py-2 rounded-full">
+                    <div
+                        class="flex items-center bg-purple-50 dark:bg-purple-900/20 text-secondary dark:text-purple-300 px-4 py-2 rounded-full">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                         <span class="text-sm font-semibold">Resultados inmediatos</span>
                     </div>
@@ -245,16 +284,20 @@
                     <span id="progress-text">0/5</span>
                 </div>
                 <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                    <div id="progress-bar" class="progress-bar bg-gradient-to-r from-primary to-secondary h-2 rounded-full" style="width: 0%"></div>
+                    <div id="progress-bar"
+                        class="progress-bar bg-gradient-to-r from-primary to-secondary h-2 rounded-full"
+                        style="width: 0%"></div>
                 </div>
             </div>
 
             <!-- Test Form -->
             <form id="hypnosis-test" class="space-y-8">
-                
+
                 <!-- Question 1 -->
-                <div class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                    <h3 class="text-lg font-semibold mb-4">1. Capacidad de absorción en actividades (películas, lectura)</h3>
+                <div
+                    class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-lg font-semibold mb-4">1. Capacidad de absorción en actividades (películas, lectura)
+                    </h3>
                     <div class="space-y-3">
                         <label class="radio-option" data-question="1" data-value="1">
                             <div class="radio-circle"></div>
@@ -280,7 +323,8 @@
                 </div>
 
                 <!-- Question 2 -->
-                <div class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                <div
+                    class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                     <h3 class="text-lg font-semibold mb-4">2. Capacidad de visualización mental</h3>
                     <div class="space-y-3">
                         <label class="radio-option" data-question="2" data-value="1">
@@ -307,8 +351,10 @@
                 </div>
 
                 <!-- Question 3 -->
-                <div class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                    <h3 class="text-lg font-semibold mb-4">3. Experiencia de automatismo conductual (ej: conducción automática)</h3>
+                <div
+                    class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-lg font-semibold mb-4">3. Experiencia de automatismo conductual (ej: conducción
+                        automática)</h3>
                     <div class="space-y-3">
                         <label class="radio-option" data-question="3" data-value="1">
                             <div class="radio-circle"></div>
@@ -334,7 +380,8 @@
                 </div>
 
                 <!-- Question 4 -->
-                <div class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                <div
+                    class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                     <h3 class="text-lg font-semibold mb-4">4. Facilidad para alcanzar relajación profunda</h3>
                     <div class="space-y-3">
                         <label class="radio-option" data-question="4" data-value="1">
@@ -361,7 +408,8 @@
                 </div>
 
                 <!-- Question 5 -->
-                <div class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                <div
+                    class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                     <h3 class="text-lg font-semibold mb-4">5. Respuesta a sugestiones imaginativas</h3>
                     <div class="space-y-3">
                         <label class="radio-option" data-question="5" data-value="1">
@@ -389,9 +437,12 @@
 
                 <!-- Calculate Button -->
                 <div class="text-center">
-                    <button type="button" id="calculate-btn" class="bg-gradient-to-r from-primary to-secondary text-white font-semibold py-4 px-8 rounded-xl hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                    <button type="button" id="calculate-btn"
+                        class="bg-gradient-to-r from-primary to-secondary text-white font-semibold py-4 px-8 rounded-xl hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
                         <svg class="w-5 h-5 mr-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+                            </path>
                         </svg>
                         Calcular Resultado
                     </button>
@@ -400,13 +451,17 @@
 
             <!-- Results Section -->
             <div id="results-section" class="hidden">
-                <div class="result-card bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-800/20 rounded-xl p-8 shadow-2xl border border-blue-200 dark:border-blue-700 mt-8">
-                    <h2 class="text-2xl font-bold text-center mb-6 text-blue-800 dark:text-blue-200">Resultado de Evaluación</h2>
-                    
+                <div
+                    class="result-card bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-800/20 rounded-xl p-8 shadow-2xl border border-blue-200 dark:border-blue-700 mt-8">
+                    <h2 class="text-2xl font-bold text-center mb-6 text-blue-800 dark:text-blue-200">Resultado de
+                        Evaluación</h2>
+
                     <!-- Level Display -->
                     <div class="text-center mb-8">
-                        <h3 class="text-lg font-semibold mb-4 text-blue-700 dark:text-blue-300">Nivel de Receptividad Hipnótica</h3>
-                        <div id="level-badge" class="inline-block px-6 py-3 rounded-full text-white font-bold text-xl shadow-lg"></div>
+                        <h3 class="text-lg font-semibold mb-4 text-blue-700 dark:text-blue-300">Nivel de Receptividad
+                            Hipnótica</h3>
+                        <div id="level-badge"
+                            class="inline-block px-6 py-3 rounded-full text-white font-bold text-xl shadow-lg"></div>
                     </div>
 
                     <!-- Level Bars -->
@@ -414,28 +469,32 @@
                         <div class="flex items-center">
                             <span class="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">Baja</span>
                             <div class="flex-1 h-4 bg-gray-200 dark:bg-gray-700 rounded-full mx-3">
-                                <div id="bar-baja" class="h-4 bg-red-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                <div id="bar-baja" class="h-4 bg-red-500 rounded-full transition-all duration-500"
+                                    style="width: 0%"></div>
                             </div>
                             <span id="percent-baja" class="w-12 text-sm text-gray-700 dark:text-gray-300">0%</span>
                         </div>
                         <div class="flex items-center">
                             <span class="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">Media</span>
                             <div class="flex-1 h-4 bg-gray-200 dark:bg-gray-700 rounded-full mx-3">
-                                <div id="bar-media" class="h-4 bg-yellow-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                <div id="bar-media" class="h-4 bg-yellow-500 rounded-full transition-all duration-500"
+                                    style="width: 0%"></div>
                             </div>
                             <span id="percent-media" class="w-12 text-sm text-gray-700 dark:text-gray-300">0%</span>
                         </div>
                         <div class="flex items-center">
                             <span class="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">Alta</span>
                             <div class="flex-1 h-4 bg-gray-200 dark:bg-gray-700 rounded-full mx-3">
-                                <div id="bar-alta" class="h-4 bg-secondary rounded-full transition-all duration-500" style="width: 0%"></div>
+                                <div id="bar-alta" class="h-4 bg-secondary rounded-full transition-all duration-500"
+                                    style="width: 0%"></div>
                             </div>
                             <span id="percent-alta" class="w-12 text-sm text-gray-700 dark:text-gray-300">0%</span>
                         </div>
                         <div class="flex items-center">
                             <span class="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">Muy Alta</span>
                             <div class="flex-1 h-4 bg-gray-200 dark:bg-gray-700 rounded-full mx-3">
-                                <div id="bar-muy-alta" class="h-4 bg-primary rounded-full transition-all duration-500" style="width: 0%"></div>
+                                <div id="bar-muy-alta" class="h-4 bg-primary rounded-full transition-all duration-500"
+                                    style="width: 0%"></div>
                             </div>
                             <span id="percent-muy-alta" class="w-12 text-sm text-gray-700 dark:text-gray-300">0%</span>
                         </div>
@@ -451,9 +510,11 @@
                     <div class="bg-white dark:bg-gray-800 rounded-lg p-6 mb-6">
                         <h4 class="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-200">Próximos Pasos</h4>
                         <p id="next-steps-text" class="text-gray-600 dark:text-gray-300 mb-4"></p>
-                        <a href="index.html#consultar" class="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-6 rounded-lg hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        <a href="index.html#consultar"
+                            class="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-6 rounded-lg hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                             </svg>
                             Solicitar Evaluación Gratuita
                         </a>
@@ -472,40 +533,41 @@
             </div>
             <p class="text-gray-400 mb-4">© 2025 Todos los derechos reservados.</p>
             <p class="text-gray-500 text-sm">
-                Este servicio no constituye atención médica ni psicológica profesional. No sustituye diagnóstico, tratamiento o seguimiento clínico.
+                Este servicio no constituye atención médica ni psicológica profesional. No sustituye diagnóstico,
+                tratamiento o seguimiento clínico.
             </p>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('hypnosis-test');
             const calculateBtn = document.getElementById('calculate-btn');
             const resultsSection = document.getElementById('results-section');
             const progressBar = document.getElementById('progress-bar');
             const progressText = document.getElementById('progress-text');
-            
+
             let answeredQuestions = 0;
             const totalQuestions = 5;
 
             // Handle radio button selection
             document.querySelectorAll('.radio-option').forEach(option => {
-                option.addEventListener('click', function() {
+                option.addEventListener('click', function () {
                     const questionNum = this.dataset.question;
                     const value = this.dataset.value;
-                    
+
                     // Clear previous selection for this question
                     document.querySelectorAll(`[data-question="${questionNum}"]`).forEach(opt => {
                         opt.classList.remove('selected');
                     });
-                    
+
                     // Select current option
                     this.classList.add('selected');
-                    
+
                     // Update hidden radio input
                     this.querySelector('input[type="radio"]').checked = true;
-                    
+
                     // Update progress
                     updateProgress();
                 });
@@ -514,11 +576,11 @@
             function updateProgress() {
                 const checkedInputs = form.querySelectorAll('input[type="radio"]:checked');
                 answeredQuestions = checkedInputs.length;
-                
+
                 const progressPercent = (answeredQuestions / totalQuestions) * 100;
                 progressBar.style.width = progressPercent + '%';
                 progressText.textContent = `${answeredQuestions}/${totalQuestions}`;
-                
+
                 // Enable calculate button when all questions are answered
                 if (answeredQuestions === totalQuestions) {
                     calculateBtn.disabled = false;
@@ -528,23 +590,23 @@
             }
 
             // Calculate results
-            calculateBtn.addEventListener('click', function() {
+            calculateBtn.addEventListener('click', function () {
                 const formData = new FormData(form);
                 let total = 0;
-                
+
                 // Calculate total score
                 for (let i = 1; i <= totalQuestions; i++) {
                     const value = parseInt(formData.get(`q${i}`)) || 0;
                     total += value;
                 }
-                
+
                 // Calculate level percentages
                 const maxScore = totalQuestions * 4; // Maximum possible score
                 const scorePercent = (total / maxScore) * 100;
-                
+
                 let level, interpretation, nextSteps;
                 let levelColor, levelBg;
-                
+
                 if (scorePercent <= 25) {
                     level = 'Baja';
                     levelColor = 'bg-red-500';
@@ -570,11 +632,11 @@
                     interpretation = 'Su nivel de receptividad hipnótica es muy alto. Esto es excepcional y sugiere una capacidad natural sobresaliente para estados de consciencia modificados y respuesta a sugestiones terapéuticas.';
                     nextSteps = 'Su perfil de receptividad excepcional indica que puede lograr resultados extraordinarios con protocolos hipnóticos personalizados. Solicite una evaluación completa sin coste para aprovechar todo su potencial.';
                 }
-                
+
                 // Update results display
                 document.getElementById('level-badge').textContent = level;
                 document.getElementById('level-badge').className = `inline-block px-6 py-3 rounded-full text-white font-bold text-xl shadow-lg ${levelColor}`;
-                
+
                 // Animate level bars
                 setTimeout(() => {
                     if (level === 'Baja') {
@@ -591,10 +653,10 @@
                         document.getElementById('percent-muy-alta').textContent = '100%';
                     }
                 }, 300);
-                
+
                 document.getElementById('interpretation-text').textContent = interpretation;
                 document.getElementById('next-steps-text').textContent = nextSteps;
-                
+
                 // Show results
                 resultsSection.classList.remove('hidden');
                 resultsSection.scrollIntoView({ behavior: 'smooth' });
@@ -607,4 +669,6 @@
 
 
 
-</body></html>
+</body>
+
+</html>
