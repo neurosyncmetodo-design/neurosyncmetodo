@@ -1,4 +1,10 @@
-<!DOCTYPE html><html lang="es"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com https://script.google.com https://script.googleusercontent.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self';">
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="x-poe-datastore-behavior" content="local_only">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com https://script.google.com https://script.googleusercontent.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self';">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatBot NeuroSync | Asistente Completo</title>
@@ -24,7 +30,10 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
 
         /* Logo watermark background */
         body::before {
@@ -47,13 +56,21 @@
         }
 
         @keyframes messageSlideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .quick-btn {
             transition: all 0.2s ease;
-            min-height: 44px; /* Touch-friendly minimum */
+            min-height: 44px;
+            /* Touch-friendly minimum */
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -63,7 +80,7 @@
 
         .quick-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         /* Responsive button text */
@@ -73,6 +90,7 @@
                 padding: 0.75rem;
                 min-height: 48px;
             }
+
             .quick-btn .text-xs {
                 font-size: 0.75rem;
             }
@@ -107,7 +125,8 @@
         @media (max-width: 768px) {
             .main-container-mobile {
                 /* En móvil: MUCHO más padding para compensar el header sticky */
-                padding-top: 5rem !important; /* 80px de espacio para que se vean todos los botones */
+                padding-top: 5rem !important;
+                /* 80px de espacio para que se vean todos los botones */
             }
         }
 
@@ -147,78 +166,102 @@
             z-index: 0;
         }
 
-        #chatMessages > * {
+        #chatMessages>* {
             position: relative;
             z-index: 1;
         }
     </style>
 </head>
+
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen">
 
-    <header class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
+    <header
+        class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center space-x-3">
                     <img src="logo.png" alt="NeuroSync Logo" class="w-12 h-12 object-contain">
                     <div>
-                        <h1 class="text-lg font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">NeuroSync Chat de Respuestas Predefinidas</h1>
+                        <h1
+                            class="text-lg font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                            NeuroSync Chat de Respuestas Predefinidas</h1>
                         <p class="text-xs text-secondary dark:text-green-400">🤖 Chatbot local</p>
                     </div>
                 </div>
 
                 <div class="flex items-center space-x-2">
-                    <a href="ia.html" class="hidden sm:flex px-3 py-1.5 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all text-sm font-medium items-center space-x-1">
+                    <a href="ia.html"
+                        class="hidden sm:flex px-3 py-1.5 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all text-sm font-medium items-center space-x-1">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                         <span>IA Entrenada</span>
                     </a>
-                    <a href="ia.html" class="sm:hidden p-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all" title="Chat IA Entrenada">
+                    <a href="ia.html"
+                        class="sm:hidden p-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all"
+                        title="Chat IA Entrenada">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </a>
-                    <button onclick="clearChat()" class="p-2 text-gray-500 hover:text-gray-700 rounded-lg transition-all" title="Limpiar chat">
+                    <button onclick="clearChat()"
+                        class="p-2 text-gray-500 hover:text-gray-700 rounded-lg transition-all" title="Limpiar chat">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                            </path>
                         </svg>
                     </button>
-                    <a href="index.html" class="px-3 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium">Volver</a>
+                    <a href="index.html"
+                        class="px-3 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium">Volver</a>
                 </div>
             </div>
         </div>
     </header>
 
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 main-container-mobile" style="padding-top: 1.5rem;">
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-visible" style="height: calc(100vh - 10rem);">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-visible"
+            style="height: calc(100vh - 10rem);">
 
             <!-- Menús Esquematizados Mejorados -->
-            <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 menu-section" style="padding-top: 2rem;">
+            <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 menu-section"
+                style="padding-top: 2rem;">
                 <div id="mainMenu">
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 font-semibold" style="padding-top: 1rem;">📋 Consultas Esquematizadas (Menú Principal)</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 font-semibold" style="padding-top: 1rem;">📋
+                        Consultas Esquematizadas (Menú Principal)</p>
                     <div class="menu-grid">
-                        <button onclick="showSubmenu('servicios')" class="quick-btn px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm hover:bg-blue-100">
+                        <button onclick="showSubmenu('servicios')"
+                            class="quick-btn px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm hover:bg-blue-100">
                             <span>🎯 Servicios</span> <span class="text-xs">→</span>
                         </button>
-                        <button onclick="showSubmenu('metodo')" class="quick-btn px-3 py-2 bg-purple-50 text-secondary rounded-lg text-sm hover:bg-secondary">
+                        <button onclick="showSubmenu('metodo')"
+                            class="quick-btn px-3 py-2 bg-purple-50 text-secondary rounded-lg text-sm hover:bg-secondary">
                             <span>🧠 Método</span> <span class="text-xs">→</span>
                         </button>
-                        <button onclick="showSubmenu('info_practica')" class="quick-btn px-3 py-2 bg-green-50 text-green-700 rounded-lg text-sm hover:bg-secondary">
+                        <button onclick="showSubmenu('info_practica')"
+                            class="quick-btn px-3 py-2 bg-green-50 text-green-700 rounded-lg text-sm hover:bg-secondary">
                             <span>💰 Info Práctica</span> <span class="text-xs">→</span>
                         </button>
-                        <button onclick="showSubmenu('seguridad')" class="quick-btn px-3 py-2 bg-orange-50 text-orange-700 rounded-lg text-sm hover:bg-orange-100">
+                        <button onclick="showSubmenu('seguridad')"
+                            class="quick-btn px-3 py-2 bg-orange-50 text-orange-700 rounded-lg text-sm hover:bg-orange-100">
                             <span>🔒 Seguridad</span> <span class="text-xs">→</span>
                         </button>
-                        <button onclick="showSubmenu('areas')" class="quick-btn px-3 py-2 bg-cyan-50 text-cyan-700 rounded-lg text-sm hover:bg-cyan-100">
+                        <button onclick="showSubmenu('areas')"
+                            class="quick-btn px-3 py-2 bg-cyan-50 text-cyan-700 rounded-lg text-sm hover:bg-cyan-100">
                             <span>🎯 Qué Tratamos</span> <span class="text-xs">→</span>
                         </button>
-                        <button onclick="showSubmenu('dudas')" class="quick-btn px-3 py-2 bg-yellow-50 text-yellow-700 rounded-lg text-sm hover:bg-yellow-100">
+                        <button onclick="showSubmenu('dudas')"
+                            class="quick-btn px-3 py-2 bg-yellow-50 text-yellow-700 rounded-lg text-sm hover:bg-yellow-100">
                             <span>❓ Dudas Frecuentes</span> <span class="text-xs">→</span>
                         </button>
-                        <button onclick="showSubmenu('primeros_pasos')" class="quick-btn px-3 py-2 bg-pink-50 text-pink-700 rounded-lg text-sm hover:bg-pink-100">
+                        <button onclick="showSubmenu('primeros_pasos')"
+                            class="quick-btn px-3 py-2 bg-pink-50 text-pink-700 rounded-lg text-sm hover:bg-pink-100">
                             <span>🚀 Primeros Pasos</span> <span class="text-xs">→</span>
                         </button>
-                        <button onclick="showSubmenu('soporte')" class="quick-btn px-3 py-2 bg-red-50 text-red-700 rounded-lg text-sm hover:bg-red-100">
+                        <button onclick="showSubmenu('soporte')"
+                            class="quick-btn px-3 py-2 bg-red-50 text-red-700 rounded-lg text-sm hover:bg-red-100">
                             <span>👨‍💼 Soporte</span> <span class="text-xs">→</span>
                         </button>
                     </div>
@@ -227,21 +270,27 @@
                 <div id="submenuContainer" class="hidden">
                     <div class="flex items-center justify-between mb-4">
                         <p class="text-sm text-gray-600 dark:text-gray-400" id="submenuTitle">Selecciona una opción:</p>
-                        <button onclick="showMainMenu()" class="text-xs text-gray-500 hover:text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-all">← Volver</button>
+                        <button onclick="showMainMenu()"
+                            class="text-xs text-gray-500 hover:text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-all">←
+                            Volver</button>
                     </div>
                     <div id="submenuContent"></div>
                 </div>
             </div>
 
-            <div id="chatMessages" class="flex-1 p-3 sm:p-4 space-y-4 overflow-y-auto relative" style="height: calc(100vh - 26rem);">
+            <div id="chatMessages" class="flex-1 p-3 sm:p-4 space-y-4 overflow-y-auto relative"
+                style="height: calc(100vh - 26rem);">
                 <div class="flex items-start space-x-3">
                     <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
                         <img src="logo.png" alt="NeuroSync" class="w-full h-full object-cover">
                     </div>
                     <div class="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 py-3 max-w-[85%]">
-                        <p class="text-gray-800 dark:text-gray-200 text-sm sm:text-base">¡Bienvenido! Tengo respuestas completas para TODAS las consultas sobre NeuroSync (48 temas).
-                        <br><br>🧠 <strong>¿Prefieres IA?</strong> <a href="ia.html" class="text-primary underline font-semibold">Prueba nuestro Chat con IA Entrenada</a>
-                        <br><br>Usa los menús de arriba o escribe tu pregunta. ¿En qué puedo ayudarte?</p>
+                        <p class="text-gray-800 dark:text-gray-200 text-sm sm:text-base">¡Bienvenido! Tengo respuestas
+                            completas para TODAS las consultas sobre NeuroSync (48 temas).
+                            <br><br>🧠 <strong>¿Prefieres IA?</strong> <a href="ia.html"
+                                class="text-primary underline font-semibold">Prueba nuestro Chat con IA Entrenada</a>
+                            <br><br>Usa los menús de arriba o escribe tu pregunta. ¿En qué puedo ayudarte?
+                        </p>
                     </div>
                 </div>
             </div>
@@ -249,26 +298,33 @@
             <div class="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
                 <div class="flex space-x-3">
                     <div class="flex-1 relative">
-                        <input type="text" id="messageInput" placeholder="Escribe tu consulta..." class="w-full px-4 py-3 text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-gray-900 placeholder-gray-500 pr-12" onkeypress="handleKeyPress(event)">
-                        <button onclick="sendMessage()" id="sendButton" class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center">
+                        <input type="text" id="messageInput" placeholder="Escribe tu consulta..."
+                            class="w-full px-4 py-3 text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-gray-900 placeholder-gray-500 pr-12"
+                            onkeypress="handleKeyPress(event)">
+                        <button onclick="sendMessage()" id="sendButton"
+                            class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
                 <p class="text-xs text-gray-500 mt-2 text-center">
-                    Chatbot completo NeuroSync • <a href="ia.html" class="text-primary underline">Chat IA Entrenada</a> • Para casos específicos: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="36515345425f5958765853434459454f585518405f46">[email&#160;protected]</a>
+                    Chatbot completo NeuroSync • <a href="ia.html" class="text-primary underline">Chat IA Entrenada</a>
+                    • Para casos específicos: <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                        data-cfemail="36515345425f5958765853434459454f585518405f46">[email&#160;protected]</a>
                 </p>
             </div>
         </div>
     </main>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
         let isWaitingForResponse = false;
 
         // ==================== CONFIGURACIÓN GOOGLE SHEETS ====================
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxW2BVOLTkkVfVeSbfygdDl6bemiOqlroNIL4BVY02QMjiBNt0gGqATzPxVSZzILmme/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwX_6t3OWJsYZ3NpoUzss8mtKOb1uyGtrDsmThqsU2KIeUHkTHqV7BP0zOeyYdWI0jhwA/exec';
 
         // Función para registrar consultas en Google Sheets
         function registrarConsulta(pregunta, respuesta, tipo) {
@@ -2163,9 +2219,11 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
             showMainMenu();
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('messageInput').focus();
         });
     </script>
 
-</body></html>
+</body>
+
+</html>
