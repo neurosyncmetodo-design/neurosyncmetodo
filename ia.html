@@ -4,7 +4,7 @@
 <head>
     <meta name="x-poe-datastore-behavior" content="local_only">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+        content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com https://dimitri-neurosync-ia-v2.hf.space; child-src 'self' https://dimitri-neurosync-ia-v2.hf.space; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeuroSync IA Assistant | Asistente Inteligencia Artificial</title>
@@ -38,17 +38,66 @@
 
         body {
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            /* Evitar scroll horizontal */
         }
 
         .ai-button {
             background: linear-gradient(135deg, #5D5CDE 0%, #764ba2 100%);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .ai-button:hover {
             background: linear-gradient(135deg, #764ba2 0%, #5D5CDE 100%);
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(93, 92, 222, 0.3);
+        }
+
+        /* Estilos para el iframe container */
+        .chat-frame-container {
+            position: fixed;
+            top: 64px;
+            /* Altura del header aprox */
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 64px);
+            background: #fff;
+            z-index: 40;
+            display: none;
+            /* Oculto por defecto */
+        }
+
+        .chat-frame-container.active {
+            display: block;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Spinner para botón */
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #fff;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
     <script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script>
@@ -60,7 +109,7 @@
     <header class="bg-white/90 backdrop-blur-md shadow-lg border-b border-gray-200/50 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.reload()">
                     <div
                         class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -78,20 +127,20 @@
                 </div>
                 <div class="flex items-center space-x-3">
                     <a href="chat.html"
-                        class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm">
+                        class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm hidden sm:inline-block">
                         💬 Chat Local
                     </a>
                     <a href="index.html"
                         class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary/90 transition-colors">
-                        🏠 Volver al Inicio
+                        🏠 Volver
                     </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Main Content Container (Marketing) -->
+    <main id="marketing-section" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-opacity duration-500">
 
         <!-- Hero Section -->
         <div class="text-center mb-12">
@@ -160,17 +209,18 @@
                 </div>
 
                 <div class="space-y-6">
-                    <a href="https://huggingface.co/spaces/neurosyncmetodo/neurosync-assistant-v2" target="_blank"
-                        class="ai-button inline-flex items-center text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl">
+                    <!-- BOTÓN DE ACCESO MODIFICADO -->
+                    <button id="btn-access" onclick="launchSystem()"
+                        class="ai-button inline-flex items-center text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl w-full sm:w-auto justify-center">
                         <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                         </svg>
-                        🚀 ACCEDER AL ASISTENTE IA
-                    </a>
+                        <span>🚀 ACCEDER AL ASISTENTE IA</span>
+                    </button>
 
-                    <p class="text-gray-500">
-                        <strong>Se abre en nueva ventana</strong> - Tendrás acceso completo a la IA especializada
+                    <p class="text-gray-500 text-sm">
+                        Sistema alojado en servidor seguro de alta velocidad (Hugging Face)
                     </p>
 
                     <!-- Botón alternativo -->
@@ -221,7 +271,7 @@
         </div>
 
         <!-- Bottom CTA -->
-        <div class="mt-12 text-center">
+        <div class="mt-12 text-center pb-8">
             <div class="bg-gradient-to-r from-primary to-secondary text-white rounded-2xl p-8 shadow-2xl">
                 <h3 class="text-2xl font-bold mb-4">🎯 ¿Listo para tu Transformación?</h3>
                 <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
@@ -242,8 +292,14 @@
         </div>
     </main>
 
-    <!-- Footer simple -->
-    <footer class="bg-gray-900 text-white py-6 mt-12">
+    <!-- CHAT INTERFACE SECTION (Oculto inicialmente) -->
+    <div id="chat-section" class="chat-frame-container">
+        <!-- Reemplaza src con la URL de tu Space de Hugging Face -->
+        <iframe id="hf-iframe" src="" allow="microphone; autoplay"></iframe>
+    </div>
+
+    <!-- Footer simple (Solo visible en marketing mode) -->
+    <footer id="footer-section" class="bg-gray-900 text-white py-6">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="flex items-center justify-center space-x-2 mb-2">
                 <img src="logo.png" alt="NeuroSync" class="w-6 h-6 filter brightness-0 invert">
@@ -255,7 +311,41 @@
         </div>
     </footer>
 
+    <script>
+        // CONFIGURACIÓN: CAMBIA ESTO POR LA URL DE TU SPACE
+        const SPACE_URL = "https://dimitri-neurosync-ia-v2.hf.space";
 
+        function launchSystem() {
+            const btn = document.getElementById('btn-access');
+            const marketingSection = document.getElementById('marketing-section');
+            const footerSection = document.getElementById('footer-section');
+            const chatSection = document.getElementById('chat-section');
+            const iframe = document.getElementById('hf-iframe');
+
+            // 1. Feedback visual en el botón
+            btn.innerHTML = '<span class="spinner"></span> INICIANDO SISTEMA...';
+            btn.style.opacity = '0.9';
+            btn.style.cursor = 'wait';
+            btn.disabled = true;
+
+            // 2. Cargar Iframe con timestamp para despertar al Space si está dormido
+            iframe.src = SPACE_URL + "?t=" + new Date().getTime();
+
+            // 3. Transición suave (Dar tiempo a que el iframe empiece a cargar)
+            setTimeout(() => {
+                // Ocultar sección marketing
+                marketingSection.style.display = 'none';
+                footerSection.style.display = 'none';
+
+                // Mostrar chat a pantalla completa
+                chatSection.classList.add('active');
+
+                // Opcional: Cambiar título de página
+                document.title = "Chat Activo | NeuroSync IA";
+
+            }, 1000); // 1.5 segundos de "delay" para sensación de carga
+        }
+    </script>
 </body>
 
 </html>
