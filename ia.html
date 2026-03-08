@@ -15,6 +15,7 @@
     <link rel="canonical" href="https://www.neurosync.vip/ia.html">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="design.css">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -33,11 +34,16 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="design.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        body {
+            font-family: 'Outfit', sans-serif !important;
+        }
+
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         body {
-            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             /* Evitar scroll horizontal */
         }
@@ -99,11 +105,34 @@
                 transform: rotate(360deg);
             }
         }
+
+        /* Neural Canvas */
+        #neural-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.1;
+        }
+
+        .neuro-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(13, 10, 31, 0.8) 0%, rgba(13, 10, 31, 1) 70%);
+            z-index: -1;
+        }
     </style>
     <script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script>
 </head>
 
-<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+<body class="bg-[#0D0A1F] text-[#F0EEFF] relative overflow-x-hidden">
+    <canvas id="neural-canvas"></canvas>
+    <div class="neuro-bg"></div>
 
     <!-- Header -->
     <header class="bg-white/90 backdrop-blur-md shadow-lg border-b border-gray-200/50 sticky top-0 z-50">
@@ -345,6 +374,60 @@
 
             }, 1000); // 1.5 segundos de "delay" para sensación de carga
         }
+    </script>
+    <script>
+        (function () {
+            const canvas = document.getElementById('neural-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let nodes = [], animFrame;
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            function initNodes(count = 70) {
+                nodes = [];
+                for (let i = 0; i < count; i++) {
+                    nodes.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.3,
+                        vy: (Math.random() - 0.5) * 0.3,
+                        r: Math.random() * 2 + 0.5,
+                        color: Math.random() > 0.5 ? '#0df280' : '#3512e2'
+                    });
+                }
+            }
+            function drawFrame() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 180) {
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = `rgba(13, 242, 128, ${(1 - dist / 180) * 0.15})`;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                nodes.forEach(node => {
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+                    ctx.fillStyle = node.color + '99';
+                    ctx.fill();
+                    node.x += node.vx; node.y += node.vy;
+                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                });
+                animFrame = requestAnimationFrame(drawFrame);
+            }
+            resize(); initNodes(); drawFrame();
+            window.addEventListener('resize', () => { resize(); initNodes(); });
+        })();
     </script>
 </body>
 

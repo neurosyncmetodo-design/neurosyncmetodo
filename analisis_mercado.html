@@ -1,318 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neurosync vs Competencia directa en la Red - Análisis Comparativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="design.css">
     <style>
-        :root {
-            --color-primary: #5D5CDE;
-            --color-secondary: #00A389;
-            --color-accent: #FFC300;
-            --color-text-dark: #1F2937;
-            --color-text-light: #F9FAFB;
-            --color-background-light: #FFFFFF;
-            --color-background-dark: #0F172A;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--color-text-dark);
-            background: #f5f6fa;
+            font-family: 'Outfit', sans-serif !important;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-background-dark) 100%);
-            color: var(--color-text-light);
-            padding: 60px 40px;
-            text-align: center;
-            margin-bottom: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-        
-        .header .subtitle {
-            font-size: 1.5rem;
-            opacity: 0.9;
-        }
-        
+
         .comparison-table {
-            background: var(--color-background-light);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            overflow-x: auto;
+            background: rgba(23, 15, 53, 0.4) !important;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            overflow: hidden;
         }
-        
-        .comparison-table h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--color-text-dark);
-            margin-bottom: 40px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 1.1rem;
-        }
-        
-        th, td {
-            padding: 20px 15px;
-            text-align: left;
-            border-bottom: 2px solid #ecf0f1;
-        }
-        
+
         th {
-            background: #f8f9fa;
-            font-weight: 700;
-            color: var(--color-text-dark);
-            font-size: 1.2rem;
+            background: rgba(53, 18, 226, 0.3) !important;
+            color: #F0EEFF !important;
         }
-        
+
+        td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+            color: #D1C9FF !important;
+        }
+
         .neurosync-column {
-            background: linear-gradient(45deg, rgba(93, 92, 222, 0.1), rgba(0, 163, 137, 0.1));
-            position: relative;
+            background: rgba(13, 242, 128, 0.05) !important;
         }
-        
-        .neurosync-column::before {
-            content: "🏆";
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.5rem;
-        }
-        
-        .traditional-column {
-            background: #fafafa;
-        }
-        
-        .neurosync-advantage {
-            color: var(--color-secondary);
-            font-weight: 600;
-        }
-        
-        .traditional-disadvantage {
-            color: #e74c3c;
-            font-weight: 600;
-        }
-        
-        .advantage-highlight {
-            background: rgba(93, 92, 222, 0.1);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border-left: 5px solid var(--color-primary);
-        }
-        
-        .advantage-highlight h3 {
-            color: var(--color-primary);
-            margin-bottom: 10px;
-            font-size: 1.4rem;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
+
         .feature-card {
-            background: var(--color-background-light);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-top: 5px solid var(--color-primary);
+            background: rgba(23, 15, 53, 0.6) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #3512E2 !important;
         }
-        
-        .feature-card h3 {
-            color: var(--color-primary);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+
+        .vs-item.neurosync-item {
+            background: linear-gradient(135deg, #3512E2, #0D0A1F) !important;
+            border: 1px solid #3512E2;
         }
-        
-        .vs-section {
-            background: var(--color-background-light);
-            padding: 60px 40px;
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .vs-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--color-text-dark);
-            margin-bottom: 40px;
-        }
-        
-        .vs-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-        
-        .vs-item {
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-        }
-        
-        .neurosync-item {
-            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-            color: var(--color-text-light);
-        }
-        
-        .traditional-item {
-            background: #f8f9fa;
-            color: #7f8c8d;
-            border: 2px solid #ecf0f1;
-        }
-        
-        .vs-item h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-        
-        .vs-item .price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 20px 0;
-        }
-        
-        .vs-item .description {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .benefits-comparison {
-            background: var(--color-background-light);
-            padding: 60px 40px;
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .benefits-comparison h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--color-text-dark);
-            margin-bottom: 40px;
-        }
-        
-        .benefit-item {
-            display: flex;
-            align-items: center;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            background: #f8f9fa;
-        }
-        
+
         .benefit-neurosync {
-            background: rgba(93, 92, 222, 0.1);
-            border-left: 5px solid var(--color-primary);
-        }
-        
-        .benefit-traditional {
-            background: #fef5f5;
-            border-left: 5px solid #e74c3c;
-        }
-        
-        .benefit-icon {
-            font-size: 2rem;
-            margin-right: 20px;
-            width: 50px;
-            text-align: center;
-        }
-        
-        .benefit-content h4 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-        
-        .benefit-content p {
-            color: #7f8c8d;
-            font-size: 1rem;
-        }
-        
-        .conclusion {
-            background: linear-gradient(45deg, var(--color-primary), var(--color-background-dark));
-            color: var(--color-text-light);
-            padding: 60px 40px;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .conclusion h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-        
-        .conclusion p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-            color: var(--color-text-light);
-            padding: 20px 40px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(93, 92, 222, 0.3);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(93, 92, 222, 0.4);
-        }
-        
-        @media (max-width: 768px) {
-            .vs-comparison {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            table {
-                font-size: 0.9rem;
-            }
+            background: rgba(13, 242, 128, 0.1) !important;
+            border-left: 5px solid #0DF280 !important;
         }
     </style>
 </head>
-<body>
+
+<body class="bg-[#0D0A1F] text-[#F0EEFF] relative overflow-x-hidden">
+    <canvas id="neural-canvas"></canvas>
+    <div class="neuro-bg"></div>
     <div class="container">
         <!-- Header -->
         <div class="header">
@@ -344,7 +87,8 @@
                     </tr>
                     <tr>
                         <td><strong>Metodología</strong></td>
-                        <td class="neurosync-column neurosync-advantage">✅ Híbrida: Hipnosis + Frecuencias + Respiración</td>
+                        <td class="neurosync-column neurosync-advantage">✅ Híbrida: Hipnosis + Frecuencias + Respiración
+                        </td>
                         <td class="traditional-column traditional-disadvantage">❌ Solo hipnosis ericksoniana</td>
                     </tr>
                     <tr>
@@ -369,7 +113,8 @@
                     </tr>
                     <tr>
                         <td><strong>Precio</strong></td>
-                        <td class="neurosync-column neurosync-advantage">Desde 30€ (audio con posibilidad de repetición para potenciar efecto)</td>
+                        <td class="neurosync-column neurosync-advantage">Desde 30€ (audio con posibilidad de repetición
+                            para potenciar efecto)</td>
                         <td class="traditional-column">€30-45 (Estándar, sesión única)</td>
                     </tr>
                 </tbody>
@@ -379,39 +124,47 @@
         <!-- Advantages Highlight -->
         <div class="advantage-highlight">
             <h3>🚀 Ventajas Competitivas Clave de Neurosync</h3>
-            <p>Según el análisis comparativo, Neurosync supera significativamente a los métodos tradicionales en 7 de 8 categorías evaluadas, destacando especialmente en innovación tecnológica, velocidad de entrega y personalización.</p>
+            <p>Según el análisis comparativo, Neurosync supera significativamente a los métodos tradicionales en 7 de 8
+                categorías evaluadas, destacando especialmente en innovación tecnológica, velocidad de entrega y
+                personalización.</p>
         </div>
 
         <!-- Key Features Grid -->
         <div class="features-grid">
             <div class="feature-card">
                 <h3>🤖 Validación por IA</h3>
-                <p><strong>Única en el mercado:</strong> Utiliza Claude y NotebookLM de Google para validar y optimizar cada protocolo antes de la entrega, garantizando máxima calidad y efectividad.</p>
+                <p><strong>Única en el mercado:</strong> Utiliza Claude y NotebookLM de Google para validar y optimizar
+                    cada protocolo antes de la entrega, garantizando máxima calidad y efectividad.</p>
             </div>
-            
+
             <div class="feature-card">
                 <h3>⚡ Entrega Ultra-Rápida</h3>
-                <p><strong>3x más rápido:</strong> Mientras la competencia toma 1-2 semanas, Neurosync entrega en menos de 48 horas, permitiendo resultados más inmediatos.</p>
+                <p><strong>3x más rápido:</strong> Mientras la competencia toma 1-2 semanas, Neurosync entrega en menos
+                    de 48 horas, permitiendo resultados más inmediatos.</p>
             </div>
-            
+
             <div class="feature-card">
                 <h3>🧬 Metodología Híbrida</h3>
-                <p><strong>Combinación única:</strong> Integra hipnosis ericksoniana, frecuencias binaurales theta/alpha y técnicas respiratorias para potenciar los resultados.</p>
+                <p><strong>Combinación única:</strong> Integra hipnosis ericksoniana, frecuencias binaurales theta/alpha
+                    y técnicas respiratorias para potenciar los resultados.</p>
             </div>
-            
+
             <div class="feature-card">
                 <h3>🎯 Primera Sesión Gratis</h3>
-                <p><strong>Riesgo cero:</strong> Permite experimentar la diferencia sin compromiso, algo que ningún competidor tradicional ofrece.</p>
+                <p><strong>Riesgo cero:</strong> Permite experimentar la diferencia sin compromiso, algo que ningún
+                    competidor tradicional ofrece.</p>
             </div>
-            
+
             <div class="feature-card">
                 <h3>📱 Experiencia Digital Premium</h3>
-                <p><strong>Comodidad total:</strong> Acceso desde cualquier dispositivo, contenido de alta calidad y experiencia usuario superior.</p>
+                <p><strong>Comodidad total:</strong> Acceso desde cualquier dispositivo, contenido de alta calidad y
+                    experiencia usuario superior.</p>
             </div>
-            
+
             <div class="feature-card">
                 <h3>🔬 Respaldado Científicamente</h3>
-                <p><strong>Evidencia emergente:</strong> Integra tecnologías respaldadas por estudios sobre frecuencias binaurales y neuroplasticidad.</p>
+                <p><strong>Evidencia emergente:</strong> Integra tecnologías respaldadas por estudios sobre frecuencias
+                    binaurales y neuroplasticidad.</p>
             </div>
         </div>
 
@@ -425,13 +178,13 @@
                     <div class="description">
                         ✅ IA de validación<br>
                         ✅ Entrega <48h<br>
-                        ✅ Metodología híbrida<br>
-                        ✅ Primera sesión GRATIS<br>
-                        ✅ Seguimiento incluido<br>
-                        ✅ Acceso digital premium
+                            ✅ Metodología híbrida<br>
+                            ✅ Primera sesión GRATIS<br>
+                            ✅ Seguimiento incluido<br>
+                            ✅ Acceso digital premium
                     </div>
                 </div>
-                
+
                 <div class="vs-item traditional-item">
                     <h3>Competencia directa en la Red</h3>
                     <div class="price">30-45€</div>
@@ -445,11 +198,14 @@
                     </div>
                 </div>
             </div>
-            
-            <div style="text-align: center; margin-top: 40px; background: rgba(93, 92, 222, 0.1); padding: 30px; border-radius: 15px;">
+
+            <div
+                style="text-align: center; margin-top: 40px; background: rgba(93, 92, 222, 0.1); padding: 30px; border-radius: 15px;">
                 <h3 style="color: var(--color-primary); font-size: 1.8rem;">💡 Análisis de Valor</h3>
                 <p style="font-size: 1.2rem; color: var(--color-text-dark); margin-top: 15px;">
-                    <strong>Ventaja Exclusiva:</strong> Por solo 30€ tienes un audio que puedes escuchar tantas veces como quieras para potenciar el efecto. Con otros métodos te juegas la efectividad a una sola sesión y tienes que pagar múltiples veces.
+                    <strong>Ventaja Exclusiva:</strong> Por solo 30€ tienes un audio que puedes escuchar tantas veces
+                    como quieras para potenciar el efecto. Con otros métodos te juegas la efectividad a una sola sesión
+                    y tienes que pagar múltiples veces.
                 </p>
             </div>
         </div>
@@ -457,23 +213,25 @@
         <!-- Benefits Comparison -->
         <div class="benefits-comparison">
             <h2>⚡ Comparativa de Resultados</h2>
-            
+
             <div class="benefit-item benefit-neurosync">
                 <div class="benefit-icon">🚀</div>
                 <div class="benefit-content">
                     <h4>Neurosync: Resultados Acelerados</h4>
-                    <p>Metodología híbrida + IA logra resultados visibles en 3-7 días vs 2-4 semanas de métodos tradicionales</p>
+                    <p>Metodología híbrida + IA logra resultados visibles en 3-7 días vs 2-4 semanas de métodos
+                        tradicionales</p>
                 </div>
             </div>
-            
+
             <div class="benefit-item benefit-traditional">
                 <div class="benefit-icon">🐌</div>
                 <div class="benefit-content">
                     <h4>Tradicional: Proceso Lento</h4>
-                    <p>Dependencia única de hipnosis verbal requiere múltiples sesiones para mostrar resultados tangibles</p>
+                    <p>Dependencia única de hipnosis verbal requiere múltiples sesiones para mostrar resultados
+                        tangibles</p>
                 </div>
             </div>
-            
+
             <div class="benefit-item benefit-neurosync">
                 <div class="benefit-icon">🎯</div>
                 <div class="benefit-content">
@@ -481,7 +239,7 @@
                     <p>Frecuencias binaurales específicas + validación IA = precisión en el targeting neurológico</p>
                 </div>
             </div>
-            
+
             <div class="benefit-item benefit-traditional">
                 <div class="benefit-icon">📝</div>
                 <div class="benefit-content">
@@ -489,7 +247,7 @@
                     <p>Protocolos estándar sin personalización tecnológica ni validación de efectividad</p>
                 </div>
             </div>
-            
+
             <div class="benefit-item benefit-neurosync">
                 <div class="benefit-icon">🛡️</div>
                 <div class="benefit-content">
@@ -497,7 +255,7 @@
                     <p>Primera sesión gratuita + garantía de satisfacción + entrega rápida = inversión sin riesgo</p>
                 </div>
             </div>
-            
+
             <div class="benefit-item benefit-traditional">
                 <div class="benefit-icon">💸</div>
                 <div class="benefit-content">
@@ -510,29 +268,38 @@
         <!-- Market Position -->
         <div class="vs-section">
             <h2>📈 Posicionamiento en el Mercado</h2>
-            <div style="background: var(--color-background-light); padding: 40px; border-radius: 15px; margin-bottom: 30px;">
-                <h3 style="color: var(--color-text-dark); margin-bottom: 20px; text-align: center;">Segmentación del Mercado de Hipnosis Online</h3>
-                
-                <div style="background: #fef5f5; padding: 30px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #e74c3c;">
+            <div
+                style="background: var(--color-background-light); padding: 40px; border-radius: 15px; margin-bottom: 30px;">
+                <h3 style="color: var(--color-text-dark); margin-bottom: 20px; text-align: center;">Segmentación del
+                    Mercado de Hipnosis Online</h3>
+
+                <div
+                    style="background: #fef5f5; padding: 30px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid #e74c3c;">
                     <h4 style="color: #e74c3c;">💰 Mercado Masivo (Precio Bajo)</h4>
-                    <p>30-45€ por sesión única. Servicios básicos, metodologías tradicionales, sin tecnología. 70% del mercado actual.</p>
+                    <p>30-45€ por sesión única. Servicios básicos, metodologías tradicionales, sin tecnología. 70% del
+                        mercado actual.</p>
                 </div>
-                
-                <div style="background: rgba(93, 92, 222, 0.1); padding: 30px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid var(--color-primary);">
+
+                <div
+                    style="background: rgba(93, 92, 222, 0.1); padding: 30px; border-radius: 10px; margin-bottom: 20px; border-left: 5px solid var(--color-primary);">
                     <h4 style="color: var(--color-primary);">🏆 Neurosync Método (Premium Innovador)</h4>
-                    <p>30€ por audio. Metodología híbrida, validación IA, entrega rápida. Segmento premium en crecimiento. <strong>Único en su categoría.</strong></p>
+                    <p>30€ por audio. Metodología híbrida, validación IA, entrega rápida. Segmento premium en
+                        crecimiento. <strong>Único en su categoría.</strong></p>
                 </div>
-                
+
                 <div style="background: #f0f8ff; padding: 30px; border-radius: 10px; border-left: 5px solid #3498db;">
                     <h4 style="color: #3498db;">🔬 Mercado Científico (Especializado)</h4>
-                    <p>150-200€ por sesión. Hipnoterapia clínica con credenciales médicas. Segmento pequeño pero establecido.</p>
+                    <p>150-200€ por sesión. Hipnoterapia clínica con credenciales médicas. Segmento pequeño pero
+                        establecido.</p>
                 </div>
             </div>
-            
+
             <div style="background: rgba(93, 92, 222, 0.1); padding: 30px; border-radius: 15px; text-align: center;">
                 <h3 style="color: var(--color-primary); margin-bottom: 15px;">💡 Oportunidad de Mercado</h3>
                 <p style="font-size: 1.2rem; color: var(--color-text-dark);">
-                    Neurosync ofrece <strong>mayor valor a mejor precio:</strong> por el mismo costo que una sesión única de la competencia, recibes un audio personalizado que puedes repetir ilimitadamente para maximizar resultados.
+                    Neurosync ofrece <strong>mayor valor a mejor precio:</strong> por el mismo costo que una sesión
+                    única de la competencia, recibes un audio personalizado que puedes repetir ilimitadamente para
+                    maximizar resultados.
                 </p>
             </div>
         </div>
@@ -541,15 +308,19 @@
         <div class="conclusion">
             <h2>🎯 Conclusión del Análisis Comparativo</h2>
             <p>
-                Neurosync Método representa la <strong>evolución natural</strong> de la hipnosis online tradicional. 
-                Combinando tecnología de vanguardia con metodología científicamente respaldada, ofrece 
+                Neurosync Método representa la <strong>evolución natural</strong> de la hipnosis online tradicional.
+                Combinando tecnología de vanguardia con metodología científicamente respaldada, ofrece
                 resultados superiores en menos tiempo.
             </p>
             <p>
-                <strong>La diferencia es clara:</strong> mientras otros servicios te cobran 30-45€ por una sola sesión que puedes escuchar una vez, Neurosync te ofrece por solo 30€ un audio personalizado y validado por IA que puedes repetir infinitamente. Es como pagar una sola sesión y tener acceso a 10 sesiones por el mismo precio.
+                <strong>La diferencia es clara:</strong> mientras otros servicios te cobran 30-45€ por una sola sesión
+                que puedes escuchar una vez, Neurosync te ofrece por solo 30€ un audio personalizado y validado por IA
+                que puedes repetir infinitamente. Es como pagar una sola sesión y tener acceso a 10 sesiones por el
+                mismo precio.
             </p>
             <p style="font-size: 1.5rem; margin-bottom: 30px;">
-                <strong>Para quienes buscan resultados reales y rápidos, Neurosync no es competencia: es la nueva referencia.</strong>
+                <strong>Para quienes buscan resultados reales y rápidos, Neurosync no es competencia: es la nueva
+                    referencia.</strong>
             </p>
             <a href="https://neurosync.vip" class="cta-button">Experimentar la Diferencia</a>
         </div>
@@ -562,7 +333,7 @@
             elements.forEach(el => {
                 const elementTop = el.getBoundingClientRect().top;
                 const elementVisible = 150;
-                
+
                 if (elementTop < window.innerHeight - elementVisible) {
                     el.style.opacity = '1';
                     el.style.transform = 'translateY(0)';
@@ -580,5 +351,60 @@
             });
         });
     </script>
+    <script>
+        (function () {
+            const canvas = document.getElementById('neural-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let nodes = [], animFrame;
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            function initNodes(count = 60) {
+                nodes = [];
+                for (let i = 0; i < count; i++) {
+                    nodes.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.3,
+                        vy: (Math.random() - 0.5) * 0.3,
+                        r: Math.random() * 2 + 0.5,
+                        color: Math.random() > 0.5 ? '#0df280' : '#3512e2'
+                    });
+                }
+            }
+            function drawFrame() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 180) {
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = `rgba(13, 242, 128, ${(1 - dist / 180) * 0.1})`;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                nodes.forEach(node => {
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+                    ctx.fillStyle = node.color + '99';
+                    ctx.fill();
+                    node.x += node.vx; node.y += node.vy;
+                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                });
+                animFrame = requestAnimationFrame(drawFrame);
+            }
+            resize(); initNodes(); drawFrame();
+            window.addEventListener('resize', () => { resize(); initNodes(); });
+        })();
+    </script>
 </body>
+
 </html>

@@ -1,0 +1,94 @@
+/* ============================================================
+   NEUROSYNC — PREMIUM HYPNOTIC DESIGN SYSTEM
+   Basado en Proporciones Áureas y Estética Cósmica
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --deep: #0D0A1F;
+    --primary: #3512E2;
+    --secondary: #0DF280;
+    --white: #F0EEFF;
+    --muted: #7B6FA8;
+    --phi: 1.618;
+    --blur: blur(20px) saturate(1.5);
+    --shadow-glow: 0 0 40px rgba(13, 242, 128, 0.15);
+    --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+body {
+    font-family: 'Outfit', sans-serif !important;
+    background: var(--deep) !important;
+    color: var(--white) !important;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Fondos Animados Neutros (Detrás del contenido) */
+.neuro-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(ellipse 80% 50% at 50% 40%, rgba(53, 18, 226, 0.15) 0%, transparent 80%);
+    pointer-events: none;
+}
+
+canvas#neural-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Clases de utilidad para el contenido original */
+.glass {
+    background: rgba(23, 15, 53, 0.4) !important;
+    backdrop-filter: var(--blur);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #ffffff, #0DF280) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.btn-premium {
+    background: linear-gradient(135deg, #3512E2, #0DF280) !important;
+    color: #fff !important;
+    border-radius: 100px !important;
+    padding: 1rem 2rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    display: inline-block !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: var(--transition) !important;
+}
+
+.btn-premium:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 10px 30px rgba(53, 18, 226, 0.4) !important;
+}
+
+/* Animaciones */
+@keyframes auraPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.aura-breath {
+    animation: auraPulse 6s ease-in-out infinite;
+}

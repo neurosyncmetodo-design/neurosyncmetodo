@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensaje Enviado - NeuroSync Método</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Gracias por contactar con NeuroSync Método. Nos pondremos en contacto contigo a la mayor brevedad posible.">
+    <meta name="description"
+        content="Gracias por contactar con NeuroSync Método. Nos pondremos en contacto contigo a la mayor brevedad posible.">
     <meta name="robots" content="noindex, nofollow">
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -28,56 +30,25 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="design.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-in;
+        body {
+            font-family: 'Outfit', sans-serif !important;
         }
-        
-        .slide-up {
-            animation: slideUp 0.6s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .checkmark {
-            animation: checkmark 0.6s ease-in-out 0.3s both;
-        }
-        
-        @keyframes checkmark {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+
+        .glass-confirm {
+            background: rgba(23, 15, 53, 0.6) !important;
+            backdrop-filter: blur(20px) saturate(1.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-primary/10 to-purple-100 dark:from-primary/20 dark:to-purple-900/20 min-h-screen flex items-center justify-center p-4">
-    
+
+<body class="bg-[#0D0A1F] text-[#F0EEFF] min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+    <canvas id="neural-canvas" class="fixed inset-0"></canvas>
+    <div class="neuro-bg"></div>
+
     <!-- Dark mode detection script -->
     <script>
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -93,11 +64,12 @@
     </script>
 
     <!-- Main Content -->
-    <div class="max-w-2xl mx-auto fade-in">
-        <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 md:p-12 shadow-2xl border border-gray-200 dark:border-gray-700 text-center slide-up">
-            
+    <div class="max-w-2xl mx-auto z-10">
+        <div class="glass-confirm p-8 md:p-12 shadow-2xl text-center">
+
             <!-- Success Icon -->
-            <div class="w-24 h-24 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8 checkmark">
+            <div
+                class="w-24 h-24 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8 checkmark">
                 <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                 </svg>
@@ -107,33 +79,41 @@
             <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 mb-4">
                 ¡Mensaje Enviado Correctamente!
             </h1>
-            
+
             <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8 rounded-full"></div>
 
             <!-- Success Message -->
             <div class="mb-8">
-                <div class="bg-secondarydark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-6 mb-6">
+                <div
+                    class="bg-secondarydark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-6 mb-6">
                     <div class="flex items-start">
-                        <svg class="w-6 h-6 text-secondary mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        <svg class="w-6 h-6 text-secondary mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         <div class="text-left">
                             <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">
                                 Hemos recibido tu solicitud
                             </h3>
                             <p class="text-green-700 dark:text-green-300 mb-4">
-                                Nos pondremos en contacto contigo <strong>a la mayor brevedad posible</strong> mediante el método de contacto que has elegido.
+                                Nos pondremos en contacto contigo <strong>a la mayor brevedad posible</strong> mediante
+                                el método de contacto que has elegido.
                             </p>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-green-600 dark:text-green-400">
+                            <div
+                                class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-green-600 dark:text-green-400">
                                 <div class="flex items-center">
                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                     Respuesta en 24h máximo
                                 </div>
                                 <div class="flex items-center">
                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                                        </path>
                                     </svg>
                                     100% Confidencial
                                 </div>
@@ -145,8 +125,10 @@
                 <!-- Additional Info -->
                 <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6">
                     <div class="flex items-start">
-                        <svg class="w-6 h-6 text-blue-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        <svg class="w-6 h-6 text-blue-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         <div class="text-left">
                             <h4 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-2">
@@ -165,18 +147,21 @@
 
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="index.html" 
-                   class="inline-flex items-center justify-center bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-8 rounded-xl hover:from-purple-600 hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                <a href="index.html"
+                    class="inline-flex items-center justify-center bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-8 rounded-xl hover:from-purple-600 hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
                     Volver a la Página Principal
                 </a>
-                
-                <a href="test.html" 
-                   class="inline-flex items-center justify-center border-2 border-primary text-primary font-semibold py-3 px-8 rounded-xl hover:bg-primary hover:text-white transition-all duration-300">
+
+                <a href="test.html"
+                    class="inline-flex items-center justify-center border-2 border-primary text-primary font-semibold py-3 px-8 rounded-xl hover:bg-primary hover:text-white transition-all duration-300">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                        </path>
                     </svg>
                     Test de Receptividad
                 </a>
@@ -185,18 +170,24 @@
             <!-- Footer Info -->
             <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
                 <div class="flex items-center justify-center mb-4">
-                    <div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mr-3">
+                    <div
+                        class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mr-3">
                         <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                            </path>
                         </svg>
                     </div>
-                    <span class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">NeuroSync Método</span>
+                    <span
+                        class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">NeuroSync
+                        Método</span>
                 </div>
-                
+
                 <div class="text-gray-600 dark:text-gray-400 text-sm">
                     <p class="mb-2">
-                        <strong>Email:</strong> 
-                        <a href="mailto:gestion@neurosync.vip" class="text-primary hover:underline">gestion@neurosync.vip</a>
+                        <strong>Email:</strong>
+                        <a href="mailto:gestion@neurosync.vip"
+                            class="text-primary hover:underline">gestion@neurosync.vip</a>
                     </p>
                     <p class="text-xs">
                         Hipnosis clínica personalizada basada en evidencia científica
@@ -213,5 +204,61 @@
         <div class="absolute bottom-12 left-1/4 w-3 h-3 bg-green-400/30 rounded-full animate-pulse delay-500"></div>
         <div class="absolute bottom-6 right-1/3 w-5 h-5 bg-blue-400/25 rounded-full animate-pulse delay-700"></div>
     </div>
+
+    <script>
+        (function () {
+            const canvas = document.getElementById('neural-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let nodes = [], animFrame;
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            function initNodes(count = 40) {
+                nodes = [];
+                for (let i = 0; i < count; i++) {
+                    nodes.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.3,
+                        vy: (Math.random() - 0.5) * 0.3,
+                        r: Math.random() * 2 + 0.5,
+                        color: Math.random() > 0.5 ? '#0df280' : '#3512e2'
+                    });
+                }
+            }
+            function drawFrame() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 200) {
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = `rgba(13, 242, 128, ${(1 - dist / 200) * 0.1})`;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                nodes.forEach(node => {
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+                    ctx.fillStyle = node.color + '99';
+                    ctx.fill();
+                    node.x += node.vx; node.y += node.vy;
+                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                });
+                animFrame = requestAnimationFrame(drawFrame);
+            }
+            resize(); initNodes(); drawFrame();
+            window.addEventListener('resize', () => { resize(); initNodes(); });
+        })();
+    </script>
 </body>
+
 </html>

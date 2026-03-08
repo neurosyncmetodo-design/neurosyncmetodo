@@ -37,78 +37,48 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="design.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif !important;
         }
 
-        /* Custom Navigation Styles */
-        .nav-link {
-            @apply px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-primary/5 transition-all duration-200 relative overflow-hidden;
-        }
-
-        .nav-link-cta {
-            @apply px-4 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
-        }
-
-        .mobile-nav-link {
-            @apply block px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-primary/5 hover:text-primary transition-all duration-200 font-medium;
-        }
-
-        /* Radio button styles */
+        /* Mantengo tus estilos funcionales originales */
         .radio-option {
-            @apply flex items-center p-4 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer transition-all duration-200 hover:border-primary hover:bg-primary/5;
+            @apply flex items-center p-5 glass border-white/10 rounded-xl cursor-pointer transition-all duration-300 hover:border-secondary hover:bg-secondary/10;
         }
 
         .radio-option.selected {
-            @apply border-primary bg-primary/10 text-primary;
+            @apply border-secondary bg-secondary/20 shadow-[0_0_15px_rgba(13, 242, 128, 0.3)];
         }
 
-        .radio-option input[type="radio"] {
-            @apply sr-only;
-        }
-
-        .radio-option .radio-circle {
-            @apply w-5 h-5 border-2 border-gray-300 dark:border-gray-600 rounded-full mr-3 flex items-center justify-center transition-all duration-200;
+        .radio-circle {
+            @apply w-6 h-6 border-2 border-white/20 rounded-full mr-4 flex items-center justify-center transition-all duration-300;
         }
 
         .radio-option.selected .radio-circle {
-            @apply border-primary;
+            @apply border-secondary;
         }
 
         .radio-option.selected .radio-circle::after {
             content: '';
-            @apply w-3 h-3 bg-primary rounded-full;
+            @apply w-3 h-3 bg-secondary rounded-full shadow-[0_0_10px_#0df280];
         }
 
-        /* Progress bar animation */
-        .progress-bar {
-            transition: width 0.3s ease-in-out;
+        .progress-bar-container {
+            @apply w-full bg-white/5 rounded-full h-3 overflow-hidden border border-white/10;
         }
 
-        /* Result animation */
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .result-card {
-            animation: slideIn 0.5s ease-out;
+        .progress-bar-fill {
+            @apply h-full bg-gradient-to-r from-primary via-secondary to-accent transition-all duration-700 ease-out shadow-[0_0_15px_rgba(13, 242, 128, 0.5)];
         }
     </style>
     <script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script>
 </head>
 
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
+<body class="bg-[#0D0A1F] text-[#F0EEFF] transition-colors relative">
+    <canvas id="neural-canvas"></canvas>
+    <div class="neuro-bg"></div>
 
     <!-- Dark mode detection script -->
     <script>
@@ -161,8 +131,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav
-        class="sticky top-0 z-50 bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50">
+    <nav class="sticky top-0 z-50 bg-[#0d0a1f]/80 backdrop-blur-md shadow-2xl border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo Section -->
@@ -669,6 +638,61 @@
 
 
 
+    <!-- Script para el Canvas Neural -->
+    <script>
+        (function () {
+            const canvas = document.getElementById('neural-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let nodes = [], animFrame;
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            function initNodes(count = 50) {
+                nodes = [];
+                for (let i = 0; i < count; i++) {
+                    nodes.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.3,
+                        vy: (Math.random() - 0.5) * 0.3,
+                        r: Math.random() * 2 + 0.5,
+                        color: Math.random() > 0.5 ? '#0df280' : '#3512e2'
+                    });
+                }
+            }
+            function drawFrame() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 150) {
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = `rgba(13, 242, 128, ${(1 - dist / 150) * 0.15})`;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                nodes.forEach(node => {
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+                    ctx.fillStyle = node.color + '99';
+                    ctx.fill();
+                    node.x += node.vx; node.y += node.vy;
+                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                });
+                animFrame = requestAnimationFrame(drawFrame);
+            }
+            resize(); initNodes(); drawFrame();
+            window.addEventListener('resize', () => { resize(); initNodes(); });
+        })();
+    </script>
 </body>
 
 </html>

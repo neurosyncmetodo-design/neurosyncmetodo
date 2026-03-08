@@ -165,321 +165,35 @@
     }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="design.css">
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#5D5CDE', // Añil Profundo (Profesionalismo, Calma)
-                        'secondary': '#00A389', // Verde Azulado Sereno (Bienestar, Crecimiento)
-                        'accent': '#FFC300', // Oro Suave (Empoderamiento, Calidad)
-                        'text-dark': '#1F2937', // Gris Oscuro Profesional
-                        'text-light': '#F9FAFB', // Blanco Roto
-                        'background-light': '#FFFFFF', // Blanco Puro
-                        'background-dark': '#0F172A', // Azul Noche
-                    },
-                    screens: {
-                        'xs': '475px',
-                    },
-                    spacing: {
-                        '18': '4.5rem',
-                        '88': '22rem',
-                    },
-                    minHeight: {
-                        'touch': '44px',
+                        'primary': '#3512E2',
+                        'secondary': '#0DF280',
+                        'accent': '#ECB613',
+                        'deep': '#0D0A1F'
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-        /* ESTILOS BASE MEJORADOS PARA MÓVILES */
         body {
-            font-family: 'Inter', sans-serif;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-            touch-action: manipulation;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior: none;
+            font-family: 'Outfit', sans-serif !important;
         }
 
-        /* Custom Navigation Styles */
-        /* NAVEGACIÓN MEJORADA */
-        .nav-link {
-            @apply px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 transition-all duration-300 relative;
-            display: inline-block;
-            text-align: center;
-            min-height: 44px;
-            line-height: 1.5;
-            touch-action: manipulation;
-        }
-
-        .nav-link:hover {
-            @apply text-white bg-gradient-to-r from-primary to-secondary font-bold;
-            transform: translateY(-3px) scale(1.08);
-            box-shadow: 0 10px 25px -5px rgba(93, 92, 222, 0.5), 0 8px 10px -6px rgba(93, 92, 222, 0.4);
-        }
-
-        .nav-link:hover::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #5D5CDE, #00A389);
-            transform: translateX(-50%);
-            animation: underlineExpand 0.3s ease-out forwards;
-        }
-
-        .nav-link-cta {
-            @apply px-4 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:scale-110 text-center;
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            touch-action: manipulation;
-        }
-
-        .mobile-nav-link {
-            @apply block px-4 py-2 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white hover:shadow-lg transition-all duration-300 font-medium text-center transform hover:scale-105;
-            min-height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            touch-action: manipulation;
-        }
-
-        @keyframes underlineExpand {
-            to {
-                width: 80%;
-            }
-        }
-
-        /* OPTIMIZACIONES CRÍTICAS PARA MÓVILES */
-        @media (max-width: 768px) {
-
-            /* Evitar zoom en inputs en iOS */
-            input[type="text"],
-            input[type="email"],
-            input[type="tel"],
-            select,
-            textarea {
-                font-size: 16px !important;
-            }
-
-            /* Formularios optimizados para móviles */
-            .mobile-form input,
-            .mobile-form select,
-            .mobile-form textarea {
-                min-height: 48px !important;
-                font-size: 16px !important;
-                padding: 12px 16px !important;
-            }
-
-            /* Espaciado optimizado para móviles */
-            .mobile-spacing {
-                padding: 1rem !important;
-            }
-
-            /* Tamaños de texto adaptativos */
-            .mobile-text-sm {
-                font-size: 0.875rem !important;
-            }
-
-            .mobile-text-base {
-                font-size: 1rem !important;
-            }
-
-            .mobile-text-lg {
-                font-size: 1.125rem !important;
-            }
-
-            .mobile-text-xl {
-                font-size: 1.25rem !important;
-            }
-
-            /* Grid responsivo mejorado */
-            .mobile-grid-1 {
-                grid-template-columns: 1fr !important;
-            }
-
-            .mobile-grid-2 {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 1rem !important;
-            }
-
-            /* Altura mínima para elementos táctiles */
-            .touch-target {
-                min-height: 44px !important;
-                min-width: 44px !important;
-            }
-        }
-
-        /* MENÚ MÓVIL MEJORADO */
-        .mobile-menu-enter {
-            transform: translateY(0);
-            opacity: 1;
-            transition: all 0.3s ease-out;
-        }
-
-        .mobile-menu-exit {
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s ease-in;
-        }
-
-        #mobile-menu {
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* BOTÓN SCROLL TO TOP MEJORADO */
-        .scroll-visible {
-            transform: translateY(0);
-            opacity: 1;
-            transition: all 0.3s ease-out;
-        }
-
-        .scroll-hidden {
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.3s ease-in;
-        }
-
-        /* FORMULARIOS OPTIMIZADOS */
-        .form-input {
-            min-height: 48px;
-            font-size: 16px;
-            padding: 12px 16px;
-            touch-action: manipulation;
-        }
-
-        /* PREVENIR OVERSCROLL BOUNCE EN iOS */
-        .no-bounce {
-            overscroll-behavior: none;
-        }
-
-        /* SCROLL SUAVE OPTIMIZADO */
-        .smooth-scroll {
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* BOTONES FLOTANTES RESPONSIVOS */
-        @media (max-width: 768px) {
-            .floating-button {
-                bottom: 80px !important;
-                right: 16px !important;
-            }
-
-            .floating-button-left {
-                bottom: 140px !important;
-                left: 16px !important;
-            }
-
-            .floating-button-small {
-                bottom: 80px !important;
-                right: 80px !important;
-            }
-        }
-
-        /* SAFE AREA PARA DISPOSITIVOS CON NOTCH */
-        @supports (padding: max(0px)) {
-            .safe-area-inset {
-                padding-left: max(1rem, env(safe-area-inset-left));
-                padding-right: max(1rem, env(safe-area-inset-right));
-            }
-        }
-
-        /* GRID RESPONSIVE MEJORADO */
-        .responsive-grid {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 640px) {
-            .responsive-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 768px) {
-            .responsive-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .responsive-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        /* TEXTO RESPONSIVE */
-        .responsive-text {
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            line-height: 1.6;
-        }
-
-        /* OPTIMIZACIONES DE TOQUE */
-        .touch-optimized {
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-            user-select: none;
-        }
-
-        /* MEJORAS DE ACCESIBILIDAD */
-        .focus-visible {
-            outline: 2px solid #5D5CDE;
-            outline-offset: 2px;
-        }
-
-        /* EFECTO TEXTO ORO RESPLANDECIENTE */
         .text-gold-glow {
-            color: #FFD700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
-            animation: goldPulse 2s infinite alternate;
+            color: #ecb613 !important;
+            text-shadow: 0 0 15px rgba(236, 182, 19, 0.4);
         }
 
-        @keyframes goldPulse {
-            from {
-                text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
-            }
-
-            to {
-                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.5);
-            }
-        }
-
-        /* EFECTO AGUA */
-        .water-effect {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .water-effect::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 10%, transparent 10.01%);
-            background-size: 100% 100%;
-            transform: scale(0);
-            opacity: 0;
-            pointer-events: none;
-            animation: ripple 1s linear infinite;
-        }
-
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
+        /* Mantengo compatibilidad con tus clases personalizadas */
+        .nav-link:hover {
+            color: #0DF280 !important;
         }
     </style>
     <script>
@@ -501,16 +215,16 @@
     </script>
 </head>
 
-<body id="top"
-    class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors smooth-scroll no-bounce">
+<body id="top" class="bg-[#0D0A1F] text-[#F0EEFF] transition-colors relative overflow-x-hidden">
+    <canvas id="neural-canvas"></canvas>
+    <div class="neuro-bg"></div>
     <!-- Header Warning -->
     <div class="bg-red-600 text-white py-2 px-4 text-center text-sm safe-area-inset">
         <strong>AVISO IMPORTANTE:</strong> No apto para personas con trastornos psiquiátricos, epilepsia o sospecha de
         padecerla.
     </div>
     <!-- Navigation -->
-    <nav
-        class="sticky top-0 z-50 bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50">
+    <nav class="sticky top-0 z-50 bg-[#0d0a1f]/80 backdrop-blur-md shadow-2xl border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 sm:h-20">
                 <!-- Logo Section -->
@@ -3552,6 +3266,61 @@
             });
             document.head.appendChild(linkElement);
         });
+    </script>
+    <!-- Script para el Canvas Neural (Efecto Diseño Nuevo) -->
+    <script>
+        (function () {
+            const canvas = document.getElementById('neural-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let nodes = [], animFrame;
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            function initNodes(count = 70) {
+                nodes = [];
+                for (let i = 0; i < count; i++) {
+                    nodes.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.3,
+                        vy: (Math.random() - 0.5) * 0.3,
+                        r: Math.random() * 2 + 0.5,
+                        color: Math.random() > 0.5 ? '#0df280' : '#3512e2'
+                    });
+                }
+            }
+            function drawFrame() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 180) {
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = `rgba(13, 242, 128, ${(1 - dist / 180) * 0.15})`;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                nodes.forEach(node => {
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+                    ctx.fillStyle = node.color + '99';
+                    ctx.fill();
+                    node.x += node.vx; node.y += node.vy;
+                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                });
+                animFrame = requestAnimationFrame(drawFrame);
+            }
+            resize(); initNodes(); drawFrame();
+            window.addEventListener('resize', () => { resize(); initNodes(); });
+        })();
     </script>
 </body>
 
