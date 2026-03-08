@@ -13,22 +13,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#5D5CDE',       // Añil Profundo (Profesionalismo, Calma)
-                        'secondary': '#00A389',    // Verde Azulado Sereno (Bienestar, Crecimiento)
-                        'accent': '#FFC300',        // Oro Suave (Empoderamiento, Calidad)
-                        'text-dark': '#1F2937',     // Gris Oscuro Profesional
-                        'text-light': '#F9FAFB',    // Blanco Roto
-                        'background-light': '#FFFFFF', // Blanco Puro
-                        'background-dark': '#0F172A',   // Azul Noche
+                        'primary': '#D4AF37',
+                        'secondary': '#0DF280',
+                        'deep': '#080616'
                     }
                 }
             }
         }
     </script>
+    <link rel="stylesheet" href="design.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -174,7 +170,10 @@
     </style>
 </head>
 
-<body class="bg-gradient-to-br from-slate-50 to-blue-50   min-h-screen">
+<body class="bg-[#080616] text-[#E0E0E0] selection:bg-[#D4AF37] selection:text-[#080616] min-h-screen relative overflow-x-hidden">
+    <div class="ambient-glow" style="top: -10vw; right: -10vw;"></div>
+    <div class="ambient-glow" style="bottom: -10vw; left: -10vw;"></div>
+    <canvas id="neural-canvas"></canvas>
 
     <header
         class="glass-panel    backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-b border-white/5    sticky top-0 z-50">
@@ -192,7 +191,7 @@
 
                 <div class="flex items-center space-x-2">
                     <a href="ia.html"
-                        class="hidden sm:flex px-3 py-1.5 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all text-sm font-medium items-center space-x-1">
+                        class="hidden sm:flex px-3 py-1.5 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-medium items-center space-x-1">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -200,7 +199,7 @@
                         <span>IA Entrenada</span>
                     </a>
                     <a href="ia.html"
-                        class="sm:hidden p-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all"
+                        class="sm:hidden p-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all"
                         title="Chat IA Entrenada">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -234,35 +233,35 @@
                         Consultas Esquematizadas (Menú Principal)</p>
                     <div class="menu-grid">
                         <button onclick="showSubmenu('servicios')"
-                            class="quick-btn px-3 py-2 glass-panel  text-blue-700 rounded-lg text-sm hover:glass-panel ">
+                            class="quick-btn px-3 py-2 glass-panel  text-[#E0E0E0] rounded-lg text-sm hover:glass-panel ">
                             <span>🎯 Servicios</span> <span class="text-xs">→</span>
                         </button>
                         <button onclick="showSubmenu('metodo')"
-                            class="quick-btn px-3 py-2 bg-purple-50 text-secondary rounded-lg text-sm hover:bg-secondary">
+                            class="quick-btn px-3 py-2 glass-panel text-secondary rounded-lg text-sm hover:bg-secondary">
                             <span>🧠 Método</span> <span class="text-xs">→</span>
                         </button>
                         <button onclick="showSubmenu('info_practica')"
-                            class="quick-btn px-3 py-2 bg-green-50 text-green-700 rounded-lg text-sm hover:bg-secondary">
+                            class="quick-btn px-3 py-2 glass-panel text-[#E0E0E0] rounded-lg text-sm hover:bg-secondary">
                             <span>💰 Info Práctica</span> <span class="text-xs">→</span>
                         </button>
                         <button onclick="showSubmenu('seguridad')"
-                            class="quick-btn px-3 py-2 bg-orange-50 text-orange-700 rounded-lg text-sm hover:bg-orange-100">
+                            class="quick-btn px-3 py-2 glass-panel text-[#E0E0E0] rounded-lg text-sm hover:glass-panel">
                             <span>🔒 Seguridad</span> <span class="text-xs">→</span>
                         </button>
                         <button onclick="showSubmenu('areas')"
-                            class="quick-btn px-3 py-2 bg-cyan-50 text-cyan-700 rounded-lg text-sm hover:bg-cyan-100">
+                            class="quick-btn px-3 py-2 glass-panel text-[#E0E0E0] rounded-lg text-sm hover:glass-panel">
                             <span>🎯 Qué Tratamos</span> <span class="text-xs">→</span>
                         </button>
                         <button onclick="showSubmenu('dudas')"
-                            class="quick-btn px-3 py-2 bg-yellow-50 text-yellow-700 rounded-lg text-sm hover:bg-yellow-100">
+                            class="quick-btn px-3 py-2 glass-panel text-[#E0E0E0] rounded-lg text-sm hover:glass-panel">
                             <span>❓ Dudas Frecuentes</span> <span class="text-xs">→</span>
                         </button>
                         <button onclick="showSubmenu('primeros_pasos')"
-                            class="quick-btn px-3 py-2 bg-pink-50 text-pink-700 rounded-lg text-sm hover:bg-pink-100">
+                            class="quick-btn px-3 py-2 glass-panel text-[#E0E0E0] rounded-lg text-sm hover:glass-panel">
                             <span>🚀 Primeros Pasos</span> <span class="text-xs">→</span>
                         </button>
                         <button onclick="showSubmenu('soporte')"
-                            class="quick-btn px-3 py-2 bg-red-50 text-red-700 rounded-lg text-sm hover:bg-red-100">
+                            class="quick-btn px-3 py-2 glass-panel text-[#E0E0E0] rounded-lg text-sm hover:glass-panel">
                             <span>👨‍💼 Soporte</span> <span class="text-xs">→</span>
                         </button>
                     </div>
@@ -272,7 +271,7 @@
                     <div class="flex items-center justify-between mb-4">
                         <p class="text-sm text-[#E0E0E0]  " id="submenuTitle">Selecciona una opción:</p>
                         <button onclick="showMainMenu()"
-                            class="text-xs text-[#E0E0E0]  hover:text-[#E0E0E0]  px-3 py-2 rounded-lg hover:bg-transparent  transition-all">←
+                            class="text-xs text-[#E0E0E0]  hover:text-[#E0E0E0]  px-3 py-2 rounded-lg hover:glass-panel  transition-all">←
                             Volver</button>
                     </div>
                     <div id="submenuContent"></div>
@@ -285,7 +284,7 @@
                     <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
                         <img src="logo.png" alt="NeuroSync" class="w-full h-full object-cover">
                     </div>
-                    <div class="bg-transparent    rounded-2xl px-4 py-3 max-w-[85%]">
+                    <div class="glass-panel    rounded-2xl px-4 py-3 max-w-[85%]">
                         <p class="text-[#E0E0E0]   text-sm sm:text-base">¡Bienvenido! Tengo respuestas
                             completas para TODAS las consultas sobre NeuroSync (48 temas).
                             <br><br>🧠 <strong>¿Prefieres IA?</strong> <a href="ia.html"
@@ -2009,7 +2008,7 @@ Proceso 100% confidencial`
             menu.buttons.forEach(button => {
                 buttonsHtml += `
                     <button onclick="showResponse('${button.param}')"
-                            class="quick-btn px-3 py-2 bg-transparent  text-[#E0E0E0]  rounded-lg text-sm hover:bg-transparent  transition-all text-left">
+                            class="quick-btn px-3 py-2 glass-panel  text-[#E0E0E0]  rounded-lg text-sm hover:glass-panel  transition-all text-left">
                         <span>${button.text}</span>
                     </button>
                 `;
@@ -2154,7 +2153,7 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
                 <div class="bg-primary text-white rounded-2xl px-4 py-3 max-w-[80%] order-2">
                     <p class="text-sm sm:text-base">${escapeHtml(message)}</p>
                 </div>
-                <div class="w-8 h-8 bg-transparent  rounded-full flex items-center justify-center flex-shrink-0 order-1">
+                <div class="w-8 h-8 glass-panel  rounded-full flex items-center justify-center flex-shrink-0 order-1">
                     <svg class="w-4 h-4 text-[#E0E0E0] " fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                     </svg>
@@ -2172,7 +2171,7 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
                 <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
                     <img src="logo.png" alt="NeuroSync" class="w-full h-full object-cover">
                 </div>
-                <div class="bg-transparent  rounded-2xl px-4 py-3 max-w-[85%]">
+                <div class="glass-panel  rounded-2xl px-4 py-3 max-w-[85%]">
                     <h4 class="font-bold text-[#E0E0E0]  mb-2 text-sm sm:text-base">${responseData.title}</h4>
                     <div class="text-[#E0E0E0]  text-sm sm:text-base">${formatMessage(responseData.content)}</div>
                 </div>
@@ -2186,7 +2185,7 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\*(.*?)\*/g, '<em>$1</em>')
                 .replace(/\n/g, '<br>')
-                .replace(/gestion@neurosync\.vip/g, '<a href="mailto:gestion@neurosync.vip" class="text-blue-600 underline font-semibold">gestion@neurosync.vip</a>');
+                .replace(/gestion@neurosync\.vip/g, '<a href="mailto:gestion@neurosync.vip" class="text-[#E0E0E0] underline font-semibold">gestion@neurosync.vip</a>');
         }
 
         function escapeHtml(text) {
@@ -2210,7 +2209,7 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
                     <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
                         <img src="logo.png" alt="NeuroSync" class="w-full h-full object-cover">
                     </div>
-                    <div class="bg-transparent    rounded-2xl px-4 py-3 max-w-[85%]">
+                    <div class="glass-panel    rounded-2xl px-4 py-3 max-w-[85%]">
                         <p class="text-[#E0E0E0]   text-sm sm:text-base">¡Bienvenido! Tengo respuestas completas para TODAS las consultas sobre NeuroSync (48 temas).
                         <br><br>🧠 <strong>¿Prefieres IA?</strong> <a href="ia.html" class="text-primary underline font-semibold">Prueba nuestro Chat con IA Entrenada</a>
                         <br><br>Usa los menús de arriba o escribe tu pregunta. ¿En qué puedo ayudarte?</p>
@@ -2225,6 +2224,61 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
         });
     </script>
 
+
+    <script>
+        (function() {
+            const canvas = document.getElementById('neural-canvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let nodes = [], animFrame;
+            function resize() {
+                canvas.width  = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            function initNodes(count = 60) {
+                nodes = [];
+                for (let i = 0; i < count; i++) {
+                    nodes.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.3,
+                        vy: (Math.random() - 0.5) * 0.3,
+                        r: Math.random() * 2 + 0.5,
+                        color: Math.random() > 0.5 ? '#0df280' : '#d4af37' // Cambiado a oro y verde
+                    });
+                }
+            }
+            function drawFrame() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 180) {
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = `rgba(212, 175, 55, ${(1 - dist / 180) * 0.1})`; // Lineas doradas
+                            ctx.stroke();
+                        }
+                    }
+                }
+                nodes.forEach(node => {
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+                    ctx.fillStyle = node.color + '99';
+                    ctx.fill();
+                    node.x += node.vx; node.y += node.vy;
+                    if (node.x < 0 || node.x > canvas.width)  node.vx *= -1;
+                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                });
+                animFrame = requestAnimationFrame(drawFrame);
+            }
+            resize(); initNodes(); drawFrame();
+            window.addEventListener('resize', () => { resize(); initNodes(); });
+        })();
+    </script>
 </body>
 
 </html>
