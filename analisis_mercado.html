@@ -5,57 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neurosync vs Competencia directa en la Red - Análisis Comparativo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#D4AF37',
+                        'deep': '#080616'
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="design.css">
     <style>
         body {
-            font-family: 'Outfit', sans-serif !important;
+            font-family: 'Inter', sans-serif;
+            background-color: #080616;
+            color: #E0E0E0;
         }
 
         .comparison-table {
-            background: rgba(23, 15, 53, 0.4) !important;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 2rem;
+            background: rgba(26, 20, 56, 0.4) !important;
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.5rem;
             overflow: hidden;
         }
 
         th {
-            background: rgba(53, 18, 226, 0.3) !important;
-            color: #F0EEFF !important;
+            background: rgba(212, 175, 55, 0.1) !important;
+            color: #D4AF37 !important;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2) !important;
         }
 
         td {
             border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-            color: #D1C9FF !important;
+            color: #B0B0B0 !important;
         }
 
         .neurosync-column {
-            background: rgba(13, 242, 128, 0.05) !important;
+            background: rgba(212, 175, 55, 0.05) !important;
         }
 
         .feature-card {
-            background: rgba(23, 15, 53, 0.6) !important;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #3512E2 !important;
+            background: rgba(26, 20, 56, 0.5) !important;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 3px solid #D4AF37 !important;
         }
 
         .vs-item.neurosync-item {
-            background: linear-gradient(135deg, #3512E2, #0D0A1F) !important;
-            border: 1px solid #3512E2;
-        }
-
-        .benefit-neurosync {
-            background: rgba(13, 242, 128, 0.1) !important;
-            border-left: 5px solid #0DF280 !important;
+            background: linear-gradient(135deg, #1A1438, #080616) !important;
+            border: 1px solid #D4AF37;
         }
     </style>
 </head>
 
-<body class="bg-[#0D0A1F] text-[#F0EEFF] relative overflow-x-hidden">
+<body class="bg-[#080616] text-[#E0E0E0] selection:bg-[#D4AF37] selection:text-[#080616]">
+    <div class="ambient-glow" style="top: -10vw; left: -10vw;"></div>
     <canvas id="neural-canvas"></canvas>
-    <div class="neuro-bg"></div>
     <div class="container">
         <!-- Header -->
         <div class="header">

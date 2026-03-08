@@ -25,13 +25,9 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#5D5CDE',       // Añil Profundo (Profesionalismo, Calma)
-                        'secondary': '#00A389',    // Verde Azulado Sereno (Bienestar, Crecimiento)
-                        'accent': '#FFC300',        // Oro Suave (Empoderamiento, Calidad)
-                        'text-dark': '#1F2937',     // Gris Oscuro Profesional
-                        'text-light': '#F9FAFB',    // Blanco Roto
-                        'background-light': '#FFFFFF', // Blanco Puro
-                        'background-dark': '#0F172A',   // Azul Noche
+                        'primary': '#D4AF37',
+                        'secondary': '#0DF280',
+                        'deep': '#080616'
                     }
                 }
             }
@@ -40,31 +36,32 @@
     <link rel="stylesheet" href="design.css">
     <style>
         body {
-            font-family: 'Outfit', sans-serif !important;
+            font-family: 'Inter', sans-serif;
+            background-color: #080616;
+            color: #E0E0E0;
         }
 
-        /* Mantengo tus estilos funcionales originales */
         .radio-option {
             display: flex;
             align-items: center;
-            padding: 1.25rem;
-            background: rgba(23, 15, 53, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.75rem;
+            padding: 1.5rem;
+            background: rgba(26, 20, 56, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .radio-option:hover {
-            border-color: #0DF280;
-            background: rgba(13, 242, 128, 0.1);
+            border-color: #D4AF37;
+            background: rgba(212, 175, 55, 0.05);
         }
 
         .radio-option.selected {
-            border-color: #0DF280;
-            background: rgba(13, 242, 128, 0.2);
-            box-shadow: 0 0 15px rgba(13, 242, 128, 0.3);
+            border-color: #D4AF37;
+            background: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
         }
 
         .radio-circle {
@@ -111,9 +108,9 @@
     <script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script>
 </head>
 
-<body class="bg-[#0D0A1F] text-[#F0EEFF] transition-colors relative">
+<body class="bg-[#080616] text-[#E0E0E0] selection:bg-[#D4AF37] selection:text-[#080616]">
+    <div class="ambient-glow" style="top: -10vw; right: -10vw;"></div>
     <canvas id="neural-canvas"></canvas>
-    <div class="neuro-bg"></div>
 
     <!-- Dark mode detection script -->
     <script>
@@ -166,14 +163,14 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-[#0d0a1f]/80 backdrop-blur-md shadow-2xl border-b border-white/5">
+    <nav class="sticky top-0 z-50 bg-[#080616]/95 backdrop-blur-xl border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo Section -->
                 <div class="flex items-center space-x-3">
                     <div class="relative">
                         <div
-                            class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg">
+                            class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
@@ -181,14 +178,14 @@
                             </svg>
                         </div>
                         <div
-                            class="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full border-2 border-white dark:border-gray-800">
+                            class="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full border-2 border-white  ">
                         </div>
                     </div>
                     <div>
                         <span
                             class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">NeuroSync</span>
                         <div class="flex items-center space-x-2">
-                            <span class="text-sm text-gray-600 dark:text-gray-300 font-medium">Método</span>
+                            <span class="text-sm text-[#E0E0E0]   font-medium">Método</span>
                             <span
                                 class="text-xs bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 rounded-full font-semibold">Confidencial</span>
                         </div>
@@ -207,7 +204,7 @@
                 <!-- Mobile menu button -->
                 <div class="lg:hidden">
                     <button id="mobile-menu-btn"
-                        class="relative w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                        class="relative w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-all duration-300 hover:scale-105">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16"></path>
@@ -219,14 +216,14 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu"
-            class="lg:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 hidden">
+            class="lg:hidden glass-panel    backdrop-blur-md border-t border-white/5    hidden">
             <div class="px-4 py-6 space-y-3">
                 <a href="index.html" class="mobile-nav-link">🏠 Inicio</a>
                 <a href="index.html#metodologia" class="mobile-nav-link">📋 Metodología</a>
                 <a href="index.html#investigacion" class="mobile-nav-link">📊 Investigación</a>
                 <a href="index.html#servicios" class="mobile-nav-link">🎯 Servicios</a>
                 <a href="index.html#consultar"
-                    class="block bg-gradient-to-r from-primary to-secondary text-white px-4 py-3 rounded-xl font-semibold text-center shadow-lg">
+                    class="block bg-gradient-to-r from-primary to-secondary text-white px-4 py-3 rounded-xl font-semibold text-center shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
                     📧 Consultar
                 </a>
             </div>
@@ -248,13 +245,13 @@
                     </svg>
                 </div>
                 <h1 class="text-4xl font-bold mb-4">¿Soy hipnotizable?</h1>
-                <p class="text-xl text-gray-600 dark:text-gray-300 mb-6">Cuestionario estandarizado de autoevaluación -
+                <p class="text-xl text-[#E0E0E0]   mb-6">Cuestionario estandarizado de autoevaluación -
                     Duración: 2 minutos</p>
 
                 <!-- Features -->
                 <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
                     <div
-                        class="flex items-center bg-green-50 dark:bg-green-900/20 text-secondary dark:text-green-300 px-4 py-2 rounded-full">
+                        class="flex items-center bg-green-50  text-secondary  px-4 py-2 rounded-full">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -262,7 +259,7 @@
                         <span class="text-sm font-semibold">Completamente anónimo</span>
                     </div>
                     <div
-                        class="flex items-center bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full">
+                        class="flex items-center glass-panel    text-blue-700  px-4 py-2 rounded-full">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
@@ -271,7 +268,7 @@
                         <span class="text-sm font-semibold">Sin registro de datos</span>
                     </div>
                     <div
-                        class="flex items-center bg-purple-50 dark:bg-purple-900/20 text-secondary dark:text-purple-300 px-4 py-2 rounded-full">
+                        class="flex items-center bg-purple-50  text-secondary  px-4 py-2 rounded-full">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -283,11 +280,11 @@
 
             <!-- Progress Bar -->
             <div class="mb-8">
-                <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
+                <div class="flex justify-between text-sm text-[#E0E0E0]   mb-2">
                     <span>Progreso del test</span>
                     <span id="progress-text">0/5</span>
                 </div>
-                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div class="w-full bg-transparent    rounded-full h-2">
                     <div id="progress-bar"
                         class="progress-bar bg-gradient-to-r from-primary to-secondary h-2 rounded-full"
                         style="width: 0%"></div>
@@ -299,7 +296,7 @@
 
                 <!-- Question 1 -->
                 <div
-                    class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                    class="question-container glass-panel    rounded-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-white/5   ">
                     <h3 class="text-lg font-semibold mb-4">1. Capacidad de absorción en actividades (películas, lectura)
                     </h3>
                     <div class="space-y-3">
@@ -328,7 +325,7 @@
 
                 <!-- Question 2 -->
                 <div
-                    class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                    class="question-container glass-panel    rounded-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-white/5   ">
                     <h3 class="text-lg font-semibold mb-4">2. Capacidad de visualización mental</h3>
                     <div class="space-y-3">
                         <label class="radio-option" data-question="2" data-value="1">
@@ -356,7 +353,7 @@
 
                 <!-- Question 3 -->
                 <div
-                    class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                    class="question-container glass-panel    rounded-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-white/5   ">
                     <h3 class="text-lg font-semibold mb-4">3. Experiencia de automatismo conductual (ej: conducción
                         automática)</h3>
                     <div class="space-y-3">
@@ -385,7 +382,7 @@
 
                 <!-- Question 4 -->
                 <div
-                    class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                    class="question-container glass-panel    rounded-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-white/5   ">
                     <h3 class="text-lg font-semibold mb-4">4. Facilidad para alcanzar relajación profunda</h3>
                     <div class="space-y-3">
                         <label class="radio-option" data-question="4" data-value="1">
@@ -413,7 +410,7 @@
 
                 <!-- Question 5 -->
                 <div
-                    class="question-container bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                    class="question-container glass-panel    rounded-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-white/5   ">
                     <h3 class="text-lg font-semibold mb-4">5. Respuesta a sugestiones imaginativas</h3>
                     <div class="space-y-3">
                         <label class="radio-option" data-question="5" data-value="1">
@@ -442,7 +439,7 @@
                 <!-- Calculate Button -->
                 <div class="text-center">
                     <button type="button" id="calculate-btn"
-                        class="bg-gradient-to-r from-primary to-secondary text-white font-semibold py-4 px-8 rounded-xl hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                        class="bg-gradient-to-r from-primary to-secondary text-white font-semibold py-4 px-8 rounded-xl hover:from-secondary hover:to-primary transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
                         <svg class="w-5 h-5 mr-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z">
@@ -456,66 +453,66 @@
             <!-- Results Section -->
             <div id="results-section" class="hidden">
                 <div
-                    class="result-card bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-800/20 rounded-xl p-8 shadow-2xl border border-blue-200 dark:border-blue-700 mt-8">
-                    <h2 class="text-2xl font-bold text-center mb-6 text-blue-800 dark:text-blue-200">Resultado de
+                    class="result-card bg-gradient-to-br from-blue-50 to-indigo-100   rounded-xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)]  border border-white/5    mt-8">
+                    <h2 class="text-2xl font-bold text-center mb-6 text-blue-800 ">Resultado de
                         Evaluación</h2>
 
                     <!-- Level Display -->
                     <div class="text-center mb-8">
-                        <h3 class="text-lg font-semibold mb-4 text-blue-700 dark:text-blue-300">Nivel de Receptividad
+                        <h3 class="text-lg font-semibold mb-4 text-blue-700 ">Nivel de Receptividad
                             Hipnótica</h3>
                         <div id="level-badge"
-                            class="inline-block px-6 py-3 rounded-full text-white font-bold text-xl shadow-lg"></div>
+                            class="inline-block px-6 py-3 rounded-full text-white font-bold text-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] "></div>
                     </div>
 
                     <!-- Level Bars -->
                     <div class="space-y-3 mb-8">
                         <div class="flex items-center">
-                            <span class="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">Baja</span>
-                            <div class="flex-1 h-4 bg-gray-200 dark:bg-gray-700 rounded-full mx-3">
+                            <span class="w-20 text-sm font-medium text-[#E0E0E0]  ">Baja</span>
+                            <div class="flex-1 h-4 bg-transparent    rounded-full mx-3">
                                 <div id="bar-baja" class="h-4 bg-red-500 rounded-full transition-all duration-500"
                                     style="width: 0%"></div>
                             </div>
-                            <span id="percent-baja" class="w-12 text-sm text-gray-700 dark:text-gray-300">0%</span>
+                            <span id="percent-baja" class="w-12 text-sm text-[#E0E0E0]  ">0%</span>
                         </div>
                         <div class="flex items-center">
-                            <span class="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">Media</span>
-                            <div class="flex-1 h-4 bg-gray-200 dark:bg-gray-700 rounded-full mx-3">
+                            <span class="w-20 text-sm font-medium text-[#E0E0E0]  ">Media</span>
+                            <div class="flex-1 h-4 bg-transparent    rounded-full mx-3">
                                 <div id="bar-media" class="h-4 bg-yellow-500 rounded-full transition-all duration-500"
                                     style="width: 0%"></div>
                             </div>
-                            <span id="percent-media" class="w-12 text-sm text-gray-700 dark:text-gray-300">0%</span>
+                            <span id="percent-media" class="w-12 text-sm text-[#E0E0E0]  ">0%</span>
                         </div>
                         <div class="flex items-center">
-                            <span class="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">Alta</span>
-                            <div class="flex-1 h-4 bg-gray-200 dark:bg-gray-700 rounded-full mx-3">
+                            <span class="w-20 text-sm font-medium text-[#E0E0E0]  ">Alta</span>
+                            <div class="flex-1 h-4 bg-transparent    rounded-full mx-3">
                                 <div id="bar-alta" class="h-4 bg-secondary rounded-full transition-all duration-500"
                                     style="width: 0%"></div>
                             </div>
-                            <span id="percent-alta" class="w-12 text-sm text-gray-700 dark:text-gray-300">0%</span>
+                            <span id="percent-alta" class="w-12 text-sm text-[#E0E0E0]  ">0%</span>
                         </div>
                         <div class="flex items-center">
-                            <span class="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">Muy Alta</span>
-                            <div class="flex-1 h-4 bg-gray-200 dark:bg-gray-700 rounded-full mx-3">
+                            <span class="w-20 text-sm font-medium text-[#E0E0E0]  ">Muy Alta</span>
+                            <div class="flex-1 h-4 bg-transparent    rounded-full mx-3">
                                 <div id="bar-muy-alta" class="h-4 bg-primary rounded-full transition-all duration-500"
                                     style="width: 0%"></div>
                             </div>
-                            <span id="percent-muy-alta" class="w-12 text-sm text-gray-700 dark:text-gray-300">0%</span>
+                            <span id="percent-muy-alta" class="w-12 text-sm text-[#E0E0E0]  ">0%</span>
                         </div>
                     </div>
 
                     <!-- Interpretation -->
-                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 mb-6">
-                        <h4 class="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-200">Interpretación</h4>
-                        <p id="interpretation-text" class="text-gray-600 dark:text-gray-300"></p>
+                    <div class="glass-panel    rounded-lg p-6 mb-6">
+                        <h4 class="text-lg font-semibold mb-3 text-[#E0E0E0]  ">Interpretación</h4>
+                        <p id="interpretation-text" class="text-[#E0E0E0]  "></p>
                     </div>
 
                     <!-- Next Steps -->
-                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 mb-6">
-                        <h4 class="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-200">Próximos Pasos</h4>
-                        <p id="next-steps-text" class="text-gray-600 dark:text-gray-300 mb-4"></p>
+                    <div class="glass-panel    rounded-lg p-6 mb-6">
+                        <h4 class="text-lg font-semibold mb-3 text-[#E0E0E0]  ">Próximos Pasos</h4>
+                        <p id="next-steps-text" class="text-[#E0E0E0]   mb-4"></p>
                         <a href="index.html#consultar"
-                            class="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-6 rounded-lg hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                            class="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-6 rounded-lg hover:from-secondary hover:to-primary transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transform hover:-translate-y-0.5">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -530,13 +527,13 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
+    <footer class="bg-transparent  text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="mb-4">
                 <span class="text-xl font-bold text-primary">NeuroSync Método</span>
             </div>
             <p class="text-gray-400 mb-4">© 2025 Todos los derechos reservados.</p>
-            <p class="text-gray-500 text-sm">
+            <p class="text-[#E0E0E0]  text-sm">
                 Este servicio no constituye atención médica ni psicológica profesional. No sustituye diagnóstico,
                 tratamiento o seguimiento clínico.
             </p>
@@ -614,32 +611,32 @@
                 if (scorePercent <= 25) {
                     level = 'Baja';
                     levelColor = 'bg-red-500';
-                    levelBg = 'bg-red-100 dark:bg-red-900/30';
+                    levelBg = 'bg-red-100 ';
                     interpretation = 'Su nivel de receptividad hipnótica es bajo. Esto no significa que la hipnosis no funcione para usted, sino que podría requerir enfoques más graduales y técnicas preparatorias específicas.';
                     nextSteps = 'Recomendamos comenzar con técnicas de relajación básicas y ejercicios de concentración antes de proceder con protocolos hipnóticos formales.';
                 } else if (scorePercent <= 50) {
                     level = 'Media';
                     levelColor = 'bg-yellow-500';
-                    levelBg = 'bg-yellow-100 dark:bg-yellow-900/30';
+                    levelBg = 'bg-yellow-100 ';
                     interpretation = 'Su nivel de receptividad hipnótica es moderado. La mayoría de las personas con este perfil responden bien a la hipnosis clínica con protocolos estructurados y personalizados.';
                     nextSteps = 'Su perfil de receptividad indica que puede beneficiarse significativamente de protocolos hipnóticos personalizados. Solicite una evaluación completa sin coste.';
                 } else if (scorePercent <= 75) {
                     level = 'Alta';
                     levelColor = 'bg-secondary';
-                    levelBg = 'bg-green-100 dark:bg-green-900/30';
+                    levelBg = 'bg-green-100 ';
                     interpretation = 'Su nivel de receptividad hipnótica es alto. Esto indica una excelente capacidad para entrar en estados de trance terapéutico y responder positivamente a sugestiones hipnóticas.';
                     nextSteps = 'Su perfil de receptividad indica que puede beneficiarse excelentemente de protocolos hipnóticos personalizados. Solicite una evaluación completa sin coste para maximizar sus resultados.';
                 } else {
                     level = 'Muy Alta';
                     levelColor = 'bg-primary';
-                    levelBg = 'bg-purple-100 dark:bg-secondary/30';
+                    levelBg = 'bg-purple-100 ';
                     interpretation = 'Su nivel de receptividad hipnótica es muy alto. Esto es excepcional y sugiere una capacidad natural sobresaliente para estados de consciencia modificados y respuesta a sugestiones terapéuticas.';
                     nextSteps = 'Su perfil de receptividad excepcional indica que puede lograr resultados extraordinarios con protocolos hipnóticos personalizados. Solicite una evaluación completa sin coste para aprovechar todo su potencial.';
                 }
 
                 // Update results display
                 document.getElementById('level-badge').textContent = level;
-                document.getElementById('level-badge').className = `inline-block px-6 py-3 rounded-full text-white font-bold text-xl shadow-lg ${levelColor}`;
+                document.getElementById('level-badge').className = `inline-block px-6 py-3 rounded-full text-white font-bold text-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)]  ${levelColor}`;
 
                 // Animate level bars
                 setTimeout(() => {

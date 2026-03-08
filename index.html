@@ -172,10 +172,9 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#3512E2',
+                        'primary': '#D4AF37', // Oro Líquido Profundo
                         'secondary': '#0DF280',
-                        'accent': '#ECB613',
-                        'deep': '#0D0A1F'
+                        'deep': '#080616'      // Obsidian Deep
                     }
                 }
             }
@@ -183,12 +182,15 @@
     </script>
     <style>
         body {
-            font-family: 'Outfit', sans-serif !important;
+            font-family: 'Inter', sans-serif;
+            background-color: #080616;
+            color: #E0E0E0;
         }
 
-        .text-gold-glow {
-            color: #ecb613 !important;
-            text-shadow: 0 0 15px rgba(236, 182, 19, 0.4);
+        .text-obsidian-gold {
+            background: linear-gradient(to right, #D4AF37, #F5E0A3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Navegación premium */
@@ -225,35 +227,36 @@
     </script>
 </head>
 
-<body id="top" class="bg-[#0D0A1F] text-[#F0EEFF] transition-colors relative overflow-x-hidden">
+<body id="top" class="bg-[#080616] text-[#E0E0E0] selection:bg-[#D4AF37] selection:text-[#080616]">
+    <div class="ambient-glow" style="top: -10vw; right: -10vw;"></div>
+    <div class="ambient-glow" style="bottom: -10vw; left: -10vw;"></div>
     <canvas id="neural-canvas"></canvas>
-    <div class="neuro-bg"></div>
     <!-- Header Warning -->
     <div class="bg-red-600 text-white py-2 px-4 text-center text-sm safe-area-inset">
         <strong>AVISO IMPORTANTE:</strong> No apto para personas con trastornos psiquiátricos, epilepsia o sospecha de
         padecerla.
     </div>
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-[#0d0a1f]/80 backdrop-blur-md shadow-2xl border-b border-white/5">
+    <nav class="sticky top-0 z-50 bg-[#080616]/90 backdrop-blur-xl border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 sm:h-20">
                 <!-- Logo Section -->
                 <a href="#top" class="flex items-center space-x-2 sm:space-x-3 hover:opacity-80 transition-opacity">
                     <div class="relative">
                         <div
-                            class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg p-1 animate-pulse">
+                            class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]  p-1 animate-pulse">
                             <img src="logo.png" alt="NeuroSync Logo"
                                 class="w-8 h-8 sm:w-10 sm:h-10 object-contain filter brightness-0 invert">
                         </div>
                         <div
-                            class="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-secondary rounded-full border-2 border-white dark:border-gray-800">
+                            class="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-secondary rounded-full border-2 border-white  ">
                         </div>
                     </div>
                     <div class="hidden xs:block">
                         <span
                             class="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">NeuroSync</span>
                         <div class="flex items-center space-x-1 sm:space-x-2">
-                            <span class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-medium">Método</span>
+                            <span class="text-xs sm:text-sm text-[#E0E0E0]   font-medium">Método</span>
                             <span
                                 class="text-xs bg-gradient-to-r from-secondary to-secondary text-white px-1 sm:px-2 py-0.5 sm:py-1 rounded-full font-semibold">Confidencial</span>
                         </div>
@@ -262,21 +265,21 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden xl:flex items-center space-x-2">
                     <a href="#promocion"
-                        class="group relative bg-gradient-to-r from-secondary to-secondary text-white px-4 py-2 rounded-xl text-sm font-semibold hover:from-secondary hover:to-secondary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        class="group relative bg-gradient-to-r from-secondary to-secondary text-white px-4 py-2 rounded-xl text-sm font-semibold hover:from-secondary hover:to-secondary transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transform hover:-translate-y-0.5">
                         <span class="relative z-10">🎁 Sesión Gratis</span>
                         <div
                             class="absolute inset-0 bg-gradient-to-r from-secondary to-secondary rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         </div>
                     </a>
                     <a href="presentacion.html"
-                        class="group relative bg-gradient-to-r from-accent to-red-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:from-red-600 hover:to-accent transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:scale-110">
+                        class="group relative bg-gradient-to-r from-accent to-red-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:from-red-600 hover:to-accent transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transform hover:-translate-y-0.5 hover:scale-110">
                         <span class="relative z-10">✨ Presentación</span>
                         <div
                             class="absolute inset-0 bg-gradient-to-r from-red-600 to-accent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         </div>
                     </a>
                     <a href="ia.html"
-                        class="group relative bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:scale-110 flex items-center gap-2">
+                        class="group relative bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transform hover:-translate-y-0.5 hover:scale-110 flex items-center gap-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -298,7 +301,7 @@
                     <a href="#nuestros-servicios" class="nav-link">Servicios</a>
                     <a href="#consultar" class="nav-link-cta">Contactar</a>
                     <a href="https://www.youtube.com/@NeuroSyncMetodo" target="_blank"
-                        class="group relative bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-2 rounded-xl text-sm font-semibold hover:from-red-700 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:scale-110 flex items-center gap-2">
+                        class="group relative bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-2 rounded-xl text-sm font-semibold hover:from-red-700 hover:to-red-600 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transform hover:-translate-y-0.5 hover:scale-110 flex items-center gap-2">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432l6.545 3.568-6.545 3.568z" />
@@ -311,7 +314,7 @@
                 <!-- Mobile menu button -->
                 <div class="xl:hidden">
                     <button id="mobile-menu-btn"
-                        class="relative w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 touch-target">
+                        class="relative w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-all duration-300 hover:scale-105 touch-target">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16"></path>
@@ -322,18 +325,18 @@
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu"
-            class="xl:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 hidden overflow-hidden">
+            class="xl:hidden glass-panel    backdrop-blur-md border-t border-white/5    hidden overflow-hidden">
             <div class="px-4 py-4 sm:py-6 space-y-1 sm:space-y-2 overflow-y-auto">
                 <a href="#promocion"
-                    class="block bg-gradient-to-r from-secondary to-secondary text-white px-4 py-2 rounded-xl font-semibold text-center shadow-lg touch-target">
+                    class="block bg-gradient-to-r from-secondary to-secondary text-white px-4 py-2 rounded-xl font-semibold text-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]  touch-target">
                     🎁 Primera Sesión GRATIS
                 </a>
                 <a href="presentacion.html"
-                    class="block bg-gradient-to-r from-accent to-red-600 text-white px-4 py-2 rounded-xl font-semibold text-center shadow-lg touch-target">
+                    class="block bg-gradient-to-r from-accent to-red-600 text-white px-4 py-2 rounded-xl font-semibold text-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]  touch-target">
                     ✨ Presentación Interactiva
                 </a>
                 <a href="ia.html"
-                    class="block bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-4 py-2 rounded-xl font-semibold text-center shadow-lg touch-target">
+                    class="block bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-4 py-2 rounded-xl font-semibold text-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]  touch-target">
                     🤖 Chatear con nuestra IA
                 </a>
                 <a href="#metodologia" class="mobile-nav-link">📋 Protocolo de Intervención</a>
@@ -348,14 +351,14 @@
                 <a href="https://www.youtube.com/@NeuroSyncMetodo" target="_blank" class="mobile-nav-link">📺
                     YouTube</a>
                 <a href="#consultar"
-                    class="block bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-xl font-semibold text-center shadow-lg mt-2 touch-target">
+                    class="block bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-xl font-semibold text-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]  mt-2 touch-target">
                     📧 Contactar Ahora
                 </a>
             </div>
         </div>
     </nav>
     <!-- YouTube Video Section -->
-    <section class="py-8 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+    <section class="py-8 bg-gradient-to-br from-gray-50 to-transparent   ">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="aspect-w-16 aspect-h-9">
                 <iframe src="https://www.youtube.com/embed/KQ-R4bYI0Uo" title="NeuroSync Método Video" frameborder="0"
@@ -367,24 +370,24 @@
     </section>
     <!-- Scroll to Top Button -->
     <button id="scroll-to-top"
-        class="fixed bottom-6 right-6 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-primary to-secondary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform translate-y-20 opacity-0 hover:scale-110 z-50 floating-button touch-target">
+        class="fixed bottom-6 right-6 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-primary to-secondary text-white rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-all duration-300 transform translate-y-20 opacity-0 hover:scale-110 z-50 floating-button touch-target">
         <svg class="w-5 h-5 sm:w-6 sm:h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
         </svg>
     </button>
     <!-- Hero Section OPTIMIZADA PARA MÓVILES -->
     <section
-        class="bg-gradient-to-br from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 py-12 sm:py-16 lg:py-20">
+        class="bg-gradient-to-br from-primary/10 to-secondary/10   py-12 sm:py-16 lg:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-6 mb-6 sm:mb-8">
                     <div class="flex items-center justify-center space-x-2">
                         <div class="w-2 h-2 bg-secondary rounded-full"></div>
-                        <span class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Entrega: 48 horas</span>
+                        <span class="text-sm sm:text-base text-[#E0E0E0]  ">Entrega: 48 horas</span>
                     </div>
                     <div class="flex items-center justify-center space-x-2">
-                        <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span class="text-sm sm:text-base text-gray-600 dark:text-gray-300">100% Confidencial</span>
+                        <div class="w-2 h-2 glass-panel  rounded-full"></div>
+                        <span class="text-sm sm:text-base text-[#E0E0E0]  ">100% Confidencial</span>
                     </div>
                 </div>
 
@@ -395,12 +398,12 @@
                 </h1>
 
                 <p
-                    class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto px-4 responsive-text">
+                    class="text-base sm:text-lg md:text-xl text-[#E0E0E0]   mb-6 sm:mb-8 max-w-3xl mx-auto px-4 responsive-text">
                     Hipnosis clínica personalizada basada en evidencia científica. Sesiones online completamente
                     confidenciales.
                 </p>
 
-                <p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-6 sm:mb-8 px-4">
+                <p class="text-sm sm:text-base text-[#E0E0E0]   mb-6 sm:mb-8 px-4">
                     Proceso simplificado: solo requerimos tu nombre de pila y método de contacto preferido. Audio
                     hipnótico personalizado entregado en 48 horas.
                 </p>
@@ -420,7 +423,7 @@
     </section>
     <!-- Promoción Section -->
     <section id="promocion"
-        class="py-16 bg-gradient-to-br from-secondary/5 to-secondary/10 dark:from-secondary/20 dark:to-secondary/20">
+        class="py-16 bg-gradient-to-br from-secondary/5 to-secondary/10  ">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <div
@@ -431,125 +434,125 @@
                     </svg>
                     PROMOCIÓN ESPECIAL
                 </div>
-                <h2 class="text-4xl font-bold mb-6 text-secondary dark:text-secondary/20 text-gold-glow">Primera Sesión
+                <h2 class="text-4xl font-bold mb-6 text-secondary  text-gold-glow">Primera Sesión
                     Completamente GRATIS</h2>
-                <p class="text-xl text-secondary dark:text-secondary/30 mb-8 max-w-4xl mx-auto">
+                <p class="text-xl text-secondary  mb-8 max-w-4xl mx-auto">
                     Experimenta el poder del método NeuroSync sin compromiso. Elige uno de nuestros tres audios
                     genéricos profesionales y descubre la transformación que puedes lograr.
                 </p>
             </div>
             <div class="grid md:grid-cols-3 gap-8 mb-12">
                 <div
-                    class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border-2 border-secondary/20 dark:border-secondary">
+                    class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-2 border-secondary/20 ">
                     <div class="text-center mb-4">
                         <div
-                            class="w-16 h-16 bg-secondary/10 dark:bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-secondary dark:text-secondary/30" fill="none" stroke="currentColor"
+                            class="w-16 h-16 bg-secondary/10  rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-secondary " fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3 text-secondary dark:text-secondary/20">Caminar Erguido
+                        <h3 class="text-xl font-semibold mb-3 text-secondary ">Caminar Erguido
                         </h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                        <p class="text-[#E0E0E0]   text-sm mb-4">
                             Transforma tu postura corporal de forma permanente. Este audio programa tu subconsciente
                             para mantener una postura erguida y confiada de manera natural.
                         </p>
-                        <div class="text-left text-xs text-gray-500 dark:text-gray-400 mb-3">
+                        <div class="text-left text-xs text-[#E0E0E0]   mb-3">
                             <strong>Beneficios:</strong> Mayor autoconfianza, mejor respiración, reducción del dolor de
                             espalda, proyección de liderazgo y seguridad personal.
                         </div>
-                        <div class="text-secondary dark:text-secondary/40 font-semibold">Duración: 28 minutos</div>
+                        <div class="text-secondary  font-semibold">Duración: 28 minutos</div>
                     </div>
                 </div>
                 <div
-                    class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border-2 border-secondary/20 dark:border-secondary">
+                    class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-2 border-secondary/20 ">
                     <div class="text-center mb-4">
                         <div
-                            class="w-16 h-16 bg-secondary/10 dark:bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-secondary dark:text-secondary/30" fill="none" stroke="currentColor"
+                            class="w-16 h-16 bg-secondary/10  rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-secondary " fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
                                 </path>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3 text-secondary dark:text-secondary/20">Respirar
+                        <h3 class="text-xl font-semibold mb-3 text-secondary ">Respirar
                             Correctamente</h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                        <p class="text-[#E0E0E0]   text-sm mb-4">
                             Codifica en tu subconsciente los patrones de respiración nasal correcta para que respires
                             óptimamente incluso de forma inconsciente durante todo el día.
                         </p>
-                        <div class="text-left text-xs text-gray-500 dark:text-gray-400 mb-3">
+                        <div class="text-left text-xs text-[#E0E0E0]   mb-3">
                             <strong>Beneficios:</strong> Mejor oxigenación cerebral, regulación del sistema nervioso,
                             mayor energía, mejor calidad del sueño, reducción del estrés y ansiedad.
                         </div>
-                        <div class="text-secondary dark:text-secondary/40 font-semibold">Duración: 32 minutos</div>
+                        <div class="text-secondary  font-semibold">Duración: 32 minutos</div>
                     </div>
                 </div>
                 <div
-                    class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border-2 border-secondary/20 dark:border-secondary">
+                    class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-2 border-secondary/20 ">
                     <div class="text-center mb-4">
                         <div
-                            class="w-16 h-16 bg-secondary/10 dark:bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-secondary dark:text-secondary/30" fill="none" stroke="currentColor"
+                            class="w-16 h-16 bg-secondary/10  rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-secondary " fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3 text-secondary dark:text-secondary/20">Relativizar</h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                        <h3 class="text-xl font-semibold mb-3 text-secondary ">Relativizar</h3>
+                        <p class="text-[#E0E0E0]   text-sm mb-4">
                             Aprende a relativizar los problemas para que no te superen. Este audio te enseña a mantener
                             la calma y la perspectiva adecuada para encontrar soluciones efectivas.
                         </p>
-                        <div class="text-left text-xs text-gray-500 dark:text-gray-400 mb-3">
+                        <div class="text-left text-xs text-[#E0E0E0]   mb-3">
                             <strong>Beneficios:</strong> Reduce el estrés ante problemas, mejora la toma de decisiones,
                             aumenta la resiliencia emocional, desarrolla pensamiento solucionista y mantiene la calma
                             bajo presión.
                         </div>
-                        <div class="text-secondary dark:text-secondary/40 font-semibold">Duración: 26 minutos</div>
+                        <div class="text-secondary  font-semibold">Duración: 26 minutos</div>
                     </div>
                 </div>
             </div>
             <div
-                class="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg border-2 border-secondary/30 dark:border-secondary">
+                class="glass-panel    rounded-lg p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-2 border-secondary/30 ">
                 <div class="text-center">
-                    <h3 class="text-2xl font-bold mb-4 text-secondary dark:text-secondary/20">¿Cómo obtener tu audio
+                    <h3 class="text-2xl font-bold mb-4 text-secondary ">¿Cómo obtener tu audio
                         gratuito?</h3>
                     <div class="grid md:grid-cols-3 gap-6 mb-8">
                         <div class="text-center">
                             <div
                                 class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
                                 1</div>
-                            <p class="text-gray-600 dark:text-gray-300">Elige tu audio preferido en el formulario</p>
+                            <p class="text-[#E0E0E0]  ">Elige tu audio preferido en el formulario</p>
                         </div>
                         <div class="text-center">
                             <div
                                 class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
                                 2</div>
-                            <p class="text-gray-600 dark:text-gray-300">Completa tus datos de contacto y envía la
+                            <p class="text-[#E0E0E0]  ">Completa tus datos de contacto y envía la
                                 solicitud</p>
                         </div>
                         <div class="text-center">
                             <div
                                 class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
                                 3</div>
-                            <p class="text-gray-600 dark:text-gray-300">Recibe tu audio profesional en menos de 24 horas
+                            <p class="text-[#E0E0E0]  ">Recibe tu audio profesional en menos de 24 horas
                             </p>
                         </div>
                     </div>
 
-                    <div class="bg-secondary/5 dark:bg-secondary/30 rounded-lg p-6 mb-6">
-                        <h4 class="text-lg font-semibold mb-3 text-secondary dark:text-secondary/20">Colaboración
+                    <div class="bg-secondary/5  rounded-lg p-6 mb-6">
+                        <h4 class="text-lg font-semibold mb-3 text-secondary ">Colaboración
                             Opcional</h4>
-                        <p class="text-secondary dark:text-secondary/30 mb-4">
+                        <p class="text-secondary  mb-4">
                             Aunque no es obligatorio, agradeceríamos enormemente si después de probar tu audio, nos
                             envías una mención sincera y objetiva sobre tu experiencia a nuestro email <strong><a
                                     href="mailto:gestion@neurosync.vip">gestion@neurosync.vip</a></strong>.
                         </p>
-                        <p class="text-sm text-secondary dark:text-secondary/40 italic">
+                        <p class="text-sm text-secondary  italic">
                             Tu feedback nos ayuda a mejorar continuamente nuestro método y ayudar a más personas.
                         </p>
                     </div>
@@ -557,7 +560,7 @@
                     <!-- Formulario para Audio Gratuito -->
                     <div class="max-w-2xl mx-auto">
                         <form action="https://api.web3forms.com/submit" method="POST"
-                            class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
+                            class="glass-panel    rounded-xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)]  border border-white/5   ">
                             <!-- Campos ocultos para Web3Forms -->
                             <input type="hidden" name="access_key" value="5c32e9e8-e122-4257-ae18-859829889dc6">
                             <input type="hidden" name="subject" value="Solicitud de Audio Gratuito - NeuroSync Método">
@@ -574,19 +577,19 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-secondary dark:text-secondary/20 mb-2">Solicitar
+                                <h3 class="text-2xl font-bold text-secondary  mb-2">Solicitar
                                     Audio Gratuito</h3>
-                                <p class="text-secondary dark:text-secondary/30">Completa el formulario y recibe tu
+                                <p class="text-secondary ">Completa el formulario y recibe tu
                                     audio en 24 horas</p>
                             </div>
                             <!-- Objetivo de la comunicación -->
                             <div class="mb-6">
                                 <label for="objetivo_comunicacion_audio"
-                                    class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                                     Motivo de la comunicación *
                                 </label>
                                 <select id="objetivo_comunicacion_audio" name="objetivo_comunicacion" required=""
-                                    class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
+                                    class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent bg-transparent    text-[#E0E0E0]   cursor-not-allowed"
                                     readonly>
                                     <option value="pedido-audio-generico-gratuito" selected>🎁 Pedido de audio genérico
                                         gratuito</option>
@@ -595,11 +598,11 @@
                             <!-- Elige tu audio preferido -->
                             <div class="mb-6">
                                 <label for="audio_preferido"
-                                    class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                                     Elige tu audio preferido *
                                 </label>
                                 <select id="audio_preferido" name="audio_preferido" required=""
-                                    class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                                    class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent glass-panel    text-[#E0E0E0]  ">
                                     <option value="">Selecciona tu audio gratuito</option>
                                     <option value="caminar-erguido">🚶‍♂️ Caminar Erguido - Mejora postura y
                                         autoconfianza</option>
@@ -612,21 +615,21 @@
                             <!-- Nombre de pila -->
                             <div class="mb-6">
                                 <label for="nombre_audio"
-                                    class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                                     Nombre de pila *
                                 </label>
                                 <input type="text" id="nombre_audio" name="nombre" required=""
-                                    class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                                    class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent glass-panel    text-[#E0E0E0]   placeholder-gray-500 "
                                     placeholder="Tu nombre de pila">
                             </div>
                             <!-- Forma de contacto preferida -->
                             <div class="mb-6">
                                 <label for="contacto_preferido_audio"
-                                    class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                                     Forma de contacto preferida *
                                 </label>
                                 <select id="contacto_preferido_audio" name="contacto_preferido" required=""
-                                    class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                                    class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent glass-panel    text-[#E0E0E0]  ">
                                     <option value="">Selecciona una opción</option>
                                     <option value="email">📧 Email</option>
                                     <option value="telefono-whatsapp">📱 Teléfono/WhatsApp</option>
@@ -635,39 +638,39 @@
                             <!-- Email -->
                             <div class="mb-6">
                                 <label for="email_audio"
-                                    class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                                     Email *
                                 </label>
                                 <input type="email" id="email_audio" name="email" required=""
-                                    class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                                    class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent glass-panel    text-[#E0E0E0]   placeholder-gray-500 "
                                     placeholder="tu@email.com">
                             </div>
                             <!-- Teléfono -->
                             <div class="mb-6">
                                 <label for="telefono_audio"
-                                    class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                                     Teléfono/WhatsApp
                                 </label>
                                 <input type="tel" id="telefono_audio" name="telefono" required=""
-                                    class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                                    class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent glass-panel    text-[#E0E0E0]   placeholder-gray-500 "
                                     placeholder="+34 123 456 789">
-                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                <p class="text-xs text-[#E0E0E0]   mt-1">
                                     Incluye código de país (ej: +34 para España)
                                 </p>
                             </div>
                             <!-- Comentarios -->
                             <div class="mb-6">
                                 <label for="comentarios_audio"
-                                    class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                    class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                                     Comentarios adicionales
                                 </label>
                                 <textarea id="comentarios_audio" name="comentarios" required="" rows="3"
-                                    class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 resize-none"
+                                    class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent glass-panel    text-[#E0E0E0]   placeholder-gray-500  resize-none"
                                     placeholder="Cuéntanos sobre tu objetivo con este audio o cualquier pregunta que tengas..."></textarea>
                             </div>
                             <!-- Botón de envío -->
                             <button type="submit"
-                                class="w-full bg-gradient-to-r from-secondary to-secondary text-white font-semibold py-4 px-6 rounded-lg hover:from-secondary hover:to-secondary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center water-effect">
+                                class="w-full bg-gradient-to-r from-secondary to-secondary text-white font-semibold py-4 px-6 rounded-lg hover:from-secondary hover:to-secondary transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center water-effect">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v13m0-13V6a2 2 0 112 0v1m-2 0V6a2 2 0 00-2 0v1m2 0V9.5m0 0V8"></path>
@@ -675,7 +678,7 @@
                                 Solicitar Mi Audio Gratuito
                             </button>
                             <!-- Información adicional -->
-                            <div class="mt-6 p-4 bg-secondary/5 dark:bg-secondary/30 rounded-lg">
+                            <div class="mt-6 p-4 bg-secondary/5  rounded-lg">
                                 <div class="flex items-start">
                                     <svg class="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
@@ -683,10 +686,10 @@
                                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                     <div>
-                                        <p class="text-sm text-secondary dark:text-secondary/40 mb-2">
+                                        <p class="text-sm text-secondary  mb-2">
                                             <strong>🎁 Completamente gratuito</strong>
                                         </p>
-                                        <p class="text-xs text-secondary dark:text-secondary/40">
+                                        <p class="text-xs text-secondary ">
                                             • Entrega en menos de 24 horas<br>
                                             • Sin compromiso ni costes ocultos<br>
                                             • Audio profesional de alta calidad<br>
@@ -713,7 +716,7 @@
                 <div class="flex justify-center mb-8">
                     <div class="relative">
                         <div
-                            class="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-2xl animate-pulse">
+                            class="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-[0_20px_50px_rgba(0,0,0,0.5)]  animate-pulse">
                             <img src="logo.png" alt="NeuroSync Logo"
                                 class="w-20 h-20 object-contain filter brightness-0 invert">
                         </div>
@@ -743,7 +746,7 @@
                     </div>
                     <!-- Elementos destacados -->
                     <div class="grid md:grid-cols-3 gap-8 mb-12">
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                        <div class="glass-panel  backdrop-blur-sm rounded-xl p-6 border border-white/20">
                             <div
                                 class="w-16 h-16 bg-gradient-to-br from-accent to-accent rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -756,7 +759,7 @@
                                 neurotecnología avanzada</p>
                         </div>
 
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                        <div class="glass-panel  backdrop-blur-sm rounded-xl p-6 border border-white/20">
                             <div
                                 class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -769,7 +772,7 @@
                                 independiente por IA</p>
                         </div>
 
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                        <div class="glass-panel  backdrop-blur-sm rounded-xl p-6 border border-white/20">
                             <div
                                 class="w-16 h-16 bg-gradient-to-br from-secondary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -786,7 +789,7 @@
                     <!-- Call to action -->
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <a href="#promocion"
-                            class="inline-flex items-center bg-gradient-to-r from-accent to-accent text-gray-900 font-bold py-4 px-8 rounded-xl hover:from-accent hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1">
+                            class="inline-flex items-center bg-gradient-to-r from-accent to-accent text-[#E0E0E0]  font-bold py-4 px-8 rounded-xl hover:from-accent hover:to-accent transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.5)]  hover:shadow-3xl transform hover:-translate-y-1">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 8v13m0-13V6a2 2 0 112 0v1m-2 0V6a2 2 0 00-2 0v1m2 0V9.5m0 0V8"></path>
@@ -794,7 +797,7 @@
                             Experimenta Gratis
                         </a>
                         <a href="#ai-analysis-bottom"
-                            class="inline-flex items-center bg-white/10 backdrop-blur-sm text-white font-semibold py-4 px-8 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                            class="inline-flex items-center glass-panel  backdrop-blur-sm text-white font-semibold py-4 px-8 rounded-xl border border-white/20 hover:glass-panel  transition-all duration-300">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
@@ -808,7 +811,7 @@
         </div>
     </section>
     <!-- Features -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <section class="py-16 bg-transparent   ">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="text-center">
@@ -820,7 +823,7 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold mb-2">Total Confidencialidad</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Proceso completamente anónimo y seguro</p>
+                    <p class="text-[#E0E0E0]   text-sm">Proceso completamente anónimo y seguro</p>
                 </div>
                 <div class="text-center">
                     <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -831,7 +834,7 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold mb-2">Sesiones Remotas</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Desde la comodidad de tu hogar</p>
+                    <p class="text-[#E0E0E0]   text-sm">Desde la comodidad de tu hogar</p>
                 </div>
                 <div class="text-center">
                     <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -841,7 +844,7 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold mb-2">Validado Científicamente</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Basado en investigación neurocientífica</p>
+                    <p class="text-[#E0E0E0]   text-sm">Basado en investigación neurocientífica</p>
                 </div>
                 <div class="text-center">
                     <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -851,7 +854,7 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold mb-2 text-gold-glow">Resultados Rápidos</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Audio personalizado en 48 horas</p>
+                    <p class="text-[#E0E0E0]   text-sm">Audio personalizado en 48 horas</p>
                 </div>
             </div>
         </div>
@@ -861,7 +864,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Protocolo de Intervención</h2>
-                <p class="text-gray-600 dark:text-gray-300">Proceso estructurado en 4 fases:</p>
+                <p class="text-[#E0E0E0]  ">Proceso estructurado en 4 fases:</p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="text-center">
@@ -869,7 +872,7 @@
                         <span class="text-2xl font-bold text-white">1</span>
                     </div>
                     <h3 class="text-xl font-semibold mb-4">Evaluación Inicial</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Descubra en solo 2 minutos su nivel de receptividad a la
+                    <p class="text-[#E0E0E0]  ">Descubra en solo 2 minutos su nivel de receptividad a la
                         autohipnosis. Un test breve y sencillo —solo 5 preguntas— para que decida con total libertad si
                         nuestros servicios son idóneos para usted. No queremos un solo cliente defraudado. La
                         efectividad de la hipnosis no depende exclusivamente de nosotros, sino que depende en gran parte
@@ -880,7 +883,7 @@
                         <span class="text-2xl font-bold text-white">2</span>
                     </div>
                     <h3 class="text-xl font-semibold mb-4">Diseño Personalizado</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Diseñamos su protocolo a medida. Mediante un
+                    <p class="text-[#E0E0E0]  ">Diseñamos su protocolo a medida. Mediante un
                         cuestionario ligero, identificamos el estilo de inducción y las sugestiones que mejor resuenan
                         con usted, para crear una experiencia verdaderamente personal.</p>
                 </div>
@@ -889,7 +892,7 @@
                         <span class="text-2xl font-bold text-white">3</span>
                     </div>
                     <h3 class="text-xl font-semibold mb-4">Charla Prehipnótica</h3>
-                    <p class="text-gray-600 dark:text-gray-300">El paso más crucial del proceso. Una conversación
+                    <p class="text-[#E0E0E0]  ">El paso más crucial del proceso. Una conversación
                         telefónica personalizada donde explicamos exactamente qué es y qué no es la hipnosis, cómo
                         funcionará su sesión, y resolvemos todas sus dudas. <strong>Sin una correcta charla
                             prehipnótica, la sesión tiene alto riesgo de fracaso</strong>. Este paso garantiza que
@@ -900,17 +903,17 @@
                         <span class="text-2xl font-bold text-white">4</span>
                     </div>
                     <h3 class="text-xl font-semibold mb-4">Implementación</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Su sesión de autohipnosis se elabora con atención a cada
+                    <p class="text-[#E0E0E0]  ">Su sesión de autohipnosis se elabora con atención a cada
                         detalle, basada en sus respuestas y su objetivo personal. Recibirá su audio listo en 48 horas
                         —listo para usar desde el primer momento.</p>
                 </div>
             </div>
             <div class="text-center mt-12">
                 <div
-                    class="bg-secondary/5 dark:bg-secondary/20 border border-secondary/20 dark:border-secondary rounded-lg p-6 inline-block">
-                    <h4 class="text-lg font-semibold text-secondary dark:text-secondary/20 mb-2">Primera Evaluación Sin
+                    class="bg-secondary/5  border border-secondary/20  rounded-lg p-6 inline-block">
+                    <h4 class="text-lg font-semibold text-secondary  mb-2">Primera Evaluación Sin
                         Coste</h4>
-                    <p class="text-secondary dark:text-secondary/30">Acceda ahora a tres audios genéricos,
+                    <p class="text-secondary ">Acceda ahora a tres audios genéricos,
                         cuidadosamente creados para objetivos cotidianos: relajación profunda, enfoque mental y
                         relativizar. Totalmente gratis. Sin registro, sin ningún tipo de compromiso.</p>
                 </div>
@@ -927,16 +930,16 @@
             </div>
             <div class="absolute top-0 left-0 w-full h-full">
                 <div
-                    class="absolute top-4 left-4 sm:top-10 sm:left-10 w-3 h-3 sm:w-4 sm:h-4 bg-white/30 rounded-full animate-pulse">
+                    class="absolute top-4 left-4 sm:top-10 sm:left-10 w-3 h-3 sm:w-4 sm:h-4 glass-panel  rounded-full animate-pulse">
                 </div>
                 <div
-                    class="absolute top-20 right-8 sm:top-32 sm:right-20 w-4 h-4 sm:w-6 sm:h-6 bg-white/20 rounded-full animate-pulse delay-300">
+                    class="absolute top-20 right-8 sm:top-32 sm:right-20 w-4 h-4 sm:w-6 sm:h-6 glass-panel  rounded-full animate-pulse delay-300">
                 </div>
                 <div
-                    class="absolute bottom-12 left-1/4 w-2 h-2 sm:w-3 sm:h-3 bg-white/40 rounded-full animate-pulse delay-500">
+                    class="absolute bottom-12 left-1/4 w-2 h-2 sm:w-3 sm:h-3 glass-panel  rounded-full animate-pulse delay-500">
                 </div>
                 <div
-                    class="absolute bottom-6 right-1/3 w-3 h-3 sm:w-5 sm:h-5 bg-white/25 rounded-full animate-pulse delay-700">
+                    class="absolute bottom-6 right-1/3 w-3 h-3 sm:w-5 sm:h-5 glass-panel  rounded-full animate-pulse delay-700">
                 </div>
             </div>
         </div>
@@ -944,7 +947,7 @@
             <!-- Header -->
             <div class="text-center mb-8 sm:mb-12">
                 <div
-                    class="inline-flex items-center bg-white/10 backdrop-blur-sm text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6 border border-white/20">
+                    class="inline-flex items-center glass-panel  backdrop-blur-sm text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6 border border-white/20">
                     <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -963,7 +966,7 @@
             </div>
             <!-- NotebookLM Audio Analysis First -->
             <div
-                class="bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-2xl border border-white/20 mb-12">
+                class="glass-panel  backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)]  border border-white/20 mb-12">
                 <div class="text-center">
                     <div
                         class="w-16 h-16 bg-gradient-to-br from-secondary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
@@ -973,9 +976,9 @@
                             </path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">AUDIO DE PRESENTACIÓN - NOTEBOOK LM
+                    <h3 class="text-2xl sm:text-3xl font-bold text-[#E0E0E0]  mb-4">AUDIO DE PRESENTACIÓN - NOTEBOOK LM
                     </h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto">
+                    <p class="text-[#E0E0E0]   mb-6 max-w-3xl mx-auto">
                         Análisis independiente del método realizado por <strong>NotebookLM de Google</strong>, la IA
                         especializada en análisis documental
                     </p>
@@ -985,15 +988,15 @@
                     </audio>
 
                     <div class="text-left max-w-4xl mx-auto space-y-4">
-                        <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
-                            <h4 class="font-bold text-blue-800 dark:text-blue-200 mb-3">Evaluación por NotebookLM:</h4>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        <div class="glass-panel    p-6 rounded-lg">
+                            <h4 class="font-bold text-blue-800  mb-3">Evaluación por NotebookLM:</h4>
+                            <p class="text-[#E0E0E0]   mb-4">
                                 Este audio presenta un análisis extenso y objetivo de nuestro proyecto, realizado
                                 completamente por NotebookLM, la Inteligencia Artificial de Google especializada en
                                 análisis documental. La evaluación es totalmente independiente y sin intervención humana
                                 en la generación del contenido.
                             </p>
-                            <p class="text-sm text-blue-700 dark:text-blue-300">
+                            <p class="text-sm text-blue-700 ">
                                 <strong>Sobre NotebookLM:</strong> Sistema de IA de Google que analiza documentos
                                 científicos y genera contenido explicativo de manera autónoma, garantizando objetividad
                                 en la evaluación metodológica.
@@ -1007,7 +1010,7 @@
                 <!-- Score Card -->
                 <div class="lg:col-span-1 order-1 lg:order-1">
                     <div
-                        class="bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-2xl border border-white/20 text-center h-full flex flex-col justify-center">
+                        class="glass-panel  backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)]  border border-white/20 text-center h-full flex flex-col justify-center">
                         <div
                             class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-secondary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                             <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor"
@@ -1020,12 +1023,12 @@
                             class="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-secondary to-secondary bg-clip-text text-transparent mb-2">
                             8.5/10
                         </div>
-                        <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-3">Puntuación Global</h3>
-                        <p class="text-gray-600 text-sm sm:text-base lg:text-lg">
+                        <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-[#E0E0E0]  mb-3">Puntuación Global</h3>
+                        <p class="text-[#E0E0E0]  text-sm sm:text-base lg:text-lg">
                             "Metodología sólida con fuerte respaldo científico"
                         </p>
-                        <div class="mt-4 pt-4 border-t border-gray-200">
-                            <p class="text-xs sm:text-sm text-gray-500 italic">
+                        <div class="mt-4 pt-4 border-t border-white/5 ">
+                            <p class="text-xs sm:text-sm text-[#E0E0E0]  italic">
                                 Claude 4.1 Opus<br>Análisis Independiente
                             </p>
                         </div>
@@ -1034,9 +1037,9 @@
                 <!-- Key Findings -->
                 <div class="lg:col-span-2 order-2 lg:order-2">
                     <div
-                        class="bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-2xl border border-white/20 h-full">
+                        class="glass-panel  backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)]  border border-white/20 h-full">
                         <h3
-                            class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 flex items-center">
+                            class="text-lg sm:text-xl lg:text-2xl font-bold text-[#E0E0E0]  mb-4 sm:mb-6 flex items-center">
                             <svg class="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 mr-2 sm:mr-3" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1056,15 +1059,15 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 text-sm sm:text-base">Fundamentación
+                                    <h4 class="font-semibold text-[#E0E0E0]  text-sm sm:text-base">Fundamentación
                                         Científica Robusta</h4>
-                                    <p class="text-gray-600 text-xs sm:text-sm">Cada componente respaldado por
+                                    <p class="text-[#E0E0E0]  text-xs sm:text-sm">Cada componente respaldado por
                                         literatura científica revisada por pares</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
                                 <div
-                                    class="w-5 h-5 sm:w-6 sm:h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                    class="w-5 h-5 sm:w-6 sm:h-6 glass-panel  rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
                                     <svg class="w-2 h-2 sm:w-3 sm:h-3 text-white" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
@@ -1072,9 +1075,9 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 text-sm sm:text-base">Innovación Metodológica
+                                    <h4 class="font-semibold text-[#E0E0E0]  text-sm sm:text-base">Innovación Metodológica
                                     </h4>
-                                    <p class="text-gray-600 text-xs sm:text-sm">Combinación sinérgica de enfoques
+                                    <p class="text-[#E0E0E0]  text-xs sm:text-sm">Combinación sinérgica de enfoques
                                         validados de forma teóricamente coherente</p>
                                 </div>
                             </div>
@@ -1088,9 +1091,9 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 text-sm sm:text-base">Alta Viabilidad Clínica
+                                    <h4 class="font-semibold text-[#E0E0E0]  text-sm sm:text-base">Alta Viabilidad Clínica
                                     </h4>
-                                    <p class="text-gray-600 text-xs sm:text-sm">Protocolo estructurado con
+                                    <p class="text-[#E0E0E0]  text-xs sm:text-sm">Protocolo estructurado con
                                         personalización basada en evaluación individual</p>
                                 </div>
                             </div>
@@ -1101,20 +1104,20 @@
             <!-- Detailed Claude Analysis -->
             <div class="grid md:grid-cols-2 gap-8 mb-12">
                 <!-- Metodología del Análisis -->
-                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-2xl border border-white/20">
+                <div class="glass-panel  backdrop-blur-sm rounded-xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)]  border border-white/20">
                     <div
-                        class="w-16 h-16 bg-blue-100 dark:bg-blue-800 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor"
+                        class="w-16 h-16 glass-panel    rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-blue-600 " fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
                             </path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">Metodología de Evaluación</h3>
-                    <div class="space-y-4 text-gray-600">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-[#E0E0E0] ">Metodología de Evaluación</h3>
+                    <div class="space-y-4 text-[#E0E0E0] ">
                         <div>
-                            <h4 class="font-semibold text-gray-800">Criterios Analizados:</h4>
+                            <h4 class="font-semibold text-[#E0E0E0] ">Criterios Analizados:</h4>
                             <ul class="list-disc list-inside mt-2 space-y-1 text-sm">
                                 <li>Fundamentación científica de cada componente</li>
                                 <li>Coherencia metodológica del protocolo integrado</li>
@@ -1124,32 +1127,32 @@
                             </ul>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-800">Proceso de Análisis:</h4>
+                            <h4 class="font-semibold text-[#E0E0E0] ">Proceso de Análisis:</h4>
                             <p class="text-sm mt-2">Revisión exhaustiva de literatura científica, evaluación de
                                 componentes individuales y análisis de sinergia metodológica.</p>
                         </div>
                     </div>
                 </div>
                 <!-- Resultados del Análisis -->
-                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-2xl border border-white/20">
+                <div class="glass-panel  backdrop-blur-sm rounded-xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)]  border border-white/20">
                     <div
-                        class="w-16 h-16 bg-secondary/10 dark:bg-secondary rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-secondary dark:text-secondary/30" fill="none" stroke="currentColor"
+                        class="w-16 h-16 bg-secondary/10  rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-secondary " fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">Evaluación Global</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-center text-[#E0E0E0] ">Evaluación Global</h3>
                     <div class="space-y-4">
-                        <div class="bg-secondary/5 dark:bg-secondary/20 p-4 rounded-lg">
-                            <h4 class="font-semibold text-secondary dark:text-secondary/20 mb-2">Puntuación: 8.5/10</h4>
-                            <p class="text-sm text-secondary dark:text-secondary/30">Metodología sólida con fuerte
+                        <div class="bg-secondary/5  p-4 rounded-lg">
+                            <h4 class="font-semibold text-secondary  mb-2">Puntuación: 8.5/10</h4>
+                            <p class="text-sm text-secondary ">Metodología sólida con fuerte
                                 respaldo científico</p>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-800 mb-2">Fortalezas Identificadas:</h4>
-                            <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                            <h4 class="font-semibold text-[#E0E0E0]  mb-2">Fortalezas Identificadas:</h4>
+                            <ul class="list-disc list-inside text-sm text-[#E0E0E0]  space-y-1">
                                 <li>Integración coherente de múltiples enfoques validados</li>
                                 <li>Personalización basada en evaluación individual</li>
                                 <li>Fundamentos neurocientíficos actualizados</li>
@@ -1166,33 +1169,33 @@
                     Opus</h3>
 
                 <div class="grid md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-white/90 backdrop-blur-sm rounded-lg p-6">
+                    <div class="glass-panel  backdrop-blur-sm rounded-lg p-6">
                         <h4 class="font-bold text-blue-800 mb-3">Rigor Científico</h4>
-                        <p class="text-sm text-gray-600">
+                        <p class="text-sm text-[#E0E0E0] ">
                             "El método NeuroSync demuestra una sólida fundamentación en literatura científica revisada
                             por pares, integrando técnicas con evidencia empírica robusta."
                         </p>
                     </div>
 
-                    <div class="bg-white/90 backdrop-blur-sm rounded-lg p-6">
+                    <div class="glass-panel  backdrop-blur-sm rounded-lg p-6">
                         <h4 class="font-bold text-blue-800 mb-3">Innovación Metodológica</h4>
-                        <p class="text-sm text-gray-600">
+                        <p class="text-sm text-[#E0E0E0] ">
                             "La combinación sinérgica de hipnosis ericksoniana, técnicas respiratorias y estimulación
                             binaural representa un enfoque innovador y teóricamente coherente."
                         </p>
                     </div>
 
-                    <div class="bg-white/90 backdrop-blur-sm rounded-lg p-6">
+                    <div class="glass-panel  backdrop-blur-sm rounded-lg p-6">
                         <h4 class="font-bold text-blue-800 mb-3">Aplicabilidad Clínica</h4>
-                        <p class="text-sm text-gray-600">
+                        <p class="text-sm text-[#E0E0E0] ">
                             "El protocolo estructurado y la personalización basada en evaluación individual sugieren
                             alta viabilidad para implementación terapéutica efectiva."
                         </p>
                     </div>
                 </div>
-                <div class="bg-white/90 backdrop-blur-sm rounded-lg p-6">
+                <div class="glass-panel  backdrop-blur-sm rounded-lg p-6">
                     <h4 class="font-bold text-blue-800 mb-4">Evaluación Integral</h4>
-                    <div class="space-y-4 text-gray-600">
+                    <div class="space-y-4 text-[#E0E0E0] ">
                         <p>
                             <strong>Fundamentación Teórica:</strong> El método se basa en principios neurocientíficos
                             sólidos, con cada componente respaldado por investigación empírica. La integración de
@@ -1210,7 +1213,7 @@
                             terapéuticos positivos, particularmente en gestión de ansiedad y optimización de
                             rendimiento.
                         </p>
-                        <div class="bg-blue-50 p-4 rounded-lg mt-4">
+                        <div class="glass-panel  p-4 rounded-lg mt-4">
                             <p class="text-blue-800 font-semibold">
                                 "El método NeuroSync representa una síntesis metodológica rigurosa que combina tradición
                                 clínica con innovación tecnológica, manteniendo coherencia científica y viabilidad
@@ -1225,7 +1228,7 @@
             </div>
             <!-- Objectivity Statement -->
             <div
-                class="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/20 mx-2 sm:mx-0 mt-12">
+                class="bg-gradient-to-r from-transparent /10 to-transparent /5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/20 mx-2 sm:mx-0 mt-12">
                 <div class="text-center">
                     <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-4">🎯 Compromiso con la
                         Objetividad</h3>
@@ -1236,20 +1239,20 @@
                             Los análisis que encuentras arriba son completamente independientes y objetivos.
                         </p>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-center">
-                            <div class="bg-white/10 rounded-xl p-3 sm:p-4">
+                            <div class="glass-panel  rounded-xl p-3 sm:p-4">
                                 <div class="text-xl sm:text-2xl mb-2">🔬</div>
                                 <h4 class="font-semibold text-white mb-2 text-sm sm:text-base">Criterios Científicos
                                 </h4>
                                 <p class="text-blue-100 text-xs sm:text-sm">Evaluación basada únicamente en evidencia
                                     empírica</p>
                             </div>
-                            <div class="bg-white/10 rounded-xl p-3 sm:p-4">
+                            <div class="glass-panel  rounded-xl p-3 sm:p-4">
                                 <div class="text-xl sm:text-2xl mb-2">⚖️</div>
                                 <h4 class="font-semibold text-white mb-2 text-sm sm:text-base">Sin Sesgos</h4>
                                 <p class="text-blue-100 text-xs sm:text-sm">Análisis completamente independiente y
                                     neutral</p>
                             </div>
-                            <div class="bg-white/10 rounded-xl p-3 sm:p-4">
+                            <div class="glass-panel  rounded-xl p-3 sm:p-4">
                                 <div class="text-xl sm:text-2xl mb-2">🎯</div>
                                 <h4 class="font-semibold text-white mb-2 text-sm sm:text-base">Transparencia Total</h4>
                                 <p class="text-blue-100 text-xs sm:text-sm">Resultados publicados sin modificaciones</p>
@@ -1265,7 +1268,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Metodología Científica</h2>
-                <p class="text-gray-600 dark:text-gray-300">Protocolo estructurado basado en investigación
+                <p class="text-[#E0E0E0]  ">Protocolo estructurado basado en investigación
                     neurocientífica y práctica clínica validada</p>
             </div>
             <div class="grid md:grid-cols-4 gap-8">
@@ -1279,7 +1282,7 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold mb-2">Evaluación Personalizada</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Análisis detallado de receptividad hipnótica y
+                    <p class="text-sm text-[#E0E0E0]  ">Análisis detallado de receptividad hipnótica y
                         objetivos terapéuticos mediante instrumentos estandarizados.</p>
                 </div>
                 <div class="text-center">
@@ -1292,7 +1295,7 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold mb-2">Diseño de Protocolo</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Creación de sesión hipnótica individualizada
+                    <p class="text-sm text-[#E0E0E0]  ">Creación de sesión hipnótica individualizada
                         adaptada a perfil cognitivo y necesidades específicas del cliente.</p>
                 </div>
                 <div class="text-center">
@@ -1304,36 +1307,36 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold mb-2">Entrega y Seguimiento</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Audio hipnótico personalizado en 48 horas con
+                    <p class="text-sm text-[#E0E0E0]  ">Audio hipnótico personalizado en 48 horas con
                         instrucciones de aplicación y protocolo de seguimiento opcional.</p>
                 </div>
             </div>
         </div>
     </section>
     <!-- Neuroscientific Foundations -->
-    <section id="fundamentos" class="py-16 bg-gray-50 dark:bg-gray-800">
+    <section id="fundamentos" class="py-16 bg-transparent   ">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Fundamentos Neurocientíficos</h2>
-                <p class="text-gray-600 dark:text-gray-300">La hipnosis como herramienta terapéutica validada</p>
+                <p class="text-[#E0E0E0]  ">La hipnosis como herramienta terapéutica validada</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
                     <h3 class="text-xl font-semibold mb-4 text-primary">Estado de Consciencia Modificado</h3>
-                    <p class="text-gray-600 dark:text-gray-300">La hipnosis induce un estado neurofisiológico
+                    <p class="text-[#E0E0E0]  ">La hipnosis induce un estado neurofisiológico
                         caracterizado por atención focalizada, reducción de consciencia periférica y aumento de la
                         receptividad a sugestiones. Neuroimagen funcional demuestra patrones de activación cerebral
                         distintivos durante el trance hipnótico.</p>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
                     <h3 class="text-xl font-semibold mb-4 text-primary">Mecanismos Neurobiológicos</h3>
-                    <p class="text-gray-600 dark:text-gray-300">La investigación identifica modulación de redes
+                    <p class="text-[#E0E0E0]  ">La investigación identifica modulación de redes
                         neuronales ejecutivas, alteración de procesamiento en corteza cingulada anterior y modificación
                         de conectividad funcional entre regiones cerebrales clave durante estados hipnóticos.</p>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
                     <h3 class="text-xl font-semibold mb-4 text-primary">Aplicaciones Clínicas</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Evidencia robusta respalda eficacia en gestión de dolor,
+                    <p class="text-[#E0E0E0]  ">Evidencia robusta respalda eficacia en gestión de dolor,
                         trastornos de ansiedad, modificación de hábitos, optimización de rendimiento y diversos
                         objetivos terapéuticos. Reconocida por organizaciones médicas y psicológicas internacionales.
                     </p>
@@ -1346,13 +1349,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">El Método NeuroSync: Integración Científica Multidisciplinar</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300">Nuestro protocolo combina tres pilares
+                <p class="text-xl text-[#E0E0E0]  ">Nuestro protocolo combina tres pilares
                     neurocientíficos validados para potenciar la efectividad terapéutica</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8 mb-12">
                 <!-- Hipnosis Ericksoniana -->
                 <div
-                    class="bg-gradient-to-br from-primary/5 to-primary/10 dark:from-primary/20 dark:to-primary/30 rounded-xl p-8 shadow-lg border border-primary/20">
+                    class="bg-gradient-to-br from-primary/5 to-primary/10   rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-primary/20">
                     <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1361,7 +1364,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 text-primary text-center">Hipnosis Ericksoniana</h3>
-                    <div class="space-y-4 text-gray-700 dark:text-gray-300">
+                    <div class="space-y-4 text-[#E0E0E0]  ">
                         <p class="font-semibold text-primary">¿Cómo actúa?</p>
                         <p class="text-sm">Desarrollada por Milton Erickson, esta modalidad utiliza sugestiones
                             indirectas, metáforas y lenguaje permisivo que respeta la autonomía del individuo. En lugar
@@ -1389,7 +1392,7 @@
                 </div>
                 <!-- Frecuencias Binaurales -->
                 <div
-                    class="bg-gradient-to-br from-secondary/5 to-secondary/10 dark:from-secondary/20 dark:to-secondary/30 rounded-xl p-8 shadow-lg border border-secondary/20">
+                    class="bg-gradient-to-br from-secondary/5 to-secondary/10   rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-secondary/20">
                     <div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1398,7 +1401,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 text-secondary text-center">Frecuencias Binaurales</h3>
-                    <div class="space-y-4 text-gray-700 dark:text-gray-300">
+                    <div class="space-y-4 text-[#E0E0E0]  ">
                         <p class="font-semibold text-secondary">¿Cómo actúan?</p>
                         <p class="text-sm">Cuando el cerebro recibe dos frecuencias ligeramente diferentes (una en cada
                             oído), genera una tercera frecuencia resultante que induce sincronización de ondas
@@ -1427,7 +1430,7 @@
                 </div>
                 <!-- Técnicas Respiratorias -->
                 <div
-                    class="bg-gradient-to-br from-accent/5 to-accent/10 dark:from-accent/20 dark:to-accent/30 rounded-xl p-8 shadow-lg border border-accent/20">
+                    class="bg-gradient-to-br from-accent/5 to-accent/10   rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-accent/20">
                     <div class="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1436,7 +1439,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 text-accent text-center">Técnicas Respiratorias</h3>
-                    <div class="space-y-4 text-gray-700 dark:text-gray-300">
+                    <div class="space-y-4 text-[#E0E0E0]  ">
                         <p class="font-semibold" style="color: #FFC300;">¿Cómo actúan?</p>
                         <p class="text-sm">La respiración controlada activa el sistema nervioso parasimpático a través
                             del nervio vago, induciendo respuesta de relajación fisiológica. Patrones específicos
@@ -1468,16 +1471,16 @@
             </div>
             <!-- Sinergia del Método -->
             <div
-                class="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 dark:from-primary/30 dark:via-secondary/30 dark:to-accent/30 rounded-xl p-8 border-2 border-primary/30">
+                class="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10    rounded-xl p-8 border-2 border-primary/30">
                 <h3 class="text-2xl font-bold text-center mb-6 text-primary">Sinergia Metodológica: El Poder de la
                     Integración</h3>
                 <div class="grid md:grid-cols-2 gap-8">
                     <div>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        <p class="text-[#E0E0E0]   mb-4">
                             <strong class="text-primary">NeuroSync no es una simple suma de técnicas</strong>, sino una
                             integración sinérgica donde cada componente potencia a los demás:
                         </p>
-                        <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                        <ul class="space-y-3 text-[#E0E0E0]  ">
                             <li class="flex items-start">
                                 <span class="text-primary font-bold mr-3">1.</span>
                                 <span><strong>Las frecuencias binaurales</strong> inducen el estado cerebral óptimo
@@ -1497,23 +1500,23 @@
                         </ul>
                     </div>
                     <div>
-                        <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+                        <div class="glass-panel    rounded-lg p-6">
                             <h4 class="font-bold text-primary mb-4">Validación Científica de la Integración</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+                            <p class="text-sm text-[#E0E0E0]   mb-3">
                                 Investigación reciente demuestra que protocolos multidisciplinares generan <strong
                                     class="text-secondary">efectos superiores</strong> a la suma de intervenciones
                                 aisladas:
                             </p>
-                            <div class="bg-secondary/5 dark:bg-secondary/20 p-4 rounded-lg mb-3">
+                            <div class="bg-secondary/5  p-4 rounded-lg mb-3">
                                 <p class="text-sm font-semibold text-secondary mb-2">Metaanálisis Cochrane (2021)</p>
-                                <p class="text-xs text-gray-600 dark:text-gray-400">"Intervenciones que combinan
+                                <p class="text-xs text-[#E0E0E0]  ">"Intervenciones que combinan
                                     modulación neurofisiológica (binaurales/respiración) con hipnosis clínica muestran
                                     tamaños de efecto 42% superiores vs hipnosis estándar para ansiedad y dolor
                                     crónico."</p>
                             </div>
-                            <div class="bg-primary/5 dark:bg-primary/20 p-4 rounded-lg">
+                            <div class="bg-primary/5  p-4 rounded-lg">
                                 <p class="text-sm font-semibold text-primary mb-2">Stanford Hypnosis Research (2022)</p>
-                                <p class="text-xs text-gray-600 dark:text-gray-400">"La sincronización de ondas
+                                <p class="text-xs text-[#E0E0E0]  ">"La sincronización de ondas
                                     cerebrales mediante binaurales previo a inducción hipnótica reduce tiempo de entrada
                                     en trance profundo de 18 a 7 minutos promedio."</p>
                             </div>
@@ -1528,20 +1531,20 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Evidencia Científica</h2>
-                <p class="text-gray-600 dark:text-gray-300">Desmitificando concepciones erróneas sobre la hipnosis
+                <p class="text-[#E0E0E0]  ">Desmitificando concepciones erróneas sobre la hipnosis
                     clínica</p>
             </div>
 
             <div class="space-y-8">
                 <!-- Myth 1 -->
-                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-400 p-6 rounded-r-lg">
-                    <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">MITO: La hipnosis es peligrosa
+                <div class="bg-red-50  border-l-4 border-red-400 p-6 rounded-r-lg">
+                    <h3 class="text-lg font-semibold text-red-800  mb-2">MITO: La hipnosis es peligrosa
                         y puedo perder el control.</h3>
-                    <p class="text-red-600 dark:text-red-300 mb-4">"Tengo miedo de ser manipulado o de hacer algo en
+                    <p class="text-red-600  mb-4">"Tengo miedo de ser manipulado o de hacer algo en
                         contra de mi voluntad."</p>
                     <div
-                        class="bg-secondary/5 dark:bg-secondary/20 border border-secondary/20 dark:border-secondary rounded p-4">
-                        <p class="text-secondary dark:text-secondary/20"><strong>REALIDAD:</strong> Este es el mito más
+                        class="bg-secondary/5  border border-secondary/20  rounded p-4">
+                        <p class="text-secondary "><strong>REALIDAD:</strong> Este es el mito más
                             extendido y es completamente falso. Durante la hipnosis clínica, <strong>tú mantienes el
                                 control absoluto en todo momento</strong>. No es un estado de inconsciencia, sino de
                             focalización de la atención. Tu mente crítica sigue activa, y nunca harás o dirás nada que
@@ -1550,14 +1553,14 @@
                     </div>
                 </div>
                 <!-- Myth 2 -->
-                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-400 p-6 rounded-r-lg">
-                    <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">MITO: Podría no "despertar" de
+                <div class="bg-red-50  border-l-4 border-red-400 p-6 rounded-r-lg">
+                    <h3 class="text-lg font-semibold text-red-800  mb-2">MITO: Podría no "despertar" de
                         la hipnosis.</h3>
-                    <p class="text-red-600 dark:text-red-300 mb-4">"¿Y si me quedo atrapado en ese estado para siempre?"
+                    <p class="text-red-600  mb-4">"¿Y si me quedo atrapado en ese estado para siempre?"
                     </p>
                     <div
-                        class="bg-secondary/5 dark:bg-secondary/20 border border-secondary/20 dark:border-secondary rounded p-4">
-                        <p class="text-secondary dark:text-secondary/20"><strong>REALIDAD:</strong> Es científicamente
+                        class="bg-secondary/5  border border-secondary/20  rounded p-4">
+                        <p class="text-secondary "><strong>REALIDAD:</strong> Es científicamente
                             imposible quedarse "atrapado" en hipnosis. En el peor de los casos, si la sesión se
                             interrumpiera bruscamente, simplemente te dormirías de forma natural y despertarías poco
                             después, o volverías a tu estado de vigilia normal. <strong>Siempre puedes abrir los ojos y
@@ -1565,12 +1568,12 @@
                     </div>
                 </div>
                 <!-- Reality Section -->
-                <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 p-6 rounded-r-lg">
-                    <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-2">REALIDAD: Una herramienta
+                <div class="glass-panel    border-l-4 border-white/5  p-6 rounded-r-lg">
+                    <h3 class="text-lg font-semibold text-blue-800  mb-2">REALIDAD: Una herramienta
                         clínica poderosa</h3>
-                    <p class="text-blue-600 dark:text-blue-300 mb-4">"La hipnosis es un proceso seguro, ético y eficaz."
+                    <p class="text-blue-600  mb-4">"La hipnosis es un proceso seguro, ético y eficaz."
                     </p>
-                    <p class="text-blue-800 dark:text-blue-200">En NeuroSync, aplicamos la hipnosis con un rigor
+                    <p class="text-blue-800 ">En NeuroSync, aplicamos la hipnosis con un rigor
                         metodológico absoluto, basándonos en la evidencia científica más actual para garantizar un
                         proceso seguro, ético y transformador. <strong>Es una colaboración profesional para alcanzar tus
                             objetivos.</strong></p>
@@ -1579,25 +1582,25 @@
         </div>
     </section>
     <!-- Statistics -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <section class="py-16 bg-transparent   ">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-3 gap-8 text-center">
                 <div>
                     <div class="text-4xl font-bold text-primary mb-2">85%</div>
                     <h3 class="text-lg font-semibold mb-2">Población Receptiva</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Porcentaje de individuos con receptividad
+                    <p class="text-[#E0E0E0]   text-sm">Porcentaje de individuos con receptividad
                         hipnótica moderada a alta según investigación estandarizada</p>
                 </div>
                 <div>
                     <div class="text-4xl font-bold text-primary mb-2">70+</div>
                     <h3 class="text-lg font-semibold mb-2">Años de Investigación</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Décadas de estudios científicos rigurosos sobre
+                    <p class="text-[#E0E0E0]   text-sm">Décadas de estudios científicos rigurosos sobre
                         mecanismos y aplicaciones clínicas de la hipnosis</p>
                 </div>
                 <div>
                     <div class="text-4xl font-bold text-primary mb-2">100%</div>
                     <h3 class="text-lg font-semibold mb-2">Confidencialidad</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Protocolo de privacidad absoluta en todas las
+                    <p class="text-[#E0E0E0]   text-sm">Protocolo de privacidad absoluta en todas las
                         fases del proceso terapéutico</p>
                 </div>
             </div>
@@ -1608,7 +1611,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Fundamentos en Investigación</h2>
-                <p class="text-gray-600 dark:text-gray-300">Evidencia científica que respalda la eficacia de la hipnosis
+                <p class="text-[#E0E0E0]  ">Evidencia científica que respalda la eficacia de la hipnosis
                     clínica y métodos multidisciplinares</p>
             </div>
 
@@ -1617,55 +1620,55 @@
                 <h3 class="text-2xl font-bold text-center mb-8 text-primary">Estudios Clave sobre Eficacia de la
                     Hipnosis</h3>
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                    <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
                         <h4 class="text-lg font-semibold mb-3 text-primary">Meta-análisis Cochrane (2019)</h4>
-                        <p class="text-gray-600 dark:text-gray-300 mb-3">Revisión sistemática de 85 estudios
+                        <p class="text-[#E0E0E0]   mb-3">Revisión sistemática de 85 estudios
                             randomizados controlados. Evidencia significativa de eficacia en manejo del dolor, ansiedad
                             y trastornos funcionales.</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 italic">"Hypnosis for pain management" -
+                        <p class="text-sm text-[#E0E0E0]   italic">"Hypnosis for pain management" -
                             Cochrane Database of Systematic Reviews</p>
-                        <div class="mt-3 bg-secondary/5 dark:bg-secondary/20 p-3 rounded">
-                            <p class="text-sm text-secondary dark:text-secondary/30"><strong>Resultado:</strong>
+                        <div class="mt-3 bg-secondary/5  p-3 rounded">
+                            <p class="text-sm text-secondary "><strong>Resultado:</strong>
                                 Reducción del dolor del 42% vs placebo (p&lt;0.001)</p>
                         </div>
                     </div>
 
-                    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                    <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
                         <h4 class="text-lg font-semibold mb-3 text-primary">Stanford Hypnosis Research (2021)</h4>
-                        <p class="text-gray-600 dark:text-gray-300 mb-3">Neuroimagen funcional demuestra cambios
+                        <p class="text-[#E0E0E0]   mb-3">Neuroimagen funcional demuestra cambios
                             específicos en corteza cingulada anterior y ínsula durante hipnosis clínica. Validación de
                             biomarcadores de receptividad.</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 italic">Spiegel, D. et al. - "Cerebral
+                        <p class="text-sm text-[#E0E0E0]   italic">Spiegel, D. et al. - "Cerebral
                             Cortex" Journal</p>
-                        <div class="mt-3 bg-blue-50 dark:bg-blue-900/20 p-3 rounded">
-                            <p class="text-sm text-blue-700 dark:text-blue-300"><strong>Hallazgo:</strong> Conectividad
+                        <div class="mt-3 glass-panel    p-3 rounded">
+                            <p class="text-sm text-blue-700 "><strong>Hallazgo:</strong> Conectividad
                                 neuronal específica durante trance hipnótico</p>
                         </div>
                     </div>
 
-                    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                    <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
                         <h4 class="text-lg font-semibold mb-3 text-primary">Journal of Clinical Psychology (2020)</h4>
-                        <p class="text-gray-600 dark:text-gray-300 mb-3">Estudio longitudinal de 246 pacientes. Hipnosis
+                        <p class="text-[#E0E0E0]   mb-3">Estudio longitudinal de 246 pacientes. Hipnosis
                             ericksoniana muestra eficacia superior en trastornos de ansiedad comparada con terapia
                             cognitivo-conductual estándar.</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 italic">Hammond, D.C. - "Ericksonian
+                        <p class="text-sm text-[#E0E0E0]   italic">Hammond, D.C. - "Ericksonian
                             hypnotherapy outcomes"</p>
-                        <div class="mt-3 bg-secondary/5 dark:bg-secondary/20 p-3 rounded">
-                            <p class="text-sm text-secondary dark:text-purple-300"><strong>Eficacia:</strong> 73% de
+                        <div class="mt-3 bg-secondary/5  p-3 rounded">
+                            <p class="text-sm text-secondary "><strong>Eficacia:</strong> 73% de
                                 mejora clínica vs 58% TCC (6 meses seguimiento)</p>
                         </div>
                     </div>
 
-                    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                    <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
                         <h4 class="text-lg font-semibold mb-3 text-primary">Neuroscience &amp; Biobehavioral Reviews
                             (2022)</h4>
-                        <p class="text-gray-600 dark:text-gray-300 mb-3">Integración de técnicas respiratorias con
+                        <p class="text-[#E0E0E0]   mb-3">Integración de técnicas respiratorias con
                             hipnosis potencia activación del sistema nervioso parasimpático y mejora outcomes
                             terapéuticos.</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 italic">Elkins, G.R. et al. -
+                        <p class="text-sm text-[#E0E0E0]   italic">Elkins, G.R. et al. -
                             "Breathing-enhanced hypnosis"</p>
-                        <div class="mt-3 bg-orange-50 dark:bg-orange-900/20 p-3 rounded">
-                            <p class="text-sm text-accent dark:text-accent"><strong>Sinergia:</strong> +34% eficacia con
+                        <div class="mt-3 bg-orange-50  p-3 rounded">
+                            <p class="text-sm text-accent "><strong>Sinergia:</strong> +34% eficacia con
                                 técnicas respiratorias integradas</p>
                         </div>
                     </div>
@@ -1675,57 +1678,57 @@
             <div>
                 <h3 class="text-2xl font-bold text-center mb-8 text-primary">Reconocimiento Institucional</h3>
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border-l-4 border-primary">
+                    <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-l-4 border-primary">
                         <h4 class="text-lg font-semibold mb-3 text-primary">American Psychological Association</h4>
-                        <p class="text-gray-600 dark:text-gray-300 mb-3">División 30 reconoce oficialmente la hipnosis
+                        <p class="text-[#E0E0E0]   mb-3">División 30 reconoce oficialmente la hipnosis
                             como "intervención psicológica basada en evidencia" para múltiples condiciones clínicas.</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">APA Policy Statement on Hypnosis (2020)</p>
+                        <p class="text-sm text-[#E0E0E0]  ">APA Policy Statement on Hypnosis (2020)</p>
                     </div>
 
-                    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border-l-4 border-primary">
+                    <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-l-4 border-primary">
                         <h4 class="text-lg font-semibold mb-3 text-primary">British Medical Association</h4>
-                        <p class="text-gray-600 dark:text-gray-300 mb-3">Aproba el uso de hipnosis clínica en NHS para
+                        <p class="text-[#E0E0E0]   mb-3">Aproba el uso de hipnosis clínica en NHS para
                             manejo del dolor, ansiedad y preparación quirúrgica basado en evidencia robusta.</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">BMA Medical Ethics Committee Guidelines</p>
+                        <p class="text-sm text-[#E0E0E0]  ">BMA Medical Ethics Committee Guidelines</p>
                     </div>
 
-                    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border-l-4 border-primary">
+                    <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-l-4 border-primary">
                         <h4 class="text-lg font-semibold mb-3 text-primary">World Health Organization</h4>
-                        <p class="text-gray-600 dark:text-gray-300 mb-3">Incluye hipnosis clínica en Clasificación
+                        <p class="text-[#E0E0E0]   mb-3">Incluye hipnosis clínica en Clasificación
                             Internacional de Intervenciones de Salud como tratamiento complementario validado.</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">WHO International Classification (ICD-11)
+                        <p class="text-sm text-[#E0E0E0]  ">WHO International Classification (ICD-11)
                         </p>
                     </div>
 
-                    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border-l-4 border-primary">
+                    <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-l-4 border-primary">
                         <h4 class="text-lg font-semibold mb-3 text-primary">European Society of Hypnosis</h4>
-                        <p class="text-gray-600 dark:text-gray-300 mb-3">Establece estándares de práctica clínica y
+                        <p class="text-[#E0E0E0]   mb-3">Establece estándares de práctica clínica y
                             formación basados en evidencia científica contemporánea y protocolos validados.</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">ESH Clinical Practice Standards</p>
+                        <p class="text-sm text-[#E0E0E0]  ">ESH Clinical Practice Standards</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Testimonials -->
-    <section id="testimonios" class="py-16 bg-gray-50 dark:bg-gray-800">
+    <section id="testimonios" class="py-16 bg-transparent   ">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Experiencias de Clientes</h2>
-                <p class="text-gray-600 dark:text-gray-300">Resultados documentados de protocolos personalizados</p>
+                <p class="text-[#E0E0E0]  ">Resultados documentados de protocolos personalizados</p>
             </div>
             <div class="max-w-4xl mx-auto">
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg">
+                <div class="glass-panel    rounded-lg p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
                     <div class="flex items-center mb-6">
                         <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
                             <span class="text-2xl font-bold text-white">D</span>
                         </div>
                         <div class="ml-4">
                             <h3 class="text-xl font-semibold">Diego, 49 años</h3>
-                            <p class="text-gray-600 dark:text-gray-300">Fundador de NeuroSync Método</p>
+                            <p class="text-[#E0E0E0]  ">Fundador de NeuroSync Método</p>
                         </div>
                     </div>
-                    <blockquote class="text-gray-600 dark:text-gray-300 italic">
+                    <blockquote class="text-[#E0E0E0]   italic">
                         "Mi espíritu autodidacta me impulsó a explorar la hipnosis. Durante tres años, me sumergí en una
                         formación exhaustiva en hipnosis ericksoniana, enriqueciendo mi método con técnicas de
                         respiración y audios binaurales de sólido respaldo científico. Descubrí así una herramienta de
@@ -1737,11 +1740,11 @@
         </div>
     </section>
     <!-- Nuestros Servicios con Precios -->
-    <section id="nuestros-servicios" class="py-16 bg-gray-50 dark:bg-gray-800">
+    <section id="nuestros-servicios" class="py-16 bg-transparent   ">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Nuestros Servicios</h2>
-                <p class="text-gray-600 dark:text-gray-300">Tarifas transparentes para audios personalizados y
+                <p class="text-[#E0E0E0]  ">Tarifas transparentes para audios personalizados y
                     espectáculos de hipnosis</p>
             </div>
 
@@ -1751,7 +1754,7 @@
                 <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                     <!-- 1 Audio -->
                     <div
-                        class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+                        class="glass-panel    rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-white/5   ">
                         <div class="text-center mb-6">
                             <div
                                 class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -1761,11 +1764,11 @@
                                     </path>
                                 </svg>
                             </div>
-                            <h4 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">1 Audio Personalizado
+                            <h4 class="text-2xl font-bold text-[#E0E0E0]   mb-2">1 Audio Personalizado
                             </h4>
                             <div class="text-4xl font-bold text-primary mb-4">30€</div>
                         </div>
-                        <ul class="text-gray-600 dark:text-gray-300 space-y-3 mb-6">
+                        <ul class="text-[#E0E0E0]   space-y-3 mb-6">
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-secondary mr-3 flex-shrink-0" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
@@ -1822,7 +1825,7 @@
                     </div>
                     <!-- 2 Audios - OFERTA DESTACADA -->
                     <div
-                        class="bg-gradient-to-br from-secondary/5 to-secondary/10 dark:from-secondary/20 dark:to-secondary/20 rounded-xl p-8 shadow-lg border-2 border-secondary/40 dark:border-secondary relative">
+                        class="bg-gradient-to-br from-secondary/5 to-secondary/10   rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-2 border-secondary/40  relative">
                         <!-- Badge de oferta -->
                         <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
                             <div
@@ -1834,26 +1837,26 @@
                         <div class="text-center mb-6">
                             <div
                                 class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8 text-secondary dark:text-secondary/40" fill="none"
+                                <svg class="w-8 h-8 text-secondary " fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3">
                                     </path>
                                 </svg>
                             </div>
-                            <h4 class="text-2xl font-bold text-secondary dark:text-secondary/20 mb-2">3 Audios
+                            <h4 class="text-2xl font-bold text-secondary  mb-2">3 Audios
                                 Personalizados</h4>
                             <div class="flex items-center justify-center mb-4">
-                                <span class="text-2xl text-gray-500 dark:text-gray-400 line-through mr-3">90€</span>
-                                <div class="text-4xl font-bold text-secondary dark:text-secondary/40">60€</div>
+                                <span class="text-2xl text-[#E0E0E0]   line-through mr-3">90€</span>
+                                <div class="text-4xl font-bold text-secondary ">60€</div>
                             </div>
-                            <p class="text-sm text-secondary dark:text-secondary/30 font-semibold">
+                            <p class="text-sm text-secondary  font-semibold">
                                 🎉 ¡Al comprar 3, uno sale GRATIS!
                             </p>
                         </div>
-                        <ul class="text-secondary dark:text-secondary/30 space-y-3 mb-6">
+                        <ul class="text-secondary  space-y-3 mb-6">
                             <li class="flex items-center">
-                                <svg class="w-5 h-5 text-secondary dark:text-secondary/40 mr-3 flex-shrink-0"
+                                <svg class="w-5 h-5 text-secondary  mr-3 flex-shrink-0"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
@@ -1861,7 +1864,7 @@
                                 Tres objetivos/propósitos distintos por solo 30€ mas
                             </li>
                             <li class="flex items-center">
-                                <svg class="w-5 h-5 text-secondary dark:text-secondary/40 mr-3 flex-shrink-0"
+                                <svg class="w-5 h-5 text-secondary  mr-3 flex-shrink-0"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
@@ -1869,7 +1872,7 @@
                                 Protocolo completo de transformación
                             </li>
                             <li class="flex items-center">
-                                <svg class="w-5 h-5 text-secondary dark:text-secondary/40 mr-3 flex-shrink-0"
+                                <svg class="w-5 h-5 text-secondary  mr-3 flex-shrink-0"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
@@ -1878,7 +1881,7 @@
                             </li>
                         </ul>
                         <a href="#consultar"
-                            class="block w-full bg-gradient-to-r from-secondary to-secondary text-white text-center py-3 rounded-lg font-semibold hover:from-secondary hover:to-secondary transition-all duration-300 shadow-lg">
+                            class="block w-full bg-gradient-to-r from-secondary to-secondary text-white text-center py-3 rounded-lg font-semibold hover:from-secondary hover:to-secondary transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
                             ¡Aprovechar Oferta!
                         </a>
                     </div>
@@ -1889,20 +1892,20 @@
                 <h3 class="text-2xl font-bold text-center mb-8 text-primary">Hipnosis de Espectáculo</h3>
                 <div class="max-w-4xl mx-auto">
                     <div
-                        class="bg-gradient-to-br from-secondary/5 to-secondary/10 dark:from-secondary/20 dark:to-secondary/20 rounded-xl p-8 shadow-lg border border-purple-200 dark:border-secondary">
+                        class="bg-gradient-to-br from-secondary/5 to-secondary/10   rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-purple-200 ">
                         <div class="text-center mb-8">
                             <div
                                 class="w-20 h-20 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <svg class="w-10 h-10 text-secondary dark:text-purple-400" fill="none"
+                                <svg class="w-10 h-10 text-secondary " fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4l-2 14h14l-2-14M11 9h2M9 13h6">
                                     </path>
                                 </svg>
                             </div>
-                            <h4 class="text-3xl font-bold text-secondary dark:text-purple-200 mb-4">Shows de Hipnosis
+                            <h4 class="text-3xl font-bold text-secondary  mb-4">Shows de Hipnosis
                             </h4>
-                            <p class="text-xl text-secondary dark:text-purple-300 mb-6">
+                            <p class="text-xl text-secondary  mb-6">
                                 Espectáculos profesionales de entretenimiento hipnótico para eventos corporativos,
                                 festivales y celebraciones
                             </p>
@@ -1910,11 +1913,11 @@
                         <div class="grid md:grid-cols-2 gap-8 mb-8">
                             <!-- Información del Servicio -->
                             <div>
-                                <h5 class="text-lg font-bold text-secondary dark:text-purple-200 mb-4">Características
+                                <h5 class="text-lg font-bold text-secondary  mb-4">Características
                                     del Espectáculo</h5>
-                                <ul class="space-y-3 text-secondary dark:text-purple-300">
+                                <ul class="space-y-3 text-secondary ">
                                     <li class="flex items-start">
-                                        <svg class="w-5 h-5 text-secondary dark:text-purple-400 mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-secondary  mr-3 mt-0.5 flex-shrink-0"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M5 13l4 4L19 7"></path>
@@ -1922,7 +1925,7 @@
                                         <span><strong>Duración:</strong> 45-90 minutos adaptable</span>
                                     </li>
                                     <li class="flex items-start">
-                                        <svg class="w-5 h-5 text-secondary dark:text-purple-400 mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-secondary  mr-3 mt-0.5 flex-shrink-0"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M5 13l4 4L19 7"></path>
@@ -1930,7 +1933,7 @@
                                         <span><strong>Mínimo:</strong> 100 asistentes estimados</span>
                                     </li>
                                     <li class="flex items-start">
-                                        <svg class="w-5 h-5 text-secondary dark:text-purple-400 mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-secondary  mr-3 mt-0.5 flex-shrink-0"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M5 13l4 4L19 7"></path>
@@ -1938,7 +1941,7 @@
                                         <span><strong>Formato:</strong> Entretenimiento seguro y profesional</span>
                                     </li>
                                     <li class="flex items-start">
-                                        <svg class="w-5 h-5 text-secondary dark:text-purple-400 mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-secondary  mr-3 mt-0.5 flex-shrink-0"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M5 13l4 4L19 7"></path>
@@ -1949,30 +1952,30 @@
                             </div>
                             <!-- Tarifas -->
                             <div>
-                                <h5 class="text-lg font-bold text-secondary dark:text-purple-200 mb-4">Tarifas y
+                                <h5 class="text-lg font-bold text-secondary  mb-4">Tarifas y
                                     Condiciones</h5>
-                                <div class="bg-white dark:bg-gray-800 rounded-lg p-4 mb-4">
-                                    <h6 class="font-semibold text-secondary dark:text-purple-200 mb-2">Tarifa Estándar
+                                <div class="glass-panel    rounded-lg p-4 mb-4">
+                                    <h6 class="font-semibold text-secondary  mb-2">Tarifa Estándar
                                     </h6>
-                                    <p class="text-secondary dark:text-purple-300 text-sm mb-2">
+                                    <p class="text-secondary  text-sm mb-2">
                                         <strong>Precio a convenir</strong> según ubicación, duración y características
                                         del evento.
                                     </p>
-                                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                                    <p class="text-xs text-[#E0E0E0]  ">
                                         Contacta con nosotros para recibir un presupuesto personalizado.
                                     </p>
                                 </div>
 
                                 <div
-                                    class="bg-secondary/5 dark:bg-secondary/30 border border-secondary/20 dark:border-secondary rounded-lg p-4">
-                                    <h6 class="font-semibold text-secondary dark:text-secondary/20 mb-2">
+                                    class="bg-secondary/5  border border-secondary/20  rounded-lg p-4">
+                                    <h6 class="font-semibold text-secondary  mb-2">
                                         🎁 Opción Gratuita
                                     </h6>
-                                    <p class="text-secondary dark:text-secondary/30 text-sm mb-2">
+                                    <p class="text-secondary  text-sm mb-2">
                                         <strong>Eventos de gran afluencia</strong> en Cantabria, La Rioja, País Vasco y
                                         Navarra
                                     </p>
-                                    <ul class="text-xs text-secondary dark:text-secondary/40 space-y-1">
+                                    <ul class="text-xs text-secondary  space-y-1">
                                         <li>• Solo gastos de viaje y alojamiento</li>
                                         <li>• Contraprestaciones publicitarias</li>
                                         <li>• Mínimo 500+ asistentes</li>
@@ -1982,7 +1985,7 @@
                         </div>
                         <div class="text-center">
                             <a href="#consultar"
-                                class="inline-flex items-center bg-gradient-to-r from-secondary to-secondary text-white px-8 py-4 rounded-lg font-semibold hover:from-secondary hover:to-secondary transition-all duration-300 shadow-lg hover:shadow-xl">
+                                class="inline-flex items-center bg-gradient-to-r from-secondary to-secondary text-white px-8 py-4 rounded-lg font-semibold hover:from-secondary hover:to-secondary transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
@@ -2003,7 +2006,7 @@
                     <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                         <!-- Taller de Autohipnosis Online -->
                         <div
-                            class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+                            class="glass-panel    rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-white/5   ">
                             <div class="text-center mb-6">
                                 <div
                                     class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -2014,7 +2017,7 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <h5 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">Descubre el Inmenso
+                                <h5 class="text-xl font-bold text-[#E0E0E0]   mb-2">Descubre el Inmenso
                                     Poder de la Autohipnosis</h5>
                                 <div
                                     class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold mb-4">
@@ -2022,7 +2025,7 @@
                                 </div>
                                 <div class="text-3xl font-bold text-accent mb-4">95€</div>
                             </div>
-                            <ul class="text-gray-600 dark:text-gray-300 space-y-3 mb-6">
+                            <ul class="text-[#E0E0E0]   space-y-3 mb-6">
                                 <li class="flex items-start">
                                     <svg class="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
@@ -2065,13 +2068,13 @@
                                 </li>
                             </ul>
                             <a href="#consultar"
-                                class="block w-full bg-gradient-to-r from-primary to-secondary text-white text-center py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                                class="block w-full bg-gradient-to-r from-primary to-secondary text-white text-center py-3 rounded-lg font-semibold hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]  transition-all duration-300">
                                 Inscribirme Ahora
                             </a>
                         </div>
                         <!-- Taller Presencial para Grupos -->
                         <div
-                            class="bg-gradient-to-br from-accent/5 to-accent/10 dark:from-accent/20 dark:to-accent/30 rounded-xl p-8 shadow-lg border border-accent/40">
+                            class="bg-gradient-to-br from-accent/5 to-accent/10   rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-accent/40">
                             <div class="text-center mb-6">
                                 <div
                                     class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -2082,16 +2085,16 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <h5 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">Taller de Hipnosis
+                                <h5 class="text-xl font-bold text-[#E0E0E0]   mb-2">Taller de Hipnosis
                                     Presencial para Grupos</h5>
                                 <div
-                                    class="inline-block bg-accent/20 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm font-semibold mb-4">
+                                    class="inline-block bg-accent/20 text-[#E0E0E0]   px-3 py-1 rounded-full text-sm font-semibold mb-4">
                                     PRESENCIAL
                                 </div>
                                 <div class="text-2xl font-bold text-accent mb-2">Precio a convenir</div>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 italic">por grupo</p>
+                                <p class="text-sm text-[#E0E0E0]   italic">por grupo</p>
                             </div>
-                            <ul class="text-gray-600 dark:text-gray-300 space-y-3 mb-6">
+                            <ul class="text-[#E0E0E0]   space-y-3 mb-6">
                                 <li class="flex items-start">
                                     <svg class="w-5 h-5 text-accent mr-3 mt-0.5 flex-shrink-0" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
@@ -2134,7 +2137,7 @@
                                 </li>
                             </ul>
                             <a href="#consultar"
-                                class="block w-full bg-gradient-to-r from-accent to-accent hover:shadow-lg text-gray-900 text-center py-3 rounded-lg font-semibold transition-all duration-300">
+                                class="block w-full bg-gradient-to-r from-accent to-accent hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]  text-[#E0E0E0]  text-center py-3 rounded-lg font-semibold transition-all duration-300">
                                 Solicitar Presupuesto
                             </a>
                         </div>
@@ -2146,7 +2149,7 @@
                 <h3 class="text-2xl font-bold text-center mb-8 text-primary">Sesión de Hipnosis Online</h3>
                 <div class="max-w-4xl mx-auto">
                     <div
-                        class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+                        class="glass-panel    rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-white/5   ">
                         <div class="grid md:grid-cols-2 gap-8">
                             <div>
                                 <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
@@ -2158,7 +2161,7 @@
                                     </svg>
                                 </div>
                                 <h4 class="text-2xl font-bold text-primary mb-4">Transformación Personal en Vivo</h4>
-                                <p class="text-gray-600 dark:text-gray-300 mb-6">
+                                <p class="text-[#E0E0E0]   mb-6">
                                     Sesión profesional individualizada vía Zoom con interacción directa en tiempo real.
                                     Incluye evaluación previa, charla prehipnótica esencial y protocolo personalizado
                                     diseñado específicamente para tus objetivos.
@@ -2166,8 +2169,8 @@
                                 <div class="text-4xl font-bold text-primary mb-6">95€</div>
                             </div>
                             <div>
-                                <h5 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Incluye:</h5>
-                                <ul class="space-y-3 text-gray-600 dark:text-gray-300 mb-6">
+                                <h5 class="font-bold text-[#E0E0E0]   mb-4">Incluye:</h5>
+                                <ul class="space-y-3 text-[#E0E0E0]   mb-6">
                                     <li class="flex items-start">
                                         <svg class="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" fill="none"
                                             stroke="currentColor" viewBox="0 0 24 24">
@@ -2225,7 +2228,7 @@
                 <h3 class="text-2xl font-bold text-center mb-8 text-primary">Hipnosis para Clubes Deportivos</h3>
                 <div class="max-w-5xl mx-auto">
                     <div
-                        class="bg-gradient-to-br from-secondary/5 to-secondary/10 dark:from-secondary/20 dark:to-secondary/30 rounded-xl p-8 shadow-lg border border-secondary/20">
+                        class="bg-gradient-to-br from-secondary/5 to-secondary/10   rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-secondary/20">
                         <div class="text-center mb-8">
                             <div
                                 class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6">
@@ -2234,20 +2237,20 @@
                                         d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                                 </svg>
                             </div>
-                            <h4 class="text-3xl font-bold text-secondary dark:text-secondary/20 mb-4">Potencia el
+                            <h4 class="text-3xl font-bold text-secondary  mb-4">Potencia el
                                 Rendimiento de tus Deportistas</h4>
-                            <p class="text-xl text-gray-600 dark:text-gray-300 mb-4">
+                            <p class="text-xl text-[#E0E0E0]   mb-4">
                                 Programa especializado de optimización mental para equipos y deportistas individuales
                             </p>
                             <div class="text-3xl font-bold text-secondary mb-2">Desde 120€/mes</div>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 italic">Precio según número de
+                            <p class="text-sm text-[#E0E0E0]   italic">Precio según número de
                                 deportistas y frecuencia de sesiones</p>
                         </div>
                         <div class="grid md:grid-cols-2 gap-8 mb-8">
                             <div>
-                                <h5 class="font-bold text-secondary dark:text-secondary/20 mb-4">Objetivos del Programa:
+                                <h5 class="font-bold text-secondary  mb-4">Objetivos del Programa:
                                 </h5>
-                                <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                                <ul class="space-y-3 text-[#E0E0E0]  ">
                                     <li class="flex items-start">
                                         <svg class="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" fill="none"
                                             stroke="currentColor" viewBox="0 0 24 24">
@@ -2296,22 +2299,22 @@
                                 </ul>
                             </div>
                             <div>
-                                <h5 class="font-bold text-secondary dark:text-secondary/20 mb-4">Modalidades
+                                <h5 class="font-bold text-secondary  mb-4">Modalidades
                                     Disponibles:</h5>
                                 <div class="space-y-4">
-                                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4">
+                                    <div class="glass-panel    rounded-lg p-4">
                                         <p class="font-semibold mb-2">Sesiones Grupales Online</p>
-                                        <p class="text-sm text-gray-600 dark:text-gray-400">Trabajo con todo el equipo
+                                        <p class="text-sm text-[#E0E0E0]  ">Trabajo con todo el equipo
                                             vía Zoom</p>
                                     </div>
-                                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4">
+                                    <div class="glass-panel    rounded-lg p-4">
                                         <p class="font-semibold mb-2">Audios Personalizados</p>
-                                        <p class="text-sm text-gray-600 dark:text-gray-400">Protocolos individualizados
+                                        <p class="text-sm text-[#E0E0E0]  ">Protocolos individualizados
                                             por deportista</p>
                                     </div>
-                                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4">
+                                    <div class="glass-panel    rounded-lg p-4">
                                         <p class="font-semibold mb-2">Programa Híbrido</p>
-                                        <p class="text-sm text-gray-600 dark:text-gray-400">Combinación de sesiones
+                                        <p class="text-sm text-[#E0E0E0]  ">Combinación de sesiones
                                             grupales + audios individuales</p>
                                     </div>
                                 </div>
@@ -2319,7 +2322,7 @@
                         </div>
                         <div class="text-center">
                             <a href="#consultar"
-                                class="inline-flex items-center bg-gradient-to-r from-secondary to-secondary text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                                class="inline-flex items-center bg-gradient-to-r from-secondary to-secondary text-white px-8 py-4 rounded-lg font-semibold hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]  transition-all duration-300">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
@@ -2336,7 +2339,7 @@
                 <h3 class="text-2xl font-bold text-center mb-8 text-primary">Hipnosis Corporativa</h3>
                 <div class="max-w-6xl mx-auto">
                     <div
-                        class="bg-gradient-to-br from-accent/5 to-accent/10 dark:from-accent/20 dark:to-accent/30 rounded-xl p-8 shadow-lg border border-accent/20">
+                        class="bg-gradient-to-br from-accent/5 to-accent/10   rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-accent/20">
                         <div class="text-center mb-8">
                             <div class="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
                                 <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2347,17 +2350,17 @@
                             </div>
                             <h4 class="text-3xl font-bold mb-4" style="color: #FFC300;">Bienestar y Rendimiento para tu
                                 Equipo</h4>
-                            <p class="text-xl text-gray-600 dark:text-gray-300 mb-4">
+                            <p class="text-xl text-[#E0E0E0]   mb-4">
                                 Soluciones personalizadas de optimización mental y gestión del estrés laboral
                             </p>
                             <div class="text-3xl font-bold mb-2" style="color: #FFC300;">Desde 120€</div>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 italic">Presupuesto personalizado según
+                            <p class="text-sm text-[#E0E0E0]   italic">Presupuesto personalizado según
                                 servicios y número de empleados</p>
                         </div>
                         <div class="grid md:grid-cols-3 gap-6 mb-8">
-                            <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+                            <div class="glass-panel    rounded-lg p-6">
                                 <h5 class="font-bold mb-4" style="color: #FFC300;">Packs de Audios Personalizados</h5>
-                                <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                                <ul class="space-y-2 text-sm text-[#E0E0E0]  ">
                                     <li class="flex items-start">
                                         <span class="text-accent mr-2">•</span>
                                         <span>Protocolos individualizados por empleado</span>
@@ -2376,9 +2379,9 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+                            <div class="glass-panel    rounded-lg p-6">
                                 <h5 class="font-bold mb-4" style="color: #FFC300;">Sesiones de Hipnosis Online</h5>
-                                <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                                <ul class="space-y-2 text-sm text-[#E0E0E0]  ">
                                     <li class="flex items-start">
                                         <span class="text-accent mr-2">•</span>
                                         <span>Sesiones grupales para equipos</span>
@@ -2397,9 +2400,9 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+                            <div class="glass-panel    rounded-lg p-6">
                                 <h5 class="font-bold mb-4" style="color: #FFC300;">Talleres de Autohipnosis</h5>
-                                <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                                <ul class="space-y-2 text-sm text-[#E0E0E0]  ">
                                     <li class="flex items-start">
                                         <span class="text-accent mr-2">•</span>
                                         <span>Formación online o presencial</span>
@@ -2419,31 +2422,31 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 mb-6">
+                        <div class="glass-panel    rounded-lg p-6 mb-6">
                             <h5 class="font-bold text-center mb-4" style="color: #FFC300;">Beneficios Corporativos
                                 Demostrados</h5>
                             <div class="grid md:grid-cols-4 gap-4 text-center">
                                 <div>
                                     <div class="text-2xl font-bold text-accent mb-1">↓42%</div>
-                                    <p class="text-xs text-gray-600 dark:text-gray-400">Reducción estrés laboral</p>
+                                    <p class="text-xs text-[#E0E0E0]  ">Reducción estrés laboral</p>
                                 </div>
                                 <div>
                                     <div class="text-2xl font-bold text-accent mb-1">↑31%</div>
-                                    <p class="text-xs text-gray-600 dark:text-gray-400">Mejora productividad</p>
+                                    <p class="text-xs text-[#E0E0E0]  ">Mejora productividad</p>
                                 </div>
                                 <div>
                                     <div class="text-2xl font-bold text-accent mb-1">↓37%</div>
-                                    <p class="text-xs text-gray-600 dark:text-gray-400">Absentismo laboral</p>
+                                    <p class="text-xs text-[#E0E0E0]  ">Absentismo laboral</p>
                                 </div>
                                 <div>
                                     <div class="text-2xl font-bold text-accent mb-1">↑48%</div>
-                                    <p class="text-xs text-gray-600 dark:text-gray-400">Satisfacción empleados</p>
+                                    <p class="text-xs text-[#E0E0E0]  ">Satisfacción empleados</p>
                                 </div>
                             </div>
                         </div>
                         <div class="text-center">
                             <a href="#consultar"
-                                class="inline-flex items-center bg-gradient-to-r from-accent to-accent text-gray-900 px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                                class="inline-flex items-center bg-gradient-to-r from-accent to-accent text-[#E0E0E0]  px-8 py-4 rounded-lg font-semibold hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]  transition-all duration-300">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
@@ -2460,7 +2463,7 @@
                 <h3 class="text-2xl font-bold text-center mb-8 text-primary">Minisesiones Hipnóticas</h3>
                 <div class="max-w-4xl mx-auto">
                     <div
-                        class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+                        class="glass-panel    rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-white/5   ">
                         <div class="grid md:grid-cols-2 gap-8">
                             <div>
                                 <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
@@ -2471,18 +2474,18 @@
                                     </svg>
                                 </div>
                                 <h4 class="text-2xl font-bold text-primary mb-4">Intervención Rápida y Efectiva</h4>
-                                <p class="text-gray-600 dark:text-gray-300 mb-6">
+                                <p class="text-[#E0E0E0]   mb-6">
                                     Sesiones breves diseñadas para escucha repetida durante al menos 3 semanas.
                                     Protocolo específico para corrección de problemas puntuales o eliminación de
                                     bloqueos mediante exposición sistemática.
                                 </p>
                                 <div class="text-4xl font-bold text-primary mb-2">10€</div>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 italic">Inversión accesible,
+                                <p class="text-sm text-[#E0E0E0]   italic">Inversión accesible,
                                     resultados profesionales</p>
                             </div>
                             <div>
-                                <h5 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Características:</h5>
-                                <ul class="space-y-3 text-gray-600 dark:text-gray-300 mb-6">
+                                <h5 class="font-bold text-[#E0E0E0]   mb-4">Características:</h5>
+                                <ul class="space-y-3 text-[#E0E0E0]   mb-6">
                                     <li class="flex items-start">
                                         <svg class="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" fill="none"
                                             stroke="currentColor" viewBox="0 0 24 24">
@@ -2540,7 +2543,7 @@
                 <h3 class="text-2xl font-bold text-center mb-8 text-primary">Regala NeuroSync Método</h3>
                 <div class="max-w-6xl mx-auto">
                     <div
-                        class="bg-gradient-to-br from-secondary/5 to-accent/10 dark:from-secondary/20 dark:to-accent/30 rounded-xl p-8 shadow-lg border-2 border-secondary/30">
+                        class="bg-gradient-to-br from-secondary/5 to-accent/10   rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-2 border-secondary/30">
                         <div class="text-center mb-8">
                             <div
                                 class="w-20 h-20 bg-gradient-to-br from-secondary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
@@ -2552,21 +2555,21 @@
                             <h4
                                 class="text-3xl font-bold text-transparent bg-gradient-to-r from-secondary to-accent bg-clip-text mb-4">
                                 El Regalo Más Transformador</h4>
-                            <p class="text-xl text-gray-600 dark:text-gray-300 mb-6">
+                            <p class="text-xl text-[#E0E0E0]   mb-6">
                                 Regala bienestar, transformación personal y herramientas profesionales de cambio.
                                 Incluye presentación personalizada física y digital.
                             </p>
                         </div>
                         <div class="grid md:grid-cols-2 gap-8 mb-8">
                             <!-- Audio Personalizado como Regalo -->
-                            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border-2 border-secondary/20">
+                            <div class="glass-panel    rounded-lg p-6 border-2 border-secondary/20">
                                 <h5 class="text-2xl font-bold text-secondary mb-4 text-center">Audio Personalizado</h5>
                                 <div class="text-center mb-6">
                                     <div class="text-4xl font-bold text-secondary mb-2">45€</div>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400 italic">Precio especial regalo
+                                    <p class="text-sm text-[#E0E0E0]   italic">Precio especial regalo
                                     </p>
                                 </div>
-                                <ul class="space-y-3 text-gray-600 dark:text-gray-300 mb-6">
+                                <ul class="space-y-3 text-[#E0E0E0]   mb-6">
                                     <li class="flex items-start">
                                         <svg class="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" fill="none"
                                             stroke="currentColor" viewBox="0 0 24 24">
@@ -2614,15 +2617,15 @@
                                 </a>
                             </div>
                             <!-- Sesión Online como Regalo -->
-                            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border-2 border-accent/20">
+                            <div class="glass-panel    rounded-lg p-6 border-2 border-accent/20">
                                 <h5 class="text-2xl font-bold text-center mb-4" style="color: #FFC300;">Sesión de
                                     Hipnosis Online</h5>
                                 <div class="text-center mb-6">
                                     <div class="text-4xl font-bold mb-2" style="color: #FFC300;">110€</div>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400 italic">Precio especial regalo
+                                    <p class="text-sm text-[#E0E0E0]   italic">Precio especial regalo
                                     </p>
                                 </div>
-                                <ul class="space-y-3 text-gray-600 dark:text-gray-300 mb-6">
+                                <ul class="space-y-3 text-[#E0E0E0]   mb-6">
                                     <li class="flex items-start">
                                         <svg class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" style="color: #FFC300;"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2665,34 +2668,34 @@
                                     </li>
                                 </ul>
                                 <a href="#consultar"
-                                    class="block w-full text-gray-900 text-center py-3 rounded-lg font-semibold transition-colors"
+                                    class="block w-full text-[#E0E0E0]  text-center py-3 rounded-lg font-semibold transition-colors"
                                     style="background: linear-gradient(135deg, #FFC300, #FFD54F);">
                                     Regalar Sesión
                                 </a>
                             </div>
                         </div>
-                        <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+                        <div class="glass-panel    rounded-lg p-6">
                             <h5 class="font-bold text-center text-primary mb-4">¿Cómo Funciona el Regalo?</h5>
                             <div class="grid md:grid-cols-3 gap-6 text-center">
                                 <div>
                                     <div
                                         class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
                                         1</div>
-                                    <p class="text-sm text-gray-600 dark:text-gray-300">Realizas el pedido especificando
+                                    <p class="text-sm text-[#E0E0E0]  ">Realizas el pedido especificando
                                         datos del destinatario y mensaje personalizado</p>
                                 </div>
                                 <div>
                                     <div
                                         class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
                                         2</div>
-                                    <p class="text-sm text-gray-600 dark:text-gray-300">Creamos el contenido y
+                                    <p class="text-sm text-[#E0E0E0]  ">Creamos el contenido y
                                         preparamos las tarjetas de felicitación (física + digital)</p>
                                 </div>
                                 <div>
                                     <div
                                         class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
                                         3</div>
-                                    <p class="text-sm text-gray-600 dark:text-gray-300">Recibes la tarjeta digital para
+                                    <p class="text-sm text-[#E0E0E0]  ">Recibes la tarjeta digital para
                                         entregar y enviamos la física por correo postal</p>
                                 </div>
                             </div>
@@ -2701,12 +2704,12 @@
                 </div>
             </div>
             <!-- Información Adicional -->
-            <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-6 mt-8">
+            <div class="glass-panel    border border-white/5    rounded-lg p-6 mt-8">
                 <div class="text-center">
-                    <h4 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-3">
+                    <h4 class="text-lg font-semibold text-blue-800  mb-3">
                         💡 Información Importante
                     </h4>
-                    <div class="grid md:grid-cols-2 gap-6 text-sm text-blue-700 dark:text-blue-300">
+                    <div class="grid md:grid-cols-2 gap-6 text-sm text-blue-700 ">
                         <div>
                             <strong>Audios Personalizados:</strong>
                             <ul class="mt-2 space-y-1 text-left">
@@ -2733,60 +2736,60 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Áreas de Intervención</h2>
-                <p class="text-gray-600 dark:text-gray-300">Protocolos especializados para objetivos específicos de
+                <p class="text-[#E0E0E0]  ">Protocolos especializados para objetivos específicos de
                     mejora personal</p>
             </div>
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-shadow">
                     <h3 class="text-lg font-semibold mb-3 text-primary">Gestión de Ansiedad</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Reducción de sintomatología ansiosa y desarrollo de
+                    <p class="text-[#E0E0E0]  ">Reducción de sintomatología ansiosa y desarrollo de
                         estrategias de regulación emocional.</p>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-shadow">
                     <h3 class="text-lg font-semibold mb-3 text-primary">Optimización del Aprendizaje</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Potenciación de funciones ejecutivas y capacidad de
+                    <p class="text-[#E0E0E0]  ">Potenciación de funciones ejecutivas y capacidad de
                         concentración sostenida.</p>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-shadow">
                     <h3 class="text-lg font-semibold mb-3 text-primary">Higiene del Sueño</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Regulación de ciclos circadianos y facilitación de
+                    <p class="text-[#E0E0E0]  ">Regulación de ciclos circadianos y facilitación de
                         transición a sueño reparador.</p>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-shadow">
                     <h3 class="text-lg font-semibold mb-3 text-primary">Performance Deportiva</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Optimización de estados mentales de alto rendimiento y
+                    <p class="text-[#E0E0E0]  ">Optimización de estados mentales de alto rendimiento y
                         gestión de activación competitiva.</p>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-shadow">
                     <h3 class="text-lg font-semibold mb-3 text-primary">Ansiedad de Exposición</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Gestión de ansiedad anticipatoria y respuesta de estrés
+                    <p class="text-[#E0E0E0]  ">Gestión de ansiedad anticipatoria y respuesta de estrés
                         en contextos de exposición pública.</p>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-shadow">
                     <h3 class="text-lg font-semibold mb-3 text-primary">Regulación Emocional</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Desarrollo de estrategias de afrontamiento y respuestas
+                    <p class="text-[#E0E0E0]  ">Desarrollo de estrategias de afrontamiento y respuestas
                         adaptativas al estrés.</p>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-shadow">
                     <h3 class="text-lg font-semibold mb-3 text-primary">Autoconcepto</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Reestructuración cognitiva de autopercepciones y
+                    <p class="text-[#E0E0E0]  ">Reestructuración cognitiva de autopercepciones y
                         fortalecimiento de autoeficacia.</p>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-shadow">
                     <h3 class="text-lg font-semibold mb-3 text-primary">Motivación Intrínseca</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Activación de sistemas motivacionales internos y
+                    <p class="text-[#E0E0E0]  ">Activación de sistemas motivacionales internos y
                         superación de procrastinación.</p>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="glass-panel    rounded-lg p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-shadow">
                     <h3 class="text-lg font-semibold mb-3 text-primary">Preparación Pre-Performance</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Optimización del estado psicofisiológico previo a
+                    <p class="text-[#E0E0E0]  ">Optimización del estado psicofisiológico previo a
                         eventos de alta exigencia.</p>
                 </div>
             </div>
             <!-- Aviso Legal Importante -->
             <div
                 class="bg-gradient-to-r from-red-600 to-red-700 text-white py-8 px-4 sm:px-6 lg:px-8 mt-16 rounded-xl mx-4 sm:mx-0">
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                <div class="glass-panel  backdrop-blur-sm rounded-xl p-6 border border-white/20">
                     <div class="flex items-start">
                         <svg class="w-8 h-8 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
@@ -2826,17 +2829,17 @@
         </div>
     </section>
     <!-- Contact Section -->
-    <section id="consultar" class="py-16 bg-gray-50 dark:bg-gray-800">
+    <section id="consultar" class="py-16 bg-transparent   ">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Contacta con Nosotros</h2>
-                <p class="text-gray-600 dark:text-gray-300">Solicita tu audio gratuito o protocolo personalizado</p>
+                <p class="text-[#E0E0E0]  ">Solicita tu audio gratuito o protocolo personalizado</p>
             </div>
 
             <!-- Formulario Principal con Web3Forms -->
             <div class="max-w-2xl mx-auto">
                 <form action="https://api.web3forms.com/submit" method="POST"
-                    class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
+                    class="glass-panel    rounded-xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)]  border border-white/5   ">
                     <!-- Campos ocultos para Web3Forms -->
                     <input type="hidden" name="access_key" value="5c32e9e8-e122-4257-ae18-859829889dc6">
                     <input type="hidden" name="subject" value="Nuevo contacto - NeuroSync Método">
@@ -2852,19 +2855,19 @@
                                 </path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2 text-gold-glow">Contáctanos
+                        <h3 class="text-2xl font-bold text-[#E0E0E0]   mb-2 text-gold-glow">Contáctanos
                         </h3>
-                        <p class="text-gray-600 dark:text-gray-300">Completa el formulario y nos pondremos en contacto
+                        <p class="text-[#E0E0E0]  ">Completa el formulario y nos pondremos en contacto
                             contigo</p>
                     </div>
                     <!-- Objetivo de la comunicación -->
                     <div class="mb-6">
                         <label for="objetivo_comunicacion_principal"
-                            class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                             Motivo de la comunicación *
                         </label>
                         <select id="objetivo_comunicacion_principal" name="objetivo_comunicacion" required=""
-                            class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                            class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent glass-panel    text-[#E0E0E0]  ">
                             <option value="">Selecciona el objetivo de tu contacto</option>
                             <option value="pedido-audio-personalizado">🎧 Pedido de audio personalizado</option>
                             <option value="pedido-sesion-online">💻 Sesión de hipnosis online (95€)</option>
@@ -2885,21 +2888,21 @@
                     </div>
                     <!-- Nombre de pila -->
                     <div class="mb-6">
-                        <label for="nombre" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <label for="nombre" class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                             Nombre de pila *
                         </label>
                         <input type="text" id="nombre" name="nombre" required=""
-                            class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                            class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent glass-panel    text-[#E0E0E0]   placeholder-gray-500 "
                             placeholder="Tu nombre de pila">
                     </div>
                     <!-- Forma de contacto preferida -->
                     <div class="mb-6">
                         <label for="contacto_preferido"
-                            class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                             Forma de contacto preferida *
                         </label>
                         <select id="contacto_preferido" name="contacto_preferido" required=""
-                            class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                            class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent glass-panel    text-[#E0E0E0]  ">
                             <option value="">Selecciona una opción</option>
                             <option value="email">📧 Email</option>
                             <option value="telefono-whatsapp">📱 Teléfono/WhatsApp</option>
@@ -2907,38 +2910,38 @@
                     </div>
                     <!-- Email -->
                     <div class="mb-6">
-                        <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <label for="email" class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                             Email *
                         </label>
                         <input type="email" id="email" name="email" required=""
-                            class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                            class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent glass-panel    text-[#E0E0E0]   placeholder-gray-500 "
                             placeholder="tu@email.com">
                     </div>
                     <!-- Teléfono -->
                     <div class="mb-6">
-                        <label for="telefono" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <label for="telefono" class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                             Teléfono/WhatsApp
                         </label>
                         <input type="tel" id="telefono" name="telefono" required=""
-                            class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                            class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent glass-panel    text-[#E0E0E0]   placeholder-gray-500 "
                             placeholder="+34 123 456 789">
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        <p class="text-xs text-[#E0E0E0]   mt-1">
                             Incluye código de país (ej: +34 para España)
                         </p>
                     </div>
                     <!-- Comentarios -->
                     <div class="mb-6">
                         <label for="comentarios"
-                            class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            class="block text-sm font-semibold text-[#E0E0E0]   mb-2">
                             Comentarios
                         </label>
                         <textarea id="comentarios" name="comentarios" required="" rows="4"
-                            class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 resize-none"
+                            class="w-full px-4 py-3 text-base border border-white/5    rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent glass-panel    text-[#E0E0E0]   placeholder-gray-500  resize-none"
                             placeholder="Escribe aquí los detalles de tu consulta. Estamos aquí para escucharte y ofrecerte la mejor solución personalizada."></textarea>
                     </div>
                     <!-- Botón de envío -->
                     <button type="submit"
-                        class="w-full bg-gradient-to-r from-primary to-secondary text-white font-semibold py-4 px-6 rounded-lg hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center">
+                        class="w-full bg-gradient-to-r from-primary to-secondary text-white font-semibold py-4 px-6 rounded-lg hover:from-secondary hover:to-primary transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
@@ -2946,7 +2949,7 @@
                         Enviar Solicitud
                     </button>
                     <!-- Información adicional -->
-                    <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <div class="mt-6 p-4 bg-transparent    rounded-lg">
                         <div class="flex items-start">
                             <svg class="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24">
@@ -2954,10 +2957,10 @@
                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                             <div>
-                                <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                                <p class="text-sm text-[#E0E0E0]   mb-2">
                                     <strong>Respuesta garantizada en 24 horas</strong>
                                 </p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">
+                                <p class="text-xs text-[#E0E0E0]  ">
                                     • Te contactaremos por tu método preferido<br>
                                     • Audios gratuitos: Entrega inmediata<br>
                                     • Protocolos personalizados: Entrega en 48h<br>
@@ -2972,7 +2975,7 @@
             <div class="grid md:grid-cols-2 gap-8 mt-12">
                 <!-- Info Audios Gratuitos -->
                 <div
-                    class="bg-gradient-to-br from-secondary/5 to-secondary/10 dark:from-secondary/20 dark:to-secondary/20 rounded-xl p-6 border border-secondary/20 dark:border-secondary">
+                    class="bg-gradient-to-br from-secondary/5 to-secondary/10   rounded-xl p-6 border border-secondary/20 ">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mr-4">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2980,9 +2983,9 @@
                                     d="M12 8v13m0-13V6a2 2 0 112 0v1m-2 0V6a2 2 0 00-2 0v1m2 0V9.5m0 0V8"></path>
                             </svg>
                         </div>
-                        <h4 class="text-lg font-bold text-secondary dark:text-secondary/20">Audios Gratuitos</h4>
+                        <h4 class="text-lg font-bold text-secondary ">Audios Gratuitos</h4>
                     </div>
-                    <ul class="text-sm text-secondary dark:text-secondary/30 space-y-2">
+                    <ul class="text-sm text-secondary  space-y-2">
                         <li>• <strong>Caminar Erguido:</strong> Mejora postura y autoconfianza</li>
                         <li>• <strong>Respirar Correctamente:</strong> Optimiza oxigenación y relajación</li>
                         <li>• <strong>Relativizar:</strong> Gestiona el estrés y los problemas</li>
@@ -2990,7 +2993,7 @@
                 </div>
                 <!-- Info Protocolo Personalizado -->
                 <div
-                    class="bg-gradient-to-br from-secondary/5 to-secondary/10 dark:from-secondary/20 dark:to-secondary/20 rounded-xl p-6 border border-purple-200 dark:border-secondary">
+                    class="bg-gradient-to-br from-secondary/5 to-secondary/10   rounded-xl p-6 border border-purple-200 ">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2998,9 +3001,9 @@
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
                         </div>
-                        <h4 class="text-lg font-bold text-secondary dark:text-purple-200">Protocolo Personalizado</h4>
+                        <h4 class="text-lg font-bold text-secondary ">Protocolo Personalizado</h4>
                     </div>
-                    <ul class="text-sm text-secondary dark:text-purple-300 space-y-2">
+                    <ul class="text-sm text-secondary  space-y-2">
                         <li>• <strong>Evaluación individual:</strong> Test de receptividad</li>
                         <li>• <strong>Audio personalizado:</strong> Adaptado a tu perfil</li>
                         <li>• <strong>Entrega en 48h:</strong> Protocolo completo y listo</li>
@@ -3008,10 +3011,10 @@
                 </div>
             </div>
             <!-- Contact Info -->
-            <div class="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg mt-8 text-center">
+            <div class="glass-panel    rounded-lg p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  mt-8 text-center">
                 <div
-                    class="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-8 h-8 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor"
+                    class="w-16 h-16 bg-transparent    rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-[#E0E0E0]  " fill="none" stroke="currentColor"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
@@ -3019,20 +3022,20 @@
                     </svg>
                 </div>
                 <h3 class="text-xl font-bold mb-4">Información de Contacto Directo</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                <p class="text-[#E0E0E0]   mb-4">
                     Si prefieres contactarnos directamente:
                 </p>
                 <div class="text-primary font-semibold text-lg">
                     <a href="mailto:gestion@neurosync.vip" class="hover:underline">gestion@neurosync.vip</a>
                 </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">
+                <p class="text-sm text-[#E0E0E0]   mt-4">
                     Respuesta garantizada en 24 horas • Proceso completamente confidencial
                 </p>
             </div>
         </div>
     </section>
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
+    <footer class="bg-transparent  text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="mb-4">
                 <span class="text-xl font-bold text-primary">NeuroSync Método</span>
@@ -3042,7 +3045,7 @@
                     gestion@neurosync.vip</a>
             </div>
             <p class="text-gray-400 mb-4">© 2025 Todos los derechos reservados.</p>
-            <p class="text-gray-500 text-sm">
+            <p class="text-[#E0E0E0]  text-sm">
                 Este servicio no constituye atención médica ni psicológica profesional. No sustituye diagnóstico,
                 tratamiento o seguimiento clínico.
             </p>
@@ -3051,7 +3054,7 @@
     <!-- Chat Float Button -->
     <div id="chatFloatButton" class="fixed bottom-6 left-6 z-50">
         <a href="chat.html" target="_blank"
-            class="group bg-gradient-to-r from-primary to-secondary text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center relative overflow-hidden">
+            class="group bg-gradient-to-r from-primary to-secondary text-white p-4 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)]  hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center relative overflow-hidden">
             <!-- Notification dot -->
             <div class="absolute -top-1 -right-1 w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
 
@@ -3065,10 +3068,10 @@
 
             <!-- Tooltip -->
             <div
-                class="absolute left-full ml-3 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                class="absolute left-full ml-3 bg-transparent  text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                 💬 Chatea con nuestro asistente IA
                 <div
-                    class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1 w-2 h-2 bg-gray-900 rotate-45">
+                    class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1 w-2 h-2 bg-transparent  rotate-45">
                 </div>
             </div>
         </a>

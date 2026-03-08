@@ -174,10 +174,10 @@
     </style>
 </head>
 
-<body class="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen">
+<body class="bg-gradient-to-br from-slate-50 to-blue-50   min-h-screen">
 
     <header
-        class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
+        class="glass-panel    backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-b border-white/5    sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center space-x-3">
@@ -186,7 +186,7 @@
                         <h1
                             class="text-lg font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                             NeuroSync Chat de Respuestas Predefinidas</h1>
-                        <p class="text-xs text-secondary dark:text-green-400">🤖 Chatbot local</p>
+                        <p class="text-xs text-secondary ">🤖 Chatbot local</p>
                     </div>
                 </div>
 
@@ -208,7 +208,7 @@
                         </svg>
                     </a>
                     <button onclick="clearChat()"
-                        class="p-2 text-gray-500 hover:text-gray-700 rounded-lg transition-all" title="Limpiar chat">
+                        class="p-2 text-[#E0E0E0]  hover:text-[#E0E0E0]  rounded-lg transition-all" title="Limpiar chat">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
@@ -223,18 +223,18 @@
     </header>
 
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 main-container-mobile" style="padding-top: 1.5rem;">
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-visible"
+        <div class="glass-panel    rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]  border border-white/5    overflow-visible"
             style="height: calc(100vh - 10rem);">
 
             <!-- Menús Esquematizados Mejorados -->
-            <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 menu-section"
+            <div class="p-4 sm:p-6 border-b border-white/5    menu-section"
                 style="padding-top: 2rem;">
                 <div id="mainMenu">
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 font-semibold" style="padding-top: 1rem;">📋
+                    <p class="text-sm text-[#E0E0E0]   mb-4 font-semibold" style="padding-top: 1rem;">📋
                         Consultas Esquematizadas (Menú Principal)</p>
                     <div class="menu-grid">
                         <button onclick="showSubmenu('servicios')"
-                            class="quick-btn px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm hover:bg-blue-100">
+                            class="quick-btn px-3 py-2 glass-panel  text-blue-700 rounded-lg text-sm hover:glass-panel ">
                             <span>🎯 Servicios</span> <span class="text-xs">→</span>
                         </button>
                         <button onclick="showSubmenu('metodo')"
@@ -270,9 +270,9 @@
 
                 <div id="submenuContainer" class="hidden">
                     <div class="flex items-center justify-between mb-4">
-                        <p class="text-sm text-gray-600 dark:text-gray-400" id="submenuTitle">Selecciona una opción:</p>
+                        <p class="text-sm text-[#E0E0E0]  " id="submenuTitle">Selecciona una opción:</p>
                         <button onclick="showMainMenu()"
-                            class="text-xs text-gray-500 hover:text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-all">←
+                            class="text-xs text-[#E0E0E0]  hover:text-[#E0E0E0]  px-3 py-2 rounded-lg hover:bg-transparent  transition-all">←
                             Volver</button>
                     </div>
                     <div id="submenuContent"></div>
@@ -285,8 +285,8 @@
                     <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
                         <img src="logo.png" alt="NeuroSync" class="w-full h-full object-cover">
                     </div>
-                    <div class="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 py-3 max-w-[85%]">
-                        <p class="text-gray-800 dark:text-gray-200 text-sm sm:text-base">¡Bienvenido! Tengo respuestas
+                    <div class="bg-transparent    rounded-2xl px-4 py-3 max-w-[85%]">
+                        <p class="text-[#E0E0E0]   text-sm sm:text-base">¡Bienvenido! Tengo respuestas
                             completas para TODAS las consultas sobre NeuroSync (48 temas).
                             <br><br>🧠 <strong>¿Prefieres IA?</strong> <a href="ia.html"
                                 class="text-primary underline font-semibold">Prueba nuestro Chat con IA Entrenada</a>
@@ -296,11 +296,11 @@
                 </div>
             </div>
 
-            <div class="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+            <div class="p-3 sm:p-4 border-t border-white/5    glass-panel   ">
                 <div class="flex space-x-3">
                     <div class="flex-1 relative">
                         <input type="text" id="messageInput" placeholder="Escribe tu consulta..."
-                            class="w-full px-4 py-3 text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-gray-900 placeholder-gray-500 pr-12"
+                            class="w-full px-4 py-3 text-base border border-white/5  rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent glass-panel  text-[#E0E0E0]  placeholder-gray-500 pr-12"
                             onkeypress="handleKeyPress(event)">
                         <button onclick="sendMessage()" id="sendButton"
                             class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center">
@@ -311,7 +311,7 @@
                         </button>
                     </div>
                 </div>
-                <p class="text-xs text-gray-500 mt-2 text-center">
+                <p class="text-xs text-[#E0E0E0]  mt-2 text-center">
                     Chatbot completo NeuroSync • <a href="ia.html" class="text-primary underline">Chat IA Entrenada</a>
                     • Para casos específicos: <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
                         data-cfemail="36515345425f5958765853434459454f585518405f46">[email&#160;protected]</a>
@@ -2009,7 +2009,7 @@ Proceso 100% confidencial`
             menu.buttons.forEach(button => {
                 buttonsHtml += `
                     <button onclick="showResponse('${button.param}')"
-                            class="quick-btn px-3 py-2 bg-gray-50 text-gray-700 rounded-lg text-sm hover:bg-gray-100 transition-all text-left">
+                            class="quick-btn px-3 py-2 bg-transparent  text-[#E0E0E0]  rounded-lg text-sm hover:bg-transparent  transition-all text-left">
                         <span>${button.text}</span>
                     </button>
                 `;
@@ -2154,8 +2154,8 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
                 <div class="bg-primary text-white rounded-2xl px-4 py-3 max-w-[80%] order-2">
                     <p class="text-sm sm:text-base">${escapeHtml(message)}</p>
                 </div>
-                <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0 order-1">
-                    <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-8 h-8 bg-transparent  rounded-full flex items-center justify-center flex-shrink-0 order-1">
+                    <svg class="w-4 h-4 text-[#E0E0E0] " fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                     </svg>
                 </div>
@@ -2172,9 +2172,9 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
                 <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
                     <img src="logo.png" alt="NeuroSync" class="w-full h-full object-cover">
                 </div>
-                <div class="bg-gray-100 rounded-2xl px-4 py-3 max-w-[85%]">
-                    <h4 class="font-bold text-gray-800 mb-2 text-sm sm:text-base">${responseData.title}</h4>
-                    <div class="text-gray-800 text-sm sm:text-base">${formatMessage(responseData.content)}</div>
+                <div class="bg-transparent  rounded-2xl px-4 py-3 max-w-[85%]">
+                    <h4 class="font-bold text-[#E0E0E0]  mb-2 text-sm sm:text-base">${responseData.title}</h4>
+                    <div class="text-[#E0E0E0]  text-sm sm:text-base">${formatMessage(responseData.content)}</div>
                 </div>
             `;
             messagesContainer.appendChild(botDiv);
@@ -2210,8 +2210,8 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
                     <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
                         <img src="logo.png" alt="NeuroSync" class="w-full h-full object-cover">
                     </div>
-                    <div class="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 py-3 max-w-[85%]">
-                        <p class="text-gray-800 dark:text-gray-200 text-sm sm:text-base">¡Bienvenido! Tengo respuestas completas para TODAS las consultas sobre NeuroSync (48 temas).
+                    <div class="bg-transparent    rounded-2xl px-4 py-3 max-w-[85%]">
+                        <p class="text-[#E0E0E0]   text-sm sm:text-base">¡Bienvenido! Tengo respuestas completas para TODAS las consultas sobre NeuroSync (48 temas).
                         <br><br>🧠 <strong>¿Prefieres IA?</strong> <a href="ia.html" class="text-primary underline font-semibold">Prueba nuestro Chat con IA Entrenada</a>
                         <br><br>Usa los menús de arriba o escribe tu pregunta. ¿En qué puedo ayudarte?</p>
                     </div>

@@ -1,94 +1,142 @@
-/* ============================================================
-   NEUROSYNC — PREMIUM HYPNOTIC DESIGN SYSTEM
-   Basado en Proporciones Áureas y Estética Cósmica
-   ============================================================ */
-
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap');
 
 :root {
-    --deep: #0D0A1F;
-    --primary: #3512E2;
-    --secondary: #0DF280;
-    --white: #F0EEFF;
-    --muted: #7B6FA8;
-    --phi: 1.618;
-    --blur: blur(20px) saturate(1.5);
-    --shadow-glow: 0 0 40px rgba(13, 242, 128, 0.15);
-    --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    /* Obsidian Elite Palette */
+    --deep-obsidian: #080616;
+    --neural-violet: #1A1438;
+    --emerald-muted: #0DF280;
+    --liquid-gold: #D4AF37;
+    --mercury-text: #E0E0E0;
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(26, 20, 56, 0.4);
+
+    /* Fibonacci Spacing & Typography */
+    --scale-base: 1rem;
+    --scale-2: 1.618rem;
+    --scale-3: 2.618rem;
+    --scale-4: 4.236rem;
 }
 
-body {
-    font-family: 'Outfit', sans-serif !important;
-    background: var(--deep) !important;
-    color: var(--white) !important;
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
 }
 
-/* Fondos Animados Neutros (Detrás del contenido) */
-.neuro-bg {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background: radial-gradient(ellipse 80% 50% at 50% 40%, rgba(53, 18, 226, 0.15) 0%, transparent 80%);
-    pointer-events: none;
+body {
+    background-color: var(--deep-obsidian);
+    color: var(--mercury-text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.618;
+    overflow-x: hidden;
 }
 
-canvas#neural-canvas {
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+}
+
+h1 {
+    font-size: var(--scale-3);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: var(--scale-2);
+    line-height: 1.3;
+}
+
+/* Obsidian Elements */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.neural-button {
+    background: linear-gradient(135deg, var(--liquid-gold), #B8860B);
+    color: var(--deep-obsidian);
+    padding: 1rem 2.618rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    border-radius: 5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+    border: none;
+    cursor: pointer;
+}
+
+.neural-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+    filter: brightness(1.1);
+}
+
+/* Typography Harmony */
+.text-gradient-gold {
+    background: linear-gradient(to right, #D4AF37, #F5E0A3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-spacing {
+    padding: var(--scale-4) 0;
+}
+
+/* Background Refinement */
+#neural-canvas {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: -2;
-    opacity: 0.3;
+    opacity: 0.15;
     pointer-events: none;
 }
 
-/* Clases de utilidad para el contenido original */
-.glass {
-    background: rgba(23, 15, 53, 0.4) !important;
-    backdrop-filter: var(--blur);
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+.ambient-glow {
+    position: fixed;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(26, 20, 56, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(80px);
+    pointer-events: none;
 }
 
-.text-gradient {
-    background: linear-gradient(90deg, #ffffff, #0DF280) !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
+/* Global Navigation Professionalism */
+nav {
+    background: rgba(8, 6, 22, 0.8);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
 }
 
-.btn-premium {
-    background: linear-gradient(135deg, #3512E2, #0DF280) !important;
-    color: #fff !important;
-    border-radius: 100px !important;
-    padding: 1rem 2rem !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    display: inline-block !important;
-    border: none !important;
-    cursor: pointer !important;
-    transition: var(--transition) !important;
+/* Scrollbar Refinement */
+::-webkit-scrollbar {
+    width: 6px;
 }
 
-.btn-premium:hover {
-    transform: translateY(-2px) scale(1.02) !important;
-    box-shadow: 0 10px 30px rgba(53, 18, 226, 0.4) !important;
+::-webkit-scrollbar-track {
+    background: var(--deep-obsidian);
 }
 
-/* Animaciones */
-@keyframes auraPulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.5;
-    }
-
-    50% {
-        transform: scale(1.1);
-        opacity: 0.8;
-    }
+::-webkit-scrollbar-thumb {
+    background: var(--neutral-violet);
+    border-radius: 10px;
 }
 
-.aura-breath {
-    animation: auraPulse 6s ease-in-out infinite;
+::-webkit-scrollbar-thumb:hover {
+    background: var(--liquid-gold);
 }

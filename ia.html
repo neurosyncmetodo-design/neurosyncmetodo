@@ -22,27 +22,37 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#5D5CDE',       // Añil Profundo (Profesionalismo, Calma)
-                        'secondary': '#00A389',    // Verde Azulado Sereno (Bienestar, Crecimiento)
-                        'accent': '#FFC300',        // Oro Suave (Empoderamiento, Calidad)
-                        'text-dark': '#1F2937',     // Gris Oscuro Profesional
-                        'text-light': '#F9FAFB',    // Blanco Roto
-                        'background-light': '#FFFFFF', // Blanco Puro
-                        'background-dark': '#0F172A',   // Azul Noche
+                        'primary': '#D4AF37',
+                        'secondary': '#0DF280',
+                        'deep': '#080616'
                     }
                 }
             }
         }
     </script>
     <link rel="stylesheet" href="design.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Outfit', sans-serif !important;
+            font-family: 'Inter', sans-serif;
+            background-color: #080616;
+            color: #E0E0E0;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        .feature-card {
+            background: rgba(26, 20, 56, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.5rem;
+            transition: all 0.4s ease;
+        }
 
+        .feature-card:hover {
+            border-color: #D4AF37;
+            transform: translateY(-5px);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
         body {
             overflow-x: hidden;
             /* Evitar scroll horizontal */
@@ -130,12 +140,12 @@
     <script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.3f7572448765332f3047.js"></script>
 </head>
 
-<body class="bg-[#0D0A1F] text-[#F0EEFF] relative overflow-x-hidden">
+<body class="bg-[#080616] text-[#E0E0E0] selection:bg-[#D4AF37] selection:text-[#080616]">
+    <div class="ambient-glow" style="top: -10vw; left: -10vw;"></div>
     <canvas id="neural-canvas"></canvas>
-    <div class="neuro-bg"></div>
 
-    <!-- Header -->
-    <header class="bg-white/90 backdrop-blur-md shadow-lg border-b border-gray-200/50 sticky top-0 z-50">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-[#080616]/95 backdrop-blur-xl border-b border-white/5">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.reload()">
@@ -151,12 +161,12 @@
                         <span
                             class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">NeuroSync
                             IA</span>
-                        <p class="text-xs text-gray-500">Asistente Inteligencia Artificial</p>
+                        <p class="text-xs text-[#E0E0E0] ">Asistente Inteligencia Artificial</p>
                     </div>
                 </div>
                 <div class="flex items-center space-x-3">
                     <a href="chat.html"
-                        class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm hidden sm:inline-block">
+                        class="px-3 py-2 bg-transparent  text-[#E0E0E0]  rounded-lg hover:bg-transparent  transition-colors text-sm hidden sm:inline-block">
                         💬 Chat Local
                     </a>
                     <a href="index.html"
@@ -166,269 +176,273 @@
                 </div>
             </div>
         </div>
-    </header>
+        </header>
 
-    <!-- Main Content Container (Marketing) -->
-    <main id="marketing-section" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-opacity duration-500">
+        <!-- Main Content Container (Marketing) -->
+        <main id="marketing-section"
+            class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-opacity duration-500">
 
-        <!-- Hero Section -->
-        <div class="text-center mb-12">
-            <div class="flex items-center justify-center space-x-4 mb-6">
-                <img src="logo.png" alt="NeuroSync Logo" class="w-16 h-16 filter brightness-0">
-                <div>
-                    <h1
-                        class="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                        Asistente IA NeuroSync
-                    </h1>
-                    <p class="text-gray-500 text-lg">Inteligencia Artificial Especializada</p>
+            <!-- Hero Section -->
+            <div class="text-center mb-12">
+                <div class="flex items-center justify-center space-x-4 mb-6">
+                    <img src="logo.png" alt="NeuroSync Logo" class="w-16 h-16 filter brightness-0">
+                    <div>
+                        <h1
+                            class="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                            Asistente IA NeuroSync
+                        </h1>
+                        <p class="text-[#E0E0E0]  text-lg">Inteligencia Artificial Especializada</p>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-xl text-[#E0E0E0]  mb-6">
+                        Pregúntale <strong>cualquier cosa</strong> sobre nuestro método de hipnosis clínica
+                        personalizada.
+                        IA avanzada entrenada específicamente en <strong>toda la información NeuroSync</strong>.
+                    </p>
+
+                    <!-- Características IA -->
+                    <div class="grid md:grid-cols-4 gap-4 mb-8">
+                        <div class="glass-panel  border border-white/5  p-4 rounded-xl">
+                            <div class="text-2xl mb-2">🧠</div>
+                            <h3 class="font-semibold text-blue-800">IA Especializada</h3>
+                            <p class="text-blue-600 text-sm">Entrenada solo en NeuroSync</p>
+                        </div>
+                        <div class="bg-secondary/10 border border-purple-200 p-4 rounded-xl">
+                            <div class="text-2xl mb-2">💬</div>
+                            <h3 class="font-semibold text-secondary-dark">Conversación Natural</h3>
+                            <p class="text-secondary text-sm">Entiende contexto y matices</p>
+                        </div>
+                        <div class="bg-secondary/10 border border-green-200 p-4 rounded-xl">
+                            <div class="text-2xl mb-2">⚡</div>
+                            <h3 class="font-semibold text-secondary-dark">Respuesta Inmediata</h3>
+                            <p class="text-secondary text-sm">Sin esperas ni límites</p>
+                        </div>
+                        <div class="bg-accent/10 border border-yellow-200 p-4 rounded-xl">
+                            <div class="text-2xl mb-2">🔄</div>
+                            <h3 class="font-semibold text-accent-dark">Disponible 24/7</h3>
+                            <p class="text-accent text-sm">Siempre activa para ti</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="max-w-4xl mx-auto">
-                <p class="text-xl text-gray-700 mb-6">
-                    Pregúntale <strong>cualquier cosa</strong> sobre nuestro método de hipnosis clínica personalizada.
-                    IA avanzada entrenada específicamente en <strong>toda la información NeuroSync</strong>.
-                </p>
+            <!-- IA Access Section -->
+            <div class="max-w-3xl mx-auto">
+                <div
+                    class="bg-gradient-to-br from-primary/10 to-purple-600/10 border-2 border-secondary/20 rounded-3xl p-8 text-center">
+                    <div class="mb-8">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                                </path>
+                            </svg>
+                        </div>
 
-                <!-- Características IA -->
-                <div class="grid md:grid-cols-4 gap-4 mb-8">
-                    <div class="bg-blue-50 border border-blue-200 p-4 rounded-xl">
-                        <div class="text-2xl mb-2">🧠</div>
-                        <h3 class="font-semibold text-blue-800">IA Especializada</h3>
-                        <p class="text-blue-600 text-sm">Entrenada solo en NeuroSync</p>
+                        <h2 class="text-3xl font-bold text-[#E0E0E0]  mb-4">💬 Chatea con Nuestra IA</h2>
+                        <p class="text-xl text-[#E0E0E0]  mb-6">
+                            Accede a nuestro asistente de inteligencia artificial entrenado con
+                            <strong>toda la información sobre NeuroSync</strong>
+                        </p>
                     </div>
-                    <div class="bg-secondary/10 border border-purple-200 p-4 rounded-xl">
-                        <div class="text-2xl mb-2">💬</div>
-                        <h3 class="font-semibold text-secondary-dark">Conversación Natural</h3>
-                        <p class="text-secondary text-sm">Entiende contexto y matices</p>
-                    </div>
-                    <div class="bg-secondary/10 border border-green-200 p-4 rounded-xl">
-                        <div class="text-2xl mb-2">⚡</div>
-                        <h3 class="font-semibold text-secondary-dark">Respuesta Inmediata</h3>
-                        <p class="text-secondary text-sm">Sin esperas ni límites</p>
-                    </div>
-                    <div class="bg-accent/10 border border-yellow-200 p-4 rounded-xl">
-                        <div class="text-2xl mb-2">🔄</div>
-                        <h3 class="font-semibold text-accent-dark">Disponible 24/7</h3>
-                        <p class="text-accent text-sm">Siempre activa para ti</p>
+
+                    <div class="space-y-6">
+                        <!-- BOTÓN DE ACCESO MODIFICADO -->
+                        <button id="btn-access" onclick="launchSystem()"
+                            class="ai-button inline-flex items-center text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]  w-full sm:w-auto justify-center">
+                            <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                </path>
+                            </svg>
+                            <span>🚀 ACCEDER AL ASISTENTE IA</span>
+                        </button>
+
+                        <p class="text-[#E0E0E0]  text-sm">
+                            Sistema alojado en servidor seguro de alta velocidad (Hugging Face)
+                        </p>
+
+                        <!-- Botón alternativo -->
+                        <div class="pt-4 border-t border-white/5 ">
+                            <p class="text-[#E0E0E0]  mb-4">¿Prefieres nuestro chat estructurado?</p>
+                            <a href="chat.html"
+                                class="inline-flex items-center glass-panel  border-2 border-secondary text-primary px-8 py-3 rounded-xl font-semibold hover:bg-secondary hover:text-white transition-all duration-300">
+                                💬 Chat Local Esquematizado
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- IA Access Section -->
-        <div class="max-w-3xl mx-auto">
-            <div
-                class="bg-gradient-to-br from-primary/10 to-purple-600/10 border-2 border-secondary/20 rounded-3xl p-8 text-center">
-                <div class="mb-8">
-                    <div
-                        class="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl">
-                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
-                            </path>
-                        </svg>
+            <!-- Ejemplos de Preguntas -->
+            <div class="mt-12">
+                <h3 class="text-2xl font-bold text-center text-[#E0E0E0]  mb-8">💡 Ejemplos de lo que puedes preguntar a
+                    la IA
+                </h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-panel  border border-white/5  rounded-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
+                        <h4 class="text-lg font-semibold text-blue-600 mb-4">🎁 Servicios</h4>
+                        <ul class="space-y-2 text-[#E0E0E0] ">
+                            <li>"¿Qué audios gratuitos tenéis?"</li>
+                            <li>"¿Cuánto cuestan los personalizados?"</li>
+                            <li>"¿Qué incluye el precio?"</li>
+                            <li>"¿Hacéis espectáculos?"</li>
+                        </ul>
                     </div>
-
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4">💬 Chatea con Nuestra IA</h2>
-                    <p class="text-xl text-gray-600 mb-6">
-                        Accede a nuestro asistente de inteligencia artificial entrenado con
-                        <strong>toda la información sobre NeuroSync</strong>
-                    </p>
+                    <div class="glass-panel  border border-white/5  rounded-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
+                        <h4 class="text-lg font-semibold text-secondary mb-4">🧠 Método</h4>
+                        <ul class="space-y-2 text-[#E0E0E0] ">
+                            <li>"¿Cómo funciona NeuroSync?"</li>
+                            <li>"¿Qué son los audios binaurales?"</li>
+                            <li>"¿Es segura la hipnosis?"</li>
+                            <li>"¿Qué evidencia científica tenéis?"</li>
+                        </ul>
+                    </div>
+                    <div class="glass-panel  border border-white/5  rounded-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
+                        <h4 class="text-lg font-semibold text-secondary mb-4">📋 Proceso</h4>
+                        <ul class="space-y-2 text-[#E0E0E0] ">
+                            <li>"¿Cómo solicitar audio personalizado?"</li>
+                            <li>"¿Qué es la charla prehipnótica?"</li>
+                            <li>"¿Cuánto tiempo tarda?"</li>
+                            <li>"¿Funcionará en mi caso?"</li>
+                        </ul>
+                    </div>
                 </div>
+            </div>
 
-                <div class="space-y-6">
-                    <!-- BOTÓN DE ACCESO MODIFICADO -->
-                    <button id="btn-access" onclick="launchSystem()"
-                        class="ai-button inline-flex items-center text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl w-full sm:w-auto justify-center">
-                        <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                        </svg>
-                        <span>🚀 ACCEDER AL ASISTENTE IA</span>
-                    </button>
-
-                    <p class="text-gray-500 text-sm">
-                        Sistema alojado en servidor seguro de alta velocidad (Hugging Face)
+            <!-- Bottom CTA -->
+            <div class="mt-12 text-center pb-8">
+                <div class="bg-gradient-to-r from-primary to-secondary text-white rounded-2xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ">
+                    <h3 class="text-2xl font-bold mb-4">🎯 ¿Listo para tu Transformación?</h3>
+                    <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
+                        Después de hablar con la IA, da el siguiente paso hacia tu cambio personal.
+                        <strong>Funciona desde la primera sesión.</strong>
                     </p>
-
-                    <!-- Botón alternativo -->
-                    <div class="pt-4 border-t border-gray-200">
-                        <p class="text-gray-600 mb-4">¿Prefieres nuestro chat estructurado?</p>
-                        <a href="chat.html"
-                            class="inline-flex items-center bg-white border-2 border-secondary text-primary px-8 py-3 rounded-xl font-semibold hover:bg-secondary hover:text-white transition-all duration-300">
-                            💬 Chat Local Esquematizado
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="index.html#promocion"
+                            class="bg-yellow-400 text-[#E0E0E0]  px-8 py-3 rounded-xl font-bold hover:bg-yellow-300 transition-colors inline-flex items-center justify-center">
+                            🎁 Solicitar Audios Gratuitos
+                        </a>
+                        <a href="index.html#consultar"
+                            class="glass-panel  text-white px-8 py-3 rounded-xl font-bold hover:glass-panel  transition-colors border border-white/30 inline-flex items-center justify-center">
+                            📧 Contactar para Audio Personalizado
                         </a>
                     </div>
                 </div>
             </div>
+        </main>
+
+        <!-- CHAT INTERFACE SECTION (Oculto inicialmente) -->
+        <div id="chat-section" class="chat-frame-container">
+            <!-- Reemplaza src con la URL de tu Space de Hugging Face -->
+            <iframe id="hf-iframe" src="" allow="microphone; autoplay"></iframe>
         </div>
 
-        <!-- Ejemplos de Preguntas -->
-        <div class="mt-12">
-            <h3 class="text-2xl font-bold text-center text-gray-800 mb-8">💡 Ejemplos de lo que puedes preguntar a la IA
-            </h3>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
-                    <h4 class="text-lg font-semibold text-blue-600 mb-4">🎁 Servicios</h4>
-                    <ul class="space-y-2 text-gray-600">
-                        <li>"¿Qué audios gratuitos tenéis?"</li>
-                        <li>"¿Cuánto cuestan los personalizados?"</li>
-                        <li>"¿Qué incluye el precio?"</li>
-                        <li>"¿Hacéis espectáculos?"</li>
-                    </ul>
+        <!-- Footer simple (Solo visible en marketing mode) -->
+        <footer id="footer-section" class="bg-transparent  text-white py-6">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="flex items-center justify-center space-x-2 mb-2">
+                    <img src="logo.png" alt="NeuroSync" class="w-6 h-6 filter brightness-0 invert">
+                    <span class="text-lg font-bold text-primary">NeuroSync Método</span>
                 </div>
-                <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
-                    <h4 class="text-lg font-semibold text-secondary mb-4">🧠 Método</h4>
-                    <ul class="space-y-2 text-gray-600">
-                        <li>"¿Cómo funciona NeuroSync?"</li>
-                        <li>"¿Qué son los audios binaurales?"</li>
-                        <li>"¿Es segura la hipnosis?"</li>
-                        <li>"¿Qué evidencia científica tenéis?"</li>
-                    </ul>
-                </div>
-                <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
-                    <h4 class="text-lg font-semibold text-secondary mb-4">📋 Proceso</h4>
-                    <ul class="space-y-2 text-gray-600">
-                        <li>"¿Cómo solicitar audio personalizado?"</li>
-                        <li>"¿Qué es la charla prehipnótica?"</li>
-                        <li>"¿Cuánto tiempo tarda?"</li>
-                        <li>"¿Funcionará en mi caso?"</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bottom CTA -->
-        <div class="mt-12 text-center pb-8">
-            <div class="bg-gradient-to-r from-primary to-secondary text-white rounded-2xl p-8 shadow-2xl">
-                <h3 class="text-2xl font-bold mb-4">🎯 ¿Listo para tu Transformación?</h3>
-                <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
-                    Después de hablar con la IA, da el siguiente paso hacia tu cambio personal.
-                    <strong>Funciona desde la primera sesión.</strong>
+                <p class="text-gray-400 text-sm">
+                    Hipnosis clínica personalizada basada en evidencia científica
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="index.html#promocion"
-                        class="bg-yellow-400 text-gray-900 px-8 py-3 rounded-xl font-bold hover:bg-yellow-300 transition-colors inline-flex items-center justify-center">
-                        🎁 Solicitar Audios Gratuitos
-                    </a>
-                    <a href="index.html#consultar"
-                        class="bg-white/20 text-white px-8 py-3 rounded-xl font-bold hover:bg-white/30 transition-colors border border-white/30 inline-flex items-center justify-center">
-                        📧 Contactar para Audio Personalizado
-                    </a>
-                </div>
             </div>
-        </div>
-    </main>
+        </footer>
 
-    <!-- CHAT INTERFACE SECTION (Oculto inicialmente) -->
-    <div id="chat-section" class="chat-frame-container">
-        <!-- Reemplaza src con la URL de tu Space de Hugging Face -->
-        <iframe id="hf-iframe" src="" allow="microphone; autoplay"></iframe>
-    </div>
+        <script>
+            // CONFIGURACIÓN: URL CORREGIDA
+            const SPACE_URL = "https://neurosyncmetodo-neurosync-assistant-v2.hf.space";
 
-    <!-- Footer simple (Solo visible en marketing mode) -->
-    <footer id="footer-section" class="bg-gray-900 text-white py-6">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="flex items-center justify-center space-x-2 mb-2">
-                <img src="logo.png" alt="NeuroSync" class="w-6 h-6 filter brightness-0 invert">
-                <span class="text-lg font-bold text-primary">NeuroSync Método</span>
-            </div>
-            <p class="text-gray-400 text-sm">
-                Hipnosis clínica personalizada basada en evidencia científica
-            </p>
-        </div>
-    </footer>
+            function launchSystem() {
+                const btn = document.getElementById('btn-access');
+                const marketingSection = document.getElementById('marketing-section');
+                const footerSection = document.getElementById('footer-section');
+                const chatSection = document.getElementById('chat-section');
+                const iframe = document.getElementById('hf-iframe');
 
-    <script>
-        // CONFIGURACIÓN: URL CORREGIDA
-        const SPACE_URL = "https://neurosyncmetodo-neurosync-assistant-v2.hf.space";
+                // 1. Feedback visual en el botón
+                btn.innerHTML = '<span class="spinner"></span> INICIANDO SISTEMA...';
+                btn.style.opacity = '0.9';
+                btn.style.cursor = 'wait';
+                btn.disabled = true;
 
-        function launchSystem() {
-            const btn = document.getElementById('btn-access');
-            const marketingSection = document.getElementById('marketing-section');
-            const footerSection = document.getElementById('footer-section');
-            const chatSection = document.getElementById('chat-section');
-            const iframe = document.getElementById('hf-iframe');
+                // 2. Cargar Iframe con timestamp para despertar al Space si está dormido
+                iframe.src = SPACE_URL + "?t=" + new Date().getTime();
 
-            // 1. Feedback visual en el botón
-            btn.innerHTML = '<span class="spinner"></span> INICIANDO SISTEMA...';
-            btn.style.opacity = '0.9';
-            btn.style.cursor = 'wait';
-            btn.disabled = true;
+                // 3. Transición suave (Dar tiempo a que el iframe empiece a cargar)
+                setTimeout(() => {
+                    // Ocultar sección marketing
+                    marketingSection.style.display = 'none';
+                    footerSection.style.display = 'none';
 
-            // 2. Cargar Iframe con timestamp para despertar al Space si está dormido
-            iframe.src = SPACE_URL + "?t=" + new Date().getTime();
+                    // Mostrar chat a pantalla completa
+                    chatSection.classList.add('active');
 
-            // 3. Transición suave (Dar tiempo a que el iframe empiece a cargar)
-            setTimeout(() => {
-                // Ocultar sección marketing
-                marketingSection.style.display = 'none';
-                footerSection.style.display = 'none';
+                    // Opcional: Cambiar título de página
+                    document.title = "Chat Activo | NeuroSync IA";
 
-                // Mostrar chat a pantalla completa
-                chatSection.classList.add('active');
-
-                // Opcional: Cambiar título de página
-                document.title = "Chat Activo | NeuroSync IA";
-
-            }, 1000); // 1.5 segundos de "delay" para sensación de carga
-        }
-    </script>
-    <script>
-        (function () {
-            const canvas = document.getElementById('neural-canvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            let nodes = [], animFrame;
-            function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
+                }, 1000); // 1.5 segundos de "delay" para sensación de carga
             }
-            function initNodes(count = 70) {
-                nodes = [];
-                for (let i = 0; i < count; i++) {
-                    nodes.push({
-                        x: Math.random() * canvas.width,
-                        y: Math.random() * canvas.height,
-                        vx: (Math.random() - 0.5) * 0.3,
-                        vy: (Math.random() - 0.5) * 0.3,
-                        r: Math.random() * 2 + 0.5,
-                        color: Math.random() > 0.5 ? '#0df280' : '#3512e2'
-                    });
+        </script>
+        <script>
+            (function () {
+                const canvas = document.getElementById('neural-canvas');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let nodes = [], animFrame;
+                function resize() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
                 }
-            }
-            function drawFrame() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for (let i = 0; i < nodes.length; i++) {
-                    for (let j = i + 1; j < nodes.length; j++) {
-                        const dx = nodes[i].x - nodes[j].x;
-                        const dy = nodes[i].y - nodes[j].y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < 180) {
-                            ctx.beginPath();
-                            ctx.moveTo(nodes[i].x, nodes[i].y);
-                            ctx.lineTo(nodes[j].x, nodes[j].y);
-                            ctx.strokeStyle = `rgba(13, 242, 128, ${(1 - dist / 180) * 0.15})`;
-                            ctx.stroke();
-                        }
+                function initNodes(count = 70) {
+                    nodes = [];
+                    for (let i = 0; i < count; i++) {
+                        nodes.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            vx: (Math.random() - 0.5) * 0.3,
+                            vy: (Math.random() - 0.5) * 0.3,
+                            r: Math.random() * 2 + 0.5,
+                            color: Math.random() > 0.5 ? '#0df280' : '#3512e2'
+                        });
                     }
                 }
-                nodes.forEach(node => {
-                    ctx.beginPath();
-                    ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-                    ctx.fillStyle = node.color + '99';
-                    ctx.fill();
-                    node.x += node.vx; node.y += node.vy;
-                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
-                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
-                });
-                animFrame = requestAnimationFrame(drawFrame);
-            }
-            resize(); initNodes(); drawFrame();
-            window.addEventListener('resize', () => { resize(); initNodes(); });
-        })();
-    </script>
+                function drawFrame() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    for (let i = 0; i < nodes.length; i++) {
+                        for (let j = i + 1; j < nodes.length; j++) {
+                            const dx = nodes[i].x - nodes[j].x;
+                            const dy = nodes[i].y - nodes[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 180) {
+                                ctx.beginPath();
+                                ctx.moveTo(nodes[i].x, nodes[i].y);
+                                ctx.lineTo(nodes[j].x, nodes[j].y);
+                                ctx.strokeStyle = `rgba(13, 242, 128, ${(1 - dist / 180) * 0.15})`;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    nodes.forEach(node => {
+                        ctx.beginPath();
+                        ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+                        ctx.fillStyle = node.color + '99';
+                        ctx.fill();
+                        node.x += node.vx; node.y += node.vy;
+                        if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                        if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                    });
+                    animFrame = requestAnimationFrame(drawFrame);
+                }
+                resize(); initNodes(); drawFrame();
+                window.addEventListener('resize', () => { resize(); initNodes(); });
+            })();
+        </script>
 </body>
 
 </html>
