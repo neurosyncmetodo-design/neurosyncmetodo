@@ -392,9 +392,9 @@
                 </div>
 
                 <h1
-                    class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-4 section-title glow-text">
+                    class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-4 section-title">
                     Toma el Control de Tu Mente,<br>
-                    <span class="gold-glow">Alcanza Tu Máximo Potencial</span>
+                    <span class="brilliant-text">Alcanza Tu Máximo Potencial</span>
                 </h1>
 
                 <p
@@ -854,8 +854,12 @@
     <section id="metodologia" class="py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4">Protocolo de Intervención</h2>
-                <p class="text-[#E0E0E0]  ">Proceso estructurado en 4 fases:</p>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 section-title brilliant-text">Protocolo de Intervención
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6 rounded-full opacity-50">
+                </div>
+                <p class="text-xl text-[#BABABA] max-w-2xl mx-auto">Un proceso científico estructurado en 4 fases para
+                    tu éxito:</p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="text-center">
@@ -944,10 +948,10 @@
                     </svg>
                     TRANSPARENCIA ABSOLUTA
                 </div>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 px-2">
+                <h2
+                    class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 px-2 section-title brilliant-text">
                     Análisis Independiente por<br class="hidden sm:block">
-                    <span class="bg-gradient-to-r from-accent to-accent bg-clip-text text-transparent">Inteligencia
-                        Artificial</span>
+                    Inteligencia Artificial
                 </h2>
                 <p class="text-sm sm:text-lg md:text-xl text-blue-100 max-w-4xl mx-auto mb-6 sm:mb-8 px-4">
                     Hemos solicitado evaluaciones completamente objetivas e independientes de nuestro método, sin sesgos
@@ -1518,12 +1522,15 @@
         </div>
     </section>
     <!-- Myths vs Reality -->
-    <section id="evidencia" class="py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4">Evidencia Científica</h2>
-                <p class="text-[#E0E0E0]  ">Desmitificando concepciones erróneas sobre la hipnosis
-                    clínica</p>
+    <section id="evidencia" class="py-24 bg-[#0A071E] relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-deep via-[#0A071E] to-deep opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title brilliant-text">Evidencia Científica</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6 rounded-full opacity-50">
+                </div>
+                <p class="text-xl text-[#BABABA] max-w-2xl mx-auto">Desmitificando concepciones erróneas sobre la
+                    hipnosis clínica mediante el rigor científico.</p>
             </div>
 
             <div class="space-y-8">
@@ -3211,18 +3218,17 @@
                 });
             });
 
-            // Efecto de scroll en la navegación
+            // Efecto de scroll en la navegación (Premium & Dark)
             window.addEventListener('scroll', function () {
-                if (window.pageYOffset > 100) {
+                if (window.pageYOffset > 50) {
                     if (nav) {
-                        nav.style.background = 'rgba(8, 6, 22, 0.95)';
-                        nav.classList.add('backdrop-blur-md');
-                        nav.classList.add('border-white/10');
+                        nav.classList.add('bg-[#080616]/95', 'backdrop-blur-xl', 'border-white/10', 'shadow-2xl');
+                        nav.classList.remove('bg-[#080616]/80');
                     }
                 } else {
                     if (nav) {
-                        nav.style.background = 'rgba(8, 6, 22, 0.8)';
-                        nav.classList.remove('border-white/10');
+                        nav.classList.add('bg-[#080616]/80');
+                        nav.classList.remove('bg-[#080616]/95', 'border-white/10', 'shadow-2xl');
                     }
                 }
             });
