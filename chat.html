@@ -170,64 +170,84 @@
     </style>
 </head>
 
-<body class="bg-[#080616] text-[#E0E0E0] selection:bg-[#D4AF37] selection:text-[#080616] min-h-screen relative overflow-x-hidden">
+<body
+    class="bg-[#080616] text-[#E0E0E0] selection:bg-[#D4AF37] selection:text-[#080616] min-h-screen relative overflow-x-hidden">
     <div class="ambient-glow" style="top: -10vw; right: -10vw;"></div>
     <div class="ambient-glow" style="bottom: -10vw; left: -10vw;"></div>
     <canvas id="neural-canvas"></canvas>
 
-    <header
-        class="glass-panel    backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border-b border-white/5    sticky top-0 z-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center space-x-3">
-                    <img src="logo.png" alt="NeuroSync Logo" class="w-12 h-12 object-contain">
-                    <div>
-                        <h1
-                            class="text-lg font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                            NeuroSync Chat de Respuestas Predefinidas</h1>
-                        <p class="text-xs text-secondary ">🤖 Chatbot local</p>
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-[#080616]/90 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <!-- Logo Section -->
+                <a href="index.html"
+                    class="flex items-center space-x-2 sm:space-x-3 hover:opacity-80 transition-opacity">
+                    <div class="relative">
+                        <div
+                            class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]  p-1 animate-pulse">
+                            <img src="logo.png" alt="NeuroSync Logo"
+                                class="w-8 h-8 sm:w-10 sm:h-10 object-contain filter brightness-0 invert">
+                        </div>
+                        <div
+                            class="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-secondary rounded-full border-2 border-white  ">
+                        </div>
                     </div>
+                    <div class="hidden xs:block">
+                        <span
+                            class="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">NeuroSync</span>
+                        <div class="flex items-center space-x-1 sm:space-x-2">
+                            <span class="text-xs sm:text-sm text-[#E0E0E0]   font-medium">Chatbot</span>
+                            <span
+                                class="text-xs bg-gradient-to-r from-secondary to-secondary text-white px-1 sm:px-2 py-0.5 sm:py-1 rounded-full font-semibold">Local</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-1">
+                    <a href="index.html" class="nav-link">Inicio</a>
+                    <a href="ia.html" class="nav-link">Asistente IA</a>
+                    <a href="test.html" class="nav-link">Test Receptividad</a>
+                    <button onclick="clearChat()" class="nav-link text-red-400 hover:text-red-300">Limpiar</button>
+                    <a href="index.html#consultar" class="nav-link-cta">Consultar</a>
                 </div>
 
-                <div class="flex items-center space-x-2">
-                    <a href="ia.html"
-                        class="hidden sm:flex px-3 py-1.5 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-medium items-center space-x-1">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Mobile menu button -->
+                <div class="lg:hidden">
+                    <button id="mobile-menu-btn"
+                        class="relative w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-xl transition-all duration-300 hover:scale-105">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                        <span>IA Entrenada</span>
-                    </a>
-                    <a href="ia.html"
-                        class="sm:hidden p-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all"
-                        title="Chat IA Entrenada">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </a>
-                    <button onclick="clearChat()"
-                        class="p-2 text-[#E0E0E0]  hover:text-[#E0E0E0]  rounded-lg transition-all" title="Limpiar chat">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                            </path>
+                                d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
-                    <a href="index.html"
-                        class="px-3 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium">Volver</a>
                 </div>
             </div>
         </div>
-    </header>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden glass-panel backdrop-blur-md border-t border-white/5 hidden">
+            <div class="px-4 py-6 space-y-3">
+                <a href="index.html" class="mobile-nav-link">🏠 Inicio</a>
+                <a href="ia.html" class="mobile-nav-link">🤖 Asistente IA</a>
+                <a href="test.html" class="mobile-nav-link">📋 Test Receptividad</a>
+                <button onclick="clearChat(); document.getElementById('mobile-menu').classList.add('hidden')"
+                    class="mobile-nav-link text-red-400 text-left w-full">🗑️ Limpiar Chat</button>
+                <a href="index.html#consultar"
+                    class="block bg-gradient-to-r from-primary to-secondary text-white px-4 py-3 rounded-xl font-semibold text-center shadow-[0_10px_30px_rgba(0,0,0,0.5)] ">
+                    📧 Consultar
+                </a>
+            </div>
+        </div>
+    </nav>
 
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 main-container-mobile" style="padding-top: 1.5rem;">
         <div class="glass-panel    rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]  border border-white/5    overflow-visible"
             style="height: calc(100vh - 10rem);">
 
             <!-- Menús Esquematizados Mejorados -->
-            <div class="p-4 sm:p-6 border-b border-white/5    menu-section"
-                style="padding-top: 2rem;">
+            <div class="p-4 sm:p-6 border-b border-white/5    menu-section" style="padding-top: 2rem;">
                 <div id="mainMenu">
                     <p class="text-sm text-[#E0E0E0]   mb-4 font-semibold" style="padding-top: 1rem;">📋
                         Consultas Esquematizadas (Menú Principal)</p>
@@ -2226,13 +2246,13 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
 
 
     <script>
-        (function() {
+        (function () {
             const canvas = document.getElementById('neural-canvas');
-            if(!canvas) return;
+            if (!canvas) return;
             const ctx = canvas.getContext('2d');
             let nodes = [], animFrame;
             function resize() {
-                canvas.width  = window.innerWidth;
+                canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             }
             function initNodes(count = 60) {
@@ -2270,7 +2290,7 @@ Nuestro equipo puede proporcionarte toda la información que necesitas.`
                     ctx.fillStyle = node.color + '99';
                     ctx.fill();
                     node.x += node.vx; node.y += node.vy;
-                    if (node.x < 0 || node.x > canvas.width)  node.vx *= -1;
+                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
                     if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
                 });
                 animFrame = requestAnimationFrame(drawFrame);

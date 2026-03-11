@@ -190,6 +190,7 @@
         .text-obsidian-gold {
             background: linear-gradient(to right, #D4AF37, #F5E0A3);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -391,9 +392,9 @@
                 </div>
 
                 <h1
-                    class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-4">
+                    class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-4 section-title glow-text">
                     Toma el Control de Tu Mente,<br>
-                    <span class="text-gold-glow">Alcanza Tu Máximo Potencial</span>
+                    <span class="gold-glow">Alcanza Tu Máximo Potencial</span>
                 </h1>
 
                 <p
@@ -432,8 +433,8 @@
                     </svg>
                     PROMOCIÓN ESPECIAL
                 </div>
-                <h2 class="text-4xl font-bold mb-6 text-secondary  text-gold-glow">Primera Sesión
-                    Completamente GRATIS</h2>
+                <h2 class="text-4xl font-bold mb-6 text-secondary glow-text-emerald">Primera Sesión
+                    Completamente <span class="gold-glow">GRATIS</span></h2>
                 <p class="text-xl text-secondary  mb-8 max-w-4xl mx-auto">
                     Experimenta el poder del método NeuroSync sin compromiso. Elige uno de nuestros tres audios
                     genéricos profesionales y descubre la transformación que puedes lograr.
@@ -789,11 +790,10 @@
                         </a>
                         <a href="#ai-analysis-bottom"
                             class="inline-flex items-center glass-panel  backdrop-blur-sm text-white font-semibold py-4 px-8 rounded-xl border border-white/20 hover:glass-panel  transition-all duration-300">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
-                                </path>
-                            </svg>
+                            <div class="w-5 h-5 mr-3 p-0.5 bg-white/20 rounded flex items-center justify-center">
+                                <img src="logo.png" alt="Logo"
+                                    class="w-full h-full object-contain filter brightness-0 invert">
+                            </div>
                             Ver Análisis IA
                         </a>
                     </div>
@@ -1348,11 +1348,11 @@
                 <div
                     class="bg-gradient-to-br from-primary/5 to-primary/10   rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]  border border-primary/20">
                     <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
-                            </path>
-                        </svg>
+                        <div
+                            class="w-12 h-12 p-1 bg-white/10 rounded-xl flex items-center justify-center animate-pulse">
+                            <img src="logo.png" alt="Logo"
+                                class="w-full h-full object-contain filter brightness-0 invert">
+                        </div>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 text-primary text-center">Hipnosis Ericksoniana</h3>
                     <div class="space-y-4 text-[#E0E0E0]  ">
@@ -1528,13 +1528,12 @@
 
             <div class="space-y-8">
                 <!-- Myth 1 -->
-                <div
-                    class="bg-red-900/20 border-l-4 border-red-500 p-6 rounded-r-lg shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                    <h3 class="text-lg font-semibold text-red-300 mb-2">MITO: La hipnosis es peligrosa
+                <div class="myth-card p-6 rounded-r-lg shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                    <h3 class="text-lg font-semibold text-red-300 mb-2 glow-text">MITO: La hipnosis es peligrosa
                         y puedo perder el control.</h3>
                     <p class="text-red-400 mb-4">"Tengo miedo de ser manipulado o de hacer algo en
                         contra de mi voluntad."</p>
-                    <div class="bg-[#080616]/50 border border-secondary/20 rounded p-4">
+                    <div class="fact-card rounded p-4">
                         <p class="text-secondary"><strong>REALIDAD:</strong> Este es el mito más
                             extendido y es completamente falso. Durante la hipnosis clínica, <strong>tú mantienes el
                                 control absoluto en todo momento</strong>. No es un estado de inconsciencia, sino de
@@ -1544,13 +1543,13 @@
                     </div>
                 </div>
                 <!-- Myth 2 -->
-                <div class="bg-red-50  border-l-4 border-red-400 p-6 rounded-r-lg">
-                    <h3 class="text-lg font-semibold text-red-800  mb-2">MITO: Podría no "despertar" de
+                <div class="myth-card p-6 rounded-r-lg shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                    <h3 class="text-lg font-semibold text-red-300 mb-2 glow-text">MITO: Podría no "despertar" de
                         la hipnosis.</h3>
-                    <p class="text-red-600  mb-4">"¿Y si me quedo atrapado en ese estado para siempre?"
+                    <p class="text-red-400 mb-4">"¿Y si me quedo atrapado en ese estado para siempre?"
                     </p>
-                    <div class="bg-secondary/5  border border-secondary/20  rounded p-4">
-                        <p class="text-secondary "><strong>REALIDAD:</strong> Es científicamente
+                    <div class="fact-card rounded p-4">
+                        <p class="text-secondary"><strong>REALIDAD:</strong> Es científicamente
                             imposible quedarse "atrapado" en hipnosis. En el peor de los casos, si la sesión se
                             interrumpiera bruscamente, simplemente te dormirías de forma natural y despertarías poco
                             después, o volverías a tu estado de vigilia normal. <strong>Siempre puedes abrir los ojos y
@@ -1558,12 +1557,12 @@
                     </div>
                 </div>
                 <!-- Reality Section -->
-                <div class="glass-panel    border-l-4 border-white/5  p-6 rounded-r-lg">
-                    <h3 class="text-lg font-semibold text-blue-800  mb-2">REALIDAD: Una herramienta
+                <div class="fact-card p-6 rounded-lg glow-border">
+                    <h3 class="text-lg font-semibold text-primary mb-2 glow-text">REALIDAD: Una herramienta
                         clínica poderosa</h3>
-                    <p class="text-blue-600  mb-4">"La hipnosis es un proceso seguro, ético y eficaz."
+                    <p class="text-secondary mb-4">"La hipnosis es un proceso seguro, ético y eficaz."
                     </p>
-                    <p class="text-blue-800 ">En NeuroSync, aplicamos la hipnosis con un rigor
+                    <p class="text-[#E0E0E0]">En NeuroSync, aplicamos la hipnosis con un rigor
                         metodológico absoluto, basándonos en la evidencia científica más actual para garantizar un
                         proceso seguro, ético y transformador. <strong>Es una colaboración profesional para alcanzar tus
                             objetivos.</strong></p>
@@ -1576,20 +1575,20 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-3 gap-8 text-center">
                 <div>
-                    <div class="text-4xl font-bold text-primary mb-2">85%</div>
-                    <h3 class="text-lg font-semibold mb-2">Población Receptiva</h3>
+                    <div class="text-4xl font-bold text-primary mb-2 glow-text">85%</div>
+                    <h3 class="text-lg font-semibold mb-2 gold-glow">Población Receptiva</h3>
                     <p class="text-[#E0E0E0]   text-sm">Porcentaje de individuos con receptividad
                         hipnótica moderada a alta según investigación estandarizada</p>
                 </div>
                 <div>
-                    <div class="text-4xl font-bold text-primary mb-2">70+</div>
-                    <h3 class="text-lg font-semibold mb-2">Años de Investigación</h3>
+                    <div class="text-4xl font-bold text-primary mb-2 glow-text">70+</div>
+                    <h3 class="text-lg font-semibold mb-2 gold-glow">Años de Investigación</h3>
                     <p class="text-[#E0E0E0]   text-sm">Décadas de estudios científicos rigurosos sobre
                         mecanismos y aplicaciones clínicas de la hipnosis</p>
                 </div>
                 <div>
-                    <div class="text-4xl font-bold text-primary mb-2">100%</div>
-                    <h3 class="text-lg font-semibold mb-2">Confidencialidad</h3>
+                    <div class="text-4xl font-bold text-primary mb-2 glow-text">100%</div>
+                    <h3 class="text-lg font-semibold mb-2 gold-glow">Confidencialidad</h3>
                     <p class="text-[#E0E0E0]   text-sm">Protocolo de privacidad absoluta en todas las
                         fases del proceso terapéutico</p>
                 </div>
@@ -3216,12 +3215,14 @@
             window.addEventListener('scroll', function () {
                 if (window.pageYOffset > 100) {
                     if (nav) {
-                        nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                        nav.style.background = 'rgba(8, 6, 22, 0.95)';
                         nav.classList.add('backdrop-blur-md');
+                        nav.classList.add('border-white/10');
                     }
                 } else {
                     if (nav) {
-                        nav.style.background = '';
+                        nav.style.background = 'rgba(8, 6, 22, 0.8)';
+                        nav.classList.remove('border-white/10');
                     }
                 }
             });
